@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">KT足球-校园单机版</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="titles">
+        <item>上传失败</item>
+        <item>上传成功</item>
+    </string-array>
+
+    <string-array name="spingarr">
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+        <item>深圳</item>
+    </string-array>
+
+    <!-- Download error -->
+    <string name="download_error">下载出错了：%1$s</string>
+    <string name="download_error_server">当前排队下载的用户过多，请稍后再试！</string>
+    <string name="download_error_network">网络不可用，请检查网络！</string>
+    <string name="download_error_storage">存储卡错误，请检查存储卡！</string>
+    <string name="download_error_space">存储卡空间不足！</string>
+    <string name="download_error_timeout">下载超时！</string>
+    <string name="download_error_un_know_host">找不到服务器。</string>
+    <string name="download_error_url">URL地址错误。</string>
+    <string name="download_error_argument">下载参数错误。</string>
+    <string name="download_error_un">未知错误。</string>
+    <string name="tips_not_wifi_confirm">继续播放</string>
+    <string name="tips_not_wifi_cancel">停止播放</string>
+    <string name="no_url">播放地址无效</string>
+    <string name="tips_not_wifi">您当前正在使用移动网络，继续播放将消耗流量</string>
+    <string name="curr_version_update">应用更新版本</string>
+
+    <string name="film_story">    影片所讲述的是一个成长在意大利西西里岛詹卡多村庄中小孩子的故事。主人翁多多是个古灵精怪的小孩子，而艾费多则是“天堂乐园戏院”的放映师，因为电影的穿针引线，使得他们建立起来亦师亦友的感情。放映师所扮演的是个引领者的角色，在多多的童年、青少年、成年，甚至是老年，一直带领着多多成长。在他死后，他留给多多一盒胶卷，重新串连起多多遗失了三十年的回忆与情感。
+
+在意大利南部小镇姜卡尔多，童年的小多多不仅喜欢看电影，还喜欢看放映师艾弗达“剪”电影：在40年代的意大利小镇上，电影在放映之前都要经由牧师检查，把认为观众不宜的镜头（比如接吻戏）严格地剪掉之后，才可以放映。所以，观众每当发现接吻镜头又被删去了的时候，就会全场起哄、甚至吐口水；而放到煽情的段落，观众们又会集体嚎啕大哭，总之电影院里总是热闹非凡。
+
+小多多把那些在转动中带来神奇影像的胶片视若珍宝，他的理想就是成为像艾费多那样的电影放映师。不过艾费多看到了小多多的聪慧伶俐，他认为小多多将来一定会有更远大的前程，他劝小多多离开小镇：“不要在这里呆着，时间久了你会认为这里就是世界的中心。” 而小多多还很难理解艾费多的话，他每天来放映室跟艾费多学习电影放映。好心的艾费多为了让更多的观众看到电影，搞了一次露天电影，结果胶片着火了，小多多把艾费多从火海中救了出来，但艾费多双目失明了，不能继续放电影。小多多成了小镇唯一会放电影的人，他接替艾费多成了小镇的电影放映师。
+
+多多渐渐长大，他爱上了银行家的女儿艾莲娜。初恋的纯洁情愫美如天堂，但是一对小情侣的海誓山盟被艾莲娜父亲的阻挠给隔断了，多多去服兵役，而艾莲娜去念大学。在艾弗多的劝说下，伤心的多多从此离开小镇，追寻自己生命中的梦想。
+
+三十年后，成名的多多回来向他的老朋友做最后的告别。艾费多留给他一份礼物，原来是当初被镇上的检查员勒令剪掉的吻戏胶片。看着这些镜头，多多突然发现自己已经理解了生命中的一切。</string>
+
+    <string name="film_director">导演：朱塞佩·托纳多雷</string>
+    <string name="film_name">天堂电影院</string>
+</resources>

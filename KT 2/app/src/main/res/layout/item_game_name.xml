@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp">
+        <ImageView
+            android:id="@+id/iv_vs_saishi"
+
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vs_saishi_1v1"/>
+        <TextView
+            android:id="@+id/tv_vs_saishi_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="虹桥万科中心赛事"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@id/iv_vs_saishi"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:textColor="#222222"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tv_vs_startdate"
+            android:layout_below="@+id/tv_vs_saishi_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016-09-09"
+            android:layout_marginTop="5dp"
+            android:layout_alignLeft="@id/tv_vs_saishi_title"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:id="@+id/tv_time_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" --- "
+            android:textSize="12sp"
+            android:layout_alignTop="@id/tv_vs_startdate"
+            android:layout_toRightOf="@id/tv_vs_startdate"/>
+        <TextView
+            android:id="@+id/tv_vs_enddate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_vs_startdate"
+            android:layout_toRightOf="@+id/tv_time_line"
+            android:text="2016-09-12"
+            android:textSize="12sp"/>
+
+         <ImageView
+             android:id="@+id/iv_vs_saishi_back"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@mipmap/back_vs_saishi"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="12dp"
+             />
+        <TextView
+            android:id="@+id/tv_vs_saishi_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进行中"
+            android:textSize="11sp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_vs_saishi_back"
+            android:layout_marginRight="3dp"
+
+
+            />
+        <TextView
+            android:id="@+id/tv_people_conts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="36"
+            android:textStyle="bold"
+            android:textColor="#222222"
+            android:textSize="20sp"
+            android:layout_toLeftOf="@+id/tv_name_ren"
+
+           android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/tv_name_ren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人"
+            android:textStyle="bold"
+            android:textColor="#222222"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@+id/tv_vs_saishi_state"
+            android:layout_marginRight="10dp"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

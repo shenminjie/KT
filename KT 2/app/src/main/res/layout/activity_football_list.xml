@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/nomal_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/text_black">
+
+        <ImageView
+            android:id="@+id/iv_ft_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@mipmap/nomal_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="学期列表"
+            android:textColor="@color/gold"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_ftclass1"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小学年级第一学期"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+
+            android:layout_marginLeft="5dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qianjin"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:background="#f1f1f1">
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_ftclass2"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小学年级第二学期"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+
+            android:layout_marginLeft="5dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qianjin"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:background="#f1f1f1">
+
+    </LinearLayout>
+</LinearLayout>
