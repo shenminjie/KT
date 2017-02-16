@@ -1,0 +1,2 @@
+include     ':Frame',':vitamio_lib',':newkt',":MPChartLib",":MyDaoGenerator","YoukuPlayerOpenSDK",":app"
+

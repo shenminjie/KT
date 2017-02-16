@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Frame/Frame.iml" filepath="$PROJECT_DIR$/Frame/Frame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KT3.iml" filepath="$PROJECT_DIR$/KT3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyDaoGenerator/MyDaoGenerator.iml" filepath="$PROJECT_DIR$/MyDaoGenerator/MyDaoGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YoukuPlayerOpenSDK/YoukuPlayerOpenSDK.iml" filepath="$PROJECT_DIR$/YoukuPlayerOpenSDK/YoukuPlayerOpenSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newkt/newkt.iml" filepath="$PROJECT_DIR$/newkt/newkt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" filepath="$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" />
+    </modules>
+  </component>
+</project>
