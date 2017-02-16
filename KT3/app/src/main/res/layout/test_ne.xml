@@ -8,12 +8,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
     <RelativeLayout android:layout_alignParentBottom="true" android:layout_width="match_parent" android:layout_height="60dip"  >
-        <ProgressBar android:layout_width="match_parent" style="?android:attr/progressBarStyleHorizontal" android:max="100"  android:layout_height="match_parent" android:background="@android:color/holo_blue_bright"
-            android:id="@+id/jindu">
-        </ProgressBar>
-        <CountDownTimer android:id="@+id/jindushow"
+        <View android:layout_width="match_parent" android:layout_height="60dip" android:minHeight="60dip" android:maxHeight="60dip"
+              android:background="@android:color/holo_blue_bright"
+            android:id="@+id/jindu" >
+        </View>
+        <TextView android:id="@+id/jindushow"
+                  android:gravity="center_vertical"
+                  android:textColor="@android:color/black"
+                  android:textStyle="bold"
+                  android:textSize="20dip"
+                  android:layout_marginLeft="10dip"
             android:text="111"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="60dip" />
     </RelativeLayout>
 </RelativeLayout>

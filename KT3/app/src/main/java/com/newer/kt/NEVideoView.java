@@ -171,8 +171,9 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
         setMeasuredDimension(width, height);
     }
     public void set(String path) {
+
         NEVideoView mVideoView = this;
-        mVideoView.setBufferStrategy(1);
+        mVideoView.setBufferStrategy(2);
         mVideoView.setMediaType("mp4");
         mVideoView.setHardwareDecoder(true);
         mVideoView.setPauseInBackground(true);
