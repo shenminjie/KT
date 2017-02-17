@@ -78,6 +78,17 @@
             android:screenOrientation="portrait" />
 
         <activity
+                android:name=".Main2Activity"
+                android:screenOrientation="portrait" >
+            <!--&lt;!&ndash;-->
+           <!--<intent-filter>-->
+               <!--<action android:name="android.intent.action.MAIN" />-->
+
+               <!--<category android:name="android.intent.category.LAUNCHER" />-->
+           <!--</intent-filter>-->
+           <!--&ndash;&gt;-->
+        </activity>
+        <activity
             android:name=".Refactor.ui.Avtivity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -455,6 +466,9 @@
 
         <activity android:name=".Refactor.ui.Fragment.Main.SaiShiEJ" />
         <activity android:name=".Refactor.ui.Avtivity.FootBall_Class_Lesson"></activity>
+
+        <meta-data android:value="5745681b67e58e19e20033ae" android:name="UMENG_APPKEY"/>
+        <!--<meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>-->
     </application>
 
 </manifest>

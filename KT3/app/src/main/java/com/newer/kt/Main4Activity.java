@@ -9,13 +9,13 @@ import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
 
-public class Main4Activity extends Activity {
+public class Main4Activity extends AnalyticsHome {
 
     private boolean fullscreen = true;
     private MyVideoView audtoView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 

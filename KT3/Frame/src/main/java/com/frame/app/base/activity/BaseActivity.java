@@ -23,12 +23,13 @@ import com.frame.app.manager.AppManager;
 import com.frame.app.utils.LogUtils;
 import com.frame.app.view.LoadingDialog;
 
+import com.newer.kt.AnalyticsHome;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AnalyticsHome {
 
 	/** UI 线程ID */
 	private long mUIThreadId;
@@ -37,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 	private String TAG;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		TAG = getClass().getSimpleName();
 		AppManager.getAppManager().addActivity(getThis()); // 加入activity栈管理器

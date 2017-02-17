@@ -59,4 +59,5 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
     compile 'com.bugtags.library:bugtags-lib:latest.integration'
     compile files('libs/IndoorscapeAlbumPlugin.jar')
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

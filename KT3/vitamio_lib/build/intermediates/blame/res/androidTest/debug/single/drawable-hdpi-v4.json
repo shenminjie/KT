@@ -4,22 +4,6 @@
         "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_play01.png"
     },
     {
-        "merged": "D:\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_pause02.png",
-        "source": "D:\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_pause02.png"
-    },
-    {
-        "merged": "D:\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_play02.png",
-        "source": "D:\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_play02.png"
-    },
-    {
-        "merged": "D:\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "D:\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_bg.png",
-        "source": "D:\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_bg.png"
-    },
-    {
         "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_pause01.png",
         "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_pause01.png"
     },
@@ -32,16 +16,8 @@
         "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "D:\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_play01.png",
-        "source": "D:\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_play01.png"
-    },
-    {
         "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_pause02.png",
         "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_pause02.png"
-    },
-    {
-        "merged": "D:\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_pause01.png",
-        "source": "D:\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\mediacontroller_pause01.png"
     },
     {
         "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\mediacontroller_play02.png",
