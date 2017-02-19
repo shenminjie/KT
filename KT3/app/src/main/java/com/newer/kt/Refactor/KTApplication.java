@@ -26,6 +26,7 @@ import com.newer.kt.Refactor.db.THDatabaseLoader;
 import com.newer.kt.Refactor.db.UsersDaoHelper;
 import com.newer.kt.Refactor.ui.Avtivity.CachedActivity;
 import com.newer.kt.entity.UserMsg;
+import com.umeng.um_share.App;
 import com.yolanda.nohttp.NoHttp;
 import com.youku.player.YoukuPlayerBaseConfiguration;
 
@@ -34,7 +35,7 @@ import org.xutils.x;
 /**
  * Created by Kyle on 16/5/9.
  */
-public class KTApplication extends Application {
+public class KTApplication extends App {
 
     private static Context mContext;
     private static KTApplication sInstance;

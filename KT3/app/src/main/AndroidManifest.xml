@@ -466,9 +466,191 @@
 
         <activity android:name=".Refactor.ui.Fragment.Main.SaiShiEJ" />
         <activity android:name=".Refactor.ui.Avtivity.FootBall_Class_Lesson"></activity>
+        <!--5126ff896c738f2bfa000438-->
 
         <meta-data android:value="5745681b67e58e19e20033ae" android:name="UMENG_APPKEY"/>
         <!--<meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>-->
+
+
+        <!-- above activity that demo required,has nothing to with umeng sdk  -->
+        <!-- *************************    related to Share START **************************** -->
+        <!-- Share edit page-->
+        <!--<activity-->
+        <!--android:name=".WBShareActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:screenOrientation="portrait" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity-->
+        <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:windowSoftInputMode="adjustResize"-->
+        <!--android:exported="false" >-->
+        <!--</activity>-->
+        <!-- 易信回调activity -->
+        <!--<activity-->
+                <!--android:name=".yxapi.YXEntryActivity"-->
+                <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+                <!--android:exported="true"-->
+                <!--android:screenOrientation="portrait"-->
+                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+
+        <!--&lt;!&ndash;dingding&ndash;&gt;-->
+        <!--<activity-->
+                <!--android:name=".ddshare.DDShareActivity"-->
+                <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+                <!--android:exported="true"-->
+                <!--android:launchMode="singleInstance"-->
+                <!--android:screenOrientation="portrait"-->
+                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--&lt;!&ndash; alipay callback&ndash;&gt;-->
+        <!--<activity-->
+                <!--android:name=".apshare.ShareEntryActivity"-->
+                <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+                <!--android:exported="true"-->
+                <!--android:screenOrientation="portrait"-->
+                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+
+        <!--&lt;!&ndash; vk &ndash;&gt;-->
+        <!--<activity-->
+                <!--android:name="com.vk.sdk.VKServiceActivity"-->
+                <!--android:label="ServiceActivity"-->
+                <!--android:theme="@style/VK.Transparent"/>-->
+        <!--line-->
+        <!--登录回调-->
+        <!--<activity android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity"-->
+                  <!--android:configChanges="keyboard|orientation"-->
+                  <!--android:exported="true"-->
+                  <!--android:screenOrientation="sensor">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="android.intent.category.BROWSABLE" />-->
+                <!--<data android:scheme="line.1471474450" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity android:name="com.kakao.auth.authorization.authcode.KakaoWebViewActivity"/>-->
+        <!--&lt;!&ndash;没安装客户端下登录&ndash;&gt;-->
+        <!--<activity android:name="jp.line.android.sdk.activity.WebLoginActivity"-->
+                  <!--android:exported="false"-->
+                  <!--android:configChanges="keyboard|orientation"-->
+                  <!--android:screenOrientation="sensor">-->
+        <!--</activity>-->
+        <!-- tencent -->
+
+        <!--<activity-->
+        <!--android:name="com.tencent.tauth.AuthActivity"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:noHistory="true" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.VIEW" />-->
+
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--<category android:name="android.intent.category.BROWSABLE" />-->
+
+        <!--<data android:scheme="tencent100424468" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity-->
+        <!--android:name="com.tencent.connect.common.AssistActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
+        <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
+
+
+        <activity
+                android:name="com.umeng.um_share.ShareActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+        </activity>
+        <activity
+                android:name="com.umeng.um_share.AuthActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+        </activity>
+        <activity
+                android:name="com.umeng.um_share.GetInfoActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+        </activity>
+        <activity
+                android:name="com.umeng.um_share.CheckActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+        </activity>
+        <activity
+                android:name="com.umeng.um_share.ShareMenuActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+        </activity>
+        <activity
+                android:name="com.umeng.um_share.InfoDetailActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+                android:name="com.umeng.um_share.ShareDetailActivity"
+                android:configChanges="orientation|keyboard"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+        </activity>
+
+        <activity
+                android:name="com.umeng.socialize.editorpage.ShareActivity"
+                android:theme="@style/Theme.UMDefault"
+                android:excludeFromRecents="true"
+        />
+        <!-- wechat callback-->
+        <activity
+                android:name=".wxapi.WXEntryActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:exported="true"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+                android:name="com.umeng.qq.tencent.AuthActivity"
+                android:launchMode="singleTask"
+                android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="com.umeng.qq.tencent.AssistActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <uses-library
+                android:name="com.google.android.maps"
+                android:required="false" />
+        <uses-library android:name="android.test.runner" />
     </application>
 
 </manifest>

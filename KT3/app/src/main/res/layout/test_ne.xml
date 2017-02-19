@@ -2,11 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.newer.kt.NEVideoView
-        android:id="@+id/video_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+   <include layout="@layout/activity_player"/>
     <RelativeLayout android:layout_alignParentBottom="true" android:layout_width="match_parent" android:layout_height="60dip"  >
         <View android:layout_width="match_parent" android:layout_height="60dip" android:minHeight="60dip" android:maxHeight="60dip"
               android:background="@android:color/holo_blue_bright"

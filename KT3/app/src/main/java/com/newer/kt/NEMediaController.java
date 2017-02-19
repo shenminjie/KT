@@ -17,8 +17,9 @@
 
 package com.newer.kt;
 
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,10 +41,6 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-
-import java.util.Locale;
-
-//import com.netease.neliveplayerdemo.R;
 
 /**
  * A view containing controls for a MediaPlayer. Typically contains the
@@ -74,9 +71,8 @@ import java.util.Locale;
  * </ul>
  */
 public class NEMediaController extends FrameLayout {
-    private static final String TAG = "NEMediaController";
+    private static final String TAG = "NELivePlayer/NEMediaController";
 
-    private static  ShowBuffering mShowBuffering;
     private MediaPlayerControl mPlayer;
     private Context mContext;
     private PopupWindow mWindow;
@@ -104,9 +100,9 @@ public class NEMediaController extends FrameLayout {
     private boolean mPaused = false;
     private boolean mIsFullScreen = false;
     
-    private int mVideoScalingMode = VIDEO_SCALING_MODE_NONE;
+    private int mVideoScalingMode = VIDEO_SCALING_MODE_FIT;
     public static final int VIDEO_SCALING_MODE_NONE = 0;
-    public static final int VIDEO_SCALING_MODE_FIT = 1;
+    public static final int VIDEO_SCALING_MODE_FIT  = 1;
     public static final int VIDEO_SCALING_MODE_FILL = 2;
     public static final int VIDEO_SCALING_MODE_FULL = 3;
 
@@ -138,7 +134,6 @@ public class NEMediaController extends FrameLayout {
             initControllerView(mRoot);
     }
 
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     private void initFloatingWindow() {
         mWindow = new PopupWindow(mContext);
         mWindow.setFocusable(false);
@@ -179,25 +174,25 @@ public class NEMediaController extends FrameLayout {
         mPauseButton = (ImageView) v.findViewById(R.id.mediacontroller_play_pause); //播放暂停按钮
         if (mPauseButton != null) {
         	if (mPaused) {
-//        		mPauseButton.setImageResource(R.drawable.nemediacontroller_pause);
+        		mPauseButton.setImageResource(R.drawable.nemediacontroller_pause);
         		mPlayer.pause();
         	}
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
         }
         
-        /*mSetPlayerScaleButton = (ImageView) v.findViewById(R.id.video_player_scale);  //画面显示模式按钮*/
+        mSetPlayerScaleButton = (ImageView) v.findViewById(R.id.video_player_scale);  //画面显示模式按钮
         if(mSetPlayerScaleButton != null) {
         	if (mPlayer.isHardware() && mPlayer.isInBackground()) {
 				switch(mVideoScalingMode)
 				{
 				case VIDEO_SCALING_MODE_FIT:
 					mVideoScalingMode = VIDEO_SCALING_MODE_FIT;
-					/*mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale01);*/
+					mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale01);
 					break;
 				case VIDEO_SCALING_MODE_NONE:
 					mVideoScalingMode = VIDEO_SCALING_MODE_NONE;
-					/*mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale02);*/
+					mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale02);
 					break;
 				default:
 					mVideoScalingMode = VIDEO_SCALING_MODE_NONE;
@@ -209,17 +204,17 @@ public class NEMediaController extends FrameLayout {
         	mSetPlayerScaleButton.setOnClickListener(mSetPlayerScaleListener);
         }
         
-//        mSnapshotButton = (ImageView) v.findViewById(R.id.snapShot);  //截图按钮
+        mSnapshotButton = (ImageView) v.findViewById(R.id.snapShot);  //截图按钮
         if (mSnapshotButton != null) {
         	mSnapshotButton.requestFocus();
         	mSnapshotButton.setOnClickListener(mSnapShotListener);
         }
        
-//        mMuteButton = (ImageView) v.findViewById(R.id.video_player_mute);  //静音按钮
+        mMuteButton = (ImageView) v.findViewById(R.id.video_player_mute);  //静音按钮
     	if (mMuteButton != null) {
     		if (mPlayer.isHardware() && mPlayer.isInBackground()) {
             	if (mute_flag) {
-//            		mMuteButton.setImageResource(R.drawable.nemediacontroller_mute01);
+            		mMuteButton.setImageResource(R.drawable.nemediacontroller_mute01);
     				mPlayer.setMute(true);
             	}
             }
@@ -255,11 +250,6 @@ public class NEMediaController extends FrameLayout {
     public void setMediaPlayer(MediaPlayerControl player) {
         mPlayer = player;
         updatePausePlay();
-    }
-
-    static public  void setShowBuffering(ShowBuffering abc){
-        mShowBuffering = abc;
-
     }
 
     /**
@@ -516,12 +506,12 @@ public class NEMediaController extends FrameLayout {
 		@Override
 		public void onClick(View v) {
 			if (!mute_flag) {
-//				mMuteButton.setImageResource(R.drawable.nemediacontroller_mute01);
+				mMuteButton.setImageResource(R.drawable.nemediacontroller_mute01);
 				mPlayer.setMute(true);
 				mute_flag = true;
 			}
 			else {
-//				mMuteButton.setImageResource(R.drawable.nemediacontroller_mute02);
+				mMuteButton.setImageResource(R.drawable.nemediacontroller_mute02);
 				mPlayer.setMute(false);
 				mute_flag = false;
 			}
@@ -534,12 +524,12 @@ public class NEMediaController extends FrameLayout {
 		public void onClick(View v) {
 			if(mIsFullScreen) {
 				mVideoScalingMode = VIDEO_SCALING_MODE_NONE;
-//				mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale01);
+				mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale01);
 				mIsFullScreen = false;
 			}
 			else {
 				mVideoScalingMode = VIDEO_SCALING_MODE_FIT;
-//				mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale02);
+				mSetPlayerScaleButton.setImageResource(R.drawable.nemediacontroller_scale02);
 				mIsFullScreen = true;
 			}
 			
@@ -594,10 +584,10 @@ public class NEMediaController extends FrameLayout {
             return;
 
         if (mPlayer.isPlaying()) {
-//            mPauseButton.setImageResource(R.drawable.nemediacontroller_play);
+            mPauseButton.setImageResource(R.drawable.nemediacontroller_play);
 		}
         else {
-//            mPauseButton.setImageResource(R.drawable.nemediacontroller_pause);
+            mPauseButton.setImageResource(R.drawable.nemediacontroller_pause);
         }
     }
 
@@ -622,7 +612,6 @@ public class NEMediaController extends FrameLayout {
             mDragging = true;
             
             mHandler.removeMessages(SHOW_PROGRESS);
-            mShowBuffering.showBuffering();
         }
 
         public void onProgressChanged(SeekBar bar, int progress, boolean fromuser) {
@@ -713,8 +702,6 @@ public class NEMediaController extends FrameLayout {
         int getCurrentPosition();
 
         void seekTo(long pos);
-        
-        void seekAndChangeUrl(long pos, String path);
 
         boolean isPlaying();
         
@@ -741,10 +728,6 @@ public class NEMediaController extends FrameLayout {
         boolean isHardware();
         
         boolean isInBackground();
-    }
-
-    public interface ShowBuffering {
-        void showBuffering();
     }
 
 }

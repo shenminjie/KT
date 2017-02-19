@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
 import com.umeng.analytics.social.UMPlatformData;
@@ -27,8 +28,9 @@ public class AnalyticsHome extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
+        setTheme(android.support.v7.appcompat.R.style.Theme_AppCompat_Light_NoActionBar);
         mContext = this;
         MobclickAgent.setDebugMode(true);
         // SDK在统计Fragment时，需要关闭Activity自带的页面统计，

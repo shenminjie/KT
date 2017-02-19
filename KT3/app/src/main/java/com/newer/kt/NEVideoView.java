@@ -21,9 +21,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -36,26 +34,9 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.Toast;
-
 import com.netease.neliveplayer.NELivePlayer;
-import com.netease.neliveplayer.NELivePlayer.OnBufferingUpdateListener;
-import com.netease.neliveplayer.NELivePlayer.OnCompletionListener;
-import com.netease.neliveplayer.NELivePlayer.OnErrorListener;
-import com.netease.neliveplayer.NELivePlayer.OnInfoListener;
-import com.netease.neliveplayer.NELivePlayer.OnPreparedListener;
-import com.netease.neliveplayer.NELivePlayer.OnSeekCompleteListener;
-import com.netease.neliveplayer.NELivePlayer.OnVideoSizeChangedListener;
-import com.netease.neliveplayer.NEMediaInfo;
-import com.netease.neliveplayer.NEMediaPlayer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,8 +45,11 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import com.netease.neliveplayer.NELivePlayer.*;
+import com.netease.neliveplayer.NEMediaInfo;
+import com.netease.neliveplayer.NEMediaPlayer;
 
-import static com.netease.neliveplayer.NEDownTactics.NELP_LOG_SILENT;
+import static com.netease.neliveplayer.NELivePlayer.NELP_LOG_SILENT;
 
 /**
  * Displays a video file. The VideoView class can load images from various
@@ -136,19 +120,19 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
     public NEVideoView(Context context) {
         super(context);
         NEVideoView.mContext = context;
-        initVideoView();
+//        initVideoView();
     }
 
     public NEVideoView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
         NEVideoView.mContext = context;
-        initVideoView();
+//        initVideoView();
     }
 
     public NEVideoView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         NEVideoView.mContext = context;
-        initVideoView();
+//        initVideoView();
     }
 
     @Override
@@ -195,6 +179,7 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
         NEVideoView mVideoView = this;
         mVideoView.requestFocus();
         mVideoView.start();
+        initVideoView();
     }
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void setVideoScalingMode(int videoScalingMode) {
@@ -307,7 +292,7 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
         mVideoScalingMode = videoScalingMode;
     }
 
-    private void initVideoView() {
+    public void initVideoView() {
         mVideoWidth = 0;
         mVideoHeight = 0;
         mPixelSarNum = 0;
@@ -319,7 +304,6 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
         mCurrState = IDLE;
         mNextState = IDLE;
     }
-
     public void setVideoPath(String path) { //设置视频文件路径
         isBackground = false; //指示是否在后台
         setVideoURI(Uri.parse(path));
@@ -694,6 +678,7 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
             } else {
                 if (mHardwareDecoder) {
                     openVideo();
+                    seekTo(pos);
                     isBackground = false; //不在后台
                 } else if (mPauseInBackground) {
 //                    mMediaPlayer.setDisplay(mSurfaceHolder);
@@ -711,10 +696,7 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
                 if (mHardwareDecoder) {
                     mSeekWhenPrepared = mMediaPlayer.getCurrentPosition();
                     if (mMediaPlayer != null) {
-                        mMediaPlayer.reset();
-                        mMediaPlayer.release();
-                        mMediaPlayer = null;
-                        mCurrState = IDLE;
+                        NEVideoView.this.stop();
                     }
                     isBackground = true;
                 } else if (!mPauseInBackground) {
@@ -729,6 +711,13 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
             }
         }
     };
+
+    public void stop() {
+        mMediaPlayer.reset();
+        mMediaPlayer.release();
+        mMediaPlayer = null;
+        mCurrState = IDLE;
+    }
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -797,6 +786,12 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
 
     @Override
     public void start() {
+        if(pos!=0){
+            if (mMediaPlayer != null && mIsPrepared) {
+                mMediaPlayer.seekTo(pos);
+
+            }
+        }else
         if (mMediaPlayer != null && mIsPrepared) {
             mMediaPlayer.start();
             mCurrState = STARTED;
@@ -804,16 +799,20 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
         mNextState = STARTED;
 
     }
-
+    long pos;
     @Override
     public void pause() {
         if (mMediaPlayer != null && mIsPrepared) {
             if (mMediaPlayer.isPlaying()) {
-                mMediaPlayer.pause();
+                pos = mMediaPlayer.getCurrentPosition();
                 mCurrState = PAUSED;
             }
         }
         mNextState = PAUSED;
+    }
+
+    public void setPos(long pos) {
+        this.pos = pos;
     }
 
     @Override
@@ -995,10 +994,7 @@ public class NEVideoView extends SurfaceView implements NEMediaController.MediaP
 
     public void release_resource() {
         if (mMediaPlayer != null) {
-            mMediaPlayer.reset();
-            mMediaPlayer.release();
-            mMediaPlayer = null;
-            mCurrState = IDLE;
+            stop();
         }
     }
 

@@ -1,19 +1,14 @@
 package com.newer.kt;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.netease.neliveplayer.NELivePlayer;
-import com.netease.neliveplayer.NEMediaPlayer;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -21,15 +16,20 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.vov.vitamio.MediaPlayer;
-
-import static com.netease.neliveplayer.NEDownTactics.NELP_LOG_SILENT;
+import com.umeng.um_share.ShareActy;
 
 /**
  * Created by win7 on 2017/2/14.
  */
 
-public class NeActivity extends Activity {
+
+
+public class NeActivity extends NEVideoPlayerActivity {
+    public static NeActivity neActivity;
+
+    public static NeActivity getThisInstance() {
+        return neActivity;
+    }
 
     public String getLen(String file) {
         if (new File(file).exists()) {
@@ -41,14 +41,18 @@ public class NeActivity extends Activity {
         return "";
     }
 
+    long leng;
+    NEVideoView mVeoView;
+    String path;
+    long size;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_ne);
-        final String path = getIntent().getStringExtra("path");
-        final NEVideoView mVeoView = (NEVideoView) findViewById(R.id.video_view);
+        path = getIntent().getStringExtra("path");
 
-
+        neActivity = this;
 //        mVeoView.setOnBufferingUpdateListener(new NELivePlayer.OnBufferingUpdateListener() {
 //            @Override
 //            public void onBufferingUpdate(NELivePlayer neLivePlayer, int i) {
@@ -59,52 +63,54 @@ public class NeActivity extends Activity {
 
 //        mVeoView.play();
 //
-        final long leng = Long.parseLong(getLen(path));
+        leng = Long.parseLong(getLen(path));
         Date d = new Date(leng);
         String s = new SimpleDateFormat("mm:ss").format(d);
-        final long size = leng % 1000 > 0 ? leng / 1000 + 1 : leng / 1000;
+        size = leng % 1000 > 0 ? leng / 1000 + 1 : leng / 1000;
 //        ((ProgressBar) findViewById(R.id.jindu)).setMax((int) size);
 
 
 //        ((ProgressBar) findViewById(R.id.jindu)).setProgress((int) (leng / 1000));
 
-
-        daojishi(leng, size);
-
-
-        mVeoView.set(path);
-        mVeoView.play();
+        init();
     }
+
+    long played;
+    TimerTask timerTask;
 
     private void daojishi(final long leng, final long size) {
         Timer t = new Timer();
-        TimerTask timerTask;
         t.schedule(timerTask = new TimerTask() {
             long t = leng;
             long len = size;
 
             @Override
-            public void run() {
+            public synchronized void run() {
                 t -= 1000;
+                played += 1000;
                 len -= 1;
                 if (len <= 0) {
                     Thread.interrupted();
                 } else {
                     long duration = len;
                     final long finalLen = len;
-//                    if(t*2<=leng){
-//                        try {
-//                            wait();
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
+                    if (t * 1l + 6000l <= leng) {
+                        try {
+                            mVeoView.setPos(played*5);
+                            mVeoView.pause();
+
+                            share();
+                            wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     new Handler(Looper.getMainLooper(), new Handler.Callback() {
                         @Override
                         public boolean handleMessage(Message message) {
-                            View v = (View) ( findViewById(R.id.jindu)).getParent();
-                            ( findViewById(R.id.jindu)).getLayoutParams().width = ((int) (size - finalLen))*v.getWidth()/((int) (size));
-                            ( findViewById(R.id.jindu)).invalidate();
+                            View v = (View) (findViewById(R.id.jindu)).getParent();
+                            (findViewById(R.id.jindu)).getLayoutParams().width = ((int) (size - finalLen)) * v.getWidth() / ((int) (size));
+                            (findViewById(R.id.jindu)).invalidate();
 
                             ((TextView) findViewById(R.id.jindushow)).setText(new SimpleDateFormat("mm:ss").format(new Date(t)));
 
@@ -116,5 +122,40 @@ public class NeActivity extends Activity {
         }, new Date(), 1000);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mVeoView == null) {
+            mVeoView = (NEVideoView) findViewById(R.id.video_view);
+            mVeoView.set(path);
+            mVeoView.setMediaController(new NEMediaController(this));
+            mVeoView.play();
 
+            daojishi(leng, size);
+
+        } else {
+//            mVeoView.stop();
+        }
+
+
+//        if (goon) {
+//            mVeoView.seekTo(played);
+//            timerTask.notify();
+//        } else {
+//            mVeoView.pause();
+//        }
+    }
+
+    public static boolean goon;
+
+    public void callback(boolean success) {
+        if (success) {
+//            mVeoView.seekTo(played);
+            mVeoView.start();
+//            timerTask.notify();
+        } else {
+            mVeoView.pause();
+
+        }
+    }
 }

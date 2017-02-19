@@ -470,14 +470,14 @@ public class BigClassDetailActivity extends BaseActivity {
     public void goPlay() {
 
             if(!initalized){
-                initVidioView();
+//                initVidioView();
                 initalized = true;
             }
 
-            head1.setVisibility(View.GONE);
-
-            full_holder.setVisibility(View.VISIBLE);
-            fl_video_group.setVisibility(View.VISIBLE);
+//            head1.setVisibility(View.GONE);
+//
+//            full_holder.setVisibility(View.VISIBLE);
+//            fl_video_group.setVisibility(View.VISIBLE);
             startActivity(new Intent(getBaseContext(),NeActivity.class).putExtra("path",vidioLocalPath));
 
 //            full_holder.play();
