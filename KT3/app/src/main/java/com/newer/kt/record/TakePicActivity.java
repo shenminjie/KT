@@ -5,18 +5,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.coremedia.iso.boxes.Container;
+import com.frame.app.base.activity.BaseActivity;
+import com.googlecode.mp4parser.authoring.Movie;
+import com.googlecode.mp4parser.authoring.Track;
+import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
+import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
+import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
 import com.newer.kt.R;
 
 
-public class TakePicActivity extends Activity {
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 
+public class TakePicActivity extends BaseActivity {
+
+    List<String> video = new ArrayList<String>();
     private MovieRecorderView mRecorderView;
     private ImageView mShootBtn;
     private boolean isFinish = true;
@@ -24,7 +40,7 @@ public class TakePicActivity extends Activity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.take_video);
         mRecorderView = (MovieRecorderView) findViewById(R.id.movieRecorderView);
@@ -45,36 +61,44 @@ public class TakePicActivity extends Activity {
 //                return true;
 //            }
 //        });reco
+
+
         mShootBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                String path;
 
                 if (!showstart) {
                     showstart = true;
 
                     if (showstart) {
-                        start();
-
+                        path = start();
+                        video.add(path);
+                        findViewById(R.id.submit).setVisibility(View.GONE);
                     } else {
 
 
                     }
+                }else{
+                    stop();
+                    findViewById(R.id.submit).setVisibility(View.VISIBLE);
                 }
             }
         });
-        findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showstart = false;((TextView) findViewById(R.id.text)).setText("0'/5''");
-                mShootBtn.setImageResource(R.drawable.startrecord);
-                findViewById(R.id.ctrol).setVisibility(View.GONE);
-            }
-        });
+//        findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showstart = false;
+//                ((TextView) findViewById(R.id.text)).setText("0'/5''");
+//                mShootBtn.setImageResource(R.drawable.startrecord);
+//                findViewById(R.id.ctrol).setVisibility(View.GONE);
+//            }
+//        });
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submit(mRecorderView.getVecordFile().toString());
+                submit();
             }
         });
         mRecorderView.setOnClickListener(new View.OnClickListener() {
@@ -86,11 +110,54 @@ public class TakePicActivity extends Activity {
             }
         });
     }
+    private String  mergeVideo() {
+        long begin = System.currentTimeMillis();
+        File merged = null;
+        List<Movie> movies = new ArrayList<>();
+        try {
+            for (int i = 0; i < video.size(); i++) {
+                Movie movie = null;
+                    movie = MovieCreator.build(video.get(i));
+                movies.add(movie);
+            }
+            List<Track> videoTracks = new ArrayList<>();
+            List<Track> audioTracks = new ArrayList<>();
+            for (Movie movie : movies) {
+                for (Track track : movie.getTracks()) {
+                    if ("vide".equals(track.getHandler())) {
+                        videoTracks.add(track);
+                    }
+                    if ("soun".equals(track.getHandler())) {
+                        audioTracks.add(track);
+                    }
+                }
+            }
+            Movie result = new Movie();
+            if (videoTracks.size() > 0) {
+                result.addTrack(new AppendTrack(videoTracks.toArray(new Track[videoTracks.size()])));
+            }
+            if (audioTracks.size() > 0) {
+                result.addTrack(new AppendTrack(audioTracks.toArray(new Track[audioTracks.size()])));
+            }
 
+            Container container = new DefaultMp4Builder().build(result);
+            FileChannel fc = new FileOutputStream(merged = mRecorderView
+                    .createRecordDir(true)).getChannel();
+            container.writeContainer(fc);
+            fc.close();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        long end = System.currentTimeMillis();
+        Log.e("test", "merge use time:" + (end - begin));
+        return merged.getAbsolutePath();
+    }
     boolean showfinish;
     boolean showstart;
 
-    private void submit(String s) {
+    private void submit() {
+        Toast.makeText(getBaseContext(),"video "+mergeVideo(),Toast.LENGTH_LONG).show();
 //        new PicUploader() {
 //
 //            @Override
@@ -114,16 +181,17 @@ public class TakePicActivity extends Activity {
     }
 
 
-    public void start() {
+    public String start() {
         showfinish = false;
         mRecorderView.onDestroy();
-        mRecorderView.record(new MovieRecorderView.OnRecordFinishListener() {
+        String path = mRecorderView.record(new MovieRecorderView.OnRecordFinishListener() {
 
             @Override
             public void onRecordFinish() {
                 handler.sendEmptyMessage(1);
             }
         });
+        return path;
     }
 
     public void restart() {
@@ -134,12 +202,11 @@ public class TakePicActivity extends Activity {
     }
 
     public void stop() {
-        if (mRecorderView.getVecordFile() != null)
-            mRecorderView.getVecordFile().delete();
         mRecorderView.stop();
         showstart = false;
         mShootBtn.setImageResource(R.drawable.stoprecord);
     }
+
 
     public void success() {
         if (mRecorderView.getTimeCount() > 1)
@@ -168,6 +235,11 @@ public class TakePicActivity extends Activity {
     }
 
     @Override
+    protected void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
     }
@@ -177,15 +249,38 @@ public class TakePicActivity extends Activity {
         super.onDestroy();
     }
 
+    @Override
+    protected void initHandler(Message msg) {
+
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    public void finish() {
+        finishActivity();
+        super.finish();
+
+    }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
-                findViewById(R.id.ctrol).setVisibility(View.VISIBLE);
+//                findViewById(R.id.ctrol).setVisibility(View.VISIBLE);
                 mShootBtn.setImageResource(R.drawable.stoprecord);;
                 showfinish = true;
+
             } else if (msg.what == 0) {
-                ((TextView) findViewById(R.id.text)).setText(msg.arg1 + "'/5''");
+//                ((TextView) findViewById(R.id.text)).setText(msg.arg1 + "'/5''");
 
             }
 
@@ -193,13 +288,14 @@ public class TakePicActivity extends Activity {
     };
 
     private void finishActivity() {
-        if (isFinish) {
+//        if (isFinish) {
             mRecorderView.stop();
-        }
-        Intent intent = new Intent();
-        intent.putExtra("result", mRecorderView.getVecordFile().toString());
-        setResult(0, intent);
-        finish();
+
+//        }
+//        Intent intent = new Intent();
+//        intent.putExtra("result", mRecorderView.getVecordFile().toString());
+//        setResult(0, intent);
+//        finish();
     }
 
     /**

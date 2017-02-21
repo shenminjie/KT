@@ -81,7 +81,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.newer.kt.record.TakePicActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
                 android:name=".Main2Activity"
                 android:screenOrientation="portrait" >

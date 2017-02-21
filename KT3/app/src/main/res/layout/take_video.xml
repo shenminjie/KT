@@ -12,14 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="#6a000000"
+                >
 
+        <TextView
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingBottom="15dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="15dp"
+                android:background="@drawable/back"
+
+                />
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal">
+
+        android:visibility="gone">
 
             <ImageView
-                android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_alignParentLeft="true"
@@ -30,7 +49,7 @@
                 android:paddingTop="15dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/back"
-                bind:onClick="@string/back" />
+                 />
 
             <ImageView
                 android:id="@+id/imageView11"
@@ -50,7 +69,6 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_toLeftOf="@id/imageView11"
-                android:layout_toRightOf="@id/imageView10"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="模特认证 ( 2/3 )"
                 android:textSize="16dp" />
@@ -80,7 +98,6 @@
                 android:id="@+id/movieRecorderView"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="3dp"
                 android:layout_weight="1"
                 android:orientation="horizontal" />
 
@@ -153,7 +170,6 @@
                         android:layout_height="match_parent"></FrameLayout>
 
                     <TextView
-                        android:id="@+id/submit"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"

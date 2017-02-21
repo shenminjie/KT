@@ -176,7 +176,7 @@ return;
             freeCameraResource();
         }
         try {
-            int front = FindFrontCamera();
+            int front = FindBackCamera();
             mCamera = Camera.open(front);
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,7 +186,7 @@ return;
             return;
 
         setCameraParams();
-        mCamera.setDisplayOrientation(180);
+        mCamera.setDisplayOrientation(0);
         mCamera.setPreviewDisplay(mSurfaceHolder);
         mCamera.startPreview();
         mCamera.unlock();
@@ -222,17 +222,19 @@ return;
         }
     }
 
-    private void createRecordDir() {
-        File sampleDir = new File(Environment.getExternalStorageDirectory() + File.separator + "im/video/");
+    public File createRecordDir(boolean ismerged) {
+        File sampleDir = new File(Environment.getExternalStorageDirectory() + File.separator + "kt/video/");
         if (!sampleDir.exists()) {
             sampleDir.mkdirs();
         }
         File vecordDir = sampleDir;
         // 创建文件
+        File file = null;
         try {
-            mVecordFile = File.createTempFile("recording", ".mp4", vecordDir);//mp4格式
+            file = File.createTempFile((ismerged?"m-":"")+"recording-"+System.currentTimeMillis(), ".mp4", vecordDir);//mp4格式
         } catch (IOException e) {
         }
+        return file;
     }
 
     /**
@@ -287,44 +289,59 @@ return;
         return -1;
     }
 
+    private int FindBackCamera() {
+        int cameraCount = 0;
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        cameraCount = Camera.getNumberOfCameras(); // get cameras number
+
+        for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
+            Camera.getCameraInfo(camIdx, cameraInfo); // get camerainfo
+            if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                // 代表摄像头的方位，目前有定义值两个分别为CAMERA_FACING_FRONT前置和CAMERA_FACING_BACK后置
+                return camIdx;
+            }
+        }
+        return 0;
+    }
+
     /**
      * 开始录制视频
      *
-     * @param fileName               视频储存位置
+     * @param
      * @param onRecordFinishListener 达到指定时间之后回调接口
      * @author liuyinjun
      * @date 2015-2-5
      */
-    public void record(final OnRecordFinishListener onRecordFinishListener) {
+    public String record(final OnRecordFinishListener onRecordFinishListener) {
         this.mOnRecordFinishListener = onRecordFinishListener;
-        createRecordDir();
+        String path = (mVecordFile = createRecordDir(false)).getAbsolutePath();
         try {
 //            if (!isOpenCamera)// 如果未打开摄像头，则打开
                 initCamera();
             initRecord();
-            mTimeCount = 0;// 时间计数器重新赋值
-            mTimer = new Timer();
-            mTimer.schedule(new TimerTask() {
-
-                @Override
-                public void run() {
-                    // TODO Auto-generated method stub
-                    mTimeCount++;
-                    Message m = new Message();
-                    m.arg1 = mTimeCount;
-                    m.what = 0;
-                    handler.sendMessage(m);
-                    mProgressBar.setProgress(mTimeCount);// 设置进度条
-                    if (mTimeCount == mRecordMaxTime) {// 达到指定时间，停止拍摄
-                        stop();
-                        if (mOnRecordFinishListener != null)
-                            mOnRecordFinishListener.onRecordFinish();
-                    }
-                }
-            }, 0, 1000);
+//            mTimeCount = 0;// 时间计数器重新赋值
+//            mTimer = new Timer();
+//            mTimer.schedule(new TimerTask() {
+//
+//                @Override
+//                public void run() {
+//                    // TODO Auto-generated method stub
+//                    mTimeCount++;
+//                    Message m = new Message();
+//                    m.arg1 = mTimeCount;
+//                    m.what = 0;
+//                    handler.sendMessage(m);
+//                    mProgressBar.setProgress(mTimeCount);// 设置进度条
+//                    if (mTimeCount == mRecordMaxTime) {// 达到指定时间，停止拍摄
+//                        stop();
+//
+//                    }
+//                }
+//            }, 0, 1000);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return path;
     }
 
     /**
@@ -337,6 +354,8 @@ return;
         stopRecord();
         releaseRecord();
         freeCameraResource();
+        if (mOnRecordFinishListener != null)
+            mOnRecordFinishListener.onRecordFinish();
     }
 
     /**
