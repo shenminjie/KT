@@ -63,7 +63,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <application
         android:name=".Refactor.KTApplication"
         android:allowBackup="true"
@@ -76,7 +79,9 @@
         <activity
             android:name="com.newer.kt.NeActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.newer.kt.record.TakePicActivity"
+            android:screenOrientation="portrait" />
         <activity
                 android:name=".Main2Activity"
                 android:screenOrientation="portrait" >

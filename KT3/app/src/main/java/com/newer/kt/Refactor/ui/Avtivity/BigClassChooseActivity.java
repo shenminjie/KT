@@ -13,6 +13,7 @@ import com.newer.kt.Refactor.KTApplication;
 import com.newer.kt.adapter.BigClassChooseAdapter;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.GradeList;
+import com.newer.kt.record.TakePicActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,7 +59,8 @@ public class BigClassChooseActivity extends BaseActivity{
 
     @OnClick(R.id.tv_luzhi)
     public void luzhi(){
-
+        Intent intent = new Intent(getThis(), TakePicActivity.class);
+        startActivity(intent);
     }
 
     //退出当前Activity

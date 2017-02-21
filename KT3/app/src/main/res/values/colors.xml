@@ -49,5 +49,6 @@
     <!--需要修改-->
     <color name="text_color_gray_7">#262626</color>
     <color name="app_background">#262626</color>
+    <color name="dark_green">#4acec3</color>
 
 </resources>

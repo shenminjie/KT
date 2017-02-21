@@ -1,34 +1,34 @@
 [
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\full_screen.png",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\full_screen.png"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/mediacontroller_play_button.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/mediacontroller_play_button.xml"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\scrubber_control_selector_holo.xml",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\scrubber_control_selector_holo.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/scrubber_progress_horizontal_holo_dark.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/scrubber_progress_horizontal_holo_dark.xml"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\full_small_screen_selector.xml",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\full_small_screen_selector.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/mediacontroller_pause_button.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/mediacontroller_pause_button.xml"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\scrubber_progress_horizontal_holo_dark.xml",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\scrubber_progress_horizontal_holo_dark.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/full_small_screen_selector.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/full_small_screen_selector.xml"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\small_screen.png",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\small_screen.png"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/small_screen.png",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/small_screen.png"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_pause_button.xml",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_pause_button.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/mediacontroller_button.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/mediacontroller_button.xml"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_button.xml",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_button.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/full_screen.png",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/full_screen.png"
     },
     {
-        "merged": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_play_button.xml",
-        "source": "D:\\KT\\KT3\\vitamio_lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_play_button.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable/scrubber_control_selector_holo.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable/scrubber_control_selector_holo.xml"
     }
 ]

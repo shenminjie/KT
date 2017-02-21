@@ -76,7 +76,7 @@
                 android:padding="5dp"
                 android:text="请将摄像头对准面部5秒，并在录制过程中微笑一下,该视频仅作为认证使用，任何人不可见" />
 
-            <com.xygame.sg.utils.MovieRecorderView
+            <com.newer.kt.record.MovieRecorderView
                 android:id="@+id/movieRecorderView"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"

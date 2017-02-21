@@ -7,7 +7,12 @@ import android.hardware.Camera.Parameters;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.media.MediaRecorder.*;
+import android.media.MediaRecorder.AudioEncoder;
+import android.media.MediaRecorder.AudioSource;
+import android.media.MediaRecorder.OnErrorListener;
+import android.media.MediaRecorder.OutputFormat;
+import android.media.MediaRecorder.VideoEncoder;
+import android.media.MediaRecorder.VideoSource;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +23,8 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import com.xygame.sg.R;
+
+import com.newer.kt.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -180,7 +186,7 @@ return;
             return;
 
         setCameraParams();
-        mCamera.setDisplayOrientation(90);
+        mCamera.setDisplayOrientation(180);
         mCamera.setPreviewDisplay(mSurfaceHolder);
         mCamera.startPreview();
         mCamera.unlock();
@@ -195,7 +201,7 @@ return;
     private void setCameraParams() {
         if (mCamera != null) {
             Parameters params = mCamera.getParameters();
-            params.set("orientation", "portrait");
+            params.set("orientation", "landscape");
             mCamera.setParameters(params);
         }
     }

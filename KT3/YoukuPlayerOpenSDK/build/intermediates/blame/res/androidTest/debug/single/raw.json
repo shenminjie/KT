@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\aes.lua",
-        "source": "D:\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\raw\\aes.lua"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/raw/aes.lua",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/raw/aes.lua"
     },
     {
-        "merged": "D:\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\mediaplayer_configuration.xml",
-        "source": "D:\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\raw\\mediaplayer_configuration.xml"
+        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/raw/mediaplayer_configuration.xml",
+        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/raw/mediaplayer_configuration.xml"
     }
 ]
