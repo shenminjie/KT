@@ -260,7 +260,7 @@ return;
         mMediaRecorder.setVideoEncodingBitRate(1 * 1024 * 512);// 设置帧频率，然后就清晰了
         mMediaRecorder.setOrientationHint(270);// 输出旋转90度，保持竖屏录制
         mMediaRecorder.setVideoEncoder(VideoEncoder.MPEG_4_SP);// 视频录制格式
-        mMediaRecorder.setMaxDuration(MAXVEDIOTIME * 1000);
+//        mMediaRecorder.setMaxDuration(MAXVEDIOTIME * 1000);
         mMediaRecorder.setOutputFile(mVecordFile.getAbsolutePath());
         mMediaRecorder.prepare();
         try {

@@ -25,6 +25,7 @@ import com.newer.kt.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,13 +76,17 @@ public class TakePicActivity extends BaseActivity {
                     if (showstart) {
                         path = start();
                         video.add(path);
+                        mShootBtn.setImageResource(R.drawable.stoprecord);
                         findViewById(R.id.submit).setVisibility(View.GONE);
                     } else {
 
 
                     }
                 }else{
+                    mShootBtn.setImageResource(R.drawable.startrecord);
+                    getWindow().getDecorView().invalidate();
                     stop();
+//                    mergeVideo();
                     findViewById(R.id.submit).setVisibility(View.VISIBLE);
                 }
             }
@@ -105,7 +110,7 @@ public class TakePicActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (showfinish) {
-                    mRecorderView.play();
+//                    mRecorderView.play();
                 }
             }
         });
@@ -158,6 +163,7 @@ public class TakePicActivity extends BaseActivity {
 
     private void submit() {
         Toast.makeText(getBaseContext(),"video "+mergeVideo(),Toast.LENGTH_LONG).show();
+        finish();
 //        new PicUploader() {
 //
 //            @Override
@@ -184,6 +190,7 @@ public class TakePicActivity extends BaseActivity {
     public String start() {
         showfinish = false;
         mRecorderView.onDestroy();
+        mShootBtn.setImageResource(R.drawable.stoprecord);
         String path = mRecorderView.record(new MovieRecorderView.OnRecordFinishListener() {
 
             @Override
@@ -204,7 +211,7 @@ public class TakePicActivity extends BaseActivity {
     public void stop() {
         mRecorderView.stop();
         showstart = false;
-        mShootBtn.setImageResource(R.drawable.stoprecord);
+        mShootBtn.setImageResource(R.drawable.startrecord);
     }
 
 
@@ -276,7 +283,7 @@ public class TakePicActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
 //                findViewById(R.id.ctrol).setVisibility(View.VISIBLE);
-                mShootBtn.setImageResource(R.drawable.stoprecord);;
+//                mShootBtn.setImageResource(R.drawable.stoprecord);;
                 showfinish = true;
 
             } else if (msg.what == 0) {
