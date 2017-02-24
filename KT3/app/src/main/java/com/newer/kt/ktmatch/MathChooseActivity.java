@@ -10,24 +10,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
-import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
-import com.newer.kt.Refactor.Entitiy.BigClassRoom;
-import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.record.TakePicActivity;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
-import java.util.List;
 
 import shengchengerweima.CamScanActivity;
 
@@ -58,7 +52,6 @@ public class MathChooseActivity extends CamScanActivity {
             @Override
             public void onClick(View v) {
                 invokeCap();
-                RequestParams rp = new RequestParams();
 
 
 
@@ -101,22 +94,21 @@ public class MathChooseActivity extends CamScanActivity {
                 finish();
             }
         });
-
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+    int preparedCount = 2;
 
     @Override
     public void recvCode(String result) {
         super.recvCode(result);
         ((TextView)findViewById(index)).setText(result);
-        switch(index){
-            case R.id.leftid:
-                findViewById(R.id._1v1_right).setVisibility(View.VISIBLE);
-                break;
-            case R.id.rightid:
-                findViewById(R.id._1v1_left).setVisibility(View.VISIBLE);
-                break;
-        }
 
+        checkPrepared(index);
     }
 
     @Override
@@ -160,6 +152,7 @@ public class MathChooseActivity extends CamScanActivity {
                                 JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
                                 String matchid = matchidj.getAsString();
                                 ((TextView)findViewById(index)).setText(matchid);
+                                checkPrepared(index);
                             }
                         }
 
@@ -180,5 +173,20 @@ public class MathChooseActivity extends CamScanActivity {
                         }
                     });
     }
+    public void checkPrepared(int index){
+        switch(index){
+            case R.id.leftid:
+                findViewById(R.id._1v1_left).setVisibility(View.VISIBLE);
+                break;
+            case R.id.rightid:
+                findViewById(R.id._1v1_right).setVisibility(View.VISIBLE);
+                break;
+        }
+        preparedCount--;
+        if(preparedCount<=0){
+            findViewById(R.id.ready).setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }
