@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/action_match_choose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+>
+    <TextView
+            android:text="107"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView114" android:textColor="#ffffff"
+            android:singleLine="true" android:textSize="45px" android:layout_marginLeft="2970px"
+            android:layout_marginTop="7dp"/>
+    <TextView
+            android:text="107"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView106" android:textColor="#ffffff"
+            android:singleLine="true" android:textSize="45px" android:layout_marginLeft="30px"
+            android:layout_marginTop="7dp"/>
+    <com.newer.kt.utils.VerticalTextView
+            android:paddingTop="20px"
+        android:paddingLeft="250px"
+            android:textColor="@android:color/black"
+            android:text=""
+            android:textSize="49px"
+            android:id="@+id/leftid"
+            android:background="#ffffff"
+            android:scaleType="fitEnd"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="95px" android:layout_marginLeft="2720px"
+            android:layout_width="65dp" android:layout_height="197dp"/>
+    <com.newer.kt.utils.VerticalTextView
+        android:paddingTop="20px"
+        android:paddingLeft="250px"
+            android:textSize="49px"
+            android:textColor="@android:color/black"
+            android:text=""
+            android:id="@+id/rightid"
+            android:background="#ffffff"
+            android:scaleType="fitEnd"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="95px" android:layout_marginLeft="150px"
+            android:layout_width="65dp" android:layout_height="197dp"/>
+    <ImageView android:scaleType="centerInside" android:src="@drawable/_1v1_left"
+               android:layout_marginLeft="30dp"
+               android:layout_marginStart="30dp" android:visibility="gone"
+               android:layout_width="70dp" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true" android:layout_height="130dp" android:id="@+id/_1v1_right"/>
+    <ImageView android:scaleType="centerInside" android:src="@drawable/_1v1_right" android:id="@+id/_1v1_left"
+               android:layout_width="70dp"
+               android:layout_height="130dp" android:visibility="gone"
+               android:layout_marginRight="80px" android:layout_marginEnd="80px" android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <ImageView
+            android:src="@drawable/ready" android:id="@+id/ready"
+            android:layout_alignParentTop="false"
+            android:layout_centerVertical="false" android:layout_centerInParent="false"
+            android:layout_centerHorizontal="true" android:layout_marginTop="60dp" android:layout_height="90dp"
+            android:layout_width="90dp"/>
+    <ImageView
+            android:src="@drawable/portrait" android:id="@+id/rightportrait"
+            android:layout_centerInParent="false"
+
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="18dp" android:layout_height="80dp" android:layout_width="80dp"/>
+    <ImageView
+            android:src="@drawable/portrait" android:id="@+id/leftportrait"
+            android:layout_centerInParent="false"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/leftid"
+            android:layout_marginTop="18dp" android:layout_marginRight="-9dp" android:layout_width="80dp"
+            android:layout_height="80dp"/>
+    <LinearLayout android:visibility="invisible"  android:layout_alignParentBottom="true" android:id="@+id/menu"
+                  android:layout_width="match_parent" android:layout_height="180px" android:orientation="horizontal"
+                  android:padding="30px">
+        <LinearLayout android:layout_width="2000px" android:layout_height="match_parent"
+                      android:orientation="horizontal" android:background="@color/white">
+            <TextView android:layout_width="1000px" android:layout_height="match_parent" android:text="扫描"
+                      android:textColor="@android:color/holo_blue_light"
+                      android:textSize="56px"
+                      android:gravity="center"
+                      android:id="@+id/saomiao"/>
+            <View android:layout_width="2px" android:layout_height="match_parent"
+                  android:background="@android:color/black"/>
+            <TextView android:layout_width="1000px" android:layout_height="match_parent" android:text="选择"
+                      android:textColor="@android:color/holo_blue_light"
+                      android:textSize="56px"
+                      android:gravity="center"
+                      android:id="@+id/xuanze"/>
+
+        </LinearLayout>
+
+        <TextView android:background="@color/white"
+                  android:layout_marginLeft="40px" android:layout_width="1000px" android:layout_height="match_parent"
+                  android:text="取消" android:textColor="@android:color/holo_blue_light"
+                  android:textSize="56px"
+                  android:gravity="center" android:id="@+id/quxiao"/>
+
+    </LinearLayout>
+</RelativeLayout>

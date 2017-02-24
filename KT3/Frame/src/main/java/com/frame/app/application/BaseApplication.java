@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import com.frame.app.GlobalMap;
 import com.frame.app.manager.ThirdPartyManager;
 import com.frame.app.model.User;
+import com.zhy.autolayout.config.AutoLayoutConifg;
 
 import java.net.CookieStore;
 
@@ -25,6 +26,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initOkHttp();
+        AutoLayoutConifg.getInstance().useDeviceSize();
     }
 
 

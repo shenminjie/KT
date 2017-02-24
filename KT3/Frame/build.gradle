@@ -60,4 +60,5 @@ dependencies {
     compile 'com.bugtags.library:bugtags-lib:latest.integration'
     compile files('libs/IndoorscapeAlbumPlugin.jar')
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.zhy:autolayout:1.4.3'
 }

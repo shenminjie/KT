@@ -1,0 +1,176 @@
+package com.newer.kt.ktmatch;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.reflect.TypeToken;
+import com.newer.kt.R;
+import com.newer.kt.Refactor.Constants;
+import com.newer.kt.Refactor.Entitiy.BigClassRoom;
+import com.newer.kt.Refactor.utils.MD5;
+import com.newer.kt.record.TakePicActivity;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+import java.util.List;
+
+import shengchengerweima.CamScanActivity;
+
+
+public class MathChooseActivity extends CamScanActivity {
+
+    int index = R.id.leftid;
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_math_choose);
+        BitmapFactory.Options op = new BitmapFactory.Options();
+        op.inSampleSize = 2;
+        Bitmap bp = BitmapFactory.decodeResource(getResources(),R.drawable.team_battle_0,op);
+        findViewById(R.id.action_match_choose).setBackground(new BitmapDrawable(bp));
+        findViewById(R.id.quxiao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.menu).setVisibility(View.GONE);
+            }
+        });
+        findViewById(R.id.saomiao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                invokeCap();
+                RequestParams rp = new RequestParams();
+
+
+
+            }
+        });
+        findViewById(R.id.leftportrait).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                index = R.id.leftid;
+                genMatch_Id(index);
+                return false;
+            }
+        });
+        findViewById(R.id.rightportrait).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                index = R.id.rightid;
+                genMatch_Id(index);
+                return false;
+            }
+        });
+        findViewById(R.id.leftportrait).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.menu).setVisibility(View.VISIBLE);
+                index = R.id.leftid;
+            }
+        });
+        findViewById(R.id.rightportrait).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.menu).setVisibility(View.VISIBLE);
+                index = R.id.rightid;
+            }
+        });
+        findViewById(R.id.ready).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TakePicActivity.invoke(getBaseContext());
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void recvCode(String result) {
+        super.recvCode(result);
+        ((TextView)findViewById(index)).setText(result);
+        switch(index){
+            case R.id.leftid:
+                findViewById(R.id._1v1_right).setVisibility(View.VISIBLE);
+                break;
+            case R.id.rightid:
+                findViewById(R.id._1v1_left).setVisibility(View.VISIBLE);
+                break;
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        findViewById(R.id.menu).setVisibility(View.GONE);
+    }
+
+    public void genMatch_Id(final int index){
+        String url = Constants.KTHOST + "users/f_register";
+        RequestParams p = new RequestParams(url);
+//        p.addQueryStringParameter("authenticity_token", "K9MpaPMdj0jij2m149sL1a7TcYrWXmg5GLrAJDCNBx8");
+        p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
+        x.http().get(p, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+//                        { response: "success", user_id: 用户ID, match_id: 用户快速参赛的号码 }
+//                showDialogToast(result);
+
+
+                Gson gson = new Gson();
+                //1. 获得 解析者
+                JsonParser parser = new JsonParser();
+
+                //2. 获得 根节点元素
+                JsonElement element = parser.parse(result);
+
+                //3. 根据 文档判断根节点属于 什么类型的 Gson节点对象
+                JsonObject root = element.getAsJsonObject();
+
+                //4. 取得 节点 下 的某个节点的 value
+                JsonPrimitive flagjson = root.getAsJsonPrimitive("response");
+                String flag = flagjson.getAsString();
+
+                if("success".equals(flag)){
+
+                    JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
+                    String matchid = matchidj.getAsString();
+                    ((TextView)findViewById(index)).setText(matchid);
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+
+            }
+        });
+    }
+
+}

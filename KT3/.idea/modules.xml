@@ -8,9 +8,11 @@
       <module fileurl="file://$PROJECT_DIR$/MyDaoGenerator/MyDaoGenerator.iml" filepath="$PROJECT_DIR$/MyDaoGenerator/MyDaoGenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/YoukuPlayerOpenSDK/YoukuPlayerOpenSDK.iml" filepath="$PROJECT_DIR$/YoukuPlayerOpenSDK/YoukuPlayerOpenSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib-zxing/lib-zxing.iml" filepath="$PROJECT_DIR$/lib-zxing/lib-zxing.iml" />
       <module fileurl="file://$PROJECT_DIR$/newkt/newkt.iml" filepath="$PROJECT_DIR$/newkt/newkt.iml" />
       <module fileurl="file://$PROJECT_DIR$/um/um.iml" filepath="$PROJECT_DIR$/um/um.iml" />
       <module fileurl="file://$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" filepath="$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxingutil/zxingutil.iml" filepath="$PROJECT_DIR$/zxingutil/zxingutil.iml" />
     </modules>
   </component>
 </project>

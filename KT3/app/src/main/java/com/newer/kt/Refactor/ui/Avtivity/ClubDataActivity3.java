@@ -474,6 +474,10 @@ public class ClubDataActivity3 extends BaseActivity implements View.OnClickListe
                     KTApplication.setClassDetailsInfo(data);
                     AddClassData classesData = GsonTools.changeGsonToBean(KTApplication.getClassDetailsInfo(), AddClassData.class);
                     graderId = getClassCount(data);
+                    //debug tag
+                    if(classesData==null){
+                        return;
+                    }
                     for (int x = 0; x < classesData.grade_list.size(); x++) {
                         GradeList bean = classesData.grade_list.get(x);
                         for (int y = 0; y < bean.classes.size(); y++) {

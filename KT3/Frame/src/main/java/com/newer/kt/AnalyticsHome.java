@@ -12,9 +12,11 @@ import com.umeng.analytics.MobclickAgent.EScenarioType;
 import com.umeng.analytics.social.UMPlatformData;
 import com.umeng.analytics.social.UMPlatformData.GENDER;
 import com.umeng.analytics.social.UMPlatformData.UMedia;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,7 +24,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
-public class AnalyticsHome extends AppCompatActivity {
+public class AnalyticsHome extends AutoLayoutActivity {
     private Context mContext;
     private final String mPageName = "AnalyticsHome";
 

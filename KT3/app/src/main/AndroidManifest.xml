@@ -1,104 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.newer.kt"> <!-- 录像功能 -->
-    <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_arm64,com.example.ijkplayer_x86_64" />
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.newer.kt"> <!-- 录像功能 -->
+    <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_arm64,com.example.ijkplayer_x86_64"/>
 
     <!-- GPS定位权限 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!-- 获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!-- 扫描二维码 -->
     <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true"
-        android:xlargeScreens="true" />
+            android:anyDensity="true"
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:smallScreens="true"
+            android:xlargeScreens="true"/>
 
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- 网络请求 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- SD卡权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
     <application
-        android:name=".Refactor.KTApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/logo"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:replace="android:icon,android:label">
+            android:name=".Refactor.KTApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/logo"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:replace="android:icon,android:label">
+        <activity
+                android:name=".NeActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".record.TakePicActivity"
+                android:screenOrientation="landscape"/>
 
-        <activity
-            android:name="com.newer.kt.NeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.newer.kt.record.TakePicActivity"
-            android:screenOrientation="landscape" />
-        <activity
-                android:name=".Main2Activity"
-                android:screenOrientation="portrait" >
-            <!--&lt;!&ndash;-->
-           <!--<intent-filter>-->
-               <!--<action android:name="android.intent.action.MAIN" />-->
+        <!-- &lt;!&ndash; -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-               <!--<category android:name="android.intent.category.LAUNCHER" />-->
-           <!--</intent-filter>-->
-           <!--&ndash;&gt;-->
-        </activity>
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- &ndash;&gt; -->
         <activity
-            android:name=".Refactor.ui.Avtivity.MainActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.MainActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.LoginActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.LoginActivity"
+                android:screenOrientation="portrait"/>
         <activity android:name=".Main4Activity">
 
             <!--
@@ -110,9 +108,9 @@
             -->
         </activity>
         <activity
-            android:name=".VideoActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
-            android:screenOrientation="portrait">
+                android:name=".VideoActivity"
+                android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+                android:screenOrientation="portrait">
 
             <!--
             <intent-filter>
@@ -123,28 +121,28 @@
             -->
         </activity>
         <activity
-            android:name=".Refactor.ui.Avtivity.StartAnimationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeTwo">
+                android:name=".Refactor.ui.Avtivity.StartAnimationActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeTwo">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-            <!--start-->
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- start -->
         </activity>
         <activity
-            android:name="io.vov.vitamio.activity.InitActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+                android:name="io.vov.vitamio.activity.InitActivity"
+                android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+                android:launchMode="singleTop"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <!-- android:screenOrientation="portrait" -->
         <activity
-            android:name=".Refactor.ui.Avtivity.PlayerActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait">
+                android:name=".Refactor.ui.Avtivity.PlayerActivity"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:screenOrientation="portrait">
 
             <!--
             <intent-filter>
@@ -155,507 +153,521 @@
             -->
         </activity>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.ImageBrowsActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:hardwareAccelerated="true"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.ImageBrowsActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:hardwareAccelerated="true"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.view.video.VideoFullScreenActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:hardwareAccelerated="true"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.view.video.VideoFullScreenActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:hardwareAccelerated="true"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Manager.RecordingActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:hardwareAccelerated="true"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.Manager.RecordingActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:hardwareAccelerated="true"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.QuestionActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.QuestionActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootBallListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootBallListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.BigClassChooseActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.BigClassChooseActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootBallDetailActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootBallDetailActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SchoolEquipmentActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SchoolEquipmentActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.TestListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.TestListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.UserFeelActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.UserFeelActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SchoolHeadActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SchoolHeadActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.VideoCenterActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.VideoCenterActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.UseActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.UseActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.BigClassDetailActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.BigClassDetailActivity"
+                android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SchoolNameActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SchoolNameActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.MineSchoolInfoActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.MineSchoolInfoActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Manager.VideoListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Manager.VideoListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Manager.FootBallDetailActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Manager.FootBallDetailActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Manager.ClassManagerActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Manager.ClassManagerActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.StudentsEvaluation.FootBallTraiActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.StudentsEvaluation.FootBallTraiActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.StudentsEvaluation.FootBallTestActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.StudentsEvaluation.FootBallTestActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.StudentsEvaluation.BodyTestActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.StudentsEvaluation.BodyTestActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.BigClassDetailActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.BigClassDetailActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.BigClassHelp"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.BigClassHelp"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.TiyuBigAcitivty"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.TiyuBigAcitivty"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SchoolAllPeopleDetailAcitivty"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SchoolAllPeopleDetailAcitivty"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.PersonVedioActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.PersonVedioActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.LessonsActivity"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.LessonsActivity"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.VedioStartActiviy"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.VedioStartActiviy"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.VedioViewpagerActiviy"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.VedioViewpagerActiviy"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.TrainOverActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.TrainOverActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.ZhenRenVodeoActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.ZhenRenVodeoActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SchoolContActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SchoolContActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SchoolStatisticsActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SchoolStatisticsActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.ClubDataActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.ClubDataActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.ClubDataActivity2"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.ClubDataActivity2"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.ClubDataActivity3"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.ClubDataActivity3"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.ListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.ListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.GamesDetailsActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.GamesDetailsActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.BagsScannerActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.BagsScannerActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.CaptureActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+                android:name=".Refactor.ui.Avtivity.CaptureActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.GameSelectorActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.GameSelectorActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.KtActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+                android:name=".Refactor.ui.Avtivity.KtActivity"
+                android:screenOrientation="landscape"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.VSActivity"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.VSActivity"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.UploadingActivity"
-            android:screenOrientation="landscape" />
-        <activity android:name=".Refactor.ui.Avtivity.GameResultActivity" />
+                android:name=".Refactor.ui.Avtivity.UploadingActivity"
+                android:screenOrientation="landscape"/>
+        <activity android:name=".Refactor.ui.Avtivity.GameResultActivity"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.VideoActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.VideoActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.UpHistoryActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Refactor.ui.Avtivity.Main2Activity" />
+                android:name=".Refactor.ui.Avtivity.UpHistoryActivity"
+                android:screenOrientation="portrait"/>
+        <activity android:name=".Refactor.ui.Avtivity.Main2Activity"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.NewGamesActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+                android:name=".Refactor.ui.Avtivity.NewGamesActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.SearchAddressActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.SearchAddressActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.EditGameActivity"
-            android:windowSoftInputMode="stateHidden" />
+                android:name=".Refactor.ui.Avtivity.EditGameActivity"
+                android:windowSoftInputMode="stateHidden"/>
 
         <service
-            android:name=".service.UploadService"
-            android:enabled="true"
-            android:exported="false" />
+                android:name=".service.UploadService"
+                android:enabled="true"
+                android:exported="false"/>
 
         <activity
-            android:name=".Refactor.ui.Avtivity.MyClassActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.MyClassActivity"
+                android:screenOrientation="portrait"/>
         <!--
             <activity
             android:name=".Refactor.ui.Avtivity.VideoViewPlayingActivity"
             android:screenOrientation="landscape" />
         -->
         <activity
-            android:name=".Refactor.ui.Avtivity.AddClassActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.AddClassActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.UserInfoActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.UserInfoActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.CreateClassActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.CreateClassActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.FootballLessonActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.FootballLessonActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.CombinationClassActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.CombinationClassActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.CombinationClassTermActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.CombinationClassTermActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.StudentsEvaluation.StudentsEvaluationActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.StudentsEvaluation.StudentsEvaluationActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.BigRoomActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.BigRoomActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.BigRoomTremActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.BigRoomTremActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:exported="true"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.BigRoomIndividualActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.BigRoomIndividualActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.LessonListAvtivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.LessonListAvtivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.LessonActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.LessonActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.LessonFinishActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.LessonFinishActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.RecordVideoActivity"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.RecordVideoActivity"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.LessonsMHActivity"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.LessonsMHActivity"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.VideoUploadActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.VideoUploadActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.RecordVideoFinishActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.RecordVideoFinishActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.UpLessonHistoryActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.UpLessonHistoryActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SettingsActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SettingsActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.HelpActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.HelpActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.AboutKTActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.AboutKTActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.CampusStatisticsActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.CampusStatisticsActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.RealmDatabaseActivityLine"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.RealmDatabaseActivityLine"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.PhysicalEducationListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.PhysicalEducationListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.BigRoomListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.BigRoomListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.SaiShiListActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.SaiShiListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.BigRoomVedioActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.Settings.BigRoomVedioActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.Settings.PlayerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true"
-            android:launchMode="singleTask" />
+                android:name=".Refactor.ui.Avtivity.Settings.PlayerActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:exported="true"
+                android:launchMode="singleTask"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.RankingList.RankingListActivity"
-            android:screenOrientation="landscape" />
+                android:name=".Refactor.ui.Avtivity.RankingList.RankingListActivity"
+                android:screenOrientation="landscape"/>
         <activity
-            android:name=".Refactor.ui.Avtivity.FootballLesson.LessonGameActivity"
-            android:screenOrientation="portrait" />
+                android:name=".Refactor.ui.Avtivity.FootballLesson.LessonGameActivity"
+                android:screenOrientation="portrait"/>
         <!-- 网络下载解压测试 -->
 
         <receiver android:name=".service.InstallReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
             </intent-filter>
         </receiver>
 
         <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote">
+                android:name="com.baidu.location.f"
+                android:enabled="true"
+                android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" />
+                <action android:name="com.baidu.location.service_v2.2"/>
             </intent-filter>
         </service>
 
         <!-- client_id及client_secret配置  这里需要切换为自己的id和secret -->
         <meta-data
-            android:name="client_id"
-            android:value="5570b4b24049e570" />
+                android:name="client_id"
+                android:value="5570b4b24049e570"/>
         <meta-data
-            android:name="client_secret"
-            android:value="c40bcc367334ef63e42ef4562b460e7f" />
+                android:name="client_secret"
+                android:value="c40bcc367334ef63e42ef4562b460e7f"/>
         <meta-data
-            android:name="5745681b67e58e19e20033ae"
-            android:value="YOUR_A PP_KEY" />
+                android:name="5745681b67e58e19e20033ae"
+                android:value="YOUR_A PP_KEY"/>
         <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="KT" />
+                android:name="UMENG_CHANNEL"
+                android:value="KT"/>
         <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="OUAembblmEhSGip85eVifrQiyTBdj14M" />
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="OUAembblmEhSGip85eVifrQiyTBdj14M"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
         <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+                android:name="design_width"
+                android:value="1920">
+        </meta-data>
+        <meta-data
+                android:name="design_height"
+                android:value="1080">
+        </meta-data>
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version"/>
 
-        <activity android:name=".Refactor.ui.Fragment.Main.SaiShiEJ" />
-        <activity android:name=".Refactor.ui.Avtivity.FootBall_Class_Lesson"></activity>
-        <!--5126ff896c738f2bfa000438-->
+        <activity android:name=".Refactor.ui.Fragment.Main.SaiShiEJ"/>
+        <activity android:name=".Refactor.ui.Avtivity.FootBall_Class_Lesson"/>
+        <!-- 5126ff896c738f2bfa000438 -->
 
-        <meta-data android:value="5745681b67e58e19e20033ae" android:name="UMENG_APPKEY"/>
-        <!--<meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>-->
+        <meta-data
+                android:name="UMENG_APPKEY"
+                android:value="5745681b67e58e19e20033ae"/>
+        <!-- <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/> -->
 
 
-        <!-- above activity that demo required,has nothing to with umeng sdk  -->
+        <!-- above activity that demo required,has nothing to with umeng sdk -->
         <!-- *************************    related to Share START **************************** -->
-        <!-- Share edit page-->
-        <!--<activity-->
-        <!--android:name=".WBShareActivity"-->
-        <!--android:configChanges="keyboardHidden|orientation"-->
-        <!--android:screenOrientation="portrait" >-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
-        <!--<category android:name="android.intent.category.DEFAULT" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
-        <!--android:configChanges="keyboardHidden|orientation"-->
-        <!--android:windowSoftInputMode="adjustResize"-->
-        <!--android:exported="false" >-->
-        <!--</activity>-->
+        <!-- Share edit page -->
+        <!-- <activity -->
+        <!-- android:name=".WBShareActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation" -->
+        <!-- android:screenOrientation="portrait" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser" -->
+        <!-- android:configChanges="keyboardHidden|orientation" -->
+        <!-- android:windowSoftInputMode="adjustResize" -->
+        <!-- android:exported="false" > -->
+        <!-- </activity> -->
         <!-- 易信回调activity -->
-        <!--<activity-->
-                <!--android:name=".yxapi.YXEntryActivity"-->
-                <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-                <!--android:exported="true"-->
-                <!--android:screenOrientation="portrait"-->
-                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!-- <activity -->
+        <!-- android:name=".yxapi.YXEntryActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+        <!-- android:exported="true" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
 
-        <!--&lt;!&ndash;dingding&ndash;&gt;-->
-        <!--<activity-->
-                <!--android:name=".ddshare.DDShareActivity"-->
-                <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-                <!--android:exported="true"-->
-                <!--android:launchMode="singleInstance"-->
-                <!--android:screenOrientation="portrait"-->
-                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
-        <!--&lt;!&ndash; alipay callback&ndash;&gt;-->
-        <!--<activity-->
-                <!--android:name=".apshare.ShareEntryActivity"-->
-                <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-                <!--android:exported="true"-->
-                <!--android:screenOrientation="portrait"-->
-                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
 
-        <!--&lt;!&ndash; vk &ndash;&gt;-->
-        <!--<activity-->
-                <!--android:name="com.vk.sdk.VKServiceActivity"-->
-                <!--android:label="ServiceActivity"-->
-                <!--android:theme="@style/VK.Transparent"/>-->
-        <!--line-->
-        <!--登录回调-->
-        <!--<activity android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity"-->
-                  <!--android:configChanges="keyboard|orientation"-->
-                  <!--android:exported="true"-->
-                  <!--android:screenOrientation="sensor">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.VIEW" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-                <!--<category android:name="android.intent.category.BROWSABLE" />-->
-                <!--<data android:scheme="line.1471474450" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-        <!--<activity android:name="com.kakao.auth.authorization.authcode.KakaoWebViewActivity"/>-->
-        <!--&lt;!&ndash;没安装客户端下登录&ndash;&gt;-->
-        <!--<activity android:name="jp.line.android.sdk.activity.WebLoginActivity"-->
-                  <!--android:exported="false"-->
-                  <!--android:configChanges="keyboard|orientation"-->
-                  <!--android:screenOrientation="sensor">-->
-        <!--</activity>-->
+        <!-- &lt;!&ndash;dingding&ndash;&gt; -->
+        <!-- <activity -->
+        <!-- android:name=".ddshare.DDShareActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+        <!-- android:exported="true" -->
+        <!-- android:launchMode="singleInstance" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
+        <!-- &lt;!&ndash; alipay callback&ndash;&gt; -->
+        <!-- <activity -->
+        <!-- android:name=".apshare.ShareEntryActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+        <!-- android:exported="true" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
+
+
+        <!-- &lt;!&ndash; vk &ndash;&gt; -->
+        <!-- <activity -->
+        <!-- android:name="com.vk.sdk.VKServiceActivity" -->
+        <!-- android:label="ServiceActivity" -->
+        <!-- android:theme="@style/VK.Transparent"/> -->
+        <!-- line -->
+        <!-- 登录回调 -->
+        <!-- <activity android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity" -->
+        <!-- android:configChanges="keyboard|orientation" -->
+        <!-- android:exported="true" -->
+        <!-- android:screenOrientation="sensor"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+        <!-- <data android:scheme="line.1471474450" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity android:name="com.kakao.auth.authorization.authcode.KakaoWebViewActivity"/> -->
+        <!-- &lt;!&ndash;没安装客户端下登录&ndash;&gt; -->
+        <!-- <activity android:name="jp.line.android.sdk.activity.WebLoginActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:configChanges="keyboard|orientation" -->
+        <!-- android:screenOrientation="sensor"> -->
+        <!-- </activity> -->
         <!-- tencent -->
 
-        <!--<activity-->
-        <!--android:name="com.tencent.tauth.AuthActivity"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:noHistory="true" >-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.VIEW" />-->
 
-        <!--<category android:name="android.intent.category.DEFAULT" />-->
-        <!--<category android:name="android.intent.category.BROWSABLE" />-->
+        <!-- <activity -->
+        <!-- android:name="com.tencent.tauth.AuthActivity" -->
+        <!-- android:launchMode="singleTask" -->
+        <!-- android:noHistory="true" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
 
-        <!--<data android:scheme="tencent100424468" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name="com.tencent.connect.common.AssistActivity"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
-        <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
 
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+
+
+        <!-- <data android:scheme="tencent100424468" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name="com.tencent.connect.common.AssistActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" -->
+        <!-- android:configChanges="orientation|keyboardHidden|screenSize"/> -->
 
         <activity
                 android:name="com.umeng.um_share.ShareActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity
                 android:name="com.umeng.um_share.AuthActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity
                 android:name="com.umeng.um_share.GetInfoActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity
                 android:name="com.umeng.um_share.CheckActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity
                 android:name="com.umeng.um_share.ShareMenuActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity
                 android:name="com.umeng.um_share.InfoDetailActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity
                 android:name="com.umeng.um_share.ShareDetailActivity"
                 android:configChanges="orientation|keyboard"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+                android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
-
         <activity
                 android:name="com.umeng.socialize.editorpage.ShareActivity"
-                android:theme="@style/Theme.UMDefault"
                 android:excludeFromRecents="true"
-        />
-        <!-- wechat callback-->
+                android:theme="@style/Theme.UMDefault"/>
+        <!-- wechat callback -->
         <activity
                 android:name=".wxapi.WXEntryActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:exported="true"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
                 android:name="com.umeng.qq.tencent.AuthActivity"
                 android:launchMode="singleTask"
-                android:noHistory="true" >
+                android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="tencent100424468"/>
             </intent-filter>
         </activity>
         <activity
                 android:name="com.umeng.qq.tencent.AssistActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar"
-                android:configChanges="orientation|keyboardHidden|screenSize"/>
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
         <uses-library
                 android:name="com.google.android.maps"
-                android:required="false" />
-        <uses-library android:name="android.test.runner" />
+                android:required="false"/>
+        <uses-library android:name="android.test.runner"/>
+
+        <activity android:name=".ktmatch.TypeActivity">
+        </activity>
+        <activity android:name=".ktmatch.MathChooseActivity"
+                  android:screenOrientation="landscape"
+        >
+        </activity>
     </application>
 
 </manifest>

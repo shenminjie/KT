@@ -27,9 +27,11 @@ import com.newer.kt.Refactor.db.UsersDaoHelper;
 import com.newer.kt.Refactor.ui.Avtivity.CachedActivity;
 import com.newer.kt.entity.UserMsg;
 import com.umeng.um_share.App;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.yolanda.nohttp.NoHttp;
 import com.youku.player.YoukuPlayerBaseConfiguration;
 
+import com.zhy.autolayout.config.AutoLayoutConifg;
 import org.xutils.x;
 
 /**
@@ -120,6 +122,8 @@ public class KTApplication extends App {
         initUtils();
         initDB();
         initButTags();
+        ZXingLibrary.initDisplayOpinion(this);
+
     }
 
 

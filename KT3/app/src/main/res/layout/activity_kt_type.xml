@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_kt_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.newer.kt.ktmatch.TypeActivity"
+        android:orientation="vertical">
+    <RelativeLayout
+            android:id="@+id/recyclerview_top"
+            android:layout_width="match_parent"
+            android:layout_height="132px"
+            android:background="@color/text_black">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="doBack"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:src="@mipmap/nomal_back" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="参赛人数选择"
+                android:textColor="@color/gold"
+                android:textSize="18dp" />
+
+
+
+    </RelativeLayout>
+    <View android:layout_width="match_parent" android:layout_height="560px" android:background="@drawable/c1" android:id="@+id/choose1"/>
+    <View android:layout_width="match_parent" android:layout_height="560px" android:background="@drawable/c2" android:id="@+id/choose2"/>
+    <View android:layout_width="match_parent" android:layout_height="560px" android:background="@drawable/c3" android:id="@+id/choose3"/>
+</LinearLayout>

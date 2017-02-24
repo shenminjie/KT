@@ -1,6 +1,7 @@
 package com.newer.kt.record;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,13 +33,16 @@ import java.util.List;
 
 
 public class TakePicActivity extends BaseActivity {
-
     List<String> video = new ArrayList<String>();
     private MovieRecorderView mRecorderView;
     private ImageView mShootBtn;
     private boolean isFinish = true;
     private ProgressBar mProgressbar;
 
+    public static void invoke(Context ctx) {
+        Intent intent = new Intent(ctx, TakePicActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(intent);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +86,7 @@ public class TakePicActivity extends BaseActivity {
 
 
                     }
-                }else{
+                } else {
                     mShootBtn.setImageResource(R.drawable.startrecord);
                     getWindow().getDecorView().invalidate();
                     stop();
@@ -115,14 +119,18 @@ public class TakePicActivity extends BaseActivity {
             }
         });
     }
-    private String  mergeVideo() {
+
+    private String mergeVideo() {
+        if(video.size()==0){
+            return "";
+        }
         long begin = System.currentTimeMillis();
         File merged = null;
         List<Movie> movies = new ArrayList<>();
         try {
             for (int i = 0; i < video.size(); i++) {
                 Movie movie = null;
-                    movie = MovieCreator.build(video.get(i));
+                movie = MovieCreator.build(video.get(i));
                 movies.add(movie);
             }
             List<Track> videoTracks = new ArrayList<>();
@@ -150,7 +158,7 @@ public class TakePicActivity extends BaseActivity {
                     .createRecordDir(true)).getChannel();
             container.writeContainer(fc);
             fc.close();
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -158,11 +166,12 @@ public class TakePicActivity extends BaseActivity {
         Log.e("test", "merge use time:" + (end - begin));
         return merged.getAbsolutePath();
     }
+
     boolean showfinish;
     boolean showstart;
 
     private void submit() {
-        Toast.makeText(getBaseContext(),"video "+mergeVideo(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "video " + mergeVideo(), Toast.LENGTH_LONG).show();
         finish();
 //        new PicUploader() {
 //
@@ -296,7 +305,7 @@ public class TakePicActivity extends BaseActivity {
 
     private void finishActivity() {
 //        if (isFinish) {
-            mRecorderView.stop();
+        mRecorderView.stop();
 
 //        }
 //        Intent intent = new Intent();
