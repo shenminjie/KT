@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.Entitiy.BigClassRoom;
+import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.record.TakePicActivity;
 
@@ -28,6 +30,8 @@ import org.xutils.x;
 import java.util.List;
 
 import shengchengerweima.CamScanActivity;
+
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
 
 
 public class MathChooseActivity extends CamScanActivity {
@@ -122,55 +126,59 @@ public class MathChooseActivity extends CamScanActivity {
     }
 
     public void genMatch_Id(final int index){
-        String url = Constants.KTHOST + "users/f_register";
-        RequestParams p = new RequestParams(url);
-//        p.addQueryStringParameter("authenticity_token", "K9MpaPMdj0jij2m149sL1a7TcYrWXmg5GLrAJDCNBx8");
+
+                    String url = Constants.KTHOST + "users/f_register";
+                    RequestParams p = new RequestParams(url);
+
+                    String clubid = ""+PreferenceManager.getDefaultSharedPreferences(MathChooseActivity.this)
+                            .getLong(PRE_CURRENT_CLUB_ID,-1);
+                    p.addQueryStringParameter("club_id", ""+clubid);
         p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
-        x.http().get(p, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
+                    x.http().post(p, new Callback.CommonCallback<String>() {
+                        @Override
+                        public void onSuccess(String result) {
 //                        { response: "success", user_id: 用户ID, match_id: 用户快速参赛的号码 }
 //                showDialogToast(result);
 
 
-                Gson gson = new Gson();
-                //1. 获得 解析者
-                JsonParser parser = new JsonParser();
+                            Gson gson = new Gson();
+                            //1. 获得 解析者
+                            JsonParser parser = new JsonParser();
 
-                //2. 获得 根节点元素
-                JsonElement element = parser.parse(result);
+                            //2. 获得 根节点元素
+                            JsonElement element = parser.parse(result);
 
-                //3. 根据 文档判断根节点属于 什么类型的 Gson节点对象
-                JsonObject root = element.getAsJsonObject();
+                            //3. 根据 文档判断根节点属于 什么类型的 Gson节点对象
+                            JsonObject root = element.getAsJsonObject();
 
-                //4. 取得 节点 下 的某个节点的 value
-                JsonPrimitive flagjson = root.getAsJsonPrimitive("response");
-                String flag = flagjson.getAsString();
+                            //4. 取得 节点 下 的某个节点的 value
+                            JsonPrimitive flagjson = root.getAsJsonPrimitive("response");
+                            String flag = flagjson.getAsString();
 
-                if("success".equals(flag)){
+                            if("success".equals(flag)){
 
-                    JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
-                    String matchid = matchidj.getAsString();
-                    ((TextView)findViewById(index)).setText(matchid);
-                }
-            }
+                                JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
+                                String matchid = matchidj.getAsString();
+                                ((TextView)findViewById(index)).setText(matchid);
+                            }
+                        }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                        @Override
+                        public void onError(Throwable ex, boolean isOnCallback) {
 
-            }
+                        }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                        @Override
+                        public void onCancelled(CancelledException cex) {
 
-            }
+                        }
 
-            @Override
-            public void onFinished() {
+                        @Override
+                        public void onFinished() {
 
 
-            }
-        });
+                        }
+                    });
     }
 
 }
