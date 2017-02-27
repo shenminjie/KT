@@ -7,10 +7,10 @@
         android:layout_height="match_parent"
         tools:context="com.newer.kt.ktmatch.TypeActivity"
         android:orientation="vertical">
-    <RelativeLayout
+    <RelativeLayout android:layout_marginBottom="40px"
             android:id="@+id/recyclerview_top"
             android:layout_width="match_parent"
-            android:layout_height="132px"
+            android:layout_height="88px"
             android:background="@color/text_black">
 
         <ImageView
@@ -32,7 +32,9 @@
 
 
     </RelativeLayout>
-    <View android:layout_width="match_parent" android:layout_height="560px" android:background="@drawable/c1" android:id="@+id/choose1"/>
-    <View android:layout_width="match_parent" android:layout_height="560px" android:background="@drawable/c2" android:id="@+id/choose2"/>
-    <View android:layout_width="match_parent" android:layout_height="560px" android:background="@drawable/c3" android:id="@+id/choose3"/>
+    <View android:layout_marginBottom="50px"
+        android:layout_width="match_parent" android:layout_height="200px" android:background="@drawable/c1" android:id="@+id/choose1"/>
+    <View android:layout_marginBottom="50px"
+        android:layout_width="match_parent" android:layout_height="200px" android:background="@drawable/c2" android:id="@+id/choose2"/>
+    <View android:layout_width="match_parent" android:layout_height="200px" android:background="@drawable/c3" android:id="@+id/choose3"/>
 </LinearLayout>

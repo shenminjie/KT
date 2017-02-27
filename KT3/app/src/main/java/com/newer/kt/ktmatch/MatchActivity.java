@@ -1,14 +1,18 @@
-package com.newer.kt.record;
+package com.newer.kt.ktmatch;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coremedia.iso.boxes.Container;
@@ -19,36 +23,130 @@ import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
 import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
 import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
 import com.newer.kt.R;
-
+import com.newer.kt.record.MovieRecorderView;
+import com.newer.kt.record.TakePicActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
-public class TakePicActivity extends BaseActivity {
+public class MatchActivity extends TakePicActivity {
     List<String> video = new ArrayList<String>();
     private MovieRecorderView mRecorderView;
     private ImageView mShootBtn;
     private boolean isFinish = true;
     private ProgressBar mProgressbar;
 
-
+//　三个头像 //继续 停止 // 停止1次。。。2次 //  //统计界面 新  ／／选择三个类型  ／／下拉动画 ／／选择
     public static void invoke(Context ctx) {
-        Intent intent = new Intent(ctx, TakePicActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(ctx, MatchActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(intent);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.take_video);
+        setContentView(R.layout.match);
         mRecorderView = (MovieRecorderView) findViewById(R.id.movieRecorderView);
+        mRecorderView.setMAXVEDIOTIME(180);
         mShootBtn = (ImageView) findViewById(R.id.shoot_button);
         mProgressbar = (ProgressBar) findViewById(R.id.progressBar);
         mRecorderView.setHandler(handler);
+
+        findViewById(R.id.left_ball).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = (TextView) findViewById(R.id.left_ball_number);
+                String str = tv.getText().toString();
+                int i = Integer.parseInt(str);
+                tv.setText((2+i)+"");
+                TextView tv2 = (TextView) findViewById(R.id.left_total_number);
+                String str2 = tv2.getText().toString();
+                int i2 = Integer.parseInt(str2);
+                tv2.setText((2+i2)+"");
+                playSound(R.raw.getpoint);
+            }
+        });
+        findViewById(R.id.left_pass).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = (TextView) findViewById(R.id.left_pass_number);
+                String str = tv.getText().toString();
+                int i = Integer.parseInt(str);
+                tv.setText((++i)+"");
+                TextView tv2 = (TextView) findViewById(R.id.left_total_number);
+                String str2 = tv2.getText().toString();
+                int i2 = Integer.parseInt(str2);
+                tv2.setText((++i2)+"");
+                playSound(R.raw.getpoint);
+            }
+        });
+        findViewById(R.id.right_ball).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = (TextView) findViewById(R.id.right_ball_number);
+                String str = tv.getText().toString();
+                int i = Integer.parseInt(str);
+                tv.setText((2+i)+"");
+                TextView tv2 = (TextView) findViewById(R.id.right_total_number);
+                String str2 = tv2.getText().toString();
+                int i2 = Integer.parseInt(str2);
+                tv2.setText((2+i2)+"");
+                playSound(R.raw.getpoint);
+            }
+        });
+        findViewById(R.id.right_pass).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = (TextView) findViewById(R.id.right_pass_number);
+                String str = tv.getText().toString();
+                int i = Integer.parseInt(str);
+                tv.setText((++i)+"");
+                TextView tv2 = (TextView) findViewById(R.id.right_total_number);
+                String str2 = tv2.getText().toString();
+                int i2 = Integer.parseInt(str2);
+                tv2.setText((++i2)+"");
+                playSound(R.raw.getpoint);
+            }
+        });
+        findViewById(R.id.matchkt1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.ktsure).setVisibility(View.VISIBLE);
+                fromleft = true;
+
+            }
+        });
+        findViewById(R.id.matchkt2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.ktsure).setVisibility(View.VISIBLE);
+                fromleft = false;
+            }
+        });
+
+        findViewById(R.id.ktqueren).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.ktsure).setVisibility(View.GONE);
+                showKTOverVisible();
+            }
+        });
+        findViewById(R.id.ktquxiao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.ktsure).setVisibility(View.GONE);
+                showKTOverVisible();
+            }
+        });
 //        mShootBtn.setOnTouchListener(new OnTouchListener() {
 //
 //            @Override
@@ -71,25 +169,40 @@ public class TakePicActivity extends BaseActivity {
             public void onClick(View v) {
                 String path;
 
-                if (!showstart) {
-                    showstart = true;
-
-                    if (showstart) {
                         path = start();
                         video.add(path);
-                        mShootBtn.setImageResource(R.drawable.stoprecord);
+
+//                        mShootBtn.setImageResource(R.drawable.stoprecord);
+                        findViewById(R.id.match).setVisibility(View.VISIBLE);
+                        mShootBtn.setVisibility(View.GONE);
+                        final long[] time = {180000};
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+
+
+
+
+                                if(time[0]<=0){
+                                    replaceEndLayout();
+                                    initEndLtView();
+                                    stop();
+                                    cancel();
+                                    return;
+                                }else{
+                                    new Handler(Looper.getMainLooper(), new Handler.Callback() {
+                                        @Override
+                                        public boolean handleMessage(Message message) {
+                                            showTimeViewInVisible(time[0]);
+                                            return false;
+                                        }
+                                    }).sendEmptyMessage(0);
+                                    time[0] -=1000;
+                                }
+                            }
+                        },0,1000);
                         findViewById(R.id.submit).setVisibility(View.GONE);
-                    } else {
 
-
-                    }
-                } else {
-                    mShootBtn.setImageResource(R.drawable.startrecord);
-                    getWindow().getDecorView().invalidate();
-                    stop();
-//                    mergeVideo();
-                    findViewById(R.id.submit).setVisibility(View.VISIBLE);
-                }
             }
         });
 //        findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
@@ -115,9 +228,35 @@ public class TakePicActivity extends BaseActivity {
                 }
             }
         });
+        loadSound();
+    }
+    private SoundPool soundPool;
+    public void playSound(int rawres) {
+        soundPool.play(soundPoolMap.get(rawres),1, 1, 0, 0, 1);
+    }
+    Map<Integer,Integer> soundPoolMap = new HashMap();
+    public void loadSound(){
+        soundPool= new SoundPool(10,AudioManager.STREAM_SYSTEM,5);
+        soundPoolMap.put(R.raw.getpoint, soundPool.load(this, R.raw.getpoint, 1));
     }
 
-    private String mergeVideo() {
+    public void showKTOverVisible() {
+
+    }
+    boolean fromleft = false;
+    public void initEndLtView() {
+
+    }
+    public void replaceEndLayout() {
+
+    }
+    public void showTimeViewInVisible(long time) {
+        ((TextView)findViewById(R.id.time)).setText(new SimpleDateFormat("mm:ss").format(time));
+
+
+    }
+
+        private String mergeVideo() {
         if(video.size()==0){
             return "";
         }
@@ -228,7 +367,7 @@ public class TakePicActivity extends BaseActivity {
             if (mRecorderView.getVecordFile() != null)
                 mRecorderView.getVecordFile().delete();
             mRecorderView.stop();
-            Toast.makeText(TakePicActivity.this, "视频录制时间太短", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MatchActivity.this, "视频录制时间太短", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -30,7 +29,7 @@ import shengchengerweima.CamScanActivity;
 import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
 
 
-public class MathChooseActivity extends CamScanActivity {
+public class MathChoose2Activity extends CamScanActivity {
 
     int index = R.id.leftid;
 
@@ -39,7 +38,10 @@ public class MathChooseActivity extends CamScanActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_math_choose);
+        setContentView(R.layout.activity_math_choose2);
+        ((ImageView)findViewById(R.id._2v2_left)).setImageResource(R.drawable._2v2_left);
+        ((ImageView)findViewById(R.id._2v2_right)).setImageResource(R.drawable._2v2_right);
+
         BitmapFactory.Options op = new BitmapFactory.Options();
         op.inSampleSize = 2;
         Bitmap bp = BitmapFactory.decodeResource(getResources(),R.drawable.team_battle_0,op);
@@ -75,6 +77,9 @@ public class MathChooseActivity extends CamScanActivity {
                 return false;
             }
         });
+
+
+
         findViewById(R.id.leftportrait).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +92,21 @@ public class MathChooseActivity extends CamScanActivity {
             public void onClick(View v) {
                 findViewById(R.id.menu).setVisibility(View.VISIBLE);
                 index = R.id.rightid;
+            }
+        });
+
+        findViewById(R.id.left2portrait).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.menu).setVisibility(View.VISIBLE);
+                index = R.id.left2id;
+            }
+        });
+        findViewById(R.id.right2portrait).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.menu).setVisibility(View.VISIBLE);
+                index = R.id.right2id;
             }
         });
         findViewById(R.id.ready).setOnClickListener(new View.OnClickListener() {
@@ -103,7 +123,7 @@ public class MathChooseActivity extends CamScanActivity {
             }
         });
     }
-    int preparedCount = 2;
+    int preparedCount = 4;
 
     @Override
     public void recvCode(String result) {
@@ -124,7 +144,7 @@ public class MathChooseActivity extends CamScanActivity {
                     String url = Constants.KTHOST + "users/f_register";
                     RequestParams p = new RequestParams(url);
 
-                    String clubid = ""+PreferenceManager.getDefaultSharedPreferences(MathChooseActivity.this)
+                    String clubid = ""+PreferenceManager.getDefaultSharedPreferences(MathChoose2Activity.this)
                             .getLong(PRE_CURRENT_CLUB_ID,-1);
                     p.addQueryStringParameter("club_id", ""+clubid);
         p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
@@ -175,20 +195,41 @@ public class MathChooseActivity extends CamScanActivity {
                         }
                     });
     }
+    int leftcount = 2;
+    int rightcount = 2;
+    public void checkPrepared(){
+        if(leftcount==0){
+            ((ImageView)findViewById(R.id.leftportrait)).setVisibility(View.VISIBLE);
+        }else if(rightcount==0){
+            ((ImageView)findViewById(R.id.rightportrait)).setVisibility(View.VISIBLE);
+        }
+    }
     public void checkPrepared(int index){
         switch(index){
             case R.id.leftid:
-                findViewById(R.id._1v1_left).setVisibility(View.VISIBLE);
+//                findViewById(R.id._1v1_left).setVisibility(View.VISIBLE);
                 ((ImageView)findViewById(R.id.leftportrait)).setImageResource(R.drawable.default_head);
 
                 break;
             case R.id.rightid:
 
-                findViewById(R.id._1v1_right).setVisibility(View.VISIBLE);
+//                findViewById(R.id._1v1_right).setVisibility(View.VISIBLE);
                 ((ImageView)findViewById(R.id.rightportrait)).setImageResource(R.drawable.default_head);
 
                 break;
+            case R.id.left2id:
+//                findViewById(R.id._2v2_left).setVisibility(View.VISIBLE);
+                ((ImageView)findViewById(R.id.left2portrait)).setImageResource(R.drawable.default_head);
+
+                break;
+            case R.id.right2id:
+
+//                findViewById(R.id._2v2_right).setVisibility(View.VISIBLE);
+                ((ImageView)findViewById(R.id.right2portrait)).setImageResource(R.drawable.default_head);
+
+                break;
         }
+        checkPrepared();
         preparedCount--;
         if(preparedCount<=0){
             findViewById(R.id.ready).setVisibility(View.VISIBLE);

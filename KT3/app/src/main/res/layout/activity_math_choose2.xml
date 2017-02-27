@@ -8,13 +8,11 @@
     <ImageView
         android:src="@mipmap/icon_back"
         android:scaleType="fitStart"
+        android:padding="5px"
         android:layout_width="42px"
         android:layout_height="64px"
         android:layout_marginLeft="99px"
-        android:paddingLeft="5px"
-        android:paddingTop="5px"
-        android:paddingRight="5px"
-        android:paddingBottom="10px"
+        android:layout_marginBottom="10px"
         android:layout_alignParentBottom="true"
         android:id="@+id/back"/>
     <TextView
@@ -54,12 +52,12 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="97px" android:layout_marginLeft="190px"
             android:layout_width="65dp" android:layout_height="340px"/>
-    <ImageView android:scaleType="centerInside" android:src="@drawable/_1v1_left"
+    <ImageView android:scaleType="centerInside" android:src="@drawable/_2v2_left"
                android:layout_marginLeft="30dp"
                android:layout_marginStart="30dp" android:visibility="invisible"
                android:layout_width="70dp" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true" android:layout_height="130dp" android:id="@+id/_1v1_right"/>
-    <ImageView android:scaleType="centerInside" android:src="@drawable/_1v1_right" android:id="@+id/_1v1_left"
+               android:layout_alignParentStart="true" android:layout_height="130dp" android:id="@+id/_2v2_right"/>
+    <ImageView android:scaleType="centerInside" android:src="@drawable/_2v2_right" android:id="@+id/_2v2_left"
                android:layout_width="70dp"
                android:layout_height="130dp" android:visibility="gone"
                android:layout_marginRight="130px" android:layout_marginEnd="130px" android:layout_alignParentBottom="true"
@@ -83,7 +81,7 @@
             android:layout_alignEnd="@+id/leftid"
             android:layout_marginTop="18dp"
 
-        android:layout_alignParentRight="true" android:layout_marginRight="145px" android:layout_width="80dp"
+            android:layout_alignParentRight="true" android:layout_marginRight="145px" android:layout_width="80dp"
             android:layout_height="80dp"/>
     <LinearLayout android:visibility="invisible"  android:layout_alignParentBottom="true" android:id="@+id/menu"
                   android:layout_width="match_parent" android:layout_height="180px" android:orientation="horizontal"
@@ -95,7 +93,7 @@
                       android:textSize="56px"
                       android:gravity="center"
                       android:id="@+id/saomiao"/>
-            <View android:layout_width="5px" android:layout_height="match_parent"
+            <View android:layout_width="2px" android:layout_height="match_parent"
                   android:background="@android:color/black"/>
             <TextView android:layout_width="1000px" android:layout_height="match_parent" android:text="选择"
                       android:textColor="@android:color/holo_blue_light"
@@ -113,4 +111,71 @@
 
     </LinearLayout>
 
+
+
+    <com.newer.kt.utils.VerticalTextView
+        android:paddingTop="36px"
+        android:paddingLeft="250px"
+        android:textColor="@android:color/black"
+        android:text=""
+        android:textSize="49px"
+        android:id="@+id/right2id"
+        android:background="#ffffff"
+        android:scaleType="fitEnd"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="97px" android:layout_marginRight="750px"
+        android:layout_width="65dp" android:layout_height="340px"/>
+    <com.newer.kt.utils.VerticalTextView
+        android:paddingTop="36px"
+        android:paddingLeft="250px"
+        android:textSize="49px"
+        android:textColor="@android:color/black"
+        android:text=""
+        android:id="@+id/left2id"
+        android:background="#ffffff"
+        android:scaleType="fitEnd"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="97px" android:layout_marginLeft="750px"
+        android:layout_width="65dp" android:layout_height="340px"/>
+    <ImageView
+        android:src="@drawable/portrait" android:id="@+id/left2portrait"
+        android:layout_centerInParent="false"
+
+        android:layout_marginLeft="705px"
+        android:layout_marginTop="18dp" android:layout_height="80dp" android:layout_width="80dp"/>
+    <ImageView
+        android:src="@drawable/portrait" android:id="@+id/right2portrait"
+        android:layout_centerInParent="false"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/left2id"
+        android:layout_marginTop="18dp"
+
+        android:layout_alignParentRight="true" android:layout_marginRight="705px" android:layout_width="80dp"
+        android:layout_height="80dp"/>
+    <!--<com.newer.kt.utils.VerticalTextView-->
+        <!--android:paddingTop="36px"-->
+        <!--android:paddingLeft="250px"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:text=""-->
+        <!--android:textSize="49px"-->
+        <!--android:id="@+id/left3id"-->
+        <!--android:background="#ffffff"-->
+        <!--android:scaleType="fitEnd"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginTop="97px" android:layout_marginRight="960px"-->
+        <!--android:layout_width="65dp" android:layout_height="340px"/>-->
+    <!--<com.newer.kt.utils.VerticalTextView-->
+        <!--android:paddingTop="36px"-->
+        <!--android:paddingLeft="250px"-->
+        <!--android:textSize="49px"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:text=""-->
+        <!--android:id="@+id/right3id"-->
+        <!--android:background="#ffffff"-->
+        <!--android:scaleType="fitEnd"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="97px" android:layout_marginLeft="960px"-->
+        <!--android:layout_width="65dp" android:layout_height="340px"/>-->
 </RelativeLayout>

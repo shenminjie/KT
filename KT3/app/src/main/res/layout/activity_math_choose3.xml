@@ -8,13 +8,11 @@
     <ImageView
         android:src="@mipmap/icon_back"
         android:scaleType="fitStart"
+        android:padding="5px"
         android:layout_width="42px"
         android:layout_height="64px"
         android:layout_marginLeft="99px"
-        android:paddingLeft="5px"
-        android:paddingTop="5px"
-        android:paddingRight="5px"
-        android:paddingBottom="10px"
+        android:layout_marginBottom="10px"
         android:layout_alignParentBottom="true"
         android:id="@+id/back"/>
     <TextView
@@ -41,7 +39,7 @@
             android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
             android:layout_marginTop="97px" android:layout_marginRight="190px"
-            android:layout_width="65dp" android:layout_height="340px"/>
+            android:layout_width="65dp" android:layout_height="260px"/>
     <com.newer.kt.utils.VerticalTextView
         android:paddingTop="36px"
         android:paddingLeft="300px"
@@ -53,7 +51,7 @@
             android:scaleType="fitEnd"
             android:layout_alignParentTop="true"
             android:layout_marginTop="97px" android:layout_marginLeft="190px"
-            android:layout_width="65dp" android:layout_height="340px"/>
+            android:layout_width="65dp" android:layout_height="260px"/>
     <ImageView android:scaleType="centerInside" android:src="@drawable/_1v1_left"
                android:layout_marginLeft="30dp"
                android:layout_marginStart="30dp" android:visibility="invisible"
@@ -95,7 +93,7 @@
                       android:textSize="56px"
                       android:gravity="center"
                       android:id="@+id/saomiao"/>
-            <View android:layout_width="5px" android:layout_height="match_parent"
+            <View android:layout_width="2px" android:layout_height="match_parent"
                   android:background="@android:color/black"/>
             <TextView android:layout_width="1000px" android:layout_height="match_parent" android:text="选择"
                       android:textColor="@android:color/holo_blue_light"

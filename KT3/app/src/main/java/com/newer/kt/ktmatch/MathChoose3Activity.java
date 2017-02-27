@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -30,7 +29,7 @@ import shengchengerweima.CamScanActivity;
 import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
 
 
-public class MathChooseActivity extends CamScanActivity {
+public class MathChoose3Activity extends CamScanActivity {
 
     int index = R.id.leftid;
 
@@ -39,7 +38,7 @@ public class MathChooseActivity extends CamScanActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_math_choose);
+        setContentView(R.layout.activity_math_choose3);
         BitmapFactory.Options op = new BitmapFactory.Options();
         op.inSampleSize = 2;
         Bitmap bp = BitmapFactory.decodeResource(getResources(),R.drawable.team_battle_0,op);
@@ -124,7 +123,7 @@ public class MathChooseActivity extends CamScanActivity {
                     String url = Constants.KTHOST + "users/f_register";
                     RequestParams p = new RequestParams(url);
 
-                    String clubid = ""+PreferenceManager.getDefaultSharedPreferences(MathChooseActivity.this)
+                    String clubid = ""+PreferenceManager.getDefaultSharedPreferences(MathChoose3Activity.this)
                             .getLong(PRE_CURRENT_CLUB_ID,-1);
                     p.addQueryStringParameter("club_id", ""+clubid);
         p.addQueryStringParameter("authenticity_token", MD5.getToken(url));

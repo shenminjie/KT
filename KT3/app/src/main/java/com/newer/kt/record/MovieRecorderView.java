@@ -15,7 +15,6 @@ import android.media.MediaRecorder.VideoEncoder;
 import android.media.MediaRecorder.VideoSource;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -29,7 +28,6 @@ import com.newer.kt.R;
 import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * 视频播放控件
@@ -38,8 +36,11 @@ import java.util.TimerTask;
  * @date 2015-2-5
  */
 public class MovieRecorderView extends LinearLayout implements OnErrorListener {
+    public void setMAXVEDIOTIME(int MAXVEDIOTIME) {
+        this.MAXVEDIOTIME = MAXVEDIOTIME;
+    }
 
-    private static final int MAXVEDIOTIME = 5;
+    private int MAXVEDIOTIME = -1;
     private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
     private ProgressBar mProgressBar;
@@ -260,7 +261,8 @@ return;
         mMediaRecorder.setVideoEncodingBitRate(1 * 1024 * 512);// 设置帧频率，然后就清晰了
         mMediaRecorder.setOrientationHint(270);// 输出旋转90度，保持竖屏录制
         mMediaRecorder.setVideoEncoder(VideoEncoder.MPEG_4_SP);// 视频录制格式
-//        mMediaRecorder.setMaxDuration(MAXVEDIOTIME * 1000);
+        if(MAXVEDIOTIME!=-1)
+        mMediaRecorder.setMaxDuration(MAXVEDIOTIME * 1000);
         mMediaRecorder.setOutputFile(mVecordFile.getAbsolutePath());
         mMediaRecorder.prepare();
         try {
