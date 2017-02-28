@@ -1,5 +1,7 @@
 package com.newer.kt.ktmatch;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,6 +67,74 @@ public class MathChooseActivity extends CamScanActivity {
             public boolean onLongClick(View view) {
                 index = R.id.leftid;
                 genMatch_Id(index);
+                return false;
+            }
+        });
+        findViewById(R.id.leftportrait).setOnTouchListener(new View.OnTouchListener() {
+            private int containerWidth;
+            private int containerHeight;
+            float lastX, lastY;
+            float initX, initY;
+            @Override
+            public boolean onTouch(View iv, MotionEvent event) {
+                switch (event.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                        lastX = event.getRawX();
+                        lastY = event.getRawY();
+                        if(initY==0){
+                            initY = lastY;
+                        }
+                        return true;
+                    case MotionEvent.ACTION_MOVE:
+                        //  不要直接用getX和getY,这两个获取的数据已经是经过处理的,容易出现图片抖动的情况
+                        float distanceX = lastX - event.getRawX();
+                        float distanceY = lastY - event.getRawY();
+
+
+                        float nextY = iv.getY() - distanceY;
+                        float nextX = iv.getX() - distanceX;
+
+
+                        // 不能移出屏幕
+                        if (nextY < 0) {
+                            nextY = 0;
+                        } else if (nextY > containerHeight - iv.getHeight()) {
+                            nextY = containerHeight - iv.getHeight();
+                        }
+                        if (nextX < 0)
+                            nextX = 0;
+                        else if (nextX > containerWidth - iv.getWidth())
+                            nextX = containerWidth - iv.getWidth();
+
+
+                        // 属性动画移动
+                        ObjectAnimator y = ObjectAnimator.ofFloat(iv, "y", iv.getY(), nextY>iv.getY()?nextY:iv.getY());
+                        ObjectAnimator x = ObjectAnimator.ofFloat(iv, "x", iv.getX(), iv.getX());
+
+
+                        AnimatorSet animatorSet = new AnimatorSet();
+                        animatorSet.playTogether(x, y);
+                        animatorSet.setDuration(0);
+                        animatorSet.start();
+
+
+                        lastX = event.getRawX();
+                        lastY = event.getRawY();
+//                        if(lastY-initY>300){
+//                            ObjectAnimator yb = ObjectAnimator.ofFloat(iv, "y", iv.getY(), initY);
+//                            ObjectAnimator xb = ObjectAnimator.ofFloat(iv, "x", iv.getX(), iv.getX());
+//
+//
+//                            AnimatorSet animatorSetb = new AnimatorSet();
+//                            animatorSet.playTogether(xb, yb);
+//                            animatorSet.setDuration(0);
+//                            animatorSet.start();
+//
+//
+//                            lastX = 0;
+//                            lastY = 0;
+//                        }
+                }
                 return false;
             }
         });

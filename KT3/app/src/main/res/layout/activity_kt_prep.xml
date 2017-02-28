@@ -133,7 +133,6 @@
             android:textColor="@android:color/holo_red_dark"
             android:textSize="55px"
             android:text="0"
-            android:visibility="invisible"
             android:layout_marginRight="30px"
             />
         <ImageView
@@ -178,7 +177,7 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/match_ball"
                         android:layout_marginRight="60px"
-android:layout_alignParentRight="true"
+                        android:layout_alignParentRight="true"
                         android:layout_marginLeft="30px"
                         />
                     <TextView android:layout_toLeftOf="@+id/right_ball"
@@ -255,9 +254,9 @@ android:layout_alignParentRight="true"
                         android:textColor="@android:color/holo_red_dark"
                         android:textSize="55px"
                         android:text="0"
-                        android:visibility="invisible"
                         android:layout_marginLeft="30px"
                         android:layout_toLeftOf="@id/right_x"
+
                         />
                     <ImageView
                         android:layout_width="match_parent"

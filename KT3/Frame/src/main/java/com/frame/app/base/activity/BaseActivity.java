@@ -40,6 +40,7 @@ public abstract class BaseActivity extends AnalyticsHome {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		TAG = getClass().getSimpleName();
 		AppManager.getAppManager().addActivity(getThis()); // 加入activity栈管理器
 		loadingDialog = new LoadingDialog(getThis()); // 初始化进度条

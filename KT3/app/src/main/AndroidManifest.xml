@@ -656,22 +656,24 @@
         <uses-library android:name="android.test.runner" />
 
         <activity android:name=".ktmatch.TypeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ktmatch.MathChooseActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" >
+
+        </activity>
         <activity
             android:name=".ktmatch.PrepStartActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ktmatch.MatchActivity"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             </activity>
         <activity
             android:name=".ktmatch.MathChoose2Activity"

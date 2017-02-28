@@ -147,6 +147,24 @@ public class MatchActivity extends TakePicActivity {
                 showKTOverVisible();
             }
         });
+        findViewById(R.id.left_x).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = (TextView) findViewById(R.id.left_x_number);
+                String str = tv.getText().toString();
+                int i = Integer.parseInt(str);
+                tv.setText((++i)+"");
+            }
+        });
+        findViewById(R.id.right_x).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = (TextView) findViewById(R.id.right_x_number);
+                String str = tv.getText().toString();
+                int i = Integer.parseInt(str);
+                tv.setText((++i)+"");
+            }
+        });
 //        mShootBtn.setOnTouchListener(new OnTouchListener() {
 //
 //            @Override
