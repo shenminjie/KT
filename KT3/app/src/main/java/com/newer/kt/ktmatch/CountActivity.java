@@ -140,9 +140,10 @@ public class CountActivity extends ActivityScore {
             result = -1;
         }
 
+
         Params.getInstanceParam().setResult(result+"");
         String url = Constants.KTHOST + "games/post_result";
-        RequestParams p = new RequestParams(url);
+        QueryBuilder qb = QueryBuilder.build(url);
 
         String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_CLUB_ID,1);
@@ -161,14 +162,16 @@ public class CountActivity extends ActivityScore {
                     continue;
                 }
                 String val = oval.toString();
-                p.addQueryStringParameter(f.getName(), val);
+                qb.add(f.getName(), val);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
+        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("",qb.getJson());
 
-        p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
-        x.http().post(p, new Callback.CommonCallback<String>() {
+
+
+        x.http().post(qb.get(), new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 //                        { response: "success", user_id: 用户ID, match_id: 用户快速参赛的号码 }
