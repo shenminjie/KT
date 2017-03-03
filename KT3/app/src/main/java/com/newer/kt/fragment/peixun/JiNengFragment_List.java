@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.newer.kt.R;
@@ -15,6 +16,7 @@ public class JiNengFragment_List extends AppCompatActivity {
 
     private ListView lv_jinengList;
     private BaseAdapter adapter;
+    private ImageView image_vs_item_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,14 @@ public class JiNengFragment_List extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        image_vs_item_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void initAdapter() {
@@ -69,6 +79,7 @@ public class JiNengFragment_List extends AppCompatActivity {
 
     private void initView() {
         lv_jinengList = ((ListView) findViewById(R.id.lv_jinengList));
+        image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
 
 
     }

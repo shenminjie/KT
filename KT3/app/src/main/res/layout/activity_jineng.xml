@@ -21,8 +21,9 @@
                 android:layout_height="40dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_back"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/jc_back"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"/>
@@ -67,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="327"
-                    android:textColor="#FEEA3B"
+                    android:textColor="#ffc543"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     />
@@ -124,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3次"
-                    android:textColor="#FEEA3B"
+                    android:textColor="#ffc543"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     />
