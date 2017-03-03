@@ -3,6 +3,7 @@ package com.newer.kt.Refactor.ui.Fragment.Main;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,16 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.frame.app.base.activity.BaseActivity;
 import com.google.gson.Gson;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.Base.BaseEntity;
 import com.newer.kt.entity.Clubs_paihang;
 import com.newer.kt.entity.Clubs_paihang_Bean;
 import com.newer.kt.ktmatch.MapBuilder;
 import com.newer.kt.ktmatch.Params;
 import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.ktmatch.TypeActivity;
 import com.newer.kt.record.TakePicActivity;
 
 import org.xutils.common.Callback;
@@ -57,17 +61,39 @@ public class SaiShiEJ extends CamScanActivity {
         lv_vs_ej.setVisibility(View.VISIBLE);
         lv_vs_cc.setVisibility(View.GONE);
         findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),TakePicActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                invokeCap();
             }
         });
+    }
+
+    @Override
+    protected void initHandler(Message msg) {
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
     }
 
     @Override
     public void recvCode(String result) {
         super.recvCode(result);
         Params.getInstanceParam().setCode(result);
+        startActivity(new Intent(getBaseContext(),TypeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
     }
 
     /**

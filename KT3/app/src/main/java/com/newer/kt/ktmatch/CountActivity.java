@@ -131,8 +131,17 @@ public class CountActivity extends ActivityScore {
 //    { response: "error", msg: "错误信息"  }
 
     public void submitKT(Params params){
+        int leftScore = (Integer.parseInt(Params.getInstanceParam().getGoals1())+Integer.parseInt(Params.getInstanceParam().getPannas1()));
+        int rightScore = (Integer.parseInt(Params.getInstanceParam().getGoals2())+Integer.parseInt(Params.getInstanceParam().getPannas2()));
+        int result = 0;
+        if(leftScore>rightScore){
+            result = 1;
+        }else if(leftScore<rightScore){
+            result = -1;
+        }
 
-        String url = Constants.KTHOST + "apiv2/games/post_result";
+        Params.getInstanceParam().setResult(result+"");
+        String url = Constants.KTHOST + "games/post_result";
         RequestParams p = new RequestParams(url);
 
         String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getBaseContext())
@@ -157,6 +166,7 @@ public class CountActivity extends ActivityScore {
                 e.printStackTrace();
             }
         }
+
         p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
         x.http().post(p, new Callback.CommonCallback<String>() {
             @Override

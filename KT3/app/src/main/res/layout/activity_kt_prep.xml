@@ -21,7 +21,7 @@
     <RelativeLayout android:id="@+id/match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         >
 
     <TextView
@@ -311,23 +311,24 @@
 
             </LinearLayout>
         </RelativeLayout>
-        <RelativeLayout android:layout_centerInParent="true" android:layout_centerHorizontal="true" android:id="@+id/zhongzhi"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone">
+        <RelativeLayout android:layout_centerInParent="true" android:layout_centerHorizontal="true" android:id="@+id/zhongzhi"  android:layout_width="640dp" android:layout_height="222dp" android:visibility="gone">
             <LinearLayout
-                android:layout_width="640dp"
-                android:layout_height="222dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 >
                 <ImageView
                     android:id="@+id/ktjixu"
                     android:layout_width="160dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/match_continue"
                 />
                 <ImageView
                     android:id="@+id/ktzhongzhi"
                     android:layout_width="160dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/match_stop"/>
             </LinearLayout>
         </RelativeLayout>

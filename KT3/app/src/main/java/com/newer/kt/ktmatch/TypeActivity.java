@@ -41,6 +41,13 @@ public class TypeActivity extends BaseActivity {
                 Params.getInstanceParam().setGame_type(2+"");
             }
         });
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     @Override
