@@ -10,27 +10,202 @@ public class Params {
     public static Params getInstanceParam() {
         return params;
     }
-
-    String game_type;
-    String judge_type;
-    String result;
-    String uid1;
-    String uid2;
+    String club_id;
+    String user_id;
     String game_id;
     String code;
-    String goals1 = "";
-    String goals2 = "";
-    String fouls1;
+    String game_type;
+    String youku_uri;
+    String time;
 
-    String flagrant_fouls1;
-    String flagrant_fouls2;
-    String pannas1;
-    String pannas2;
-    String panna_ko1 = "0";
-    String panna_ko2 = "0";
-    String abstained1 = "0";
-    String abstained2 = "0";
-    String battle_id;
+    public String getClub_id() {
+        return club_id;
+    }
+
+    public void setClub_id(String club_id) {
+        this.club_id = club_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getYouku_uri() {
+        return youku_uri;
+    }
+
+    public void setYouku_uri(String youku_uri) {
+        this.youku_uri = youku_uri;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getSide_a__add_scores() {
+        return side_a__add_scores;
+    }
+
+    public void setSide_a__add_scores(String side_a__add_scores) {
+        this.side_a__add_scores = side_a__add_scores;
+    }
+
+    public String getSide_a__result() {
+        return side_a__result;
+    }
+
+    public void setSide_a__result(String side_a__result) {
+        this.side_a__result = side_a__result;
+    }
+
+    public String getSide_a__flagrant_fouls() {
+        return side_a__flagrant_fouls;
+    }
+
+    public void setSide_a__flagrant_fouls(String side_a__flagrant_fouls) {
+        this.side_a__flagrant_fouls = side_a__flagrant_fouls;
+    }
+
+    public String getSide_a__abstained() {
+        return side_a__abstained;
+    }
+
+    public void setSide_a__abstained(String side_a__abstained) {
+        this.side_a__abstained = side_a__abstained;
+    }
+
+    public String getSide_a__picture() {
+        return side_a__picture;
+    }
+
+    public void setSide_a__picture(String side_a__picture) {
+        this.side_a__picture = side_a__picture;
+    }
+
+    public String getSide_b__add_scores() {
+        return side_b__add_scores;
+    }
+
+    public void setSide_b__add_scores(String side_b__add_scores) {
+        this.side_b__add_scores = side_b__add_scores;
+    }
+
+    public String getSide_b__result() {
+        return side_b__result;
+    }
+
+    public void setSide_b__result(String side_b__result) {
+        this.side_b__result = side_b__result;
+    }
+
+    public String getSide_b__picture() {
+        return side_b__picture;
+    }
+
+    public void setSide_b__picture(String side_b__picture) {
+        this.side_b__picture = side_b__picture;
+    }
+
+    public String getSide_b__abstained() {
+        return side_b__abstained;
+    }
+
+    public void setSide_b__abstained(String side_b__abstained) {
+        this.side_b__abstained = side_b__abstained;
+    }
+
+    public String getSide_b__flagrant_fouls() {
+        return side_b__flagrant_fouls;
+    }
+
+    public void setSide_b__flagrant_fouls(String side_b__flagrant_fouls) {
+        this.side_b__flagrant_fouls = side_b__flagrant_fouls;
+    }
+
+    String side_a__users;
+    String side_a__add_scores;
+    String side_a__result;
+    String side_a__goals;
+    String side_a__pannas;
+    String side_a__fouls;
+    String side_a__flagrant_fouls;
+    String side_a__panna_ko;
+    String side_a__abstained;
+    String side_a__picture;
+
+    String side_b__users;
+    String side_b__add_scores;
+    String side_b__result;
+    String side_b__goals;
+    String side_b__pannas;
+    String side_b__fouls;
+    String side_b__flagrant_fouls;
+    String side_b__panna_ko;
+    String side_b__abstained;
+    String side_b__picture;
+
+
+    public String getUid1() {
+        return side_a__users;
+    }
+
+    public void setUid1(String uid1) {
+        this.side_a__users = uid1;
+    }
+
+    public String getUid2() {
+        return side_b__users;
+    }
+
+    public void setUid2(String uid2) {
+        this.side_b__users = uid2;
+    }
+
+//    "'club_id':'俱乐部ID','"俱乐部ID+
+//
+//            "user_id':'当前裁判ID','" +
+//
+//            "game_id':'赛事ID','" +
+//
+//            "code':'气场二维码','" +
+//
+//            "game_type':'0','" +
+//
+//            "youku_uri':'优酷视频地址','" +
+//
+//            "time':'比赛时间(格式 2016-01-01 17:00)','" +
+//
+//            "side_a':{'" +
+//
+//            "  users':[*],'" +
+//
+//            "  add_scores':'增加的积分','" +
+//
+//            "  result':'结果(胜者为 1 败者 -1 平局为0)','" +
+//
+//            "  goals':'进球数','" +
+//
+//            "  pannas':'穿裆数','" +
+//
+//            "  fouls':'犯规数','" +
+//
+//            "  flagrant_fouls':'恶意犯规数','" +
+//
+//            "  panna_ko':'是否穿裆KT(0 否 1 是)','" +
+//
+//            "  abstained':'是否放弃比赛(0 否 1 是)','" +
+//
+//            "  picture':'比赛图片'" +
+//
+//            "},'" +
 
     public String getGame_type() {
         return game_type;
@@ -38,38 +213,6 @@ public class Params {
 
     public void setGame_type(String game_type) {
         this.game_type = game_type;
-    }
-
-    public String getJudge_type() {
-        return judge_type;
-    }
-
-    public void setJudge_type(String judge_type) {
-        this.judge_type = judge_type;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public String getUid1() {
-        return uid1;
-    }
-
-    public void setUid1(String uid1) {
-        this.uid1 = uid1;
-    }
-
-    public String getUid2() {
-        return uid2;
-    }
-
-    public void setUid2(String uid2) {
-        this.uid2 = uid2;
     }
 
     public String getGame_id() {
@@ -90,123 +233,53 @@ public class Params {
     }
 
     public String getGoals1() {
-        return goals1;
+        return side_a__goals;
     }
-    public String Goals1Plus() {
-        return goals1 = ((Integer.parseInt(goals1)+1)+"");
-    }
-    public String Goals2Plus() {
-        return goals2 = ((Integer.parseInt(goals2)+1)+"");
-    }
-    public String Goals1Minus() {
-        return goals1 = ((Integer.parseInt(goals1)-1)+"");
-    }
-    public String Goals2Minus() {
-        return goals2 = ((Integer.parseInt(goals2)-1)+"");
-    }
-
-    public String pannas1Plus() {
-        return pannas1 = ((Integer.parseInt(pannas1)+1)+"");
-    }
-    public String pannas2Plus() {
-        return pannas2 = ((Integer.parseInt(pannas2)+1)+"");
-    }
-    public String pannas1Minus() {
-        return pannas1 = ((Integer.parseInt(pannas1)+1)+"");
-    }
-    public String pannas2Minus() {
-        return pannas2 = ((Integer.parseInt(pannas2)+1)+"");
-    }
-
     public void setGoals1(String goals1) {
-        this.goals1 = goals1;
+        this.side_a__goals = goals1;
     }
 
     public String getGoals2() {
-        return goals2;
+        return side_b__goals;
     }
 
     public void setGoals2(String goals2) {
-        this.goals2 = goals2;
+        this.side_b__goals = goals2;
     }
 
-    public String getFouls1() {
-        return fouls1;
-    }
-
-    public void setFouls1(String fouls1) {
-        this.fouls1 = fouls1;
-    }
-
-    public String getFlagrant_fouls1() {
-        return flagrant_fouls1;
-    }
-
-    public void setFlagrant_fouls1(String flagrant_fouls1) {
-        this.flagrant_fouls1 = flagrant_fouls1;
-    }
-
-    public String getFlagrant_fouls2() {
-        return flagrant_fouls2;
-    }
-
-    public void setFlagrant_fouls2(String flagrant_fouls2) {
-        this.flagrant_fouls2 = flagrant_fouls2;
-    }
 
     public String getPannas1() {
-        return pannas1;
+        return side_a__pannas;
     }
 
     public void setPannas1(String pannas1) {
-        this.pannas1 = pannas1;
+        this.side_a__pannas = pannas1;
     }
 
     public String getPannas2() {
-        return pannas2;
+        return side_b__pannas;
     }
 
     public void setPannas2(String pannas2) {
-        this.pannas2 = pannas2;
+        this.side_b__pannas = pannas2;
     }
 
     public String getPanna_ko1() {
-        return panna_ko1;
+        return side_a__panna_ko;
     }
 
     public void setPanna_ko1(String panna_ko1) {
-        this.panna_ko1 = panna_ko1;
+        this.side_a__panna_ko = panna_ko1;
     }
 
     public String getPanna_ko2() {
-        return panna_ko2;
+        return side_b__panna_ko;
     }
 
     public void setPanna_ko2(String panna_ko2) {
-        this.panna_ko2 = panna_ko2;
-    }
-
-    public String getAbstained1() {
-        return abstained1;
-    }
-
-    public void setAbstained1(String abstained1) {
-        this.abstained1 = abstained1;
-    }
-
-    public String getAbstained2() {
-        return abstained2;
-    }
-
-    public void setAbstained2(String abstained2) {
-        this.abstained2 = abstained2;
-    }
-
-    public String getBattle_id() {
-        return battle_id;
+        this.side_b__panna_ko = panna_ko2;
     }
 
     public void setBattle_id(String battle_id) {
-        this.battle_id = battle_id;
     }
 }

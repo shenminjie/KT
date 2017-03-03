@@ -1,9 +1,11 @@
 package com.newer.kt.ktmatch;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -22,8 +24,11 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_USER_ID;
 
 public class CountActivity extends ActivityScore {
 
@@ -136,17 +141,31 @@ public class CountActivity extends ActivityScore {
         int result = 0;
         if(leftScore>rightScore){
             result = 1;
+            Params.getInstanceParam().setSide_a__result(1+"");
+            Params.getInstanceParam().setSide_b__result(-1+"");
         }else if(leftScore<rightScore){
             result = -1;
+            Params.getInstanceParam().setSide_b__result(1+"");
+            Params.getInstanceParam().setSide_a__result(-1+"");
+        }else{
+            Params.getInstanceParam().setSide_b__result(0+"");
+            Params.getInstanceParam().setSide_a__result(0+"");
         }
 
 
-        Params.getInstanceParam().setResult(result+"");
+
         String url = Constants.KTHOST + "games/post_result";
         QueryBuilder qb = QueryBuilder.build(url);
 
         String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_CLUB_ID,1);
+        Params.getInstanceParam().setClub_id(clubid);
+
+        String userid = ""+ PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getLong(PRE_CURRENT_USER_ID,1);
+        Params.getInstanceParam().setUser_id(userid);
+
+        Params.getInstanceParam().setTime(new SimpleDateFormat("yyyy-MM-dd HH:ss").format(new Date()));
         Field[] fs = params.getClass().getDeclaredFields();
         for(Field f:fs){
             f.setAccessible(true);
@@ -167,9 +186,73 @@ public class CountActivity extends ActivityScore {
                 e.printStackTrace();
             }
         }
-        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("",qb.getJson());
+        SharedPreferences.Editor ed = (SharedPreferences.Editor) PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        ed.putString(qb.getMap().get("game_id").toString(),qb.getJson());
+        ed.commit();
+        String raw = "{" +
 
+                "'club_id':'俱乐部ID','"+
 
+                "user_id':'当前裁判ID','" +
+
+                "game_id':'赛事ID','" +
+
+                "code':'气场二维码','" +
+
+                "game_type':'0','" +
+
+                "youku_uri':'优酷视频地址','" +
+
+                "time':'比赛时间(格式 2016-01-01 17:00)','" +
+
+                "side_a':{'" +
+
+                "  users':[*],'" +
+
+                "  add_scores':'增加的积分','" +
+
+                "  result':'结果(胜者为 1 败者 -1 平局为0)','" +
+
+                "  goals':'进球数','" +
+
+                "  pannas':'穿裆数','" +
+
+                "  fouls':'犯规数','" +
+
+                "  flagrant_fouls':'恶意犯规数','" +
+
+                "  panna_ko':'是否穿裆KT(0 否 1 是)','" +
+
+                "  abstained':'是否放弃比赛(0 否 1 是)','" +
+
+                "  picture':'比赛图片'" +
+
+                "},'" +
+
+                "side_b':{'" +
+
+                "  users':[*],'" +
+
+                "  add_scores':'增加的积分','" +
+
+                "  result':'结果(胜者为 1 败者 -1 平局为0)','" +
+
+                "  goals':'进球数','" +
+
+                "  pannas':'穿裆数','" +
+
+                "  fouls':'犯规数','" +
+
+                "  flagrant_fouls':'恶意犯规数','" +
+
+                "  panna_ko':'是否穿裆KT(0 否 1 是)','" +
+
+                "  abstained':'是否放弃比赛(0 否 1 是)','" +
+
+                "  picture':'比赛图片'" +
+
+                "}" +
+                "}" ;
 
         x.http().post(qb.get(), new Callback.CommonCallback<String>() {
             @Override

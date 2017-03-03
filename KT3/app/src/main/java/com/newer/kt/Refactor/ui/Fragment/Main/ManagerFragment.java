@@ -88,6 +88,7 @@ public class ManagerFragment extends BaseFragment {
                 Clubs_game_Bean.Clubs_game  clubs_game = (Clubs_game_Bean.Clubs_game) parent.getItemAtPosition(position);
                 Params.getInstanceParam().setGame_id(clubs_game.game_id);
                 ActivityKi.title = clubs_game.name;
+
                 Intent intent=new Intent(getActivity(),SaiShiEJ.class).putExtra("game_id",clubs_game.game_id);
                 startActivity(intent);
 

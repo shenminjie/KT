@@ -2,304 +2,343 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/match_over"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
-            android:layout_margin="30px"
             android:id="@+id/left_icon"
             android:layout_width="180px"
             android:layout_height="180px"
-            android:src="@drawable/default_head"
-            android:layout_marginLeft="15px"
-            android:layout_alignParentLeft="true"/>
-        <ImageView
+            android:layout_alignParentLeft="true"
             android:layout_margin="30px"
+            android:layout_marginLeft="15px"
+            android:src="@drawable/default_head" />
+
+        <ImageView
             android:id="@+id/right_icon"
             android:layout_width="180px"
             android:layout_height="180px"
-            android:src="@drawable/default_head"
-
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15px"/>
+            android:layout_margin="30px"
+
+            android:layout_marginRight="15px"
+            android:src="@drawable/default_head" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:layout_marginTop="20px">
+
         <TextView
             android:id="@+id/left_score_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="71"
-            android:visibility="invisible"
-            android:textSize="60px"
+            android:layout_alignParentLeft="true"
             android:layout_below="@id/left_icon"
             android:layout_marginLeft="15px"
+            android:text="71"
             android:textColor="@android:color/white"
-            android:layout_alignParentLeft="true"/>
+            android:textSize="60px"
+            android:visibility="invisible" />
 
         <TextView
-            android:visibility="invisible"
             android:id="@+id/right_score_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="72"
-            android:textSize="60px"
-            android:layout_below="@id/right_icon"
             android:layout_alignParentRight="true"
+            android:layout_below="@id/right_icon"
             android:layout_marginRight="15px"
-            android:textColor="@android:color/white"/>
+            android:text="72"
+            android:textColor="@android:color/white"
+            android:textSize="60px"
+            android:visibility="invisible" />
     </com.zhy.autolayout.AutoRelativeLayout>
+
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="0px"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            >
+            android:layout_weight="1">
+
             <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/left_ball_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="160px"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:layout_below="@id/left_score_txt"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/left_score_txt">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/left_ball_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_plus"/>
+                    android:src="@drawable/match_plus" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_ball"/>
+                    android:src="@drawable/match_ball" />
+
                 <TextView
                     android:id="@+id/left_ball_value"
                     android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textSize="50px"
                     android:singleLine="true"
-                    android:textColor="@android:color/white"/>
+                    android:text="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="50px" />
+
                 <ImageView
                     android:id="@+id/left_ball_minus"
                     android:layout_width="120px"
                     android:layout_height="120px"
-                    android:src="@drawable/match_minus"/>
+                    android:src="@drawable/match_minus" />
             </com.zhy.autolayout.AutoLinearLayout>
+
             <com.zhy.autolayout.AutoLinearLayout
-                android:layout_centerHorizontal="true"
                 android:id="@+id/left_pass_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="160px"
-                android:orientation="horizontal"
+                android:layout_below="@id/left_ball_layout"
+                android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
-                android:layout_below="@id/left_ball_layout">
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/left_pass_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_plus"/>
+                    android:src="@drawable/match_plus" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_pass"/>
+                    android:src="@drawable/match_pass" />
+
                 <TextView
                     android:id="@+id/left_pass_value"
                     android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textSize="50px"
                     android:singleLine="true"
-                    android:textColor="@android:color/white"/>
+                    android:text="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="50px" />
+
                 <ImageView
                     android:id="@+id/left_pass_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_minus"/>
+                    android:src="@drawable/match_minus" />
             </com.zhy.autolayout.AutoLinearLayout>
+
             <com.zhy.autolayout.AutoLinearLayout
-                android:layout_centerHorizontal="true"
                 android:id="@+id/left_x_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="160px"
-                android:orientation="horizontal"
+                android:layout_below="@id/left_pass_layout"
+                android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
-                android:layout_below="@id/left_pass_layout">
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/left_x_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_plus"/>
+                    android:src="@drawable/match_plus" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_x"/>
+                    android:src="@drawable/match_x" />
+
                 <TextView
                     android:id="@+id/left_x_value"
                     android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="50px"
                     android:singleLine="true"
-                    android:textColor="@android:color/holo_red_dark"/>
+                    android:text="0"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="50px" />
+
                 <ImageView
                     android:id="@+id/left_x_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_minus"/>
+                    android:src="@drawable/match_minus" />
             </com.zhy.autolayout.AutoLinearLayout>
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.zhy.autolayout.AutoRelativeLayout
 
             android:layout_width="0px"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginLeft="15px"
-            android:layout_marginRight="15px">
+            android:layout_marginRight="15px"
+            android:layout_weight="1"
+            android:gravity="center">
+
             <Button
                 android:id="@+id/submit_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@null"
-                android:background="@drawable/match_submit"/>
+                android:background="@drawable/match_submit"
+                android:button="@null" />
+
             <Button
                 android:id="@+id/cancel_submit_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@null"
                 android:layout_below="@id/submit_btn"
                 android:layout_marginTop="20px"
-                android:background="@drawable/match_nosubmit"/>
+                android:background="@drawable/match_nosubmit"
+                android:button="@null" />
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="0px"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center_vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/right_ball_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="160px"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:layout_below="@id/right_score_txt"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/right_score_txt">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/right_ball_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_minus"/>
+                    android:src="@drawable/match_minus" />
+
                 <TextView
                     android:id="@+id/right_ball_value"
                     android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textSize="50px"
                     android:singleLine="true"
-                    android:textColor="@android:color/white"/>
+                    android:text="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="50px" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_ball"/>
+                    android:src="@drawable/match_ball" />
+
                 <ImageView
                     android:id="@+id/right_ball_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_plus"/>
+                    android:src="@drawable/match_plus" />
             </com.zhy.autolayout.AutoLinearLayout>
+
             <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/right_pass_layout"
-                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="160px"
-                android:orientation="horizontal"
+                android:layout_below="@id/right_ball_layout"
+                android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
-                android:layout_below="@id/right_ball_layout">
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/right_pass_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_minus"/>
+                    android:src="@drawable/match_minus" />
+
                 <TextView
                     android:id="@+id/right_pass_value"
                     android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textSize="50px"
                     android:singleLine="true"
-                    android:textColor="@android:color/white"/>
+                    android:text="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="50px" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_pass"/>
+                    android:src="@drawable/match_pass" />
+
                 <ImageView
                     android:id="@+id/right_pass_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_plus"/>
+                    android:src="@drawable/match_plus" />
             </com.zhy.autolayout.AutoLinearLayout>
+
             <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/right_x_layout"
-                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="160px"
-                android:orientation="horizontal"
+                android:layout_below="@id/right_pass_layout"
+                android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
-                android:layout_below="@id/right_pass_layout">
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/right_x_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_minus"/>
+                    android:src="@drawable/match_minus" />
+
                 <TextView
                     android:id="@+id/right_x_value"
                     android:layout_width="70px"
                     android:layout_height="wrap_content"
-             、       android:text="0"
-                    android:textSize="50px"
+                    android:singleLine="true"
+                    android:text="0"
                     android:textColor="@android:color/holo_red_dark"
-                    android:singleLine="true"/>
+                    android:textSize="50px" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_x"/>
+                    android:src="@drawable/match_x" />
+
                 <ImageView
                     android:id="@+id/right_x_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/match_plus"/>
+                    android:src="@drawable/match_plus" />
             </com.zhy.autolayout.AutoLinearLayout>
         </com.zhy.autolayout.AutoRelativeLayout>
     </com.zhy.autolayout.AutoLinearLayout>
+
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40px"
         android:gravity="center">
+
         <FrameLayout
             android:id="@+id/left_kt_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/match_kt"/>
+            android:background="@drawable/match_kt" />
+
         <FrameLayout
             android:id="@+id/right_kt_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
             android:layout_toRightOf="@id/left_kt_txt"
-            android:background="@drawable/match_kt"
-            android:layout_marginLeft="50px"/>
+            android:background="@drawable/match_kt" />
     </com.zhy.autolayout.AutoRelativeLayout>
 </com.zhy.autolayout.AutoLinearLayout>
