@@ -668,6 +668,10 @@
             android:screenOrientation="landscape" />
         <activity android:name=".ktmatch.ActivityKi"
             android:screenOrientation="landscape" ></activity>
+	    <activity android:name=".fragment.peixun.JiNengFragment_List" />
+        <activity android:name=".fragment.peixun.JiNeng_Liebiao" />
+        <activity android:name=".Refactor.ui.Fragment.Main.DongtaiGuanli"></activity>
+	    
     </application>
 
 </manifest>

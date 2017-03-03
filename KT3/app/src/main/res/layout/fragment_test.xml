@@ -5,199 +5,156 @@
     android:layout_height="match_parent"
     android:background="@color/nomal_bg"
     android:orientation="vertical">
-
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00ffffff">
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00ffffff"
-            >
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="1"
+            android:textColor="@color/text_black"
+            android:textSize="60dp" />
 
+        <TextView
+            android:id="@+id/tv_all_nale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="总大课间数量"
+            android:textColor="@color/text_grey"
+            android:textSize="13dp" />
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapse_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
-                        android:text="1"
-                        android:textColor="@color/text_black"
-                        android:textSize="60dp" />
-
-                    <TextView
-                        android:id="@+id/tv_all_nale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="总大课间数量"
-                        android:textColor="@color/text_grey"
-                        android:textSize="13dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center_vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tv_all_people"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="19"
-                                android:textColor="@color/text_black"
-                                android:textSize="18dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="总人数"
-                                android:textColor="@color/text_grey"
-                                android:textSize="13dp" />
-                        </LinearLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/start_test" />
-
-                            <TextView
-                                android:id="@+id/tv_start"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:gravity="center"
-                                android:text="开始\n测评"
-                                android:textColor="@color/white"
-                                android:textSize="12dp" />
-
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tv_pingjun"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="72.5"
-                                android:textColor="@color/text_black"
-                                android:textSize="18dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="平均水平"
-                                android:textColor="@color/text_grey"
-                                android:textSize="13dp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:background="@color/line">
-
-                </View>
-            </android.support.design.widget.CollapsingToolbarLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
 
             <LinearLayout
-                android:id="@+id/ll_test_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@color/nomal_bg"
-                android:gravity="right|center_vertical"
-                android:padding="5dp">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_all_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="19"
+                    android:textColor="@color/text_black"
+                    android:textSize="18dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:text="年级"
+                    android:layout_marginTop="3dp"
+                    android:text="总人数"
                     android:textColor="@color/text_grey"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:text="动作"
-                    android:textColor="@color/text_grey"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总分"
-                    android:textColor="@color/text_grey"
-                    android:textSize="12dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        </android.support.design.widget.AppBarLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/start_test" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/image_nomal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@mipmap/demo_bg"-->
-            <!--android:visibility="gone"-->
-            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+                <TextView
+                    android:id="@+id/tv_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="开始\n测评"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
 
-        <!--<com.newer.kt.Refactor.view.LoadMoreRecyclerView-->
-            <!--android:id="@+id/recyclerview"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@color/white"-->
-            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+            </RelativeLayout>
 
-        <!--</com.newer.kt.Refactor.view.LoadMoreRecyclerView>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    </android.support.design.widget.CoordinatorLayout>
+                <TextView
+                    android:id="@+id/tv_pingjun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="72.5"
+                    android:textColor="@color/text_black"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="平均水平"
+                    android:textColor="@color/text_grey"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/line">
+
+    </View>
+
+
+<LinearLayout
+android:id="@+id/ll_test_bar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+android:background="@color/nomal_bg"
+android:gravity="right|center_vertical"
+android:padding="5dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="30dp"
+    android:text="年级"
+    android:textColor="@color/text_grey"
+    android:textSize="12dp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="30dp"
+    android:text="动作"
+    android:textColor="@color/text_grey"
+    android:textSize="12dp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="总分"
+    android:textColor="@color/text_grey"
+    android:textSize="12dp" />
+</LinearLayout>
+
+
 
     <ListView
         android:id="@+id/lv_test_list"

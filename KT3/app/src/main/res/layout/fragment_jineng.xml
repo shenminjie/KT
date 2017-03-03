@@ -27,17 +27,11 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="控球类"
+                android:text="足球技能"
                 android:textColor="@color/text_black"
                 android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="更多>"
-                android:textColor="@color/text_grey"
-                android:textSize="12dp" />
+
         </RelativeLayout>
 
         <View
@@ -49,38 +43,17 @@
 
         </View>
 
-        <com.newer.kt.Refactor.view.ChildViewpager
-            android:id="@+id/viewpager"
+        <GridView
+            android:id="@+id/gv_gridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:numColumns="2"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            >
 
-        </com.newer.kt.Refactor.view.ChildViewpager>
+        </GridView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
 
-            <ImageView
-                android:id="@+id/tv_dot1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/black_dot" />
-
-            <ImageView
-                android:id="@+id/tv_dot2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:src="@drawable/grey_dot" />
-
-            <ImageView
-                android:id="@+id/tv_dot3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/grey_dot" />
-
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

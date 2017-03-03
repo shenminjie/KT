@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frame.app.base.fragment.BaseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -113,20 +114,21 @@ public class TestFragment extends BaseFragment {
             public View getView(int position, View convertView, ViewGroup parent) {
                 convertView = rootView.inflate(getActivity(), R.layout.item_test, null);
                 viewHolder = new ViewHolder();
-                viewHolder.image_head_test = ((ImageView)rootView.findViewById(R.id.image_head_test));
-                viewHolder.tv_name_test = ((TextView) rootView.findViewById(R.id.tv_name_test));
-                viewHolder.tv_gradle_test = ((TextView) rootView.findViewById(R.id.tv_gradle_test));
-                viewHolder.tv_dongzuo_test = ((TextView) rootView.findViewById(R.id.tv_dongzuo_test));
-                viewHolder.tv_all_cont_test = ((TextView) rootView.findViewById(R.id.tv_all_cont_test));
+                viewHolder.image_head_test = ((ImageView)convertView.findViewById(R.id.image_head_test));
+                viewHolder.tv_name_test = ((TextView) convertView.findViewById(R.id.tv_name_test));
+                viewHolder.tv_gradle_test = ((TextView) convertView.findViewById(R.id.tv_gradle_test));
+                viewHolder.tv_dongzuo_test = ((TextView) convertView.findViewById(R.id.tv_dongzuo_test));
+                viewHolder.tv_all_cont_test = ((TextView) convertView.findViewById(R.id.tv_all_cont_test));
 
                 Shool_user_tests_Bean.Shool_user_tests shool_bean = shool_user_tests_list.get(position);
-                System.out.println("222222222222222222222222222323232323232323");
-                System.out.println(shool_bean.cls.toString()+"------------33333333333333333333333333333333333333333333333333");
-                System.out.println(shool_bean.nickname+"============================================");
-//                 viewHolder.tv_name_test.setText(shool_bean.nickname + "");
-//                viewHolder.tv_gradle_test.setText(shool_bean.cls + "");
-//                viewHolder.tv_dongzuo_test.setText(shool_bean.skill_count);
-//                viewHolder.tv_all_cont_test.setText(shool_bean.total_scores);
+//                System.out.println("222222222222222222222222222323232323232323");
+//                System.out.println(shool_bean.cls.toString()+"------------33333333333333333333333333333333333333333333333333");
+//                System.out.println(shool_bean.nickname+"============================================");
+                 viewHolder.tv_name_test.setText(shool_bean.nickname + "");
+                viewHolder.tv_gradle_test.setText(shool_bean.cls + "");
+                viewHolder.tv_dongzuo_test.setText(shool_bean.skill_count);
+                viewHolder.tv_all_cont_test.setText(shool_bean.total_scores);
+                Glide.with(getActivity()).load(shool_bean.avatar).into(viewHolder.image_head_test);
 
                 return convertView;
             }
@@ -161,7 +163,7 @@ public class TestFragment extends BaseFragment {
                 shool_user_tests_list.clear();
                 shool_user_tests_list.addAll(shool_user_tests_Bean.rankings);
                 adapter.notifyDataSetChanged();
-                System.out.println("1111111111111111111111111111111111111111111111111111111111111");
+//                System.out.println("1111111111111111111111111111111111111111111111111111111111111");
 
             }
 

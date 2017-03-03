@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/leo/Desktop/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/ic_launcher.png",
+        "source": "/Users/leo/Desktop/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable-ldpi-v4/ic_launcher.png"
+    },
+    {
         "merged": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/ic_launcher.png",
         "source": "/Users/admin/StudioProjects/kt/KT/KT3/vitamio_lib/build/intermediates/bundles/debug/res/drawable-ldpi-v4/ic_launcher.png"
     }

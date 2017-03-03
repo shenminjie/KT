@@ -1,5 +1,6 @@
 package com.newer.kt.fragment.peixun;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Message;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -53,10 +55,6 @@ public class JinengFramgent extends BaseFragment {
     TextView mAll_pingjun;
 
 
-    //    total_study_skill_count: 总学习技能数,
-//                total_study_count: 总训练,
-//                total_study_finish_time: 总训练时长,
-//                average_scores: 平均分
     @Bind(R.id.tv_all_nale)
     TextView tv_all_nale;//总技能教学数
     @Bind(R.id.tv_all_class_nale)
@@ -65,43 +63,29 @@ public class JinengFramgent extends BaseFragment {
     TextView tv_all_people_nale;//总训练时长
     @Bind(R.id.tv_pingjun_nale)
     TextView tv_pingjun_nale;//平均分
+    @Bind(R.id.gv_gridView)
+    GridView getGv_gridView;
 
-
-    @Bind(R.id.viewpager)
-    ChildViewpager mViewpager;
     private Typeface mTf;
-    @Bind(R.id.tv_dot1)
-    ImageView mDot1;
-    @Bind(R.id.tv_dot2)
-    ImageView mDot2;
-    @Bind(R.id.tv_dot3)
-    ImageView mDot3;
-    @Bind(R.id.tv_title)
-    TextView mTitle;
-
-
-    private List<View> mList = new ArrayList<>();
-    private View mLieanLinearLayout1;
-    private View mLieanLinearLayout2;
-    private View mLieanLinearLayout3;
-    private GridView mGridView1;
-    private GridView mGridView2;
-    private GridView mGridView3;
-    private List<String> mList1 = new ArrayList<>();
-    private List<String> mList2 = new ArrayList<>();
-    private List<String> mList3 = new ArrayList<>();
+    private GridView gv_gridView;
+    private int imageIds[];
+    private String strs[];
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         jinengHomeTongji();
+        System.out.println("123123");
     }
 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_jineng);
+
+//        gv_gridView = ((GridView) rootView.findViewById(R.id.gv_gridView));
+
 
     }
 
@@ -128,181 +112,82 @@ public class JinengFramgent extends BaseFragment {
         tv_all_people_nale.setText("总训练时长");
 
 
+        imageIds = new int[]{
+                R.drawable.a,
+                R.drawable.b,
+                R.drawable.c,
+                R.drawable.d,
+        };
+        strs = new String[]{
+                "控球类",
+                "素质教育",
+                "传球类",
+                "足球知识",
+        };
+
         initInfo();
         initBG();
-        mList.add(mLieanLinearLayout1);
-        mList.add(mLieanLinearLayout2);
-        mList.add(mLieanLinearLayout3);
-        mViewpager.setAdapter(new PagerAdapter() {
+        initEvent();
+        initOnclick();
+
+
+    }
+
+    private void initOnclick() {
+        getGv_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(),JiNengFragment_List.class);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void initEvent() {
+        getGv_gridView.setAdapter(new BaseAdapter() {
+            private TextView image_title;
+            private ImageView ig_jineng_tupian;
+
+
             @Override
             public int getCount() {
-                return mList.size();
-            }
-
-
-            @Override
-            public boolean isViewFromObject(View arg0, Object arg1) {
-                return arg0 == arg1;
+                return 4;
             }
 
             @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-                container.removeView((View) object);
+            public Object getItem(int position) {
+                return null;
             }
 
             @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                container.addView(mList.get(position));
-                return mList.get(position);
+            public long getItemId(int position) {
+                return 0;
             }
 
             @Override
-            public int getItemPosition(Object object) {
-                return POSITION_NONE;
+            public View getView(int position, View convertView, ViewGroup parent) {
+                convertView = View.inflate(getActivity(), R.layout.item_jineng_tupian, null);
+                ig_jineng_tupian = ((ImageView) convertView.findViewById(R.id.ig_jineng_tupian));
+                image_title = ((TextView) convertView.findViewById(R.id.image_title));
+
+                ig_jineng_tupian.setImageResource(imageIds[position]);
+                image_title.setText(strs[position]);
+
+
+                return convertView;
             }
         });
-        mViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setDots(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        mViewpager.setOffscreenPageLimit(2);
 
     }
 
     private void initInfo() {
-        mList1.add("脚底踩球");
-        mList1.add("双脚靠球");
-        mList1.add("正脚背颠球");
-        mList1.add("外脚背带球");
-        mList2.add("脚内侧踢球");
-        mList2.add("正脚背踢球");
-        mList2.add("脚内侧接球");
-        mList2.add("脚内侧颠球");
-        mList3.add("防守重点");
-        mList3.add("尊重");
-        mList3.add("自信");
-        mList3.add("进攻原则");
+
 
     }
 
     private void initBG() {
-        mLieanLinearLayout1 = getActivity().getLayoutInflater().inflate(R.layout.item_jineng, null);
-        mLieanLinearLayout2 = getActivity().getLayoutInflater().inflate(R.layout.item_jineng, null);
-        mLieanLinearLayout3 = getActivity().getLayoutInflater().inflate(R.layout.item_jineng, null);
-        mGridView1 = (GridView) mLieanLinearLayout1.findViewById(R.id.gridView);
-        mGridView2 = (GridView) mLieanLinearLayout2.findViewById(R.id.gridView);
-        mGridView3 = (GridView) mLieanLinearLayout3.findViewById(R.id.gridView);
-        mGridView1.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return mList1.size();
-            }
 
-            @Override
-            public Object getItem(int position) {
-                return mList1.get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                JinengView jinengView;
-                if (convertView == null) {
-                    jinengView = new JinengView();
-                    convertView = getActivity().getLayoutInflater().inflate(R.layout.item_jineng_photo, null);
-                    jinengView.mTitle = (TextView) convertView.findViewById(R.id.image_title);
-                    jinengView.mImageView = (ImageView) convertView.findViewById(R.id.image_view);
-                    convertView.setTag(jinengView);
-
-                } else {
-                    jinengView = (JinengView) convertView.getTag();
-                }
-                jinengView.mTitle.setText(mList1.get(position));
-                return convertView;
-            }
-        });
-        mGridView2.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return mList2.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return mList2.get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                JinengView jinengView;
-                if (convertView == null) {
-                    jinengView = new JinengView();
-                    convertView = getActivity().getLayoutInflater().inflate(R.layout.item_jineng_photo, null);
-                    jinengView.mTitle = (TextView) convertView.findViewById(R.id.image_title);
-                    jinengView.mImageView = (ImageView) convertView.findViewById(R.id.image_view);
-                    convertView.setTag(jinengView);
-
-                } else {
-                    jinengView = (JinengView) convertView.getTag();
-                }
-                jinengView.mTitle.setText(mList2.get(position));
-                return convertView;
-            }
-        });
-        mGridView3.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return mList3.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return mList3.get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                JinengView jinengView;
-                if (convertView == null) {
-                    jinengView = new JinengView();
-                    convertView = getActivity().getLayoutInflater().inflate(R.layout.item_jineng_photo, null);
-                    jinengView.mTitle = (TextView) convertView.findViewById(R.id.image_title);
-                    jinengView.mImageView = (ImageView) convertView.findViewById(R.id.image_view);
-                    convertView.setTag(jinengView);
-
-                } else {
-                    jinengView = (JinengView) convertView.getTag();
-                }
-                jinengView.mTitle.setText(mList3.get(position));
-                return convertView;
-            }
-        });
     }
 
     @Override
@@ -315,29 +200,6 @@ public class JinengFramgent extends BaseFragment {
 
     }
 
-
-    public void setDots(int position) {
-        switch (position) {
-            case 0:
-                mTitle.setText("控球类");
-                mDot1.setImageResource(R.drawable.black_dot);
-                mDot2.setImageResource(R.drawable.grey_dot);
-                mDot3.setImageResource(R.drawable.grey_dot);
-                break;
-            case 1:
-                mTitle.setText("传接球");
-                mDot2.setImageResource(R.drawable.black_dot);
-                mDot1.setImageResource(R.drawable.grey_dot);
-                mDot3.setImageResource(R.drawable.grey_dot);
-                break;
-            case 2:
-                mTitle.setText("足球游戏");
-                mDot3.setImageResource(R.drawable.black_dot);
-                mDot2.setImageResource(R.drawable.grey_dot);
-                mDot1.setImageResource(R.drawable.grey_dot);
-                break;
-        }
-    }
 
     public class JinengView {
         ImageView mImageView;
