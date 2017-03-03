@@ -90,16 +90,15 @@ public class SettingsActivity extends BaseToolBarActivity2 {
         super.initView(savedInstanceState);
         addContentView(R.layout.layout_settings);
         setBackgroundResource(R.drawable.judge_background);
-        TextView version = (TextView) findViewById(R.id.layout_settings_bbxx);
+
         item_1 = (RelativeLayout) findViewById(R.id.layout_settings_item_1);
         item_2 = (RelativeLayout) findViewById(R.id.layout_settings_item_2);
         item_3 = (RelativeLayout) findViewById(R.id.layout_settings_item_3);
         item_5 = (RelativeLayout) findViewById(R.id.layout_settings_item_5);
-        logout = (TextView) findViewById(R.id.layout_settings_logout);
+
 
         long bags = BagsDaoHelper.getInstance().getTotalCount();
 
-        version.setText("V " + PhoneUtils.getVersionName(getThis()));
     }
 
     /**

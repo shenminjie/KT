@@ -656,22 +656,23 @@
             android:required="false" />
         <uses-library android:name="android.test.runner" />
 
-        <activity android:name=".ktmatch.TypeActivity"></activity>
+        <activity android:name=".ktmatch.TypeActivity" />
         <activity
             android:name=".ktmatch.MathChooseActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ktmatch.MatchActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ktmatch.CountActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ktmatch.ActivityKi"
-            android:screenOrientation="landscape" ></activity>
-	    <activity android:name=".fragment.peixun.JiNengFragment_List" />
+        <activity
+            android:name=".ktmatch.ActivityKi"
+            android:screenOrientation="landscape" />
+        <activity android:name=".fragment.peixun.JiNengFragment_List" />
         <activity android:name=".fragment.peixun.JiNeng_Liebiao" />
-        <activity android:name=".Refactor.ui.Fragment.Main.DongtaiGuanli"></activity>
-	    
+        <activity android:name=".Refactor.ui.Fragment.Main.DongtaiGuanli" />
+        <activity android:name=".Refactor.ui.Fragment.Main.Saishi_Shangchuan"></activity>
     </application>
 
 </manifest>
