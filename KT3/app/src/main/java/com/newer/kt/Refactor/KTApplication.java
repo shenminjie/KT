@@ -123,7 +123,6 @@ public class KTApplication extends App {
         initDB();
         initButTags();
         ZXingLibrary.initDisplayOpinion(this);
-        AutoLayoutConifg.getInstance().useDeviceSize();
 
     }
 

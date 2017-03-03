@@ -32,7 +32,7 @@
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(com.hj.asus.shengchengerweima.R.layout.activity_main);
+//        setContentView(com.hj.asus.shengchengerweima.R.layout.chooserfromnet);
 //        initView();
 //    }
 //

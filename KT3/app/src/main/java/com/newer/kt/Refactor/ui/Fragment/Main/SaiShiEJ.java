@@ -1,5 +1,6 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,10 @@ import com.google.gson.Gson;
 import com.newer.kt.R;
 import com.newer.kt.entity.Clubs_paihang;
 import com.newer.kt.entity.Clubs_paihang_Bean;
+import com.newer.kt.ktmatch.MapBuilder;
+import com.newer.kt.ktmatch.Params;
+import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.record.TakePicActivity;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -23,7 +28,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 
-public class SaiShiEJ extends AppCompatActivity {
+import shengchengerweima.CamScanActivity;
+
+public class SaiShiEJ extends CamScanActivity {
 
     public ListView lv_vs_ej;
     private BaseAdapter adapter;
@@ -38,7 +45,7 @@ public class SaiShiEJ extends AppCompatActivity {
     private ImageView image_vs_item_back;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_saishi);
         initView();
@@ -49,8 +56,19 @@ public class SaiShiEJ extends AppCompatActivity {
         lv_vs_ej.setAdapter(adapter);
         lv_vs_ej.setVisibility(View.VISIBLE);
         lv_vs_cc.setVisibility(View.GONE);
+        findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(),TakePicActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
     }
 
+    @Override
+    public void recvCode(String result) {
+        super.recvCode(result);
+        Params.getInstanceParam().setCode(result);
+    }
 
     /**
      * 功能性处理
@@ -68,8 +86,10 @@ public class SaiShiEJ extends AppCompatActivity {
      * 获取数据
      */
     private void getRanking() {
-        RequestParams params = new RequestParams("http://api.ktfootball.com/games/ranking?game_id=1500&type=1&authenticity_token=2225faf30af2131b8936e690abf8cbce");
-        x.http().get(params, new Callback.CommonCallback<String>() {
+
+        RequestParams rp = QueryBuilder.build("games/ranking").add("game_id",getIntent().getStringExtra("game_id")).add("type","1").get();
+
+        x.http().get(rp, new Callback.CommonCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
@@ -78,7 +98,6 @@ public class SaiShiEJ extends AppCompatActivity {
                 clubs_paihang_list.clear();
                 clubs_paihang_list.addAll(clubs_bean.game_rankings);
                 adapter.notifyDataSetChanged();
-
 
             }
 

@@ -14,26 +14,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.frame.app.base.fragment.BaseFragment;
-import com.frame.app.utils.GsonTools;
-import com.frame.app.utils.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
-import com.newer.kt.Refactor.Constants;
-import com.newer.kt.Refactor.KTApplication;
-import com.newer.kt.Refactor.adapter.ClassMyExpandableListViewAdapter;
-import com.newer.kt.Refactor.adapter.MyExpandableListViewAdapter;
-import com.newer.kt.Refactor.ui.Avtivity.CaptureActivity;
-import com.newer.kt.Refactor.ui.Avtivity.CreateClassActivity;
-import com.newer.kt.Refactor.ui.Avtivity.FootballLesson.BigRoomActivity;
-import com.newer.kt.Refactor.ui.Avtivity.FootballLesson.CombinationClassActivity;
-import com.newer.kt.Refactor.ui.Avtivity.MyClassActivity;
-import com.newer.kt.Refactor.ui.Avtivity.UserInfoActivity;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.Clubs_game_Bean;
 import com.newer.kt.entity.Clubs_groups_Bean;
 import com.newer.kt.entity.GradeList;
-import com.newer.kt.myClass.MyDialog;
+import com.newer.kt.ktmatch.ActivityKi;
+import com.newer.kt.ktmatch.CountActivity;
+import com.newer.kt.ktmatch.Params;
 import com.newer.kt.utils.AuthenticityToken;
 
 import org.xutils.common.Callback;
@@ -42,7 +32,6 @@ import org.xutils.x;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by jy on 16/9/14.
@@ -96,8 +85,12 @@ public class ManagerFragment extends BaseFragment {
         lv_saishi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(),SaiShiEJ.class);
+                Clubs_game_Bean.Clubs_game  clubs_game = (Clubs_game_Bean.Clubs_game) parent.getItemAtPosition(position);
+                Params.getInstanceParam().setGame_id(clubs_game.game_id);
+                ActivityKi.title = clubs_game.name;
+                Intent intent=new Intent(getActivity(),SaiShiEJ.class).putExtra("game_id",clubs_game.game_id);
                 startActivity(intent);
+
 
             }
         });
@@ -110,7 +103,7 @@ public class ManagerFragment extends BaseFragment {
 
             @Override
             public Object getItem(int position) {
-                return null;
+                return clubs_games_list.get(position);
             }
 
             @Override
@@ -121,6 +114,7 @@ public class ManagerFragment extends BaseFragment {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 view=View.inflate(getActivity(),R.layout.item_game_name,null);
+
                 viewHolder = new ViewHolder();
                 viewHolder.tv_vs_saishi_title = ((TextView) view.findViewById(R.id.tv_vs_saishi_title));
                 viewHolder.tv_people_conts = ((TextView) view.findViewById(R.id.tv_people_conts));

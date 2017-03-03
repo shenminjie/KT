@@ -10,7 +10,7 @@
         android:layout_marginLeft="60px" android:layout_marginTop="60px"
         android:scaleType="fitStart"/>
 
-    <ImageView android:id="@+id/righticon" android:scaleType="fitEnd"
+    <ImageView android:id="@+id/righticon" android:scaleType="fitStart"
         android:layout_width="260px" android:layout_height="260px"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -21,7 +21,7 @@
     <RelativeLayout android:id="@+id/match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
     <TextView
@@ -166,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                >ß
+                >
                 <RelativeLayout android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="170px">
@@ -311,26 +311,59 @@
 
             </LinearLayout>
         </RelativeLayout>
-        <RelativeLayout android:id="@+id/zhongzhi" android:layout_width="match_parent" android:layout_height="match_parent" android:visibility="gone">
+        <RelativeLayout android:layout_centerInParent="true" android:layout_centerHorizontal="true" android:id="@+id/zhongzhi"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="222px"
+                android:layout_width="640dp"
+                android:layout_height="222dp"
                 android:orientation="horizontal"
-                android:background="@drawable/debugborder"
-                android:layout_alignParentBottom="true"
-                >
-                <View
-                    android:id="@+id/ktfangqi"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    />
-                <View
-                    android:id="@+id/ktzhongzhi"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"/>
 
+                >
+                <ImageView
+                    android:id="@+id/ktjixu"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/match_continue"
+                />
+                <ImageView
+                    android:id="@+id/ktzhongzhi"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/match_stop"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout android:id="@+id/juti_zhongzhi"
+            android:layout_width="640dp"
+            android:layout_height="550dp"
+            android:layout_centerInParent="true" android:visibility="gone">
+            <ImageView
+                android:id="@+id/match_invalid"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/match_invalid2x"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="100px"
+
+                />
+            <LinearLayout
+                android:paddingTop="30dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+
+                android:layout_width="wrap_content"
+                android:layout_height="222dp"
+                >
+                <ImageView
+                    android:id="@+id/zuofang_qiquan"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/match_leftgiveup"
+                    />
+                <ImageView
+                    android:id="@+id/youfang_qiquan"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/match_rightgiveup"/>
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>

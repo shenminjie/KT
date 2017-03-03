@@ -121,6 +121,7 @@ android {
 //    compile project(':um')
 //        compile(name: 'um-debug', ext: 'aar')
         compile 'com.zhy:autolayout:1.4.5'
+        compile project(':sub')
 
     }
 }

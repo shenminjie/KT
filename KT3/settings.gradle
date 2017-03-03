@@ -1,2 +1,2 @@
-include  ':lib-zxing',':zxingutil',':Frame',':vitamio_lib',':newkt',":MPChartLib",":MyDaoGenerator","YoukuPlayerOpenSDK",":app",':um'
+include  ':lib-zxing',':zxingutil',':Frame',':vitamio_lib',':newkt',":MPChartLib",":MyDaoGenerator","YoukuPlayerOpenSDK",":app", ':sub'
 

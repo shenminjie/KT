@@ -142,7 +142,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center_horizontal|center_vertical">
-          <Button
+          <Button android:id="@+id/saishi"
               android:layout_width="193dp"
               android:layout_height="37dp"
               android:background="#222222"

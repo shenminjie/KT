@@ -82,7 +82,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <include layout="@layout/activity_kt_prep" />
-        <include android:id="@+id/kt_over" android:visibility="gone" layout="@layout/activity_kt_prep"  />
+
+        <!--<include android:id="@+id/kt_over" android:visibility="gone" layout="@layout/activity_kt_prep"  />-->
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -103,5 +104,7 @@
             android:background="@drawable/back"
             android:visibility="gone"
             />
+
+
     </RelativeLayout>
 </RelativeLayout>

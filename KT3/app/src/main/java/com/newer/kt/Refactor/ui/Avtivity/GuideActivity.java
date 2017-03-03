@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.frame.app.base.activity.BaseActivity;
-import com.frame.app.utils.SharedPreferencesUtils;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.adapter.DefaultPagerAdapter;
 
@@ -32,7 +31,7 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.chooserfromnet);
         viewPager = getViewById(R.id.viewPager);
     }
 

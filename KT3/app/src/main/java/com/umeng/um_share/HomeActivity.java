@@ -1,7 +1,6 @@
 package com.umeng.um_share;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             window.setStatusBarColor(getResources().getColor(R.color.umeng_blue));
 
         }
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.chooserfromnet);
         ((TextView)findViewById(R.id.umeng_title)).setText(R.string.umeng_home_title);
 //        findViewById(R.id.share).setOnClickListener(this);
 //        findViewById(R.id.auth).setOnClickListener(this);

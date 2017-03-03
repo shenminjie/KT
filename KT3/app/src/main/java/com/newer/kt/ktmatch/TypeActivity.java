@@ -3,7 +3,6 @@ package com.newer.kt.ktmatch;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,22 +19,26 @@ public class TypeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kt_type);
+        Params.getInstanceParam().setJudge_type(1+"");
         findViewById(R.id.choose1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),MathChooseActivity.class));
+                startActivity(new Intent(getBaseContext(),MathChooseActivity.class).putExtra("num",1));
+                Params.getInstanceParam().setGame_type(0+"");
             }
         });
         findViewById(R.id.choose2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),MathChoose2Activity.class));
+                startActivity(new Intent(getBaseContext(),MathChooseActivity.class).putExtra("num",2));
+                Params.getInstanceParam().setGame_type(1+"");
             }
         });
         findViewById(R.id.choose3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),MathChoose3Activity.class));
+                startActivity(new Intent(getBaseContext(),MathChooseActivity.class).putExtra("num",3));
+                Params.getInstanceParam().setGame_type(2+"");
             }
         });
     }

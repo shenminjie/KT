@@ -5,11 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.frame.app.base.activity.BaseActivity;
 import com.newer.kt.R;
@@ -30,7 +26,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.chooserfromnet);
     }
 
     @Override

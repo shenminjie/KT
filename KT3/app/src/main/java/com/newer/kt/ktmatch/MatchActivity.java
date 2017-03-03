@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coremedia.iso.boxes.Container;
-import com.frame.app.base.activity.BaseActivity;
 import com.googlecode.mp4parser.authoring.Movie;
 import com.googlecode.mp4parser.authoring.Track;
 import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
@@ -73,6 +72,7 @@ public class MatchActivity extends TakePicActivity {
                 int i2 = Integer.parseInt(str2);
                 tv2.setText((2+i2)+"");
                 playSound(R.raw.getpoint);
+
             }
         });
         findViewById(R.id.left_pass).setOnClickListener(new View.OnClickListener() {
@@ -130,6 +130,7 @@ public class MatchActivity extends TakePicActivity {
             public void onClick(View view) {
                 findViewById(R.id.ktsure).setVisibility(View.VISIBLE);
                 fromleft = false;
+
             }
         });
 
@@ -137,14 +138,20 @@ public class MatchActivity extends TakePicActivity {
             @Override
             public void onClick(View view) {
                 findViewById(R.id.ktsure).setVisibility(View.GONE);
+                if(fromleft){
+                    Params.getInstanceParam().setPanna_ko1("1");
+                }else {
+                    Params.getInstanceParam().setPanna_ko2("1");
+                }
                 showKTOverVisible();
+                finish();
+
             }
         });
         findViewById(R.id.ktquxiao).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 findViewById(R.id.ktsure).setVisibility(View.GONE);
-                showKTOverVisible();
             }
         });
         findViewById(R.id.left_x).setOnClickListener(new View.OnClickListener() {
@@ -154,6 +161,10 @@ public class MatchActivity extends TakePicActivity {
                 String str = tv.getText().toString();
                 int i = Integer.parseInt(str);
                 tv.setText((++i)+"");
+                findViewById(R.id.zhongzhi).setVisibility(View.VISIBLE);
+                fromleft = true;
+
+
             }
         });
         findViewById(R.id.right_x).setOnClickListener(new View.OnClickListener() {
@@ -163,6 +174,8 @@ public class MatchActivity extends TakePicActivity {
                 String str = tv.getText().toString();
                 int i = Integer.parseInt(str);
                 tv.setText((++i)+"");
+                findViewById(R.id.zhongzhi).setVisibility(View.VISIBLE);
+                fromleft = false;
             }
         });
 //        mShootBtn.setOnTouchListener(new OnTouchListener() {
@@ -172,7 +185,7 @@ public class MatchActivity extends TakePicActivity {
 //                // TODO Auto-generated method stub
 //                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 //                    start();
-//                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                } else if (event.getA ction() == MotionEvent.ACTION_UP) {
 //
 //                    success();
 //                }<code></code>
@@ -204,7 +217,7 @@ public class MatchActivity extends TakePicActivity {
                                 if(time[0]<=0){
                                     replaceEndLayout();
                                     initEndLtView();
-                                    stop();
+                                    camstop();
                                     cancel();
                                     return;
                                 }else{
@@ -223,15 +236,6 @@ public class MatchActivity extends TakePicActivity {
 
             }
         });
-//        findViewById(R.id.restart).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showstart = false;
-//                ((TextView) findViewById(R.id.text)).setText("0'/5''");
-//                mShootBtn.setImageResource(R.drawable.startrecord);
-//                findViewById(R.id.ctrol).setVisibility(View.GONE);
-//            }
-//        });
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,7 +251,51 @@ public class MatchActivity extends TakePicActivity {
             }
         });
         loadSound();
+        findViewById(R.id.ktjixu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                findViewById(R.id.zhongzhi).setVisibility(View.GONE);
+            }
+        });
+        findViewById(R.id.ktzhongzhi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.juti_zhongzhi).setVisibility(View.VISIBLE);
+                findViewById(R.id.zhongzhi).setVisibility(View.GONE);
+
+            }
+        });
+        findViewById(R.id.ktzhongzhi).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.juti_zhongzhi).setVisibility(View.VISIBLE);
+                findViewById(R.id.zhongzhi).setVisibility(View.GONE);
+
+            }
+        });
+
+        findViewById(R.id.zuofang_qiquan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Params.getInstanceParam().setAbstained1("1");
+//                showKTOverVisible();
+                finish();
+            }
+        });
+        findViewById(R.id.youfang_qiquan).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+//                Params.getInstanceParam().setAbstained2("1");
+//                showKTOverVisible();
+                finish();
+            }
+        });
     }
+
+    int fromLeft = -1;
     private SoundPool soundPool;
     public void playSound(int rawres) {
         soundPool.play(soundPoolMap.get(rawres),1, 1, 0, 0, 1);
@@ -259,6 +307,11 @@ public class MatchActivity extends TakePicActivity {
     }
 
     public void showKTOverVisible() {
+        startActivity(new Intent(getBaseContext(),CountActivity.class));
+        Params.getInstanceParam().setGoals1(((TextView)findViewById(R.id.left_ball_number)).getText().toString());
+        Params.getInstanceParam().setGoals2(((TextView)findViewById(R.id.right_ball_number)).getText().toString());
+        Params.getInstanceParam().setPannas1(((TextView)findViewById(R.id.left_pass_number)).getText().toString());
+        Params.getInstanceParam().setPannas2(((TextView)findViewById(R.id.right_pass_number)).getText().toString());
 
     }
     boolean fromleft = false;
@@ -270,8 +323,6 @@ public class MatchActivity extends TakePicActivity {
     }
     public void showTimeViewInVisible(long time) {
         ((TextView)findViewById(R.id.time)).setText(new SimpleDateFormat("mm:ss").format(time));
-
-
     }
 
         private String mergeVideo() {
@@ -364,17 +415,16 @@ public class MatchActivity extends TakePicActivity {
         return path;
     }
 
-    public void restart() {
-        mShootBtn.setImageResource(R.drawable.startrecord);
-        findViewById(R.id.ctrol).setVisibility(View.GONE);
-        stop();
-        start();
-    }
 
-    public void stop() {
+    public void camstop() {
+        if(isDestroyed()){
+            return;
+        }
         mRecorderView.stop();
         showstart = false;
         mShootBtn.setImageResource(R.drawable.startrecord);
+
+        showKTOverVisible();
     }
 
 
