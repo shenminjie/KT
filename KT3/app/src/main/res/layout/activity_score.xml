@@ -83,7 +83,7 @@
                     android:src="@drawable/match_ball"/>
                 <TextView
                     android:id="@+id/left_ball_value"
-                    android:layout_width="50px"
+                    android:layout_width="70px"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="50px"
@@ -114,7 +114,7 @@
                     android:src="@drawable/match_pass"/>
                 <TextView
                     android:id="@+id/left_pass_value"
-                    android:layout_width="50px"
+                    android:layout_width="70px"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="50px"
@@ -145,9 +145,9 @@
                     android:src="@drawable/match_x"/>
                 <TextView
                     android:id="@+id/left_x_value"
-                    android:layout_width="50px"
+                    android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    android:text="0"
                     android:textSize="50px"
                     android:singleLine="true"
                     android:textColor="@android:color/holo_red_dark"/>
@@ -204,7 +204,7 @@
                     android:src="@drawable/match_minus"/>
                 <TextView
                     android:id="@+id/right_ball_value"
-                    android:layout_width="50px"
+                    android:layout_width="70px"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="50px"
@@ -235,7 +235,7 @@
                     android:src="@drawable/match_minus"/>
                 <TextView
                     android:id="@+id/right_pass_value"
-                    android:layout_width="50px"
+                    android:layout_width="70px"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="50px"
@@ -266,9 +266,9 @@
                     android:src="@drawable/match_minus"/>
                 <TextView
                     android:id="@+id/right_x_value"
-                    android:layout_width="50px"
+                    android:layout_width="70px"
                     android:layout_height="wrap_content"
-                    android:text="1"
+             、       android:text="0"
                     android:textSize="50px"
                     android:textColor="@android:color/holo_red_dark"
                     android:singleLine="true"/>
