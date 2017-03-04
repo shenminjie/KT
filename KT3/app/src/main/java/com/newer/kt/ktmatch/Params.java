@@ -133,22 +133,22 @@ public class Params {
     String side_a__users;
     String side_a__add_scores;
     String side_a__result;
-    String side_a__goals;
-    String side_a__pannas;
+    String side_a__goals = "0";
+    String side_a__pannas = "0";
     String side_a__fouls;
     String side_a__flagrant_fouls;
-    String side_a__panna_ko;
+    String side_a__panna_ko = "0";
     String side_a__abstained;
     String side_a__picture;
 
     String side_b__users;
     String side_b__add_scores;
     String side_b__result;
-    String side_b__goals;
-    String side_b__pannas;
+    String side_b__goals = "0";
+    String side_b__pannas = "0";
     String side_b__fouls;
     String side_b__flagrant_fouls;
-    String side_b__panna_ko;
+    String side_b__panna_ko = "0";
     String side_b__abstained;
     String side_b__picture;
 

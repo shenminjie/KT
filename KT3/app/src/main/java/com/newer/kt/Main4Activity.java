@@ -21,7 +21,8 @@ public class Main4Activity extends AnalyticsHome {
 
         audtoView = ((MyVideoView) findViewById(R.id.audtoView));
 
-        if(!LibsChecker.checkVitamioLibs(this)){return;}
+        if(!LibsChecker.checkVitamioLibs(this)){
+            return;}
         audtoView.setVideoPath(getCacheDir()+"/大课间第一套/大课间第一套.mp4");
 //        vv.setVideoPath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)+"/测试.mp4");
 //        full_holder.setMediaController(new MediaController(BigClassDetailActivity.this));

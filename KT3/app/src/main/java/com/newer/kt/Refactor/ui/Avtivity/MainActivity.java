@@ -1,11 +1,11 @@
 package com.newer.kt.Refactor.ui.Avtivity;
 
+import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 
 import com.frame.app.base.activity.BaseActivity;
 import com.newer.kt.R;
@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(R.layout.chooserfromnet);
+        setContentView(R.layout.activity_main);
     }
 
     @Override

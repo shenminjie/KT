@@ -1,83 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.bajie.demo.com.newer.kt.ktmatch.ChooseMatcherActivity"
-    android:orientation="vertical"
-    android:background="@android:color/white">
-    <com.zhy.autolayout.AutoRelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGrayLight"
-        android:visibility="gone">
-        <EditText
-            android:id="@+id/edt"
-            style="@style/SearchEdtStyle"
-            android:layout_marginLeft="25px"
-            android:layout_marginRight="25px"
-            android:layout_marginTop="25px"
-            android:layout_marginBottom="25px"
-            android:background="@drawable/search_edt_background"
-            android:imeOptions="actionSearch"
-            android:hint="@string/search"/>
-    </com.zhy.autolayout.AutoRelativeLayout>
-    <com.zhy.autolayout.AutoLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80px"
-        android:gravity="center_vertical"
-        android:background="@color/colorGray">
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_marginLeft="45px">
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/all"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:textSize="32px"/>
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/male"/>
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/female"/>
-
-        </com.zhy.autolayout.AutoLinearLayout>
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.3"
-            android:orientation="horizontal"
-            android:gravity="right|center_vertical"
-            android:layout_marginRight="15px">
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/grade"/>
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/class_string"/>
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/force"/>
-            <TextView
-                style="@style/TxtStyle"
-                android:text="@string/score"/>
-
-        </com.zhy.autolayout.AutoLinearLayout>
-
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <com.bajie.demo.view.CustomRecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15px"
-        android:background="@android:color/white">
-
-    </com.bajie.demo.view.CustomRecyclerView>
-
-</com.zhy.autolayout.AutoLinearLayout>
+<?xml version="1.0" encoding="utf-8"?><com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:tools="http://schemas.android.com/tools"    android:layout_width="match_parent"    android:layout_height="match_parent"    android:orientation="vertical"    android:background="@android:color/white">    <com.zhy.autolayout.AutoRelativeLayout        android:layout_width="match_parent"        android:layout_height="wrap_content"        android:background="@color/colorGrayLight"        android:visibility="gone">        <EditText            android:id="@+id/edt"            style="@style/SearchEdtStyle"            android:layout_marginLeft="25px"            android:layout_marginRight="25px"            android:layout_marginTop="25px"            android:layout_marginBottom="25px"            android:background="@drawable/search_edt_background"            android:imeOptions="actionSearch"            android:hint="@string/search"/>    </com.zhy.autolayout.AutoRelativeLayout>    <com.zhy.autolayout.AutoLinearLayout        android:layout_width="match_parent"        android:layout_height="80px"        android:gravity="center_vertical"        android:background="@color/colorGray">        <com.zhy.autolayout.AutoLinearLayout            android:layout_width="0px"            android:layout_height="wrap_content"            android:layout_weight="1"            android:orientation="horizontal"            android:layout_marginLeft="45px">            <TextView                style="@style/TxtStyle"                android:text="@string/all"                android:textStyle="bold"                android:textColor="@android:color/black"                android:textSize="32px"/>            <TextView                style="@style/TxtStyle"                android:text="@string/male"/>            <TextView                style="@style/TxtStyle"                android:text="@string/female"/>        </com.zhy.autolayout.AutoLinearLayout>        <com.zhy.autolayout.AutoLinearLayout            android:layout_width="0px"            android:layout_height="wrap_content"            android:layout_weight="1.3"            android:orientation="horizontal"            android:gravity="right|center_vertical"            android:layout_marginRight="15px">            <TextView                style="@style/TxtStyle"                android:text="@string/grade"/>            <TextView                style="@style/TxtStyle"                android:text="@string/class_string"/>            <TextView                style="@style/TxtStyle"                android:text="@string/force"/>            <TextView                style="@style/TxtStyle"                android:text="@string/score"/>        </com.zhy.autolayout.AutoLinearLayout>    </com.zhy.autolayout.AutoLinearLayout>    <com.bajie.demo.view.CustomRecyclerView        android:id="@+id/recycler_view"        android:layout_width="match_parent"        android:layout_height="match_parent"        android:layout_marginTop="15px"        android:background="@android:color/white">    </com.bajie.demo.view.CustomRecyclerView></com.zhy.autolayout.AutoLinearLayout>

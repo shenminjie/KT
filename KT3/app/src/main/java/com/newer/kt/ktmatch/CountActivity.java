@@ -18,6 +18,7 @@ import com.google.gson.JsonPrimitive;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.utils.MD5;
+import com.newer.kt.ktmatch.json.JsonReplacer;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -186,8 +187,9 @@ public class CountActivity extends ActivityScore {
                 e.printStackTrace();
             }
         }
-        SharedPreferences.Editor ed = (SharedPreferences.Editor) PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        ed.putString(qb.getMap().get("game_id").toString(),qb.getJson());
+        String qbjson;
+        SharedPreferences.Editor ed = (SharedPreferences.Editor) PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+        ed.putString("game_id:"+qb.getMap().get("game_id").toString(),qbjson = qb.getJson());
         ed.commit();
         String raw = "{" +
 
@@ -253,50 +255,50 @@ public class CountActivity extends ActivityScore {
 
                 "}" +
                 "}" ;
-
-        x.http().post(qb.get(), new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-//                        { response: "success", user_id: 用户ID, match_id: 用户快速参赛的号码 }
-//                showDialogToast(result);
-
-
-                Gson gson = new Gson();
-                //1. 获得 解析者
-                JsonParser parser = new JsonParser();
-
-                //2. 获得 根节点元素
-                JsonElement element = parser.parse(result);
-
-                //3. 根据 文档判断根节点属于 什么类型的 Gson节点对象
-                JsonObject root = element.getAsJsonObject();
-
-                //4. 取得 节点 下 的某个节点的 value
-                JsonPrimitive flagjson = root.getAsJsonPrimitive("response");
-                String flag = flagjson.getAsString();
-
-                if("success".equals(flag)){
-
-                    JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
-                    String matchid = matchidj.getAsString();
-                }
-            }
+        String replacement = new JsonReplacer(qb.getMap()).fromJsonObject(raw);
+//        x.http().post(qb.get(), new Callback.CommonCallback<String>() {
+//            @Override
+//            public void onSuccess(String result) {
+////                        { response: "success", user_id: 用户ID, match_id: 用户快速参赛的号码 }
+////                showDialogToast(result);
 //
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-
-            }
-        });
+//
+//                Gson gson = new Gson();
+//                //1. 获得 解析者
+//                JsonParser parser = new JsonParser();
+//
+//                //2. 获得 根节点元素
+//                JsonElement element = parser.parse(result);
+//
+//                //3. 根据 文档判断根节点属于 什么类型的 Gson节点对象
+//                JsonObject root = element.getAsJsonObject();
+//
+//                //4. 取得 节点 下 的某个节点的 value
+//                JsonPrimitive flagjson = root.getAsJsonPrimitive("response");
+//                String flag = flagjson.getAsString();
+//
+//                if("success".equals(flag)){
+//
+//                    JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
+//                    String matchid = matchidj.getAsString();
+//                }
+//            }
+////
+//            @Override
+//            public void onError(Throwable ex, boolean isOnCallback) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(CancelledException cex) {
+//
+//            }
+//
+//            @Override
+//            public void onFinished() {
+//
+//
+//            }
+//        });
     }
 }

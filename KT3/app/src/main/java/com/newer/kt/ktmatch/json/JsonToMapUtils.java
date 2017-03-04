@@ -49,8 +49,8 @@ public class JsonToMapUtils {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {  
             key = (String) it.next();  
             value = map.get(key);  
-            jsonBuffer.append(key + ":" +"\""+ value+"\"");  
-            if (it.hasNext()) {  
+            jsonBuffer.append("\""+ key +"\"" + ":" +"\""+ value+"\"");
+            if (it.hasNext()) {
                 jsonBuffer.append(",");  
             }  
         }  

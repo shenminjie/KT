@@ -40,12 +40,12 @@
         "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\loading_frame1.png"
     },
     {
-        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\play_btn_pause_big.png",
-        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\play_btn_pause_big.png"
-    },
-    {
         "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\loading_frame4.png",
         "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\loading_frame4.png"
+    },
+    {
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\play_btn_pause_big.png",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\play_btn_pause_big.png"
     },
     {
         "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\play_btn_play_big_detail_down.png",
