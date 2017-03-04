@@ -143,6 +143,7 @@ public class MatchActivity extends TakePicActivity {
                 }else {
                     Params.getInstanceParam().setPanna_ko2("1");
                 }
+
                 showKTOverVisible();
                 finish();
 
@@ -201,6 +202,7 @@ public class MatchActivity extends TakePicActivity {
                 String path;
 
                         path = start();
+                        Params.getInstanceParam().setYouku_uri(path);
                         video.add(path);
 
 //                        mShootBtn.setImageResource(R.drawable.stoprecord);
@@ -280,6 +282,7 @@ public class MatchActivity extends TakePicActivity {
             @Override
             public void onClick(View v) {
 //                Params.getInstanceParam().setAbstained1("1");
+                ;
 //                showKTOverVisible();
                 finish();
             }
@@ -509,7 +512,7 @@ public class MatchActivity extends TakePicActivity {
 
     private void finishActivity() {
 //        if (isFinish) {
-        mRecorderView.stop();
+        stop();
 
 //        }
 //        Intent intent = new Intent();

@@ -113,7 +113,7 @@ public class SaiShiEJ extends CamScanActivity {
      */
     private void getRanking() {
 
-        RequestParams rp = QueryBuilder.build("games/ranking").add("game_id",getIntent().getStringExtra("game_id")).add("type","1").get();
+        RequestParams rp = QueryBuilder.build("games/ranking").add("game_id",Params.getInstanceParam().getGame_id()).add("type","1").get();
 
         x.http().get(rp, new Callback.CommonCallback<String>() {
 
@@ -238,12 +238,12 @@ public class SaiShiEJ extends CamScanActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 viewHolder = new ViewHolder();
                 View view = View.inflate(getApplicationContext(), R.layout.item_vs_paihang, null);
-                viewHolder.iv_touxiang = ((ImageView) findViewById(R.id.iv_touxiang));
-                viewHolder.tv_vs_name = ((TextView) findViewById(R.id.tv_vs_name));
-                viewHolder.tv_nianji = ((TextView) findViewById(R.id.tv_nianji));
-                viewHolder.tv_changci = ((TextView) findViewById(R.id.tv_changci));
-                viewHolder.tv_jifen = ((TextView) findViewById(R.id.tv_jifen));
-                viewHolder.tv_zhandouli = ((TextView) findViewById(R.id.tv_zhandouli));
+                viewHolder.iv_touxiang = ((ImageView) view.findViewById(R.id.iv_touxiang));
+                viewHolder.tv_vs_name = ((TextView) view.findViewById(R.id.tv_vs_name));
+                viewHolder.tv_nianji = ((TextView) view.findViewById(R.id.tv_nianji));
+                viewHolder.tv_changci = ((TextView) view.findViewById(R.id.tv_changci));
+                viewHolder.tv_jifen = ((TextView) view.findViewById(R.id.tv_jifen));
+                viewHolder.tv_zhandouli = ((TextView) view.findViewById(R.id.tv_zhandouli));
 
 
 //                user_id: 用户ID,
@@ -252,11 +252,11 @@ public class SaiShiEJ extends CamScanActivity {
 //                        scores: 积分,
 //                        power: 战斗力,
 //                        win_rate: 胜率
-//                Clubs_paihang_Bean.Clubs_paihang clubs = clubs_paihang_list.get(position);
-//                viewHolder.tv_vs_name.setText(clubs.nickname);
-//                viewHolder.tv_changci.setText(clubs.win_rate);
-//                viewHolder.tv_jifen.setText(clubs.scores);
-//                viewHolder.tv_zhandouli.setText(clubs.power);
+                Clubs_paihang_Bean.Clubs_paihang clubs = clubs_paihang_list.get(position);
+                viewHolder.tv_vs_name.setText(clubs.nickname);
+                viewHolder.tv_changci.setText(clubs.win_rate);
+                viewHolder.tv_jifen.setText(clubs.scores);
+                viewHolder.tv_zhandouli.setText(clubs.power);
                 return view;
             }
         };
