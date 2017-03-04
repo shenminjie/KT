@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/anim/yp_mobile_loading.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/anim/yp_mobile_loading.xml"
-    },
-    {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/anim/yp_mobile_loading.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/anim/yp_mobile_loading.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\yp_mobile_loading.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\anim\\yp_mobile_loading.xml"
     }
 ]

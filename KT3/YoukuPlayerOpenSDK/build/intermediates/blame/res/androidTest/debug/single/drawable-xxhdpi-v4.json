@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/ad_close.png",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/ad_close.png"
-    },
-    {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/ad_close.png",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable-xxhdpi-v4/ad_close.png"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\ad_close.png",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\ad_close.png"
     }
 ]

@@ -19,7 +19,7 @@ public class TypeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kt_type);
-        Params.getInstanceParam().setJudge_type(1+"");
+//        Params.getInstanceParam().setJudge_type(1+"");
         findViewById(R.id.choose1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

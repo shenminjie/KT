@@ -1,58 +1,30 @@
 [
     {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/yp_progressbarstyle.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/yp_progressbarstyle.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vidqtxt.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\vidqtxt.xml"
     },
     {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/yp_progressthumbstyle.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/yp_progressthumbstyle.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\yp_progress_holo_light.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\yp_progress_holo_light.xml"
     },
     {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/popwinselector.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/popwinselector.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\nonedrawable.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\nonedrawable.xml"
     },
     {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/nonedrawable.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/nonedrawable.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\yp_progressbarstyle.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\yp_progressbarstyle.xml"
     },
     {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/vidqtxt.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/vidqtxt.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\popwinselector.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\popwinselector.xml"
     },
     {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/yp_progress_holo_light.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/yp_progress_holo_light.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vidqbg.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\vidqbg.xml"
     },
     {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/vidqbg.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/vidqbg.xml"
-    },
-    {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/vidqbg.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/vidqbg.xml"
-    },
-    {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/yp_progress_holo_light.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/yp_progress_holo_light.xml"
-    },
-    {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/popwinselector.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/popwinselector.xml"
-    },
-    {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/yp_progressthumbstyle.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/yp_progressthumbstyle.xml"
-    },
-    {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/nonedrawable.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/nonedrawable.xml"
-    },
-    {
-        "merged": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/yp_progressbarstyle.xml",
-        "source": "/Users/leo/Desktop/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/yp_progressbarstyle.xml"
-    },
-    {
-        "merged": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/res/merged/androidTest/debug/drawable/vidqtxt.xml",
-        "source": "/Users/admin/StudioProjects/kt/KT/KT3/YoukuPlayerOpenSDK/build/intermediates/bundles/debug/res/drawable/vidqtxt.xml"
+        "merged": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\yp_progressthumbstyle.xml",
+        "source": "C:\\Users\\87716\\Documents\\GitHub\\KT\\KT3\\YoukuPlayerOpenSDK\\build\\intermediates\\bundles\\debug\\res\\drawable\\yp_progressthumbstyle.xml"
     }
 ]
