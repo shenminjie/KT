@@ -301,4 +301,5 @@ public class CountActivity extends ActivityScore {
 //            }
 //        });
     }
+
 }

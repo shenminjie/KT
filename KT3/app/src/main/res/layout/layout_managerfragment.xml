@@ -35,9 +35,9 @@
             android:id="@+id/image_new"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
+            android:padding="11dp"
             android:src="@mipmap/add_student"
+            android:scaleType="fitCenter"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>

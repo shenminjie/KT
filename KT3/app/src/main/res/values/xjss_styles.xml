@@ -49,18 +49,18 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">10px</item>
         <item name="android:textColor">@android:color/black</item>
-        <item name="android:textSize">35px</item>
+        <item name="android:textSize">50px</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="NewContestValueTxtStyle">
-        <item name="android:layout_width">300px</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/color_gray_light</item>
         <item name="android:textColorHint">@color/color_gray_hint_light</item>
-        <item name="android:textSize">32px</item>
+        <item name="android:textSize">50px</item>
         <item name="android:gravity">right</item>
     </style>
 

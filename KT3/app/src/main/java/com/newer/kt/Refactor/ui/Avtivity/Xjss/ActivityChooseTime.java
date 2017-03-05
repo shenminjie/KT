@@ -71,8 +71,8 @@ public class ActivityChooseTime extends Activity {
                 break;
 
             case R.id.time_ok_wheel:
-                intent.putExtra(Constant.KEY_CHOOSE_TIME, year_list.get(year_selected_index) + "—" +
-                    month_list.get(month_selected_index) + "—" +
+                intent.putExtra(Constant.KEY_CHOOSE_TIME, year_list.get(year_selected_index) + "-" +
+                    month_list.get(month_selected_index) + "-" +
                     day_list.get(day_selected_index));
                 setResult(Constant.CODE_CHOOSE_TIME, intent);
                 this.finish();

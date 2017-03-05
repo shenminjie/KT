@@ -13,9 +13,9 @@
     <string name="contest_address">赛事地址</string>
     <string name="contest_address_hint">点击搜索赛事</string>
     <string name="contest_start_time">开始时间</string>
-    <string name="contest_start_time_hint">请选择比赛开始时间</string>
+    <string name="contest_start_time_hint">比赛开始时间</string>
     <string name="contest_end_time">结束时间</string>
-    <string name="contest_end_time_hint">请选择比赛结束时间</string>
+    <string name="contest_end_time_hint">比赛结束时间</string>
     <string name="contest_introduce">赛事介绍</string>
     <string name="contest_introduce_hint">对本场赛事进行描述</string>
     <string name="finish">完成</string>
