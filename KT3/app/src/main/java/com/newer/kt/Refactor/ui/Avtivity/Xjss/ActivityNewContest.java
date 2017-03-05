@@ -103,18 +103,31 @@ public class ActivityNewContest extends Activity {
         String address = KTApplication.getInstance().getmLocationClient().getLastKnownLocation().getAddrStr();
         mAddressTxt.setText(address);
         mNameTxt.setCursorVisible(true);
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
     }
 
+    Toast toast;
+
     @OnClick({R.id.contest_club_layout, R.id.contest_start_time_layout,
-                R.id.contest_end_time_layout, /*R.id.contest_icon,*/R.id.create,R.id.back})
-    public void OnClick(View view){
+            R.id.contest_end_time_layout, /*R.id.contest_icon,*/R.id.create, R.id.back})
+    public void OnClick(View view) {
         intent = new Intent();
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
             case R.id.create:
-                submitCreate();
+                if (mNameTxt.getText().equals("")) {
+                    toast.setText("赛事名字不能为空");
+                    toast.show();
+                } else if (mStartTimeTxt.getText().equals("")) {
+                    toast.setText("开始时间不能为空");
+                    toast.show();
+                } else if (mEndTimeTxt.getText().equals("")) {
+                    toast.setText("结束时间不能为空");
+                    toast.show();
+                } else
+                    submitCreate();
                 break;
             case R.id.contest_icon:
                 intent.setClass(this, ActivityChooseIcon.class);
@@ -128,18 +141,18 @@ public class ActivityNewContest extends Activity {
                 chooseTimeType = Constant.KEY_CHOOSE_START_TIME;
                 intent.setClass(this, ActivityChooseTime.class);
                 intent.putExtra(Constant.KEY_CHOOSE_TIME_TYPE, Constant.KEY_CHOOSE_START_TIME);
-                startActivityForResult(intent,Constant.CODE_CHOOSE_TIME);
+                startActivityForResult(intent, Constant.CODE_CHOOSE_TIME);
                 break;
             case R.id.contest_end_time_layout:
                 chooseTimeType = Constant.KEY_CHOOSE_END_TIME;
                 intent.setClass(this, ActivityChooseTime.class);
                 intent.putExtra(Constant.KEY_CHOOSE_TIME_TYPE, Constant.KEY_CHOOSE_END_TIME);
-                startActivityForResult(intent,Constant.CODE_CHOOSE_TIME);
+                startActivityForResult(intent, Constant.CODE_CHOOSE_TIME);
                 break;
         }
     }
 
-    private void chooseCamera(){
+    private void chooseCamera() {
         Intent in = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // 判断存储卡是否可以用，可用进行存储
         if (AppUtil.hasSdcard()) {
@@ -148,7 +161,7 @@ public class ActivityNewContest extends Activity {
             in.putExtra("noFaceDetection", true);
             in.putExtra(MediaStore.EXTRA_OUTPUT,
                     Uri.fromFile(new File(Environment.getExternalStorageDirectory(), ICON_NAME)));
-        }else{
+        } else {
             Toast.makeText(ActivityNewContest.this, "SD卡不存在，请插入SD卡",
                     Toast.LENGTH_LONG).show();
             return;
@@ -156,7 +169,7 @@ public class ActivityNewContest extends Activity {
         startActivityForResult(in, Constant.CODE_CHOOSE_ICON_CAMERA);
     }
 
-    private void choosePicture(){
+    private void choosePicture() {
         Intent in = new Intent(Intent.ACTION_PICK);
         in.setType("image/*");
         startActivityForResult(in, Constant.CODE_CHOOSE_ICON_PICTURE);
@@ -188,41 +201,41 @@ public class ActivityNewContest extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String temp;
-       if (resultCode == Constant.CODE_CHOOSE_CLUB){
+        if (resultCode == Constant.CODE_CHOOSE_CLUB) {
             temp = data.getStringExtra(Constant.KEY_CHOOSE_CLUB_NAME);
-            if (!temp.isEmpty()){
+            if (!temp.isEmpty()) {
                 mClubTxt.setText(temp);
             }
-        }else if (resultCode == Constant.CODE_CHOOSE_TIME){
+        } else if (resultCode == Constant.CODE_CHOOSE_TIME) {
             temp = data.getStringExtra(Constant.KEY_CHOOSE_TIME);
-            if (!temp.isEmpty()){
-                if (chooseTimeType.equals(Constant.KEY_CHOOSE_START_TIME)){
+            if (!temp.isEmpty()) {
+                if (chooseTimeType.equals(Constant.KEY_CHOOSE_START_TIME)) {
                     mStartTimeTxt.setText(temp);
-                }else{
+                } else {
                     mEndTimeTxt.setText(temp);
                 }
             }
-        }else if (resultCode == Constant.CODE_CHOOSE_ICON){
+        } else if (resultCode == Constant.CODE_CHOOSE_ICON) {
             temp = data.getStringExtra(Constant.KEY_CHOOSE_ICON_TYPE);
-            if (!temp.isEmpty()){
-                if (temp.equals(Constant.KEY_CHOOSE_TYPE_CAMERA)){//选择照相机
+            if (!temp.isEmpty()) {
+                if (temp.equals(Constant.KEY_CHOOSE_TYPE_CAMERA)) {//选择照相机
                     chooseCamera();
-                }else if (temp.equals(Constant.KEY_CHOOSE_TYPE_PICTURE)){//选择图册
+                } else if (temp.equals(Constant.KEY_CHOOSE_TYPE_PICTURE)) {//选择图册
                     choosePicture();
                 }
             }
-        }else if (requestCode == Constant.CODE_CHOOSE_ICON_CAMERA){//相机返回
+        } else if (requestCode == Constant.CODE_CHOOSE_ICON_CAMERA) {//相机返回
             startPhotoZoom(Uri.fromFile(new File(Environment.getExternalStorageDirectory(), ICON_NAME)));
-        }else if ((data != null) &&(requestCode == Constant.CODE_CHOOSE_ICON_PICTURE)){//图册返回
+        } else if ((data != null) && (requestCode == Constant.CODE_CHOOSE_ICON_PICTURE)) {//图册返回
             startPhotoZoom(data.getData());
-        }else if ((data != null) && (requestCode == Constant.CODE_CHOOSE_ICON_ZOOM)){//裁剪完后
+        } else if ((data != null) && (requestCode == Constant.CODE_CHOOSE_ICON_ZOOM)) {//裁剪完后
             Bundle extras = data.getExtras();
             if (extras != null) {
-                iconBitMap = AppUtil.toRoundBitmap((Bitmap)extras.getParcelable(Constant.KEY_DATA));
+                iconBitMap = AppUtil.toRoundBitmap((Bitmap) extras.getParcelable(Constant.KEY_DATA));
                 OutputStream baos = null;
                 String file = null;
                 try {
-                    baos = new FileOutputStream(file = Environment.getExternalStorageDirectory()+"/kt/ktportrait.png");
+                    baos = new FileOutputStream(file = Environment.getExternalStorageDirectory() + "/kt/ktportrait.png");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -230,31 +243,33 @@ public class ActivityNewContest extends Activity {
                 mIcon.setImageBitmap(iconBitMap);
                 try {
                     InputStream in = new FileInputStream(new File(file));
-                
-                int length = in.available();         
-   
-    byte [] buffer = new byte[length];          
-   
-    //读取数据  
-    in.read(buffer);           
-   
-    photostr= Base64.encodeToString(buffer,Base64.DEFAULT);
-    //关闭      
-    in.close();              
-   } catch (FileNotFoundException e) {
+
+                    int length = in.available();
+
+                    byte[] buffer = new byte[length];
+
+                    //读取数据
+                    in.read(buffer);
+
+                    photostr = Base64.encodeToString(buffer, Base64.DEFAULT);
+                    //关闭
+                    in.close();
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                
-   }catch(Exception e){   
-      e.printStackTrace();           
-   }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+
     String photostr = "";
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (iconBitMap != null && (!iconBitMap.isRecycled())){
+        if (iconBitMap != null && (!iconBitMap.isRecycled())) {
             iconBitMap.recycle();
         }
     }
@@ -264,29 +279,29 @@ public class ActivityNewContest extends Activity {
         String country = KTApplication.getInstance().getmLocationClient().getLastKnownLocation().getCountry();
         String address = KTApplication.getInstance().getmLocationClient().getLastKnownLocation().getAddrStr();
 
-        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getBaseContext())
-                .getLong(PRE_CURRENT_CLUB_ID,1);
+        String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getLong(PRE_CURRENT_CLUB_ID, 1);
         Params.getInstanceParam().setClub_id(clubid);
 
-        String userid = ""+ PreferenceManager.getDefaultSharedPreferences(getBaseContext())
-                .getLong(PRE_CURRENT_USER_ID,1);
+        String userid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getLong(PRE_CURRENT_USER_ID, 1);
         Params.getInstanceParam().setUser_id(userid);
 
-        RequestParams rp = QueryBuilder.build("games/create").add("user_id",userid).add("club_id",clubid)
-                .add("country",country)
-                .add("city",city)
-                .add("name",mClubTxt.getText())
-                .add("place",address)
-                .add("date_start",mStartTimeTxt.getText())
-                .add("date_end",mEndTimeTxt.getText())
+        RequestParams rp = QueryBuilder.build("games/create").add("user_id", userid).add("club_id", clubid)
+                .add("country", country)
+                .add("city", city)
+                .add("name", mClubTxt.getText())
+                .add("place", address)
+                .add("date_start", mStartTimeTxt.getText())
+                .add("date_end", mEndTimeTxt.getText())
 //                .add("avatar",photostr)
 //                .add("avatar","")
-                .add("enter_ktb","0")
-                .add("location","0").get();
+                .add("enter_ktb", "0")
+                .add("location", "0").get();
         x.http().post(rp, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                if(result.contains("{\"response\":\"success\"}")){
+                if (result.contains("{\"response\":\"success\"}")) {
                     finish();
                 }
             }

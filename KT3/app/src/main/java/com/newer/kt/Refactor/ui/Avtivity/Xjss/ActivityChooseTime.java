@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.newer.kt.R;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -87,16 +88,17 @@ public class ActivityChooseTime extends Activity {
         }else{
             mTitleTxt.setText(getResources().getString(R.string.contest_end_time_hint));
         }
-        for (int i = 2000; i < 2018; i ++){
+        Calendar c = Calendar.getInstance();
+        for (int j = c.get(Calendar.YEAR),i = j; i <j+8 ; i ++){
             year_list.add("" + i);
         }
         mYearWheel.setData(year_list);
-        for (int i = 1; i < 13; i++){
+        for (int i = c.get(Calendar.MONTH); i < 13; i++){
             month_list.add("" + i);
         }
         mMonthWheel.setData(month_list);
         day = getDaysByYearMonth(Integer.valueOf(year_list.get(0)), Integer.valueOf(month_list.get(0)));
-        for(int i = 1; i <= day; i ++){
+        for(int i = c.get(Calendar.DAY_OF_MONTH); i <= day; i ++){
             day_list.add("" + i);
         }
         mDayWheel.setData(day_list);
