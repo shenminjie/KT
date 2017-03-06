@@ -20,8 +20,12 @@ public class DongtaiGuanli extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dongtai_guanli);
 
+        //
+
+
         initView();
         initOnclick();
+
     }
 
     private void initOnclick() {
