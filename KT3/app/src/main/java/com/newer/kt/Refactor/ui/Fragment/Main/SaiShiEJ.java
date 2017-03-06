@@ -25,6 +25,7 @@ import com.newer.kt.ktmatch.Params;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.TypeActivity;
 import com.newer.kt.record.TakePicActivity;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -244,7 +245,7 @@ public class SaiShiEJ extends CamScanActivity {
                 viewHolder.tv_changci = ((TextView) view.findViewById(R.id.tv_changci));
                 viewHolder.tv_jifen = ((TextView) view.findViewById(R.id.tv_jifen));
                 viewHolder.tv_zhandouli = ((TextView) view.findViewById(R.id.tv_zhandouli));
-
+                ((TextView) view.findViewById(R.id.tv_no)).setText(position+1+"");
 
 //                user_id: 用户ID,
 //                        nickname: 昵称,
@@ -257,6 +258,9 @@ public class SaiShiEJ extends CamScanActivity {
                 viewHolder.tv_changci.setText(clubs.win_rate);
                 viewHolder.tv_jifen.setText(clubs.scores);
                 viewHolder.tv_zhandouli.setText(clubs.power);
+
+                ImageLoader.getInstance().displayImage(clubs.avatar,viewHolder.iv_touxiang);
+
                 return view;
             }
         };

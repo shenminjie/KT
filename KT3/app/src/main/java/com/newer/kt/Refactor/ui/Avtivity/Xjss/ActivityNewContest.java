@@ -103,6 +103,7 @@ public class ActivityNewContest extends Activity {
         String address = KTApplication.getInstance().getmLocationClient().getLastKnownLocation().getAddrStr();
         mAddressTxt.setText(address);
         mNameTxt.setCursorVisible(true);
+        mClubTxt.setCursorVisible(true);
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
     }
 
@@ -117,6 +118,10 @@ public class ActivityNewContest extends Activity {
                 finish();
                 break;
             case R.id.create:
+                if (mClubTxt.getText().equals("")) {
+                    toast.setText("俱乐部不能为空");
+                    toast.show();
+                } else
                 if (mNameTxt.getText().equals("")) {
                     toast.setText("赛事名字不能为空");
                     toast.show();

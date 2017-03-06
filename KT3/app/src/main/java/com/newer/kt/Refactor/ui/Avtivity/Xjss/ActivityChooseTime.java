@@ -93,7 +93,7 @@ public class ActivityChooseTime extends Activity {
             year_list.add("" + i);
         }
         mYearWheel.setData(year_list);
-        for (int i = c.get(Calendar.MONTH); i < 13; i++){
+        for (int i = c.get(Calendar.MONTH)+1; i < 13; i++){
             month_list.add("" + i);
         }
         mMonthWheel.setData(month_list);
