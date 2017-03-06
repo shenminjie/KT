@@ -30,7 +30,10 @@ import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.Refactor.view.ChildViewpager;
+import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.ktmatch.json.JsonUtil;
 
+import org.json.JSONArray;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -77,8 +80,32 @@ public class JinengFramgent extends BaseFragment {
         super.onCreate(savedInstanceState);
         jinengHomeTongji();
         System.out.println("123123");
+        getJiNeng();
     }
 
+    public static List jineng_cat_data;
+
+    private void getJiNeng() {
+        QueryBuilder.build("study/get_all_app_cartoons").get(new QueryBuilder.Callback(){
+
+
+            @Override
+            public void onSuccess(String result) {
+                jineng_cat_data = JsonUtil.fromJsonArray((String) JsonUtil.findJsonNode("app_cartoons",result));
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onDebug(RequestParams rp) {
+
+            }
+        });
+    }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -137,7 +164,17 @@ public class JinengFramgent extends BaseFragment {
         getGv_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(),JiNengFragment_List.class);
+                int idx = 0;
+                if(position==3){
+                    return;
+                }
+                if(position==2){
+                    idx = 1;
+                }
+                if(position ==1){
+                    idx= 2;
+                }
+                Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("catidx",idx);
                 startActivity(intent);
 
             }
