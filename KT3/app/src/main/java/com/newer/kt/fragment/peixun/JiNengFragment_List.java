@@ -33,7 +33,7 @@ public class JiNengFragment_List extends AppCompatActivity {
         int index = getIntent().getIntExtra("catidx", 0);
         data = (List) ((Map) JinengFramgent.jineng_cat_data.get(index)).get("list");
         ((TextView) findViewById(R.id.tv_title_game)).setText((CharSequence) ((Map) JinengFramgent.jineng_cat_data.get(index)).get("category"));
-        if(index==1){
+        if(((TextView) findViewById(R.id.tv_title_game)).getText().equals("足球游戏")){
             ((TextView) findViewById(R.id.tv_title_game)).setText("素质教育");
         }
         initView();
