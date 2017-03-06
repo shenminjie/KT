@@ -25,14 +25,18 @@ import com.newer.kt.entity.GradeList;
 import com.newer.kt.ktmatch.ActivityKi;
 import com.newer.kt.ktmatch.CountActivity;
 import com.newer.kt.ktmatch.Params;
+import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.ktmatch.json.JsonUtil;
 import com.newer.kt.utils.AuthenticityToken;
 
+import org.json.JSONArray;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jy on 16/9/14.
@@ -148,6 +152,8 @@ public class ManagerFragment extends BaseFragment {
         getClubs_game();
         saishiAdapter.notifyDataSetChanged();
     }
+
+
 
 
     /**
