@@ -165,10 +165,16 @@ public class JinengFramgent extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int idx = 0;
-                if(idx==3){
+                if(position==3){
                     return;
                 }
-                Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("catidx",position);
+                if(position==2){
+                    idx = 1;
+                }
+                if(position ==1){
+                    idx= 2;
+                }
+                Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("catidx",idx);
                 startActivity(intent);
 
             }
