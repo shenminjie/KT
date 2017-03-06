@@ -1,0 +1,27 @@
+<resources>
+    <string name="search">搜索</string>
+    <string name="all">全部</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="grade">年级</string>
+    <string name="class_string">班级</string>
+    <string name="force">战斗力</string>
+    <string name="score">积分</string>
+    <string name="contest_club">俱乐部</string>
+    <string name="contest_name">赛事名称</string>
+    <string name="contest_name_hint">最多不超过16个字符</string>
+    <string name="contest_address">赛事地址</string>
+    <string name="contest_address_hint">点击搜索赛事</string>
+    <string name="contest_start_time">开始时间</string>
+    <string name="contest_start_time_hint">比赛开始时间</string>
+    <string name="contest_end_time">结束时间</string>
+    <string name="contest_end_time_hint">比赛结束时间</string>
+    <string name="contest_introduce">赛事介绍</string>
+    <string name="contest_introduce_hint">对本场赛事进行描述</string>
+    <string name="finish">完成</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
+    <string name="contest_choose_club">请选择俱乐部</string>
+    <string name="contest_camera">拍照</string>
+    <string name="contest_photo">从相册选择</string>
+</resources>

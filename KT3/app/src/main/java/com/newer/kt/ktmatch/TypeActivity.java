@@ -13,6 +13,7 @@ public class TypeActivity extends BaseActivity {
     public static void invoke(Context ctx) {
         Intent intent = new Intent(ctx, TypeActivity.class);
         ctx.startActivity(intent);
+
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.frame.app.base.fragment.BaseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityNewContest;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.Clubs_game_Bean;
 import com.newer.kt.entity.Clubs_groups_Bean;
@@ -78,6 +79,12 @@ public class ManagerFragment extends BaseFragment {
         tv_all_people = ((TextView) rootView.findViewById(R.id.tv_all_people));
         tv_all_games = ((TextView) rootView.findViewById(R.id.tv_all_games));
         tv_sex = ((TextView) rootView.findViewById(R.id.tv_sex));
+        rootView.findViewById(R.id.image_new).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ActivityNewContest.class));
+            }
+        });
         getClubs_group();
 
 

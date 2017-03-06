@@ -123,5 +123,7 @@ android {
         compile 'com.zhy:autolayout:1.4.5'
         compile project(':sub')
         compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
+        compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
+
     }
 }

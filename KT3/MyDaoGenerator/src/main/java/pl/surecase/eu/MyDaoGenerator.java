@@ -18,35 +18,35 @@ public class MyDaoGenerator {
 
     public static void main(String args[]) throws Exception {
         //http://www.ktfootball.com/
-        //Schemaå¯¹è±¡æ¥å—2ä¸ªå‚æ•°ï¼Œç¬¬ä¸€ä¸ªå‚æ•°æ˜¯DBçš„ç‰ˆæœ¬å·ï¼Œé€šè¿‡æ›´æ–°ç‰ˆæœ¬å·æ¥æ›´æ–°æ•°æ®åº“ã€‚ç¬¬äºŒä¸ªå‚æ•°æ˜¯è‡ªåŠ¨ç”Ÿæˆä»£ç çš„åŒ…è·¯å¾„ã€‚åŒ…è·¯å¾„ç³»ç»Ÿè‡ªåŠ¨ç”Ÿæˆ
+        //Schema¶ÔÏó½ÓÊÜ2¸ö²ÎÊı£¬µÚÒ»¸ö²ÎÊıÊÇDBµÄ°æ±¾ºÅ£¬Í¨¹ı¸üĞÂ°æ±¾ºÅÀ´¸üĞÂÊı¾İ¿â¡£µÚ¶ş¸ö²ÎÊıÊÇ×Ô¶¯Éú³É´úÂëµÄ°üÂ·¾¶¡£°üÂ·¾¶ÏµÍ³×Ô¶¯Éú³É
         Schema schema = new Schema( 13, "com.ktfootball.www.dao");
-        // 1: æ•°æ®åº“ç‰ˆæœ¬å·
-        // com.xxx.bean:è‡ªåŠ¨ç”Ÿæˆçš„Beanå¯¹è±¡ä¼šæ”¾åˆ°/java-gen/com/xxx/beanä¸­
+        // 1: Êı¾İ¿â°æ±¾ºÅ
+        // com.xxx.bean:×Ô¶¯Éú³ÉµÄBean¶ÔÏó»á·Åµ½/java-gen/com/xxx/beanÖĞ
 
 //        schema.setDefaultJavaPackageDao("com.chongwuzhiwu.app.screen.dao");
-        // DaoMaster.javaã€DaoSession.javaã€BeanDao.javaä¼šæ”¾åˆ°/java-gen/com/xxx/daoä¸­
+        // DaoMaster.java¡¢DaoSession.java¡¢BeanDao.java»á·Åµ½/java-gen/com/xxx/daoÖĞ
 
-        // ä¸Šé¢è¿™ä¸¤ä¸ªæ–‡ä»¶å¤¹è·¯å¾„éƒ½å¯ä»¥è‡ªå®šä¹‰ï¼Œä¹Ÿå¯ä»¥ä¸è®¾ç½®
+        // ÉÏÃæÕâÁ½¸öÎÄ¼ş¼ĞÂ·¾¶¶¼¿ÉÒÔ×Ô¶¨Òå£¬Ò²¿ÉÒÔ²»ÉèÖÃ
 
-        initBags(schema); // åˆå§‹åŒ–Beanäº†
-        initUsers(schema); // åˆå§‹åŒ–Beanäº†
-        initGames(schema); // åˆå§‹åŒ–Beanäº†
-        initSideaandb(schema); // åˆå§‹åŒ–Beanäº†
-        initVcrPath(schema); // åˆå§‹åŒ–Beanäº†
-        uploadBigClassroomCourseRecord(schema); // ä¸Šä¼ å¤§è¯¾é—´ä¸Šè¯¾è®°å½•(post)
-        uploadBigClassroomCourseRecordBoolean(schema); // ä¸Šä¼ å¤§è¯¾é—´ä¸Šè¯¾è®°å½•(post)
-        initRankingPower(schema); // åˆå§‹åŒ–Beanäº†
-        initRankingLeagueScores(schema); // æˆ˜æ–—åŠ›æ’è¡Œæ¦œ(get)
-        initRankingLeagueScores3v3(schema); // æˆ˜æ–—åŠ›æ’è¡Œæ¦œ(get)
-        initRankingLeagueScores1v1(schema); // æˆ˜æ–—åŠ›æ’è¡Œæ¦œ(get)1v1
-        uploadGymCourseRecord(schema); // ä¸Šä¼ ä½“è‚²è¯¾ä¸Šè¯¾è®°å½•(post)
-        initUsetInfo(schema); // ä¸Šä¼ ä½“è‚²è¯¾ä¸Šè¯¾è®°å½•(post)
-//        ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯Schemaå¯¹è±¡ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯å¸Œæœ›è‡ªåŠ¨ç”Ÿæˆçš„ä»£ç å¯¹åº”çš„é¡¹ç›®è·¯å¾„ã€‚
-        new DaoGenerator().generateAll(schema, args[0]);// è‡ªåŠ¨åˆ›å»º
+        initBags(schema); // ³õÊ¼»¯BeanÁË
+        initUsers(schema); // ³õÊ¼»¯BeanÁË
+        initGames(schema); // ³õÊ¼»¯BeanÁË
+        initSideaandb(schema); // ³õÊ¼»¯BeanÁË
+        initVcrPath(schema); // ³õÊ¼»¯BeanÁË
+        uploadBigClassroomCourseRecord(schema); // ÉÏ´«´ó¿Î¼äÉÏ¿Î¼ÇÂ¼(post)
+        uploadBigClassroomCourseRecordBoolean(schema); // ÉÏ´«´ó¿Î¼äÉÏ¿Î¼ÇÂ¼(post)
+        initRankingPower(schema); // ³õÊ¼»¯BeanÁË
+        initRankingLeagueScores(schema); // Õ½¶·Á¦ÅÅĞĞ°ñ(get)
+        initRankingLeagueScores3v3(schema); // Õ½¶·Á¦ÅÅĞĞ°ñ(get)
+        initRankingLeagueScores1v1(schema); // Õ½¶·Á¦ÅÅĞĞ°ñ(get)1v1
+        uploadGymCourseRecord(schema); // ÉÏ´«ÌåÓı¿ÎÉÏ¿Î¼ÇÂ¼(post)
+        initUsetInfo(schema); // ÉÏ´«ÌåÓı¿ÎÉÏ¿Î¼ÇÂ¼(post)
+//        µÚÒ»¸ö²ÎÊıÊÇSchema¶ÔÏó£¬µÚ¶ş¸ö²ÎÊıÊÇÏ£Íû×Ô¶¯Éú³ÉµÄ´úÂë¶ÔÓ¦µÄÏîÄ¿Â·¾¶¡£
+        new DaoGenerator().generateAll(schema, args[0]);// ×Ô¶¯´´½¨
     }
 
     private static void initUsetInfo(Schema schema) {
-        Entity userBean = schema.addEntity("UserInfo");// è¡¨å
+        Entity userBean = schema.addEntity("UserInfo");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addIntProperty("grade");
         userBean.addLongProperty("classid");
@@ -62,7 +62,7 @@ public class MyDaoGenerator {
     }
 
     private static void uploadGymCourseRecord(Schema schema) {
-        Entity userBean = schema.addEntity("UploadGymCourseRecord");// è¡¨å
+        Entity userBean = schema.addEntity("UploadGymCourseRecord");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("club_id");
         userBean.addStringProperty("user_id");
@@ -73,15 +73,15 @@ public class MyDaoGenerator {
     }
 
     private static void uploadBigClassroomCourseRecord(Schema schema) {
-//        club_id: ä¿±ä¹éƒ¨ID,
-//                user_id: è£åˆ¤ID,
-//                youku_video_url: ä¼˜é…·è§†é¢‘url,
-//                classroom_id: å¤§è¯¾é—´ID,
-//                classes: ç­çº§ID(ç”¨,å·åˆ†éš”),
-//                is_finished: 0(æœªå®Œæˆè¯¾ç¨‹),1(å®Œæˆè¯¾ç¨‹),
-//                finished_time: å®Œæˆæ—¶é—´( å¦‚ 2016-03-01 14:00 )
+//        club_id: ¾ãÀÖ²¿ID,
+//                user_id: ²ÃÅĞID,
+//                youku_video_url: ÓÅ¿áÊÓÆµurl,
+//                classroom_id: ´ó¿Î¼äID,
+//                classes: °à¼¶ID(ÓÃ,ºÅ·Ö¸ô),
+//                is_finished: 0(Î´Íê³É¿Î³Ì),1(Íê³É¿Î³Ì),
+//                finished_time: Íê³ÉÊ±¼ä( Èç 2016-03-01 14:00 )
 
-        Entity userBean = schema.addEntity("UploadBigClassroomCourseRecord");// è¡¨å
+        Entity userBean = schema.addEntity("UploadBigClassroomCourseRecord");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("club_id");
         userBean.addStringProperty("user_id");
@@ -94,15 +94,15 @@ public class MyDaoGenerator {
     }
 
     private static void uploadBigClassroomCourseRecordBoolean(Schema schema) {
-//        club_id: ä¿±ä¹éƒ¨ID,
-//                user_id: è£åˆ¤ID,
-//                youku_video_url: ä¼˜é…·è§†é¢‘url,
-//                classroom_id: å¤§è¯¾é—´ID,
-//                classes: ç­çº§ID(ç”¨,å·åˆ†éš”),
-//                is_finished: 0(æœªå®Œæˆè¯¾ç¨‹),1(å®Œæˆè¯¾ç¨‹),
-//                finished_time: å®Œæˆæ—¶é—´( å¦‚ 2016-03-01 14:00 )
+//        club_id: ¾ãÀÖ²¿ID,
+//                user_id: ²ÃÅĞID,
+//                youku_video_url: ÓÅ¿áÊÓÆµurl,
+//                classroom_id: ´ó¿Î¼äID,
+//                classes: °à¼¶ID(ÓÃ,ºÅ·Ö¸ô),
+//                is_finished: 0(Î´Íê³É¿Î³Ì),1(Íê³É¿Î³Ì),
+//                finished_time: Íê³ÉÊ±¼ä( Èç 2016-03-01 14:00 )
 
-        Entity userBean = schema.addEntity("UploadBigClassroomCourseRecordBoolean");// è¡¨å
+        Entity userBean = schema.addEntity("UploadBigClassroomCourseRecordBoolean");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("club_id");
         userBean.addStringProperty("user_id");
@@ -116,7 +116,7 @@ public class MyDaoGenerator {
     }
 
     private static void initRankingLeagueScores3v3(Schema schema) {
-        Entity userBean = schema.addEntity("RankingLeagueScores3v3");// è¡¨å
+        Entity userBean = schema.addEntity("RankingLeagueScores3v3");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("league_id");
         userBean.addStringProperty("name");
@@ -125,7 +125,7 @@ public class MyDaoGenerator {
     }
 
     private static void initRankingLeagueScores(Schema schema) {
-        Entity userBean = schema.addEntity("RankingLeagueScores");// è¡¨å
+        Entity userBean = schema.addEntity("RankingLeagueScores");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("league_id");
         userBean.addStringProperty("name");
@@ -134,7 +134,7 @@ public class MyDaoGenerator {
     }
 
     private static void initRankingLeagueScores1v1(Schema schema) {
-        Entity userBean = schema.addEntity("RankingLeagueScores1v1");// è¡¨å
+        Entity userBean = schema.addEntity("RankingLeagueScores1v1");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("nickname");
         userBean.addStringProperty("age");
@@ -146,7 +146,7 @@ public class MyDaoGenerator {
     }
 
     private static void initRankingPower(Schema schema) {
-        Entity userBean = schema.addEntity("RankingPower");// è¡¨å
+        Entity userBean = schema.addEntity("RankingPower");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("user_id");
         userBean.addStringProperty("nickname");
@@ -160,7 +160,7 @@ public class MyDaoGenerator {
     }
 
     private static void initVcrPath(Schema schema) {
-        Entity userBean = schema.addEntity("VcrPath");// è¡¨å
+        Entity userBean = schema.addEntity("VcrPath");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("users");
         userBean.addIntProperty("add_scores");
@@ -187,7 +187,7 @@ public class MyDaoGenerator {
     }
 
     private static void initSideaandb(Schema schema) {
-        Entity userBean = schema.addEntity("SideAandB");// è¡¨å
+        Entity userBean = schema.addEntity("SideAandB");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("users");
         userBean.addIntProperty("add_scores");
@@ -213,7 +213,7 @@ public class MyDaoGenerator {
     }
 
     private static void initGames(Schema schema) {
-        Entity userBean = schema.addEntity("Games");// è¡¨å
+        Entity userBean = schema.addEntity("Games");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("game_id");
         userBean.addStringProperty("game_enter_users_count");
@@ -232,7 +232,7 @@ public class MyDaoGenerator {
     }
 
     private static void initUsers(Schema schema) {
-        Entity userBean = schema.addEntity("Users");// è¡¨å
+        Entity userBean = schema.addEntity("Users");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("user_id");
         userBean.addStringProperty("avatar");
@@ -248,21 +248,21 @@ public class MyDaoGenerator {
     }
 
     private static void initBags(Schema schema) {
-        Entity userBean = schema.addEntity("Bags");// è¡¨å
+        Entity userBean = schema.addEntity("Bags");// ±íÃû
         userBean.addIdProperty().autoincrement();
         userBean.addStringProperty("name");
         userBean.addStringProperty("code");
     }
 
     private static void initUserBean(Schema schema) {
-        //Entityè¡¨ç¤ºä¸€ä¸ªå®ä½“å¯ä»¥å¯¹åº”æˆæ•°æ®åº“ä¸­çš„è¡¨
-        //ç³»ç»Ÿè‡ªåŠ¨ä¼šä»¥ä¼ å…¥çš„å‚æ•°ä½œä¸ºè¡¨çš„åå­—ï¼Œè¿™é‡Œè¡¨åå°±æ˜¯NOTE
-        Entity userBean = schema.addEntity("ScreenState");// è¡¨å
-        //å½“ç„¶ä¹Ÿå¯ä»¥è‡ªå·±è®¾ç½®è¡¨çš„åå­—ï¼Œåƒè¿™æ ·ï¼š
-//        userBean.setTableName("user"); // å¯ä»¥å¯¹è¡¨é‡å‘½å
-//        å¦‚æœæƒ³IDè‡ªåŠ¨å¢é•¿å¯ä»¥åƒè¿™æ ·ï¼š
+        //Entity±íÊ¾Ò»¸öÊµÌå¿ÉÒÔ¶ÔÓ¦³ÉÊı¾İ¿âÖĞµÄ±í
+        //ÏµÍ³×Ô¶¯»áÒÔ´«ÈëµÄ²ÎÊı×÷Îª±íµÄÃû×Ö£¬ÕâÀï±íÃû¾ÍÊÇNOTE
+        Entity userBean = schema.addEntity("ScreenState");// ±íÃû
+        //µ±È»Ò²¿ÉÒÔ×Ô¼ºÉèÖÃ±íµÄÃû×Ö£¬ÏñÕâÑù£º
+//        userBean.setTableName("user"); // ¿ÉÒÔ¶Ô±íÖØÃüÃû
+//        Èç¹ûÏëID×Ô¶¯Ôö³¤¿ÉÒÔÏñÕâÑù£º
         userBean.addIdProperty().autoincrement();
-//        userBean.addStringProperty("id").primaryKey().index();// ä¸»é”®ï¼Œç´¢å¼•
+//        userBean.addStringProperty("id").primaryKey().index();// Ö÷¼ü£¬Ë÷Òı
         userBean.addIntProperty("type");
         userBean.addLongProperty("timestamp");
         userBean.addBooleanProperty("isRrecord");

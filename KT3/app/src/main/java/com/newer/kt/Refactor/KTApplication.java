@@ -159,6 +159,10 @@ public class KTApplication extends App {
 
     }
 
+    public LocationClient getmLocationClient() {
+        return mLocationClient;
+    }
+
     public class MyLocationListener implements BDLocationListener {
 
         @Override
