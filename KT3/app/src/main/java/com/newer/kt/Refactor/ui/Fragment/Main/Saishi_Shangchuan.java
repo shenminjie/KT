@@ -17,9 +17,14 @@ public class Saishi_Shangchuan extends AppCompatActivity {
         setContentView(R.layout.activity_saishi__shangchuan);
 
         initView();
+
+        //
         initOnclick();
+
         initDate();
     }
+
+
 
 
     private void initDate() {
