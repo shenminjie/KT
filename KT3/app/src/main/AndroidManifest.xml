@@ -690,7 +690,8 @@
         <activity android:name=".Refactor.ui.Fragment.Main.DongtaiGuanli" />
         <activity android:name=".Refactor.ui.Fragment.Main.Saishi_Shangchuan" />
         <activity android:name=".Refactor.ui.Fragment.Main.Shangchuan_Result" />
-        <activity android:name=".Refactor.ui.Fragment.Main.Student_Info"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.Student_Info" />
+        <activity android:name=".Refactor.ui.Fragment.Main.Class_StuManager"></activity>
     </application>
 
 </manifest>

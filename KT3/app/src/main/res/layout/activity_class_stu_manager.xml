@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.newer.kt.Refactor.ui.Fragment.Main.Class_StuManager">
+
+    <RelativeLayout
+        android:id="@+id/rl_vs_titile_bt"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/text_black">
+
+        <ImageView
+            android:id="@+id/image_vs_item_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:src="@mipmap/nomal_back" />
+
+        <TextView
+            android:id="@+id/tv_title_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="学生管理"
+            android:textColor="@color/gold"
+            android:textSize="18dp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_xinzeng"
+        android:layout_width="match_parent"
+        android:layout_height="113dp"
+        android:layout_below="@+id/rl_vs_titile_bt">
+
+        <ImageView
+            android:id="@+id/iv_zengjia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/zengjia" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_zengjia"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:text="新增学生"
+            android:textColor="#adadad" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_allBar"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_below="@+id/rl_xinzeng">
+
+        <LinearLayout
+            android:id="@+id/ll_class_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="年级"
+                android:textColor="#222222"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:text="男"
+                android:textColor="#adadad" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:text="女"
+                android:textColor="#adadad" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_kongbai"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:layout_below="@+id/LL_title"
+            android:background="#f7f7f7"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="31dp"
+                android:text="身高"
+                android:textColor="#adadad" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="31dp"
+                android:text="体重"
+                android:textColor="#adadad" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="31dp"
+                android:text="技能"
+                android:textColor="#adadad" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:text="场次"
+                android:textColor="#adadad" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_class_stuManager"
+        android:layout_below="@+id/ll_allBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</RelativeLayout>
