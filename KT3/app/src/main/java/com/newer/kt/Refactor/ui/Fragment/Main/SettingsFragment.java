@@ -59,6 +59,8 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),Student_Info.class);
+                startActivity(intent);
 
             }
         });
