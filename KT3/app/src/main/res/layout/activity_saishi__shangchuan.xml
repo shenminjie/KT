@@ -32,6 +32,7 @@
             android:textSize="18dp" />
 
         <TextView
+            android:id="@+id/tv_shangchuan_result"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -108,7 +109,7 @@
             android:layout_toRightOf="@+id/tv_flag"
             android:text="0"
             android:textSize="18sp"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="#ff0099cc"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
 

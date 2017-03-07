@@ -30,12 +30,16 @@ import com.newer.kt.Refactor.ui.Avtivity.Settings.SchoolStatisticsActivity;
  */
 public class SettingsFragment extends BaseFragment {
 
-
+    private RelativeLayout layout_settings_item_1;
+    private RelativeLayout layout_settings_item_2;
     private RelativeLayout layout_settings_item_3;
+
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.layout_settings);
+        layout_settings_item_1 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_1));
+        layout_settings_item_2 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_2));
         layout_settings_item_3 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_3));
 
 
@@ -43,10 +47,27 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected void setListener() {
+
+        //班级管理
+        layout_settings_item_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        //学员管理
+        layout_settings_item_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //动态管理
         layout_settings_item_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),DongtaiGuanli.class);
+                Intent intent = new Intent(getActivity(), DongtaiGuanli.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +92,6 @@ public class SettingsFragment extends BaseFragment {
 
     /**
      * 点击进入学生or气场or赛事列表页面
-     *
      */
     private void doStartActivity() {
         Intent intent = new Intent(getThis(), ListActivity.class);

@@ -125,7 +125,7 @@
                         android:drawableLeft="@drawable/a125"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
-                        android:text="校园统计"
+                        android:text="班级管理"
                         android:textColor="#222222"
                         android:textSize="14dp" />
 

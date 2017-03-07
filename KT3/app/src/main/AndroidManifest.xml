@@ -76,18 +76,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:label">
-        <activity android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseClub"
+        <activity
+            android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseClub"
             android:screenOrientation="portrait"
-            android:theme="@style/my_dialog"/>
-        <activity android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseTime"
+            android:theme="@style/my_dialog" />
+        <activity
+            android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseTime"
             android:screenOrientation="portrait"
-            android:theme="@style/my_dialog"/>
-        <activity android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseIcon"
+            android:theme="@style/my_dialog" />
+        <activity
+            android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseIcon"
             android:screenOrientation="portrait"
-            android:theme="@style/my_dialog"/>
-        <activity android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityNewContest"
+            android:theme="@style/my_dialog" />
+        <activity
+            android:name=".Refactor.ui.Avtivity.Xjss.ActivityNewContest"
             android:screenOrientation="portrait"
-            android:theme="@style/my_dialog"/>
+            android:theme="@style/my_dialog" />
         <activity
             android:name=".NeActivity"
             android:screenOrientation="portrait" />
@@ -684,7 +688,8 @@
         <activity android:name=".fragment.peixun.JiNengFragment_List" />
         <activity android:name=".fragment.peixun.JiNeng_Liebiao" />
         <activity android:name=".Refactor.ui.Fragment.Main.DongtaiGuanli" />
-        <activity android:name=".Refactor.ui.Fragment.Main.Saishi_Shangchuan"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.Saishi_Shangchuan" />
+        <activity android:name=".Refactor.ui.Fragment.Main.Shangchuan_Result"></activity>
     </application>
 
 </manifest>

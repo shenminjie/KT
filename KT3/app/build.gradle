@@ -114,7 +114,7 @@ android {
         compile files('libs/youkuuploaderlib.jar')
         compile project(':YoukuPlayerOpenSDK')
         compile project(':MPChartLib')
-    compile project(':zxingutil')
+        compile project(':zxingutil')
         compile 'com.google.code.gson:gson:2.2.4'
 //    compile 'com.jakewharton:butterknife:8.4.0'
 //    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
@@ -126,4 +126,7 @@ android {
         compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
 
     }
+}
+dependencies {
+    compile 'com.android.support.constraint:constraint-layout:+'
 }
