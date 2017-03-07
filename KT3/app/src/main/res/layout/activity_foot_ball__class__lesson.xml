@@ -4,7 +4,6 @@
     android:id="@+id/activity_foot_ball__class__lesson"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.newer.kt.Refactor.ui.Avtivity.FootBall_Class_Lesson">
 
     <RelativeLayout
@@ -20,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:onClick="doBack"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingLeft="25px"
+            android:paddingRight="25px"
             android:src="@mipmap/nomal_back" />
 
         <TextView
@@ -33,4 +32,13 @@
             android:textSize="18dp" />
 
     </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_zqk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+
+        android:cacheColorHint="@color/transparent">
+    </GridView>
 </RelativeLayout>

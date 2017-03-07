@@ -1,13 +1,20 @@
 package com.newer.kt.fragment.peixun;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.View;
 import android.widget.TextView;
 
 import com.frame.app.base.fragment.BaseFragment;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.FootBallListActivity;
+import com.newer.kt.ktmatch.QueryBuilder;
+
+import org.xutils.http.RequestParams;
+
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -28,10 +35,34 @@ public class FootBallFragment extends BaseFragment {
     @Bind(R.id.tv_all_nale)
     TextView tv_all_nale;
     private Typeface mTf;
-
+    public static Map map;
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_footbal);
+        getRootView().findViewById(R.id.image_view1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),FootBallListActivity.class).putExtra("key","幼儿园"));
+
+            }
+        }
+    );
+        QueryBuilder.build("school_gym_courses/combinations").get(new QueryBuilder.EnhancedCallback("list[group:semester]") {
+            @Override
+            public void onSuccessWithObject(String namelink, Object object) {
+                map = (Map) object;
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onDebug(RequestParams rp) {
+
+            }
+        });
 
     }
 
@@ -62,6 +93,7 @@ public class FootBallFragment extends BaseFragment {
 
     @OnClick(R.id.image_view)
     public void goDetail(){
-        startActivity(FootBallListActivity.class);
+        startActivity(new Intent(getContext(),FootBallListActivity.class).putExtra("key","小学"));
+
     }
 }

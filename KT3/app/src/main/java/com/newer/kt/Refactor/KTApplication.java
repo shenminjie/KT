@@ -16,6 +16,7 @@ import com.bugtags.library.BugtagsOptions;
 import com.frame.app.utils.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.newer.kt.InterfaceSample;
 import com.newer.kt.Refactor.db.BagsDaoHelper;
 import com.newer.kt.Refactor.db.GamesDaoHelper;
 import com.newer.kt.Refactor.db.RankingLeague1v1DaoHelper;
@@ -82,7 +83,8 @@ public class KTApplication extends App {
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
         initLocation();
         mLocationClient.start();
-initImageLoader();
+        initImageLoader();
+        InterfaceSample.test();
 //        configuration = new YoukuPlayerBaseConfiguration(this) {
 //
 //

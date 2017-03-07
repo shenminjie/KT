@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.baidu.mapapi.map.Text;
 import com.frame.app.base.activity.BaseActivity;
 import com.frame.app.utils.GsonTools;
 import com.frame.app.utils.SharedPreferencesUtils;
@@ -29,12 +34,17 @@ import com.newer.kt.Refactor.ui.Avtivity.FootballLesson.LessonListAvtivity;
 import com.newer.kt.Refactor.utils.FootBallListManager;
 import com.newer.kt.Refactor.view.CircleProgressView;
 import com.newer.kt.Refactor.view.SlideDelete;
+import com.newer.kt.fragment.peixun.FootBallFragment;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Response;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import butterknife.Bind;
 
@@ -51,6 +61,10 @@ public class FootBallListActivity extends BaseActivity {
 //    private List<List<Combinations>> conent = new ArrayList<>();
 //    private List<CircleProgressView> mList = new ArrayList<>();
 
+    String type;
+    private Map<String, ArrayList> map;
+    public static List semester;
+
     @Override
     protected void initHandler(Message msg) {
 
@@ -60,37 +74,83 @@ public class FootBallListActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_football_list);
         initEvent();
+        type = getIntent().getStringExtra("type");
+        map = new TreeMap(FootBallFragment.map);
+        String key = getIntent().getStringExtra("key");
+        for(Object k:new TreeSet(map.keySet())){
+            if(!k.toString().startsWith(key)){
+                map.remove(k);
+            }
+        }
+        final List items = new ArrayList(map.keySet());
+        ((ListView) findViewById(R.id.lv_zqk)).setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return map.size();
+            }
 
+            @Override
+            public Object getItem(int i) {
+                return items.get(i);
+            }
+
+            @Override
+            public long getItemId(int i) {
+                return 0;
+            }
+
+            @Override
+            public View getView(final int i, View view, ViewGroup viewGroup) {
+
+                View convertView = LayoutInflater.from(getBaseContext()).inflate(R.layout.zqk_item, null);
+                ((TextView) convertView.findViewById(R.id.name)).setText(items.get(i).toString());
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        semester =  map.get(items.get(i));
+                        Intent intent=new Intent(getApplicationContext(),FootBall_Class_Lesson.class);
+                        startActivity(intent);
+
+                    }
+                });
+                return convertView;
+            }
+        });
     }
 
     private void initEvent() {
-        rl_ftclass1 = ((RelativeLayout) findViewById(R.id.rl_ftclass1));
+//        rl_ftclass1 = ((RelativeLayout) findViewById(R.id.rl_ftclass1));
         iv_ft_back = ((ImageView) findViewById(R.id.iv_ft_back));
+        iv_ft_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
     protected void setListener() {
-        rl_ftclass1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),FootBall_Class_Lesson.class);
-                startActivity(intent);
+//        rl_ftclass1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(getApplicationContext(),FootBall_Class_Lesson.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
-            }
-        });
-
-        iv_ft_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FootBallListActivity.this.finish();
-            }
-        });
+//        iv_ft_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FootBallListActivity.this.finish();
+//            }
+//        });
 
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
 
 
     }
@@ -310,4 +370,4 @@ public class FootBallListActivity extends BaseActivity {
 //    }
 
 
-    }
+}

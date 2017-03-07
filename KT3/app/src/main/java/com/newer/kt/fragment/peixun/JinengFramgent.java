@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -26,6 +27,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.internal.Streams;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.utils.MD5;
@@ -38,8 +40,10 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 
@@ -84,8 +88,27 @@ public class JinengFramgent extends BaseFragment {
     }
 
     public static List jineng_cat_data;
+    public static List<Map> wikis;
 
     private void getJiNeng() {
+
+        QueryBuilder.build("wikis/list").get(new QueryBuilder.EnhancedCallback("wikis") {
+            @Override
+            public void onSuccessWithObject(String namelink, Object object) {
+                wikis =  (ArrayList<Map>) object;
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onDebug(RequestParams rp) {
+
+            }
+        });
+
         QueryBuilder.build("study/get_all_app_cartoons").get(new QueryBuilder.Callback(){
 
 
@@ -166,6 +189,8 @@ public class JinengFramgent extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int idx = 0;
                 if(position==3){
+                    Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("list", (Serializable) wikis);
+                    startActivity(intent);
                     return;
                 }
                 if(position==2){
@@ -174,6 +199,7 @@ public class JinengFramgent extends BaseFragment {
                 if(position ==1){
                     idx= 2;
                 }
+
                 Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("catidx",idx);
                 startActivity(intent);
 

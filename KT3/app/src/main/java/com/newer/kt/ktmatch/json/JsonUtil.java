@@ -43,6 +43,15 @@ public class JsonUtil{
 		return null;
 	}
 
+	public static Map<String, Object> fromContent(String jsonObjectValue) {
+		try {
+			return fromJsonObject(new JSONObject(jsonObjectValue));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static Map<String, Object> fromJsonObject(String jsonObjectValue) {
 		try {
 			return fromJsonObject(new JSONObject(jsonObjectValue));
@@ -79,18 +88,25 @@ public class JsonUtil{
 		return map;
 	}
 
-	public static Object extractJsonRightValue(String value) {
-		Object jsonvalue;
-		if (value.startsWith("[")) {
+	public static Object extractJsonRightValue(Object ovalue) {
+			Object jsonvalue = null;
+		if(ovalue instanceof String){
+			String value = ovalue.toString();
+			if (value.startsWith("[")) {
 			jsonvalue = fromJsonArray(value);
 		} else if (value.startsWith("{")) {
 			jsonvalue = fromJsonObject(value);
 		} else {
 			jsonvalue = value;
 		}
+		}else if(ovalue instanceof JSONArray){
+			jsonvalue = fromJsonArray((JSONArray) ovalue);
+
+		}else  if(ovalue instanceof JSONObject){
+			jsonvalue = fromJsonObject((JSONObject) ovalue);
+		}
 		return jsonvalue;
 	}
-
 	public static Object findJsonNode(String exactname, JSONArray rootObject) {
 		if (rootObject instanceof JSONArray) {
 			JSONArray jsonobject = (JSONArray) rootObject;
