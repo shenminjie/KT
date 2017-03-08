@@ -192,6 +192,7 @@ public class SaiShiEJ extends CamScanActivity {
         rb_paihang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findViewById(R.id.saishi).setVisibility(View.VISIBLE);
                 lv_vs_ej.setAdapter(adapter);
                 lv_vs_ej.setVisibility(View.VISIBLE);
                 lv_vs_cc.setVisibility(View.GONE);
@@ -202,9 +203,11 @@ public class SaiShiEJ extends CamScanActivity {
         rb_zongchangci.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findViewById(R.id.saishi).setVisibility(View.GONE);
                 lv_vs_cc.setAdapter(adapter_vs);
                 lv_vs_cc.setVisibility(View.VISIBLE);
                 lv_vs_ej.setVisibility(View.GONE);
+
 
 
             }

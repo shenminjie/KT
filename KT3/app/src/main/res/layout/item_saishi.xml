@@ -133,7 +133,7 @@
                 android:layout_height="290dp"
                 android:divider="#ebebeb"
                 android:dividerHeight="1px"
-                android:background="#999">
+               >
             </ListView>
 
 
@@ -164,7 +164,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#663">
+        >
     </ListView>
 
 </RelativeLayout>
