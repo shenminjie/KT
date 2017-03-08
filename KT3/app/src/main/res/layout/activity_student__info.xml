@@ -183,7 +183,6 @@
                 android:layout_alignParentBottom="true"
                 android:background="#c8c7cc">
 
-
             </LinearLayout>
 
 
@@ -346,15 +345,14 @@
             android:id="@+id/saishi"
             android:layout_width="193dp"
             android:layout_height="37dp"
-            android:background="#222222"
-            android:text="删除玩家"
-            android:textColor="#ffffff"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"/>
+            android:background="#222222"
+            android:text="删除玩家"
+            android:textColor="#ffffff" />
 
 
     </RelativeLayout>
-
 
 </RelativeLayout>

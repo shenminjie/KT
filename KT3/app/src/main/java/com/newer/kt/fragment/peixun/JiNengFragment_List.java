@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class JiNengFragment_List extends AppCompatActivity {
+public class   JiNengFragment_List extends AppCompatActivity {
 
     private ListView lv_jinengList;
     private BaseAdapter adapter;
