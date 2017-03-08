@@ -25,7 +25,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:text="虹桥万科中心"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textColor="#222222"/>
             </LinearLayout>
 
             <LinearLayout
@@ -40,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:text="2017-03-01"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textColor="#222222"/>
             </LinearLayout>
 
 
@@ -146,7 +148,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="ktdfsf"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="#222222"/>
 
             </RelativeLayout>
 
@@ -173,7 +176,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="kt"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="#222222"/>
 
             </RelativeLayout>
 
