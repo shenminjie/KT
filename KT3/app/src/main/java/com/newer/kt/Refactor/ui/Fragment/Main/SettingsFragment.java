@@ -31,6 +31,8 @@ import com.newer.kt.ktmatch.QueryBuilder;
 
 import org.xutils.http.RequestParams;
 
+import java.io.Serializable;
+
 /**
  * Created by jy on 16/9/14.
  */
@@ -67,25 +69,8 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),Class_StuManager.class);
-                String clubid = ""+PreferenceManager.getDefaultSharedPreferences(getContext())
-                        .getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
-                QueryBuilder.build("offline/get_club_data").add("club_id",clubid).get(new QueryBuilder.EnhancedCallback("users") {
-                    @Override
-                    public void onSuccessWithObject(String namelink, Object object) {
+                Intent intent=new Intent(getActivity(),Stu_Manager.class);
 
-                    }
-
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
-
-                    }
-
-                    @Override
-                    public void onDebug(RequestParams rp) {
-
-                    }
-                });
                 startActivity(intent);
 
             }

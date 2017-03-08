@@ -45,6 +45,7 @@
 
     <LinearLayout
         android:id="@+id/ll_allBar"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="26dp"
         android:layout_below="@+id/rl_vs_titile_bt">
@@ -60,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:text="年级"
+                android:text="全部"
                 android:textColor="#222222"
                 android:textStyle="bold" />
 
@@ -118,5 +119,17 @@
                 android:textColor="#adadad" />
 
         </LinearLayout>
+
+
     </LinearLayout>
+    <ListView
+        android:id="@+id/lv_class_stuManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15px"
+        android:layout_below="@+id/ll_allBar"
+        >
+
+    </ListView>
+
 </RelativeLayout>

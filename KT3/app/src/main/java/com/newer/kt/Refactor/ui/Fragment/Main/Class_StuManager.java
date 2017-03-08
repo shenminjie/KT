@@ -1,6 +1,7 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
 import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,21 +12,22 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.frame.app.base.activity.BaseActivity;
 import com.newer.kt.R;
 import com.newer.kt.entity.Student;
 
 import java.util.List;
 import java.util.Map;
 
-public class Class_StuManager extends AppCompatActivity {
+public class Class_StuManager extends BaseActivity {
 
     private ListView lv_class_stuManager;
     private BaseAdapter adapter;
     private ImageView image_vs_item_back;
-    private List list;
+    public List list;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_stu_manager);
         initView();
@@ -34,6 +36,26 @@ public class Class_StuManager extends AppCompatActivity {
         initDate();
         initAdapter();
         initOnclick();
+
+    }
+
+    @Override
+    protected void initHandler(Message msg) {
+
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
 
     }
 

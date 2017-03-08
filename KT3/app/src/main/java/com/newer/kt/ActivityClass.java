@@ -55,6 +55,12 @@ public class ActivityClass extends BaseActivity {
         setContentView(R.layout.activity_class);
         mListView = (ExpandableListView) findViewById(R.id.list_view);
         ButterKnife.bind(this);
+        findViewById(R.id.image_vs_item_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         initData(null);
 
 

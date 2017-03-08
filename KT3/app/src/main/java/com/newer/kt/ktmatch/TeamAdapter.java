@@ -59,7 +59,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.MyViewHolder> 
         holder.mSexImg.setImageResource(valueList.get(position).get("gender").equals("MM")?R.mipmap.nv:R.mipmap.nan);
 //        holder.mIcon.setImageResource(valueList.get(position).get("gender").equals("MM")?R.mipmap.nv:R.mipmap.nan);
 
-        ImageLoader.getInstance().displayImage(valueList.get(position).get("avatar").toString(),holder.mIcon,getListOptions());
+//        ImageLoader.getInstance().displayImage(valueList.get(position).get("avatar").toString(),holder.mIcon,getListOptions());
     }
     public static DisplayImageOptions getListOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()

@@ -3,22 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.zhy.autolayout.AutoRelativeLayout
+
+    <RelativeLayout
+        android:id="@+id/rl_vs_titile_bt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGrayLight"
-        android:visibility="gone">
-        <EditText
-            android:id="@+id/edt"
-            style="@style/SearchEdtStyle"
-            android:layout_marginLeft="25px"
-            android:layout_marginRight="25px"
-            android:layout_marginTop="25px"
-            android:layout_marginBottom="25px"
-            android:background="@drawable/search_edt_background"
-            android:imeOptions="actionSearch"
-            android:hint="@string/search"/>
-    </com.zhy.autolayout.AutoRelativeLayout>
+        android:layout_height="44dp"
+        android:background="@color/text_black">
+
+        <ImageView
+            android:id="@+id/image_vs_item_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:src="@mipmap/nomal_back" />
+
+        <TextView
+            android:id="@+id/tv_title_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="班级学员管理"
+            android:textColor="@color/gold"
+            android:textSize="18dp" />
+        <ImageView
+            android:id="@+id/iv_addStu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/add"
+            android:visibility="invisible"
+            />
+
+
+    </RelativeLayout>
 
     <ExpandableListView
         android:id="@+id/list_view"

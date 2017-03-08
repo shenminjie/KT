@@ -60,13 +60,17 @@ public abstract class BaseActivity extends AnalyticsHome {
 		receiver = new Receiver();
 		registerReceiver(receiver,intent);
 	}
-public static class Receiver extends BroadcastReceiver{
-
-	@Override
-	public void onReceive(Context context, Intent intent) {
+	public void recvData(Intent intent){
 
 	}
-}
+
+	public class Receiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			recvData(intent);
+		}
+	}
 
 	@Override
 	protected void onDestroy() {
