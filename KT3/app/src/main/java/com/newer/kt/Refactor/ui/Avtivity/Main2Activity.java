@@ -3,9 +3,11 @@ package com.newer.kt.Refactor.ui.Avtivity;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.KeyEvent;
+        import android.view.View;
         import android.webkit.WebResourceRequest;
         import android.webkit.WebView;
         import android.webkit.WebViewClient;
+        import android.widget.ImageView;
 
         import com.newer.kt.R;
         import com.newer.kt.ktmatch.QueryBuilder;
@@ -15,6 +17,7 @@ package com.newer.kt.Refactor.ui.Avtivity;
 public class Main2Activity extends AppCompatActivity {
 
     private WebView webView;
+    private ImageView image_vs_item_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,13 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         webView = ((WebView) findViewById(R.id.webview));
         webView.getSettings().setJavaScriptEnabled(true);
+        image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
+        image_vs_item_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 //        QueryBuilder.build("school_gym_courses/detail").add("school_gym_course_combination_id",getIntent().getStringExtra("school_gym_course_combination_id")).get(new QueryBuilder.EnhancedCallback() {
 //            @Override
