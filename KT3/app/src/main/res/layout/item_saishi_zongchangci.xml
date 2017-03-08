@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp">
+        android:layout_height="130dp">
 
         <LinearLayout
             android:id="@+id/ll_bar"
@@ -60,66 +60,126 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/ll_bar1"
-            android:orientation="horizontal">
+            android:layout_below="@+id/ll_bar1">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/iv_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/avs"
 
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="right|center_vertical">
+                />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/iv_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/nomal_back" />
+            <RelativeLayout
+                android:id="@+id/rl_mid"
+                android:layout_width="50dp"
+                android:layout_height="15dp"
+                android:layout_below="@+id/iv_mid"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@color/black"
+                android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_alignLeft="@+id/iv_left"
-                        android:layout_below="@+id/iv_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="yyyy"/>
-                </RelativeLayout>
+                <TextView
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/nomal_back" />
-            </LinearLayout>
+                    android:layout_marginRight="5dp"
 
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                    android:layout_toLeftOf="@+id/tv_mid"
+                    android:text="10"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/tv_mid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/nomal_back" />
-            </LinearLayout>
+                    android:layout_centerInParent="true"
+                    android:text=":"
+
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_mid"
+                    android:text="10"
+
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/iv_mid">
+
+                <ImageView
+                    android:id="@+id/iv_left"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+
+                    android:src="@drawable/default_head"
+
+                    />
 
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_left"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="ktdfsf"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/iv_mid">
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/default_head"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/iv_right"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="kt"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
