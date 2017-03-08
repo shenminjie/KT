@@ -202,7 +202,7 @@ public class SaiShiEJ extends CamScanActivity {
         rb_zongchangci.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lv_vs_cc.setAdapter(adapter);
+                lv_vs_cc.setAdapter(adapter_vs);
                 lv_vs_cc.setVisibility(View.VISIBLE);
                 lv_vs_ej.setVisibility(View.GONE);
 
@@ -266,28 +266,29 @@ public class SaiShiEJ extends CamScanActivity {
         };
 
 
-//        adapter_vs = new BaseAdapter() {
-//            @Override
-//            public int getCount() {
-//                return 1;
-//            }
-//
-//            @Override
-//            public Object getItem(int position) {
-//                return null;
-//            }
-//
-//            @Override
-//            public long getItemId(int position) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//                convertView=View.inflate(getApplicationContext(),R.layout.item_vs_paihang,null);
-//                return convertView;
-//            }
-//        };
+        adapter_vs = new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return 4;
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                convertView=View.inflate(getApplicationContext(),R.layout.item_saishi_zongchangci,null);
+
+                return convertView;
+            }
+        };
     }
 
     public static class ViewHolder {
