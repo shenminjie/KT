@@ -1,9 +1,12 @@
 package com.frame.app.base.activity;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -36,6 +39,7 @@ public abstract class BaseActivity extends AnalyticsHome {
 	protected LoadingDialog loadingDialog;
 	private DisplayMetrics  displayMetrics = null;
 	private String TAG;
+	private BroadcastReceiver receiver;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,14 +55,27 @@ public abstract class BaseActivity extends AnalyticsHome {
 		setListener();
 		LogUtils.allowD = BaseApplication.isTest; // 测试环境下允许打log
 		LogUtils.e(this.getClass().getSimpleName()+"");
+		IntentFilter intent = new IntentFilter();
+		intent.addAction(this.getClass().getName());
+		receiver = new Receiver();
+		registerReceiver(receiver,intent);
 	}
+public static class Receiver extends BroadcastReceiver{
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+
+	}
+}
 
 	@Override
 	protected void onDestroy() {
+		unregisterReceiver(receiver);
 		AppManager.getAppManager().finishActivity(getThis());
 		super.onDestroy();
 		EventBus.getDefault().unregister(this);
 	}
+
 
 	protected <V> V getViewById(int resId) {
 		return (V) findViewById(resId);

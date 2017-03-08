@@ -94,7 +94,7 @@ public class NeActivity extends NEVideoPlayerActivity {
                 } else {
                     long duration = len;
                     final long finalLen = len;
-                    if (t * 1l + 6000l <= leng) {
+                    if (t * 1l + size*1000l <= leng) {
                         try {
                             mVeoView.setPos(played*5);
                             mVeoView.pause();

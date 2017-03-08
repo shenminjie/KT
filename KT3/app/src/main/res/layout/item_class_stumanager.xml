@@ -54,7 +54,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_nianji"
+                android:id="@+id/tv_shengao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -64,7 +64,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tv_changci"
+                android:id="@+id/tv_tizhong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -84,7 +84,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tv_zhandouli"
+                android:id="@+id/tv_changci"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

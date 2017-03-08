@@ -47,6 +47,8 @@ public class FootBallFragment extends BaseFragment {
             }
         }
     );
+
+
         QueryBuilder.build("school_gym_courses/combinations").get(new QueryBuilder.EnhancedCallback("list[group:semester]") {
             @Override
             public void onSuccessWithObject(String namelink, Object object) {

@@ -98,6 +98,9 @@
         <activity
             android:name=".record.TakePicActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".ActivityClass"
+            android:screenOrientation="portrait" />
 
         <!-- &lt;!&ndash; -->
         <!-- <intent-filter> -->

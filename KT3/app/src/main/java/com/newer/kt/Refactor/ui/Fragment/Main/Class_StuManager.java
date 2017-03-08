@@ -9,25 +9,32 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.newer.kt.R;
 import com.newer.kt.entity.Student;
+
+import java.util.List;
+import java.util.Map;
 
 public class Class_StuManager extends AppCompatActivity {
 
     private ListView lv_class_stuManager;
     private BaseAdapter adapter;
     private ImageView image_vs_item_back;
+    private List list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_stu_manager);
         initView();
+        list = (List) getIntent().getSerializableExtra("users");
 
         initDate();
         initAdapter();
         initOnclick();
+
     }
 
     private void initOnclick() {
@@ -51,12 +58,12 @@ public class Class_StuManager extends AppCompatActivity {
         adapter=new BaseAdapter() {
             @Override
             public int getCount() {
-                return 4;
+                return list.size();
             }
 
             @Override
             public Object getItem(int position) {
-                return null;
+                return list.get(position);
             }
 
             @Override
@@ -66,7 +73,15 @@ public class Class_StuManager extends AppCompatActivity {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
+                Map m = (Map)getItem(position);
+
                 convertView=View.inflate(getApplicationContext(),R.layout.item_class_stumanager,null);
+                ((TextView)convertView.findViewById(R.id.tv_vs_name)).setText(m.get("nickname").toString());
+                ((ImageView)convertView.findViewById(R.id.tv_no)).setImageResource(m.get("gender").toString().equals("nv")?R.mipmap.nv:R.mipmap.nan);
+
+                ((TextView)convertView.findViewById(R.id.tv_shengao)).setText(m.get("height").toString());
+                ((TextView)convertView.findViewById(R.id.tv_tizhong)).setText(m.get("weight").toString());
+
                 return convertView;
             }
         };
@@ -80,7 +95,6 @@ public class Class_StuManager extends AppCompatActivity {
     private void initView() {
         lv_class_stuManager = ((ListView) findViewById(R.id.lv_class_stuManager));
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
-
 
     }
 }
