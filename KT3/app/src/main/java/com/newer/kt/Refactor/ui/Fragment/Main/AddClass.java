@@ -19,6 +19,7 @@ import com.newer.kt.ktmatch.QueryBuilder;
 import org.xutils.http.RequestParams;
 
 import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_USER_ID;
 
 public class AddClass extends AppCompatActivity {
     int grade;
@@ -51,7 +52,10 @@ public class AddClass extends AppCompatActivity {
 
                 String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                         .getLong(PRE_CURRENT_CLUB_ID, 1);
-                QueryBuilder.build("school_class/create_school_class").add("club_id", clubid).add("grade", grade).add("cls", cls).post(new QueryBuilder.EnhancedCallback("response") {
+                String userid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                        .getLong(PRE_CURRENT_USER_ID, 1);
+
+                QueryBuilder.build("school_class/create_school_class").add("user_id",userid).add("club_id", clubid).add("grade", grade).add("cls", cls).post(new QueryBuilder.EnhancedCallback("response") {
                     @Override
                     public void onSuccessWithObject(String namelink, Object object) {
                         finish();

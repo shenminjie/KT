@@ -155,7 +155,11 @@ for(Object map :list){
 //
     }
 
-    String wenzi = g+":共"+clses.size()+"个班级"+count+"个学生";
+    String size1 = clses.size()+"";
+    size1 = size1.length()==1?size1+" ":size1;
+    String size2 = count+"";
+    size2 =size2.length()==1?size2+" ":size2;
+    String wenzi = g+":共"+size1+"个班级"+size2+"个学生";
     list_grade.add(wenzi);
 
 }
