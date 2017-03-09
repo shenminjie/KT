@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -15,6 +16,7 @@ public class ChooseLocal extends AppCompatActivity {
     private ListView lv_chooseStu;
     private BaseAdapter adapter;
     private ImageView image_vs_item_back;
+    private Button btn_tijiao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,14 @@ public class ChooseLocal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        //------提交按钮-----点击事件-------
+        btn_tijiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -63,5 +73,6 @@ public class ChooseLocal extends AppCompatActivity {
     private void initView() {
         lv_chooseStu = ((ListView) findViewById(R.id.lv_chooseStu));
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
+        btn_tijiao = ((Button) findViewById(R.id.btn_tijiao));
     }
 }
