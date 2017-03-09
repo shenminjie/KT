@@ -263,7 +263,7 @@ public class Stu_Manager extends BaseActivity implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case R.id.pop_addStu: {
-                Intent intent = new Intent(getApplicationContext(), CamScanActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Class_StuManager.class);
                 startActivity(intent);
                 mPopWindow.dismiss();
             }
