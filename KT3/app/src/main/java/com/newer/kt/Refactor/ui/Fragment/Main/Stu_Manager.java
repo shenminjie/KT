@@ -17,7 +17,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bajie.demo.view.CustomRecyclerView;
 import com.frame.app.base.activity.BaseActivity;
@@ -43,6 +45,9 @@ public class Stu_Manager extends BaseActivity {
     private List rt;
     private TeamAdapter adapter;
     private ImageView image_vs_item_back;
+    private PopupWindow mPopWindow;
+    private TextView mMenuTv;
+    private ImageView iv_addStu;
 
 
     @Override
@@ -50,18 +55,29 @@ public class Stu_Manager extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu__manager);
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
+        iv_addStu = ((ImageView) findViewById(R.id.iv_addStu));
         image_vs_item_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getThis())
-                .getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
-        QueryBuilder.build("offline/get_club_data").add("club_id",clubid).get(new QueryBuilder.EnhancedCallback("users") {
+
+
+        iv_addStu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow();
+            }
+        });
+
+
+        String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getThis())
+                .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
+        QueryBuilder.build("offline/get_club_data").add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("users") {
             @Override
             public void onSuccessWithObject(String namelink, Object object) {
-                rt  = (List) object;
+                rt = (List) object;
                 setData((ArrayList) rt);
             }
 
@@ -78,17 +94,17 @@ public class Stu_Manager extends BaseActivity {
     }
 
 
-
     private void setData(ArrayList valueList) {
-        if (adapter== null){
+        if (adapter == null) {
             adapter = new TeamAdapter(this, valueList);
-            ((ListView)findViewById(R.id.lv_class_stuManager)).setAdapter(adapter);
-        }else{
+            ((ListView) findViewById(R.id.lv_class_stuManager)).setAdapter(adapter);
+        } else {
             adapter.getList().addAll(valueList);
             adapter.notifyDataSetChanged();
         }
 //        ((CustomRecyclerView)findViewById(R.id.lv_class_stuManager)).setPullLoadMoreCompleted();
     }
+
     @Override
     protected void initHandler(Message msg) {
 
@@ -151,6 +167,7 @@ public class Stu_Manager extends BaseActivity {
                     .build();
             return options;
         }
+
         public ArrayList<Map<String, String>> getList() {
             return valueList;
         }
@@ -176,10 +193,10 @@ public class Stu_Manager extends BaseActivity {
 
         @Override
         public View getView(int position, View itemView, ViewGroup viewGroup) {
-if(itemView==null){
-    itemView=  LayoutInflater.from(mContext).inflate(R.layout.adapter_team_item, null);
+            if (itemView == null) {
+                itemView = LayoutInflater.from(mContext).inflate(R.layout.adapter_team_item, null);
 
-}
+            }
             TextView mNameTxt = (TextView) itemView.findViewById(R.id.item_name);
             TextView mGradeTxt = (TextView) itemView.findViewById(R.id.item_grade);
             TextView mClassTxt = (TextView) itemView.findViewById(R.id.item_class);
@@ -194,31 +211,59 @@ if(itemView==null){
                 }
             });
             mNameTxt.setText(valueList.get(position).get("user_id"));
-            mClassTxt.setText(valueList.get(position).get("school_cls").replaceAll("\"",""));
+            mClassTxt.setText(valueList.get(position).get("school_cls").replaceAll("\"", ""));
             mForceTxt.setText(valueList.get(position).get("power"));
             mGradeTxt.setText(valueList.get(position).get("school_grade"));
-            if(mGradeTxt.getText().equals("null")){
+            if (mGradeTxt.getText().equals("null")) {
                 mGradeTxt.setText("--");
             }
-            if(mClassTxt.getText().equals("null")){
+            if (mClassTxt.getText().equals("null")) {
                 mClassTxt.setText("--");
             }
 
             mSoreTxt.setText(valueList.get(position).get("scores"));
-            mSexImg.setImageResource(valueList.get(position).get("gender").equals("MM")?R.mipmap.nv:R.mipmap.nan);
+            mSexImg.setImageResource(valueList.get(position).get("gender").equals("MM") ? R.mipmap.nv : R.mipmap.nan);
 //        mIcon.setImageResource(valueList.get(position).get("gender").equals("MM")?R.mipmap.nv:R.mipmap.nan);
 
 //            ImageLoader.getInstance().displayImage(valueList.get(position).get("avatar").toString(),mIcon,getListOptions());
-itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        startActivity(new Intent(view.getContext(),Student_Info.class));
-    }
-});
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(view.getContext(), Student_Info.class));
+                }
+            });
 
             return itemView;
         }
 
     }
+
+
+    private void showPopupWindow() {
+        View contentView = LayoutInflater.from(Stu_Manager.this).inflate(R.layout.popuplayout, null);
+        mPopWindow = new PopupWindow(contentView);
+        mPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        TextView pop_addStu = (TextView) contentView.findViewById(R.id.pop_addStu);
+        TextView pop_addClass = (TextView) contentView.findViewById(R.id.pop_addClass);
+        pop_addStu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        pop_addClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        mPopWindow.showAsDropDown(iv_addStu);
+    }
+
 
 }
