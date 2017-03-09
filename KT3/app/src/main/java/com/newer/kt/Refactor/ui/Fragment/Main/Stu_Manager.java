@@ -40,7 +40,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Stu_Manager extends BaseActivity {
+import shengchengerweima.CamScanActivity;
+
+public class Stu_Manager extends BaseActivity implements View.OnClickListener {
 
     private List rt;
     private TeamAdapter adapter;
@@ -247,23 +249,32 @@ public class Stu_Manager extends BaseActivity {
 
         TextView pop_addStu = (TextView) contentView.findViewById(R.id.pop_addStu);
         TextView pop_addClass = (TextView) contentView.findViewById(R.id.pop_addClass);
-        pop_addStu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        pop_addClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        pop_addStu.setOnClickListener(this);
+        pop_addClass.setOnClickListener(this);
 
 
         mPopWindow.showAsDropDown(iv_addStu);
+
+
     }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.pop_addStu: {
+                Intent intent = new Intent(getApplicationContext(), CamScanActivity.class);
+                startActivity(intent);
+                mPopWindow.dismiss();
+            }
+            break;
+            case R.id.pop_addClass: {
+                Intent intent = new Intent(getApplicationContext(), AddClass.class);
+                startActivity(intent);
+            }
+            break;
 
+        }
+    }
 }
+
