@@ -52,7 +52,7 @@
         <Button android:id="@+id/btn_tijiao"
             android:layout_width="193dp"
             android:layout_height="37dp"
-            android:background="#ffc700 "
+            android:background="#ffc700"
             android:text="提交"
             android:textColor="#222222"
             android:textSize="18sp"
