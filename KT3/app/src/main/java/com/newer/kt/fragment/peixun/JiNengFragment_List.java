@@ -60,7 +60,7 @@ public class JiNengFragment_List extends AppCompatActivity {
                     startActivity(intent);
 
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class).putExtra("url", ((Map) list.get(position)).get("url").toString());
+                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class).putExtra("url", ((Map) list.get(position)).get("url").toString()).putExtra("title",((Map) list.get(position)).get("title").toString());
                     startActivity(intent);
 
                 }

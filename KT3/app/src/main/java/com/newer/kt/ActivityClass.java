@@ -141,10 +141,11 @@ String[] grade = new String[]{"小班","中班","大班","一年级","二年级"
 for(Object map :list){
     int i = Integer.parseInt(((Map)map).get("grade").toString())-1;
     String g = grade[i];
-    list_grade.add(g);
-//    List<Map> clses = (List<Map>) ((Map)map).get("classes");
-////    List users = (List) ((Map)map).get("users");
-//    for(Map mm:clses){
+    List<Map> clses = (List<Map>) ((Map)map).get("classes");
+    int count = 0;
+    for(Map mm:clses){
+    List users = (List) ((Map)mm).get("users");
+        count+=users.size();
 //        Map<String,Object> m = new TreeMap<String,Object>();
 //        List urs = (List) mm.get("users");
 //        m.put("grade", mm.get("cls") + "班");
@@ -153,7 +154,11 @@ for(Object map :list){
 //        rt.add(m);
 //
     }
-//}
+
+    String wenzi = g+":共"+clses.size()+"个班级"+count+"个学生";
+    list_grade.add(wenzi);
+
+}
 
             mAdapter = new ListAdapter(this, list, list_grade);
             mListView.setAdapter(mAdapter);
@@ -179,7 +184,7 @@ for(Object map :list){
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            return ((Map)list.get(groupPosition)).size();
+            return ((List)((Map)list.get(groupPosition)).get("classes")).size();
         }
 
 
@@ -191,6 +196,7 @@ for(Object map :list){
 
         @Override
         public Object getChild(int groupPosition, int childPosition) {
+
             return ((List)((Map)list.get(groupPosition)).get("classes")).get(childPosition);
         }
 
@@ -263,7 +269,10 @@ for(Object map :list){
             } else {
                 groupHolder.img.setBackgroundResource(R.drawable.arrow_up);
             }
-            groupHolder.mGroupTitleTxt.setText(grade_list.get(groupPosition));
+            String[] wenzis = grade_list.get(groupPosition).split(":");
+
+            ((TextView)convertView.findViewById(R.id.group_item_txt_center)).setText(wenzis[1]);
+            groupHolder.mGroupTitleTxt.setText(wenzis[0]);
             return convertView;
         }
 

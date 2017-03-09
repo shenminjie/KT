@@ -8,6 +8,7 @@ package com.newer.kt.Refactor.ui.Avtivity;
         import android.webkit.WebView;
         import android.webkit.WebViewClient;
         import android.widget.ImageView;
+        import android.widget.TextView;
 
         import com.newer.kt.R;
         import com.newer.kt.ktmatch.QueryBuilder;
@@ -23,6 +24,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        ((TextView)findViewById(R.id.tv_title_stuInfo)).setText(getIntent().getStringExtra("title"));
         webView = ((WebView) findViewById(R.id.webview));
         webView.getSettings().setJavaScriptEnabled(true);
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));

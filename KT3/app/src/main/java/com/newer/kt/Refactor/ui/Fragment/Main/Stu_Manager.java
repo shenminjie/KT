@@ -209,16 +209,16 @@ if(itemView==null){
 //        mIcon.setImageResource(valueList.get(position).get("gender").equals("MM")?R.mipmap.nv:R.mipmap.nan);
 
 //            ImageLoader.getInstance().displayImage(valueList.get(position).get("avatar").toString(),mIcon,getListOptions());
-itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        startActivity(new Intent(view.getContext(),Student_Info.class));
-    }
-});
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),Student_Info.class));
+            }
+        });
 
-            return itemView;
-        }
+                    return itemView;
+                }
 
-    }
+            }
 
 }
