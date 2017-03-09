@@ -96,6 +96,15 @@
             android:name=".NeActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseGrade"
+            android:screenOrientation="portrait"
+            android:theme="@style/my_dialog" />
+
+        <activity
+            android:name="shengchengerweima.CamScanActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".record.TakePicActivity"
             android:screenOrientation="landscape" />
         <activity

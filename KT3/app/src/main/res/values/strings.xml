@@ -49,4 +49,5 @@
 
     <string name="film_director">导演：朱塞佩·托纳多雷</string>
     <string name="film_name">天堂电影院</string>
+    <string name="contest_choose_grade">选择年级</string>
 </resources>

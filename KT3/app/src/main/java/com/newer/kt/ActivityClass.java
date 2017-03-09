@@ -252,6 +252,7 @@ for(Object map :list){
 
 
                     @Override
+
                     public LayoutInflater cloneInContext(Context context) {
                         return null;
                     }
