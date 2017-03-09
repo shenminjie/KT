@@ -23,7 +23,7 @@ import java.util.Map;
 
 import shengchengerweima.CamScanActivity;
 
-public class Class_StuManager extends BaseActivity implements View.OnClickListener {
+public class Class_StuManager extends CamScanActivity implements View.OnClickListener {
 
     private ListView lv_class_stuManager;
     private BaseAdapter adapter;
@@ -166,8 +166,7 @@ public class Class_StuManager extends BaseActivity implements View.OnClickListen
         int id = v.getId();
         switch (id) {
             case R.id.pop_saomiao: {
-                Intent intent = new Intent(getApplicationContext(), CamScanActivity.class);
-                startActivity(intent);
+                invokeCap();
                 mPopWindow.dismiss();
             }
             break;
