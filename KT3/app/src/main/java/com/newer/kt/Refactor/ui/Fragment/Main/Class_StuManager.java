@@ -186,4 +186,13 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
 
         }
     }
+
+    @Override
+    public void recvCode(String result) {
+        super.recvCode(result);
+        if(result!=null){
+            startActivity(new Intent(getBaseContext(),Student_Info.class).putExtra("code",result));
+
+        }
+    }
 }
