@@ -42,12 +42,7 @@ public class AddClass extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "请选择年级", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                findViewById(R.id.image_vs_item_back).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                    }
-                });
+
                 String cls = ((TextView)findViewById(R.id.tv_stuInfo2)).getText().toString();
                 if(cls.equals("")){
                     Toast.makeText(getBaseContext(), "请选择班级", Toast.LENGTH_SHORT).show();
@@ -73,7 +68,13 @@ public class AddClass extends AppCompatActivity {
                     }
                 });
             }
-        });//
+        });
+        findViewById(R.id.image_vs_item_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override

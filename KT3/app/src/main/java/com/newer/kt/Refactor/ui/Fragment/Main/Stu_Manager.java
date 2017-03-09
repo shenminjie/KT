@@ -271,6 +271,7 @@ public class Stu_Manager extends BaseActivity implements View.OnClickListener {
             case R.id.pop_addClass: {
                 Intent intent = new Intent(getApplicationContext(), AddClass.class);
                 startActivity(intent);
+                mPopWindow.dismiss();
             }
             break;
 
