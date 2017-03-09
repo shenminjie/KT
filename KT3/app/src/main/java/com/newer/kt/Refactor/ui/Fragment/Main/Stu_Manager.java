@@ -43,6 +43,7 @@ public class Stu_Manager extends BaseActivity {
     private List rt;
     private TeamAdapter adapter;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
