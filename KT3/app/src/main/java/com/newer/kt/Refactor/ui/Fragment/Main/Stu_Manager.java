@@ -42,12 +42,20 @@ public class Stu_Manager extends BaseActivity {
 
     private List rt;
     private TeamAdapter adapter;
+    private ImageView image_vs_item_back;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu__manager);
+        image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
+        image_vs_item_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getThis())
                 .getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
         QueryBuilder.build("offline/get_club_data").add("club_id",clubid).get(new QueryBuilder.EnhancedCallback("users") {
