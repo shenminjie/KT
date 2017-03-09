@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.newer.kt.Refactor.ui.Avtivity.FootBall_Class_Lesson">
 
-    <RelativeLayout
+    <RelativeLayout android:id="@+id/titlelt"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:background="@color/text_black"
@@ -35,6 +35,7 @@
 
     <GridView
         android:id="@+id/gv_zqk"
+        android:layout_below="@+id/titlelt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="3"

@@ -51,6 +51,7 @@ public class FootBall_Class_Lesson extends BaseActivity {
             public View getView(final int i, View view, ViewGroup viewGroup) {
                 View convertView = LayoutInflater.from(getBaseContext()).inflate(R.layout.zqk_gv_item, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(((Map)getItem(i)).get("name").toString());
+                //times" -> "10,10,15,5"
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
