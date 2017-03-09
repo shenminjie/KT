@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.frame.app.base.activity.BaseActivity;
@@ -19,12 +21,18 @@ import com.newer.kt.entity.Student;
 import java.util.List;
 import java.util.Map;
 
-public class Class_StuManager extends BaseActivity {
+import shengchengerweima.CamScanActivity;
+
+public class Class_StuManager extends BaseActivity implements View.OnClickListener {
 
     private ListView lv_class_stuManager;
     private BaseAdapter adapter;
     private ImageView image_vs_item_back;
     public List list;
+    private ImageView iv_zengjia;
+    private PopupWindow mPopWindow;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,8 +82,37 @@ public class Class_StuManager extends BaseActivity {
                 finish();
             }
         });
-    }
 
+
+
+
+
+        iv_zengjia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow();
+            }
+        });
+
+    }
+    private void showPopupWindow() {
+        View contentView = LayoutInflater.from(Class_StuManager.this).inflate(R.layout.popuplayout1, null);
+        mPopWindow = new PopupWindow(contentView);
+        mPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow.showAsDropDown(iv_zengjia,0,110);
+        TextView pop_saomiao = (TextView) contentView.findViewById(R.id.pop_saomiao);
+        TextView pop_addbendi = (TextView) contentView.findViewById(R.id.pop_addbendi);
+        TextView pop_quxiao = (TextView) contentView.findViewById(R.id.pop_quxiao);
+        pop_saomiao.setOnClickListener(this);
+        pop_addbendi.setOnClickListener(this);
+        pop_quxiao.setOnClickListener(this);
+
+
+        mPopWindow.showAsDropDown(iv_zengjia);
+
+
+    }
     private void initAdapter() {
         adapter=new BaseAdapter() {
             @Override
@@ -117,6 +154,31 @@ public class Class_StuManager extends BaseActivity {
     private void initView() {
         lv_class_stuManager = ((ListView) findViewById(R.id.lv_class_stuManager));
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
+        iv_zengjia = ((ImageView) findViewById(R.id.iv_zengjia));
+    }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.pop_saomiao: {
+                Intent intent = new Intent(getApplicationContext(), CamScanActivity.class);
+                startActivity(intent);
+                mPopWindow.dismiss();
+            }
+            break;
+            case R.id.pop_addbendi: {
+                Intent intent = new Intent(getApplicationContext(), AddClass.class);
+                startActivity(intent);
+            }
+            break;
+            case R.id.pop_quxiao: {
+                Intent intent = new Intent(getApplicationContext(), AddClass.class);
+                startActivity(intent);
+            }
+            break;
+
+
+        }
     }
 }

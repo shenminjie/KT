@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:background="#000"
+            android:gravity="center">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/pop_saomiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+
+                android:text=" 扫描添加 "/>
+
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/pop_addbendi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text=" 本地选择 "/>
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/pop_quxiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text=" 取消 "/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
