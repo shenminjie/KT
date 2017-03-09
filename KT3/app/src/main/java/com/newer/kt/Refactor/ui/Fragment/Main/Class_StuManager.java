@@ -100,7 +100,11 @@ public class Class_StuManager extends BaseActivity implements View.OnClickListen
         mPopWindow = new PopupWindow(contentView);
         mPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        mPopWindow.showAsDropDown(iv_zengjia,0,110);
+        mPopWindow.showAsDropDown(iv_zengjia,110,-110);
+
+
+
+        //mPopWindow.setOutsideTouchable(true);
         TextView pop_saomiao = (TextView) contentView.findViewById(R.id.pop_saomiao);
         TextView pop_addbendi = (TextView) contentView.findViewById(R.id.pop_addbendi);
         TextView pop_quxiao = (TextView) contentView.findViewById(R.id.pop_quxiao);
@@ -168,7 +172,7 @@ public class Class_StuManager extends BaseActivity implements View.OnClickListen
             }
             break;
             case R.id.pop_addbendi: {
-                Intent intent = new Intent(getApplicationContext(), AddClass.class);
+                Intent intent = new Intent(getApplicationContext(), ChooseLocal.class);
                 startActivity(intent);
                 mPopWindow.dismiss();
             }

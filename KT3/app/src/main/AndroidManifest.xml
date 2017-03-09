@@ -705,7 +705,8 @@
         <activity android:name=".Refactor.ui.Fragment.Main.Student_Info" />
         <activity android:name=".Refactor.ui.Fragment.Main.Class_StuManager" />
         <activity android:name=".Refactor.ui.Fragment.Main.AddClass" />
-        <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
+        <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal"></activity>
     </application>
 
 </manifest>
