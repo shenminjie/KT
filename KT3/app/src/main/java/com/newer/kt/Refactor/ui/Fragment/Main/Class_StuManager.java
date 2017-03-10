@@ -189,8 +189,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
 //                startActivity(intent);
 //                mPopWindow.dismiss();
 //            }
-//            break;
-
+//            break
 
         }
     }

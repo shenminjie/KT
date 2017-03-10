@@ -86,7 +86,7 @@ public class ChooseLocal extends AppCompatActivity {
 
                 ((TextView) convertView.findViewById(R.id.name)).setText(m.get("nickname"));
                 ((TextView) convertView.findViewById(R.id.gender)).setText(m.get("gender").equals("GG")?"男":"女");
-                boolean b = map.contains(m);
+                boolean b = !map.contains(m);
                 View view = ((View) convertView.findViewById(R.id.xuanzhong));
                 if (!b) {
                     view.setBackgroundResource(R.drawable.xuanzhonqg);
