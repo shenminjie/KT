@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.newer.kt.Refactor.ui.Fragment.Main.Stu_Manager">
+
     <RelativeLayout
         android:id="@+id/rl_vs_titile_bt"
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
             android:text="学员管理"
             android:textColor="@color/gold"
             android:textSize="18dp" />
+
         <ImageView
             android:id="@+id/iv_addStu"
             android:layout_width="wrap_content"
@@ -35,20 +37,19 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:gravity="center_vertical"
-            android:src="@drawable/add"
-            />
+            android:src="@drawable/add" />
 
 
     </RelativeLayout>
 
 
-
     <LinearLayout
         android:id="@+id/ll_allBar"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="26dp"
-        android:layout_below="@+id/rl_vs_titile_bt">
+        android:layout_below="@+id/rl_vs_titile_bt"
+        android:background="#f9f9f9"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/ll_class_left"
@@ -86,42 +87,42 @@
             android:layout_width="match_parent"
             android:layout_height="27dp"
             android:layout_below="@+id/LL_title"
-            android:background="#f7f7f7"
+            android:background="#f9f9f9"
             android:gravity="right|center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:gravity="center"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="年级"
                 android:textColor="#adadad" />
 
             <TextView
-                android:layout_weight="1"
-                android:gravity="center"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="班级"
                 android:textColor="#adadad" />
 
             <TextView
-                android:layout_weight="1"
-                android:gravity="center"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="战斗力"
                 android:textColor="#adadad" />
 
             <TextView
-                android:layout_weight="1"
-                android:gravity="center"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="积分"
                 android:textColor="#adadad" />
 
@@ -129,13 +130,13 @@
 
 
     </LinearLayout>
+
     <ListView
         android:id="@+id/lv_class_stuManager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15px"
-        android:layout_below="@+id/ll_allBar"
-        >
+
+        android:layout_below="@+id/ll_allBar">
 
     </ListView>
 
