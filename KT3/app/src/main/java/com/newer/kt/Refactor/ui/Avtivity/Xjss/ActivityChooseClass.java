@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,8 +42,8 @@ public class ActivityChooseClass extends Activity {
     @Bind(R.id.wheel_month)
     WheelPicker mMonthWheel;
     
-    @Bind(R.id.wheel_day)
-    WheelPicker mDayWheel;
+//    @Bind(R.id.wheel_day)
+//    WheelPicker mDayWheel;
 
     private List<String> year_list = new ArrayList<>();
     private List<String> month_list = new ArrayList<>();
@@ -60,7 +61,7 @@ public class ActivityChooseClass extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_choose_time);
+        setContentView(R.layout.activity_choose_class);
         ButterKnife.bind(this);
         maps = (List<Map<String, Object>>) getIntent().getSerializableExtra("data");
         setData();
@@ -79,21 +80,29 @@ public class ActivityChooseClass extends Activity {
             case R.id.time_ok_wheel:
                 intent.putExtra("data", year_list.get(year_selected_index) + "-" +
                     month_list.get(month_selected_index));
+                intent.putExtra("flag","1");
+                intent.putExtra("cls_id",map.get(month_list.get(month_selected_index)));
                 setResult(Constant.CODE_CHOOSE_TIME, intent);
                 this.finish();
                 break;
         }
     }
+    String[] grade = new String[]{"小班","中班","大班","一年级","二年级","三年级","四年级","五年级","六年级","初一","初二"};
 
     private void setData() {
         mTitleTxt.setText("班级");
 
         for (int i = 0; i < maps.size(); i ++){
-            year_list.add(maps.get(i).get("grade").toString());
+            int gradeix = Integer.parseInt(maps.get(i).get("grade").toString())-1;
+            String gradestr = grade[gradeix];
+            year_list.add(gradestr);
         }
         mYearWheel.setData(year_list);
         for (int i = 0; i < ((List)maps.get(0).get("list")).size();i++){
-            month_list.add(((Map)((List)maps.get(0).get("list")).get(i)).get("cls").toString());
+            String cls = ((Map)((List)maps.get(0).get("list")).get(i)).get("cls").toString();
+            cls = cls.endsWith("班")?cls:cls+"班";
+            map.put(cls,((Map)((List)maps.get(0).get("list")).get(i)).get("id").toString());
+            month_list.add(cls);
         }
         mMonthWheel.setData(month_list);
 //        day = getDaysByYearMonth(Integer.valueOf(year_list.get(0)), Integer.valueOf(month_list.get(0)));
@@ -109,6 +118,7 @@ public class ActivityChooseClass extends Activity {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 month_selected_index = position;
+
             }
         });
 
@@ -119,7 +129,7 @@ public class ActivityChooseClass extends Activity {
 //            }
 //        });
     }
-
+Map<String,String> map = new TreeMap<String,String>();
     private void setDayData(){
 //        day = getDaysByYearMonth(Integer.valueOf(year_list.get(year_selected_index)), Integer.valueOf(month_list.get(month_selected_index)));
 //        day_list.clear();
@@ -128,8 +138,12 @@ public class ActivityChooseClass extends Activity {
 //        }
 //        mDayWheel.setData(day_list);
         month_list.clear();
+        map.clear();
         for (int i = 0; i < ((List)maps.get(year_selected_index).get("list")).size();i++){
-            month_list.add(((Map)((List)maps.get(0).get("list")).get(i)).get("cls").toString());
+            String cls = ((Map)((List)maps.get(0).get("list")).get(i)).get("cls").toString();
+            cls = cls.endsWith("班")?cls:cls+"班";
+            map.put(cls,((Map)((List)maps.get(0).get("list")).get(i)).get("id").toString());
+            month_list.add(cls);
         }
         mMonthWheel.setData(month_list);
     }

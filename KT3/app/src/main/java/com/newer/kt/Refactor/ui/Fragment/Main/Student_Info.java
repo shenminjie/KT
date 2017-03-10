@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.frame.app.base.activity.BaseActivity;
 import com.frame.app.utils.ImageViewUtils;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseBirth;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseClass;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.Constant;
@@ -35,6 +36,7 @@ public class Student_Info extends BaseActivity {
 
     private ImageView image_vs_item_back;
     public String code;
+    private Object lt;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,7 @@ public class Student_Info extends BaseActivity {
             @Override
             public void onClick(View view) {
                 findViewById(R.id.rl_title10).setVisibility(View.GONE);
-                startActivity(new Intent(getBaseContext(), ActivityChooseBirth.class));
+                startActivityForResult(new Intent(getBaseContext(), ActivityChooseBirth.class),0);
             }
         });
         findViewById(R.id.rl_title5).setOnClickListener(new View.OnClickListener() {
@@ -98,19 +100,14 @@ public class Student_Info extends BaseActivity {
         });
 
 
-        QueryBuilder.build("offline/get_school_course_data_classes").add("club_id", clubid).get(new QueryBuilder.EnhancedCallback() {
+        QueryBuilder.build("offline/get_school_course_data_classes").add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("classes") {
             @Override
             public void onSuccessWithObject(String namelink, final Object object) {
-                Toast.makeText(getBaseContext(), object.toString(), Toast.LENGTH_SHORT).show();
-                List<Map> lt = (List<Map>) object;
+                lt = object;
+                Toast.makeText(getBaseContext(), lt.toString(), Toast.LENGTH_SHORT).show();
 
-                findViewById(R.id.rl_title9).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        findViewById(R.id.rl_title10).setVisibility(View.GONE);
-                        startActivity(new Intent(getBaseContext(), ActivityChooseClass.class).putExtra("flag", "1").putExtra("data", (Serializable) object));
-                    }
-                });
+
+
             }
 
             @Override
@@ -123,6 +120,16 @@ public class Student_Info extends BaseActivity {
 
             }
         });
+        findViewById(R.id.rl_title9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(lt==null){
+                    return;
+                }
+                findViewById(R.id.rl_title10).setVisibility(View.GONE);
+                startActivityForResult(new Intent(getBaseContext(), ActivityChooseClass.class).putExtra("flag", "1").putExtra("data", (Serializable) lt),0);
+            }
+        });
         final Map m = new TreeMap();
         m.put("nickname", ((TextView) findViewById(R.id.tv_stuInfo1)).getText());
         m.put("gender", ((TextView) findViewById(R.id.tv_stuInfo2)).getText());
@@ -132,10 +139,10 @@ public class Student_Info extends BaseActivity {
 
         m.put("club_id", clubid);
         m.put("school_club_id", clubid);
-        m.put("school_class_id", getIntent().getStringExtra("id"));
+        m.put("school_class_id", cls_id==null?getIntent().getStringExtra("id"):cls_id);
         m.put("user_id", userid);
         m.put("avatar", "");
-        findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", clubid).add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("avatar", m.get("avator") + "").add("school_class_id", getIntent().getStringExtra("id")).add("club_id", clubid).add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
@@ -159,6 +166,31 @@ public class Student_Info extends BaseActivity {
 
             }
         });
+        findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", "").add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("avatar", m.get("avator") + "").add("school_class_id", "").add("club_id", "").add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                    @Override
+                    public void onSuccessWithObject(String namelink, Object object) {
+                        if (object.toString().equals("success")) {
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+
+                    }
+
+                    @Override
+                    public void onDebug(RequestParams rp) {
+
+                    }
+                });
+
+            }
+        });
+
     }
 
     @Override
@@ -198,17 +230,22 @@ public class Student_Info extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(data==null){
+            return;
+        }
         if (data.getStringExtra("flag") == null || data.getStringExtra("flag").equals("")) {
-            String date = data.getStringExtra(Constant.KEY_CHOOSE_START_TIME);
+            String date = data.getStringExtra(Constant.KEY_CHOOSE_TIME);
             ((TextView) findViewById(R.id.tv_stuInfo3)).setText(date);
-            findViewById(R.id.rl_title10).setVisibility(View.VISIBLE);
+            findViewById(R.id.saishi).setVisibility(View.VISIBLE);
 
         } else {
             String data1 = data.getStringExtra("data");
+            cls_id = data.getStringExtra("cls_id");
             ((TextView) findViewById(R.id.tv_stuInfo4)).setText(data1);
-            findViewById(R.id.rl_title10).setVisibility(View.VISIBLE);
+            findViewById(R.id.saishi).setVisibility(View.VISIBLE);
 
         }
 
     }
+    String cls_id;
 }
