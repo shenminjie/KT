@@ -109,11 +109,11 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
         //mPopWindow.setOutsideTouchable(true);
         TextView pop_saomiao = (TextView) contentView.findViewById(R.id.pop_saomiao);
         TextView pop_addbendi = (TextView) contentView.findViewById(R.id.pop_addbendi);
-        TextView pop_quxiao = (TextView) contentView.findViewById(R.id.pop_quxiao);
+
         ll_pop = ((LinearLayout) contentView.findViewById(R.id.ll_pop));
         pop_saomiao.setOnClickListener(this);
         pop_addbendi.setOnClickListener(this);
-        pop_quxiao.setOnClickListener(this);
+        
         WindowManager wm = this.getWindowManager();
 
         int width = wm.getDefaultDisplay().getWidth();
@@ -184,12 +184,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
                 mPopWindow.dismiss();
             }
             break;
-            case R.id.pop_quxiao: {
-                Intent intent = new Intent(getApplicationContext(), AddClass.class);
-                startActivity(intent);
-                mPopWindow.dismiss();
-            }
-            break;
+
 
 
         }
