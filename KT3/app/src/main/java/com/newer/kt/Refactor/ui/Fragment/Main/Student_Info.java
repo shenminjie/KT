@@ -1,6 +1,7 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
 import android.content.Intent;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,14 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.frame.app.base.activity.BaseActivity;
 import com.frame.app.utils.ImageViewUtils;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseBirth;
+import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseClass;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.Constant;
 import com.newer.kt.ktmatch.QueryBuilder;
 
 import org.xutils.http.RequestParams;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +29,13 @@ import io.vov.vitamio.utils.Log;
 import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
 import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_USER_ID;
 
-public class Student_Info extends AppCompatActivity {
+public class Student_Info extends BaseActivity {
 
     private ImageView image_vs_item_back;
     public String code;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student__info);
         initView();
@@ -73,33 +77,38 @@ public class Student_Info extends AppCompatActivity {
         });
         //http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&user_id=57017&club_id=89
 
-        findViewById(R.id.tv_stuInfo3).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rl_title7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                findViewById(R.id.rl_title10).setVisibility(View.GONE);
                 startActivity(new Intent(getBaseContext(), ActivityChooseBirth.class));
             }
         });
-        findViewById(R.id.tv_stuInfo2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rl_title5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String t = ((TextView)view).getText().toString();
+                String t = ((TextView)findViewById(R.id.tv_stuInfo2)).getText().toString();
                 if(t.equals("男")){
-                    ((TextView)view).setText("女");
+                    ((TextView)findViewById(R.id.tv_stuInfo2)).setText("女");
                 }else{
-                    ((TextView)view).setText("男");
+                    ((TextView)findViewById(R.id.tv_stuInfo2)).setText("男");
                 }
             }
         });
 
-        QueryBuilder.build("offline/get_school_course_data_classes").add("club_id",clubid).get(new QueryBuilder.EnhancedCallback("classes") {
+
+
+        QueryBuilder.build("offline/get_school_course_data_classes").add("club_id",clubid).get(new QueryBuilder.EnhancedCallback() {
             @Override
-            public void onSuccessWithObject(String namelink, Object object) {
+            public void onSuccessWithObject(String namelink, final Object object) {
+                Toast.makeText(getBaseContext(),object.toString(),Toast.LENGTH_SHORT).show();
                 List<Map> lt = (List<Map>) object;
 
-                findViewById(R.id.tv_stuInfo4).setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.rl_title9).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(getBaseContext(), ActivityChooseBirth.class));
+                        findViewById(R.id.rl_title10).setVisibility(View.GONE);
+                        startActivity(new Intent(getBaseContext(), ActivityChooseClass.class).putExtra("flag","1").putExtra("data", (Serializable) object));
                     }
                 });
             }
@@ -114,6 +123,26 @@ public class Student_Info extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void initHandler(Message msg) {
+
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
     }
 
     //
@@ -135,6 +164,7 @@ public class Student_Info extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         String date = data.getStringExtra(Constant.KEY_CHOOSE_START_TIME);
         ((TextView) findViewById(R.id.tv_stuInfo3)).setText(date);
+        findViewById(R.id.rl_title10).setVisibility(View.VISIBLE);
 
     }
 }
