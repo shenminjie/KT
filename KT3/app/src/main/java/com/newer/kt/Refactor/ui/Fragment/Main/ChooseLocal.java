@@ -183,7 +183,7 @@ public class ChooseLocal extends BaseActivity {
 
                 for(final Map<String,String> m : map){
 
-                    QueryBuilder.build("school_class/update_user_info").add("school_club_id",m.get("school_club_id").toString()).add("phone",m.get("phone").toString()).add("birthday",m.get("birthday").toString()).add("",m.get("").toString()).add("avatar",m.get("avator").toString()).add("school_class_id",m.get("school_class_id").toString()).add("club_id",m.get("club_id").toString()).add("user_id",m.get("user_id").toString()).get(new QueryBuilder.EnhancedCallback("response") {
+                    QueryBuilder.build("school_class/update_user_info").add("gender",m.get("gender")+"").add("school_club_id",clubid).add("phone",m.get("phone")+"").add("birthday",m.get("birthday")+"").add("avatar",m.get("avator")+"").add("school_class_id",getIntent().getStringExtra("id")).add("club_id",clubid).add("user_id",m.get("user_id").toString()).get(new QueryBuilder.EnhancedCallback("response") {
                         @Override
                         public void onSuccessWithObject(String namelink, Object object) {
                             if(object.toString().equals("success")){
@@ -209,3 +209,5 @@ public class ChooseLocal extends BaseActivity {
         });
     }
 }
+//http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=11&club_id=89&user_id=74746
+//http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&gender=GG&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=15&club_id=89&user_id=74746

@@ -179,7 +179,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
             }
             break;
             case R.id.pop_addbendi: {
-                Intent intent = new Intent(getApplicationContext(), ChooseLocal.class);
+                Intent intent = new Intent(getApplicationContext(), ChooseLocal.class).putExtra("id",getIntent().getStringExtra("id"));
                 startActivity(intent);
                 mPopWindow.dismiss();
             }
@@ -198,7 +198,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
     public void recvCode(String result) {
         super.recvCode(result);
         if(result!=null){
-            startActivity(new Intent(getBaseContext(),Student_Info.class).putExtra("code",result));
+            startActivity(new Intent(getBaseContext(),Student_Info.class).putExtra("id",getIntent().getStringExtra("id")).putExtra("code",result));
 
         }
     }
