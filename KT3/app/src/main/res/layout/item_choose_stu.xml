@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_below="@+id/rl_vs_titile_bt"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center">
+        android:layout_below="@+id/rl_vs_titile_bt"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <ImageView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/default_head"
 
-        />
+            />
 
-        <TextView android:id="@+id/name"
-            android:layout_weight="1"
+        <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#222222"
-            android:text="kt足球"/>
-        <TextView android:id="@+id/gender"
             android:layout_weight="1"
+            android:text="kt足球"
+            android:textColor="#222222"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+
+            android:text="男"
+            android:layout_marginRight="150px"
             android:textColor="#222222"
-            android:text="男"/>
-        <ImageView android:id="@+id/xuanzhong"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/xuanzhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:padding="5px"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/weixuanzhong"/>
+            android:layout_marginRight="30px"
+            android:src="@drawable/weixuanzhong" />
 
     </LinearLayout>
 

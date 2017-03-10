@@ -43,7 +43,7 @@ public class ChooseLocal extends BaseActivity {
         initView();
         initOnclick();
         initAdapter();
-        if(list==null||list.size()==0){
+        if (list == null || list.size() == 0) {
             new InterfaceSample(this).get_club_data();
         }
     }
@@ -53,8 +53,8 @@ public class ChooseLocal extends BaseActivity {
         super.onDataLoad(namelink, object);
         list = (ArrayList<Map<String, String>>) object;
 
-        for(Map<String, String> m:list){
-            if(m.get("school_cls").toString().equals("null")||m.get("school_grade").toString().equals("null")){
+        for (Map<String, String> m : list) {
+            if (m.get("school_cls").toString().equals("null") || m.get("school_grade").toString().equals("null")) {
                 list.add((Map<String, String>) m);
             }
         }
@@ -118,13 +118,13 @@ public class ChooseLocal extends BaseActivity {
 //                ((TextView) convertView.findViewById(R.id)).setText(m.get("avatar"));
 
                 ((TextView) convertView.findViewById(R.id.name)).setText(m.get("nickname"));
-                ((TextView) convertView.findViewById(R.id.gender)).setText(m.get("gender").equals("GG")?"男":"女");
+                ((TextView) convertView.findViewById(R.id.gender)).setText(m.get("gender").equals("GG") ? "男" : "女");
                 boolean b = !map.contains(m);
                 View view = ((View) convertView.findViewById(R.id.xuanzhong));
                 if (!b) {
-                    ((ImageView)view).setImageResource(R.drawable.xuanzhonqg);
+                    ((ImageView) view).setImageResource(R.drawable.xuanzhonqg);
                 } else {
-                    ((ImageView)view).setImageResource(R.drawable.weixuanzhong);
+                    ((ImageView) view).setImageResource(R.drawable.weixuanzhong);
                 }
 
                 ((ImageView) convertView.findViewById(R.id.xuanzhong)).setOnClickListener(new View.OnClickListener() {
@@ -134,10 +134,10 @@ public class ChooseLocal extends BaseActivity {
                     public void onClick(View view) {
                         if (!map.contains(m)) {
 
-                            ((ImageView)view).setImageResource(R.drawable.xuanzhonqg);
+                            ((ImageView) view).setImageResource(R.drawable.xuanzhonqg);
                             map.add(m);
                         } else {
-                            ((ImageView)view).setImageResource(R.drawable.weixuanzhong);
+                            ((ImageView) view).setImageResource(R.drawable.weixuanzhong);
                             map.remove(m);
                         }
                         notifyDataSetChanged();
@@ -172,23 +172,23 @@ public class ChooseLocal extends BaseActivity {
         btn_tijiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(map.size()==0){
+                if (map.size() == 0) {
                     finish();
                     return;
                 }
-                String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(ChooseLocal.this)
-                        .getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
-                String userid = ""+ PreferenceManager.getDefaultSharedPreferences(ChooseLocal.this)
-                        .getLong(LoginActivity.PRE_CURRENT_USER_ID,1);
+                String clubid = "" + PreferenceManager.getDefaultSharedPreferences(ChooseLocal.this)
+                        .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
+                String userid = "" + PreferenceManager.getDefaultSharedPreferences(ChooseLocal.this)
+                        .getLong(LoginActivity.PRE_CURRENT_USER_ID, 1);
 
-                for(final Map<String,String> m : map){
+                for (final Map<String, String> m : map) {
 
-                    QueryBuilder.build("school_class/update_user_info").add("gender",m.get("gender")+"").add("school_club_id",clubid).add("phone",m.get("phone")+"").add("birthday",m.get("birthday")+"").add("avatar",m.get("avator")+"").add("school_class_id",getIntent().getStringExtra("id")).add("club_id",clubid).add("user_id",m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                    QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", clubid).add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("avatar", m.get("avator") + "").add("school_class_id", getIntent().getStringExtra("id")).add("club_id", clubid).add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
                         @Override
                         public void onSuccessWithObject(String namelink, Object object) {
-                            if(object.toString().equals("success")){
+                            if (object.toString().equals("success")) {
                                 map.remove(m);
-                                if(map.size()==0){
+                                if (map.size() == 0) {
                                     finish();
                                 }
                             }
@@ -211,4 +211,4 @@ public class ChooseLocal extends BaseActivity {
 }
 //http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=11&club_id=89&user_id=74746
 //http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&gender=GG&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=15&club_id=89&user_id=74746
-//http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&gender=GG&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=15&club_id=89&user_id=74746
+
