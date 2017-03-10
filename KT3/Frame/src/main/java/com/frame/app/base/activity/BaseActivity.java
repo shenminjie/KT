@@ -33,7 +33,7 @@ import org.greenrobot.eventbus.Subscribe;
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AnalyticsHome {
-
+	public Object rt;
 	/** UI 线程ID */
 	private long mUIThreadId;
 	protected LoadingDialog loadingDialog;
@@ -60,6 +60,11 @@ public abstract class BaseActivity extends AnalyticsHome {
 		receiver = new Receiver();
 		registerReceiver(receiver,intent);
 	}
+
+	public void onDataLoad(String namelink, Object object){
+
+	}
+
 	public void recvData(Intent intent){
 
 	}

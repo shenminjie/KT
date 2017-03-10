@@ -247,7 +247,7 @@ public class Stu_Manager extends CamScanActivity implements View.OnClickListener
             }
             break;
             case R.id.pop_addClass: {
-                Intent intent = new Intent(getApplicationContext(), ChooseLocal.class);
+                Intent intent = new Intent(getApplicationContext(), AddClass.class);
                 startActivity(intent);
                 mPopWindow.dismiss();
             }

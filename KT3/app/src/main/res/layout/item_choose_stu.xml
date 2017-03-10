@@ -10,10 +10,11 @@
         android:layout_height="50dp"
         android:gravity="center">
         <ImageView
-            android:layout_weight="1"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/default_head"
+
         />
 
         <TextView android:id="@+id/name"
@@ -31,7 +32,8 @@
             android:textColor="#222222"
             android:text="男"/>
         <ImageView android:id="@+id/xuanzhong"
-            android:layout_weight="1"
+            android:padding="5px"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/weixuanzhong"/>

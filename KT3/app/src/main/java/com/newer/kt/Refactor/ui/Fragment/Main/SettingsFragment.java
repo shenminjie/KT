@@ -1,6 +1,7 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.frame.app.base.fragment.BaseFragment;
 import com.frame.app.utils.PhoneUtils;
 import com.newer.kt.ActivityClass;
+import com.newer.kt.InterfaceSample;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.db.BagsDaoHelper;
@@ -26,6 +28,7 @@ import com.newer.kt.Refactor.ui.Avtivity.Settings.HelpActivity;
 import com.newer.kt.Refactor.ui.Avtivity.Settings.MineSchoolInfoActivity;
 import com.newer.kt.Refactor.ui.Avtivity.Settings.SchoolEquipmentActivity;
 import com.newer.kt.Refactor.ui.Avtivity.Settings.SchoolStatisticsActivity;
+import com.newer.kt.Refactor.ui.Avtivity.Xjss.Constant;
 import com.newer.kt.ktmatch.MathChooseActivity;
 import com.newer.kt.ktmatch.QueryBuilder;
 
@@ -56,35 +59,9 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_3 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_3));
 
 
-        String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getThis())
-                .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
-        QueryBuilder.build("offline/get_club_data").add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("users") {
-            @Override
-            public void onSuccessWithObject(String namelink, Object object) {
-
-                rt = (List<Map<String, String>>) object;
-
-                for(Map<String, String> m:rt){
-                    if(m.get("school_cls").toString().equals("null")||m.get("school_grade").toString().equals("null")){
-                    unlinkedStudents.add((Map<String, String>) m);
-                    }
-                }
-                int i = unlinkedStudents.size();
-                i++;
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onDebug(RequestParams rp) {
-
-            }
-
-        });
+        new InterfaceSample().get_club_data();
     }
+
 
 
     public static ArrayList<Map<String,String>> unlinkedStudents = new ArrayList<Map<String, String>>();

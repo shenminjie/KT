@@ -12,10 +12,12 @@ import android.widget.Toast;
 import com.frame.app.utils.ImageViewUtils;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseBirth;
+import com.newer.kt.Refactor.ui.Avtivity.Xjss.Constant;
 import com.newer.kt.ktmatch.QueryBuilder;
 
 import org.xutils.http.RequestParams;
 
+import java.util.List;
 import java.util.Map;
 
 import io.vov.vitamio.utils.Log;
@@ -88,6 +90,30 @@ public class Student_Info extends AppCompatActivity {
                 }
             }
         });
+
+        QueryBuilder.build("offline/get_school_course_data_classes").add("club_id",clubid).get(new QueryBuilder.EnhancedCallback("classes") {
+            @Override
+            public void onSuccessWithObject(String namelink, Object object) {
+                List<Map> lt = (List<Map>) object;
+
+                findViewById(R.id.tv_stuInfo4).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(getBaseContext(), ActivityChooseBirth.class));
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onDebug(RequestParams rp) {
+
+            }
+        });
     }
 
     //
@@ -107,6 +133,8 @@ public class Student_Info extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        data.getStringExtra("");
+        String date = data.getStringExtra(Constant.KEY_CHOOSE_START_TIME);
+        ((TextView) findViewById(R.id.tv_stuInfo3)).setText(date);
+
     }
 }

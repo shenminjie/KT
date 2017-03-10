@@ -1,5 +1,8 @@
 package com.newer.kt.ktmatch;
 
+import android.app.DownloadManager;
+
+import com.frame.app.base.activity.BaseActivity;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.ktmatch.json.JsonToMapUtils;
@@ -101,7 +104,7 @@ public class QueryBuilder {
         void onDebug(RequestParams rp);
     }
 
-    public static abstract class EnhancedCallback implements Callback {
+    public abstract static class EnhancedCallback implements Callback {
         List<String> list;
 
 
@@ -116,6 +119,13 @@ public class QueryBuilder {
 
         }
 
+        public void onActivityCallback(String namelink, Object object){
+            if(baseactivity!=null){
+                baseactivity.rt = object;
+                baseactivity.onDataLoad(namelink,object);
+            }
+            onSuccessWithObject(namelink,object);
+        };
 
         public abstract void onSuccessWithObject(String namelink, Object object);
 
@@ -125,7 +135,7 @@ public class QueryBuilder {
             if (list == null) {
                 namelink = "";
                 Object rt = JsonUtil.extractJsonRightValue(str);
-                onSuccessWithObject("", rt);
+                onActivityCallback("", rt);
             }else {
                 for (String astr : list) {
                     String group = null;
@@ -144,7 +154,7 @@ public class QueryBuilder {
 //            }
                     Object rt = JsonUtil.extractJsonRightValue(JsonUtil.findJsonLink(namelink, str));
                     if(expr==null){
-                        onSuccessWithObject(astr,rt);
+                        onActivityCallback(astr,rt);
                         return;
                     }
                     Map<String, ArrayList> cats = null;
@@ -165,7 +175,7 @@ public class QueryBuilder {
                             }
                         }
                     }
-                    onSuccessWithObject(astr, cats);
+                    onActivityCallback(astr, cats);
                 }
 
             }
@@ -173,7 +183,12 @@ public class QueryBuilder {
 
     }
 
+    public static BaseActivity baseactivity;
 
+    public QueryBuilder add(BaseActivity baseactivity) {
+        this.baseactivity = baseactivity;
+        return this;
+    }
     public void post(final Callback callback) {
         if (callback == null) {
             throw new RuntimeException("addCallback must be invoked before to");

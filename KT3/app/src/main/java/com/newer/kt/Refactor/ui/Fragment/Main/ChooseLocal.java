@@ -1,6 +1,7 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
 import android.media.Image;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +13,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.frame.app.base.activity.BaseActivity;
+import com.newer.kt.InterfaceSample;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.ktmatch.QueryBuilder;
+import com.sina.weibo.sdk.api.share.Base;
 
 import org.xutils.http.RequestParams;
 
@@ -23,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class ChooseLocal extends AppCompatActivity {
+public class ChooseLocal extends BaseActivity {
 
     private ListView lv_chooseStu;
     private BaseAdapter adapter;
@@ -32,16 +36,42 @@ public class ChooseLocal extends AppCompatActivity {
     private ArrayList<Map<String, String>> list;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_local);
         list = SettingsFragment.unlinkedStudents;
         if(list==null){
-
+            new InterfaceSample(this).get_club_data();
         }
         initView();
         initAdapter();
         initOnclick();
+    }
+
+    @Override
+    public void onDataLoad(String namelink, Object object) {
+        super.onDataLoad(namelink, object);
+
+    }
+
+    @Override
+    protected void initHandler(Message msg) {
+
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
     }
 
     private void initOnclick() {
@@ -52,13 +82,7 @@ public class ChooseLocal extends AppCompatActivity {
             }
         });
 
-        //------提交按钮-----点击事件-------
-        btn_tijiao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
     private void initAdapter() {
@@ -89,9 +113,9 @@ public class ChooseLocal extends AppCompatActivity {
                 boolean b = !map.contains(m);
                 View view = ((View) convertView.findViewById(R.id.xuanzhong));
                 if (!b) {
-                    view.setBackgroundResource(R.drawable.xuanzhonqg);
+                    ((ImageView)view).setImageResource(R.drawable.xuanzhonqg);
                 } else {
-                    view.setBackgroundResource(R.drawable.weixuanzhong);
+                    ((ImageView)view).setImageResource(R.drawable.weixuanzhong);
                 }
 
                 ((ImageView) convertView.findViewById(R.id.xuanzhong)).setOnClickListener(new View.OnClickListener() {
@@ -99,11 +123,11 @@ public class ChooseLocal extends AppCompatActivity {
 
                     @Override
                     public void onClick(View view) {
-                        if (!m.containsKey(m)) {
-                            view.setBackgroundResource(R.drawable.xuanzhonqg);
+                        if (!map.contains(m)) {
+                            ((ImageView)view).setImageResource(R.drawable.xuanzhonqg);
                             map.add(m);
                         } else {
-                            view.setBackgroundResource(R.drawable.weixuanzhong);
+                            ((ImageView)view).setImageResource(R.drawable.weixuanzhong);
                             map.remove(m);
                         }
                         notifyDataSetChanged();
@@ -111,6 +135,12 @@ public class ChooseLocal extends AppCompatActivity {
                     }
                 });
 //                ((TextView)findViewById(R.id.)).setText(m.get("").toString());
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((View) view.findViewById(R.id.xuanzhong)).performClick();
+                    }
+                });
                 return convertView;
             }
         };
@@ -132,7 +162,7 @@ public class ChooseLocal extends AppCompatActivity {
         btn_tijiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(list.size()==0){
+                if(map.size()==0){
                     finish();
                     return;
                 }
