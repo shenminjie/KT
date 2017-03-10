@@ -99,7 +99,7 @@ public class ChooseLocal extends AppCompatActivity {
 
                     @Override
                     public void onClick(View view) {
-                        if (!m.containsKey(m)) {
+                        if (!map.contains(m)) {
                             view.setBackgroundResource(R.drawable.xuanzhonqg);
                             map.add(m);
                         } else {
