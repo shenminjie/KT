@@ -33,13 +33,13 @@ public class ChooseLocal extends BaseActivity {
     private BaseAdapter adapter;
     private ImageView image_vs_item_back;
     private Button btn_tijiao;
-    private ArrayList<Map<String, String>> list;
+    public static ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_local);
-        list = SettingsFragment.unlinkedStudents;
+
         initView();
         initOnclick();
         initAdapter();

@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.frame.app.base.activity.BaseActivity;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
+import com.newer.kt.Refactor.ui.Fragment.Main.ChooseLocal;
 import com.newer.kt.Refactor.ui.Fragment.Main.SettingsFragment;
 import com.newer.kt.ktmatch.QueryBuilder;
 
@@ -85,15 +86,15 @@ public class InterfaceSample {
             @Override
             public void onSuccessWithObject(String namelink, Object object) {
 
-                List<Map<String, String>> list = (List<Map<String, String>>) object;
-
+                SettingsFragment.rt = (List<Map<String, String>>) object;
+                ChooseLocal.list.clear();
                 for(Map<String, String> m:SettingsFragment.rt){
                     if(m.get("school_cls").toString().equals("null")||m.get("school_grade").toString().equals("null")){
-                        list.add((Map<String, String>) m);
+                        ChooseLocal.list.add((Map<String, String>) m);
                     }
                 }
-                int i = list.size();
-                i++;
+//                int i = list.size();
+//                i++;
             }
 
             @Override
