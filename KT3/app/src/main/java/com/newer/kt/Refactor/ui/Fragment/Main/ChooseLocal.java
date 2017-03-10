@@ -58,7 +58,9 @@ public class ChooseLocal extends BaseActivity {
                 list.add((Map<String, String>) m);
             }
         }
+        lv_chooseStu.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
     }
 
     @Override
