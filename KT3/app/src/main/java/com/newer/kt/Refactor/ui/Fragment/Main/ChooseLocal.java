@@ -212,3 +212,4 @@ public class ChooseLocal extends BaseActivity {
 //http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=11&club_id=89&user_id=74746
 //http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&gender=GG&school_club_id=89&phone=1677777&birthday=null&avatar=null&school_class_id=15&club_id=89&user_id=74746
 
+//http://api.ktfootball.com/school_class/update_user_info?authenticity_token=82b331acbcdf6a50064b9c14b5c0fb8b&gender=GG&school_club_id=89&phone=&birthday=null&avatar=null&school_class_id=15&club_id=89&user_id=68045

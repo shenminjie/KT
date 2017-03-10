@@ -73,6 +73,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
         lv_class_stuManager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent intent=new Intent(getApplicationContext(), Student_Info.class);
                 startActivity(intent);
             }
