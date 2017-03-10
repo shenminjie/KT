@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -231,8 +232,10 @@ public class Stu_Manager extends CamScanActivity implements View.OnClickListener
         pop_addStu.setOnClickListener(this);
         pop_addClass.setOnClickListener(this);
 
-
+        mPopWindow.setBackgroundDrawable(new BitmapDrawable());//注意这里如果不设置，下面的setOutsideTouchable(true);允许点击外部消失会失效
+        mPopWindow.setOutsideTouchable(true);
         mPopWindow.showAsDropDown(iv_addStu);
+        mPopWindow.setOutsideTouchable(true);
 
 
     }
