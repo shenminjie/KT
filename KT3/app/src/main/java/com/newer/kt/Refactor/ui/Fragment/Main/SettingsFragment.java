@@ -49,6 +49,7 @@ public class SettingsFragment extends BaseFragment {
     private RelativeLayout layout_settings_item_2;
     private RelativeLayout layout_settings_item_3;
     public static List<Map<String, String>> rt;
+    private LinearLayout linear_info;
 
 
     @Override
@@ -57,14 +58,15 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_1 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_1));
         layout_settings_item_2 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_2));
         layout_settings_item_3 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_3));
+        linear_info = ((LinearLayout) rootView.findViewById(R.id.linear_info));
+
 
 
         new InterfaceSample(getBaseActivity()).get_club_data();
     }
 
 
-
-    public static ArrayList<Map<String,String>> unlinkedStudents = new ArrayList<Map<String, String>>();
+    public static ArrayList<Map<String, String>> unlinkedStudents = new ArrayList<Map<String, String>>();
 
     @Override
     protected void setListener() {
@@ -73,7 +75,7 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),ActivityClass.class);
+                Intent intent = new Intent(getActivity(), ActivityClass.class);
                 startActivity(intent);
 
             }
@@ -82,7 +84,7 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),Stu_Manager.class);
+                Intent intent = new Intent(getActivity(), Stu_Manager.class);
 
                 startActivity(intent);
 
@@ -97,8 +99,14 @@ public class SettingsFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-
-
+        //我校资料
+        linear_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),School_Info.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

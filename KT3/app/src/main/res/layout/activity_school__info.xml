@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.newer.kt.Refactor.ui.Fragment.Main.School_Info">
+    <RelativeLayout
+        android:id="@+id/rl_vs_titile_bt"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/text_black">
+
+        <ImageView
+            android:id="@+id/image_vs_item_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:src="@mipmap/nomal_back" />
+
+        <TextView
+            android:id="@+id/tv_school_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我校资料"
+            android:textColor="@color/gold"
+            android:textSize="18dp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:id="@+id/rl_title0"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_below="@+id/rl_vs_titile_bt">
+
+        <RelativeLayout
+            android:id="@+id/rl_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+
+            <TextView
+                android:id="@+id/tv_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="头像"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_stuInfo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/game_avatar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#c8c7cc">
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title2"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@+id/rl_title0">
+
+        <RelativeLayout
+            android:id="@+id/rl_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+
+            <TextView
+                android:id="@+id/tv_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="校园名称"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_stuInfo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="上海KT足球学校" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#c8c7cc">
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title4"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@+id/rl_title2">
+
+        <RelativeLayout
+            android:id="@+id/rl_title5"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="学生总数"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_stuInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="10000人" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#c8c7cc">
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title6"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@+id/rl_title4">
+
+        <RelativeLayout
+            android:id="@+id/rl_title7"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="上级管理"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_stuInfo3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="未设置" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#c8c7cc">
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title8"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@+id/rl_title6">
+
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title10"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@+id/rl_title8">
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_title10">
+
+        <Button
+            android:id="@+id/saishi"
+            android:layout_width="193dp"
+            android:layout_height="37dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:background="#222222"
+            android:text="退出登录"
+            android:textColor="#ffffff" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

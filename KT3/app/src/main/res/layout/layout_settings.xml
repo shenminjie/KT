@@ -80,7 +80,7 @@
                             android:id="@+id/tv_shcool"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="上海市金沙江下雪"
+                            android:text="上海市金沙江小学"
                             android:textColor="#222222"
                             android:textSize="15sp"
                             android:textStyle="bold" />

@@ -96,24 +96,19 @@
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityNewContest"
             android:screenOrientation="portrait"
             android:theme="@style/my_dialog" />
-
         <activity
-            android:name="com.newer.kt.Refactor.ui.Fragment.Main.ScanAddStu"
+            android:name=".Refactor.ui.Fragment.Main.ScanAddStu"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".NeActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseGrade"
+            android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseGrade"
             android:screenOrientation="portrait"
             android:theme="@style/my_dialog" />
-
         <activity
             android:name="shengchengerweima.CamScanActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".record.TakePicActivity"
             android:screenOrientation="landscape" />
@@ -716,7 +711,8 @@
         <activity android:name=".Refactor.ui.Fragment.Main.Class_StuManager" />
         <activity android:name=".Refactor.ui.Fragment.Main.AddClass" />
         <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
-        <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal" />
+        <activity android:name=".Refactor.ui.Fragment.Main.School_Info"></activity>
     </application>
 
 </manifest>

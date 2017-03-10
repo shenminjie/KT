@@ -94,7 +94,7 @@
 
                 android:background="@drawable/shape_radio_dongtai"
                 android:gravity="center"
-                android:text="11"
+                android:text="2"
                 android:textColor="@android:color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -128,7 +128,7 @@
                 android:background="@drawable/shape_radio_dongtai_xiao"
 
                 android:gravity="center"
-                android:text="25"
+                android:text="0"
                 android:textColor="#222222"
                 android:textSize="24sp"
 
