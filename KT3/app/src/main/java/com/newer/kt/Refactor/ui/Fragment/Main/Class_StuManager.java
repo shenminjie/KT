@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -31,7 +33,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
     public List list;
     private ImageView iv_zengjia;
     private PopupWindow mPopWindow;
-
+    private LinearLayout ll_pop;
 
 
     @Override
@@ -100,7 +102,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
         mPopWindow = new PopupWindow(contentView);
         mPopWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        mPopWindow.showAsDropDown(iv_zengjia,110,-110);
+
 
 
 
@@ -108,12 +110,18 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
         TextView pop_saomiao = (TextView) contentView.findViewById(R.id.pop_saomiao);
         TextView pop_addbendi = (TextView) contentView.findViewById(R.id.pop_addbendi);
         TextView pop_quxiao = (TextView) contentView.findViewById(R.id.pop_quxiao);
+        ll_pop = ((LinearLayout) contentView.findViewById(R.id.ll_pop));
         pop_saomiao.setOnClickListener(this);
         pop_addbendi.setOnClickListener(this);
         pop_quxiao.setOnClickListener(this);
+        WindowManager wm = this.getWindowManager();
 
+        int width = wm.getDefaultDisplay().getWidth();
+        int height = wm.getDefaultDisplay().getHeight();
 
-        mPopWindow.showAsDropDown(iv_zengjia);
+        int length=width-400;
+        mPopWindow.setOutsideTouchable(true);
+        mPopWindow.showAsDropDown(ll_pop,length/2,height/2);
 
 
     }
