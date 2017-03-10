@@ -299,7 +299,7 @@ for(Object map :list){
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(view.getContext(), Class_StuManager.class).putExtra("users", (Serializable) m.get("users")));
+                    startActivity(new Intent(view.getContext(), Class_StuManager.class).putExtra("users", (Serializable) m.get("users")).putExtra("id",m.get("id")+""));
                 }
             });
             return convertView;
