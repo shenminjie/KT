@@ -32,6 +32,10 @@ import com.newer.kt.ktmatch.QueryBuilder;
 import org.xutils.http.RequestParams;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by jy on 16/9/14.
@@ -41,6 +45,7 @@ public class SettingsFragment extends BaseFragment {
     private RelativeLayout layout_settings_item_1;
     private RelativeLayout layout_settings_item_2;
     private RelativeLayout layout_settings_item_3;
+    public static List<Map<String, String>> rt;
 
 
     @Override
@@ -51,7 +56,38 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_3 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_3));
 
 
+        String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getThis())
+                .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
+        QueryBuilder.build("offline/get_club_data").add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("users") {
+            @Override
+            public void onSuccessWithObject(String namelink, Object object) {
+
+                rt = (List<Map<String, String>>) object;
+
+                for(Map<String, String> m:rt){
+                    if(m.get("school_cls").toString().equals("null")||m.get("school_grade").toString().equals("null")){
+                    unlinkedStudents.add((Map<String, String>) m);
+                    }
+                }
+                int i = unlinkedStudents.size();
+                i++;
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onDebug(RequestParams rp) {
+
+            }
+
+        });
     }
+
+
+    public static ArrayList<Map<String,String>> unlinkedStudents = new ArrayList<Map<String, String>>();
 
     @Override
     protected void setListener() {
