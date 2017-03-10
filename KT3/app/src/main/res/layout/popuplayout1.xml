@@ -2,42 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+
+    >
+
     <LinearLayout
         android:id="@+id/ll_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="#fff"
-        >
+        android:orientation="vertical"
+        android:padding="20dp">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
 
-            android:gravity="center">
+            android:orientation="vertical">
+
             <TextView
-                android:gravity="center"
-                android:layout_weight="1"
                 android:id="@+id/pop_saomiao"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="        扫描添加          "
                 android:textColor="#42a7ff"
-                android:textSize="24sp"
-                android:text=" 扫描添加 "/>
+                android:textSize="24sp" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2">
+
+            </LinearLayout>
 
             <TextView
-                android:gravity="center"
-                android:layout_weight="1"
                 android:id="@+id/pop_addbendi"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="        本地选择          "
                 android:textColor="#42a7ff"
-                android:text=" 本地选择 "
-                android:textSize="24sp"/>
-
+                android:textSize="24sp" />
 
 
         </LinearLayout>

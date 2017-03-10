@@ -40,7 +40,7 @@ public class ChooseLocal extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_local);
         list = SettingsFragment.unlinkedStudents;
-        if(list==null){
+        if(list==null||list.size()==0){
             new InterfaceSample(this).get_club_data();
         }
         initView();
@@ -51,6 +51,13 @@ public class ChooseLocal extends BaseActivity {
     @Override
     public void onDataLoad(String namelink, Object object) {
         super.onDataLoad(namelink, object);
+        list = (ArrayList<Map<String, String>>) object;
+
+        for(Map<String, String> m:SettingsFragment.rt){
+            if(m.get("school_cls").toString().equals("null")||m.get("school_grade").toString().equals("null")){
+                list.add((Map<String, String>) m);
+            }
+        }
 
     }
 

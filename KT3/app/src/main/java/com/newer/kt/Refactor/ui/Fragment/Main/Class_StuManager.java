@@ -119,9 +119,9 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
         int width = wm.getDefaultDisplay().getWidth();
         int height = wm.getDefaultDisplay().getHeight();
 
-        int length=width-400;
+        int length=width-200;
         mPopWindow.setOutsideTouchable(true);
-        mPopWindow.showAsDropDown(ll_pop,length/2,height/2);
+        mPopWindow.showAsDropDown(ll_pop,200,height/2);
 
 
     }
