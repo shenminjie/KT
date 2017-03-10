@@ -42,16 +42,14 @@ import java.util.Map;
 
 import shengchengerweima.CamScanActivity;
 
-public class Stu_Manager extends BaseActivity implements View.OnClickListener {
+public class Stu_Manager extends CamScanActivity implements View.OnClickListener {
 
-    private List rt;
+    private List<Map<String, String>> rt;
     private TeamAdapter adapter;
     private ImageView image_vs_item_back;
     private PopupWindow mPopWindow;
     private TextView mMenuTv;
     private ImageView iv_addStu;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,31 +70,12 @@ public class Stu_Manager extends BaseActivity implements View.OnClickListener {
                 showPopupWindow();
             }
         });
+        setData(SettingsFragment.rt);
 
-
-        String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getThis())
-                .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
-        QueryBuilder.build("offline/get_club_data").add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("users") {
-            @Override
-            public void onSuccessWithObject(String namelink, Object object) {
-                rt = (List) object;
-                setData((ArrayList) rt);
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onDebug(RequestParams rp) {
-
-            }
-        });
     }
 
 
-    private void setData(ArrayList valueList) {
+    private void setData(List<Map<String, String>> valueList) {
         if (adapter == null) {
             adapter = new TeamAdapter(this, valueList);
             ((ListView) findViewById(R.id.lv_class_stuManager)).setAdapter(adapter);
@@ -130,12 +109,12 @@ public class Stu_Manager extends BaseActivity implements View.OnClickListener {
 
     public class TeamAdapter extends BaseAdapter {
         private Context mContext;
-        private ArrayList<Map<String, String>> valueList;
+        private List<Map<String, String>> valueList;
         private Map<String, String> map;
 
-        public TeamAdapter(Context context, ArrayList<Map<String, String>> list) {
+        public TeamAdapter(Context context, List<Map<String, String>> valueList) {
             this.mContext = context;
-            this.valueList = list;
+            this.valueList = valueList;
         }
 
         public DisplayImageOptions getListOptions() {
@@ -170,7 +149,7 @@ public class Stu_Manager extends BaseActivity implements View.OnClickListener {
             return options;
         }
 
-        public ArrayList<Map<String, String>> getList() {
+        public List<Map<String, String>> getList() {
             return valueList;
         }
 
@@ -263,18 +242,25 @@ public class Stu_Manager extends BaseActivity implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case R.id.pop_addStu: {
-                Intent intent = new Intent(getApplicationContext(), Class_StuManager.class);
-                startActivity(intent);
+                invokeCap();
                 mPopWindow.dismiss();
             }
             break;
             case R.id.pop_addClass: {
-                Intent intent = new Intent(getApplicationContext(), AddClass.class);
+                Intent intent = new Intent(getApplicationContext(), ChooseLocal.class);
                 startActivity(intent);
                 mPopWindow.dismiss();
             }
             break;
 
+
+        }
+    }
+    @Override
+    public void recvCode(String result) {
+        super.recvCode(result);
+        if(result!=null){
+            startActivity(new Intent(getBaseContext(),Student_Info.class).putExtra("code",result));
 
         }
     }

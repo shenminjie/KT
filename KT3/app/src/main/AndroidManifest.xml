@@ -85,6 +85,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/my_dialog" />
         <activity
+            android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseBirth"
+            android:screenOrientation="portrait"
+            android:theme="@style/my_dialog" />
+        <activity
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseIcon"
             android:screenOrientation="portrait"
             android:theme="@style/my_dialog" />
@@ -100,6 +104,7 @@
         <activity
             android:name=".NeActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityChooseGrade"
             android:screenOrientation="portrait"
