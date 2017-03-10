@@ -59,7 +59,7 @@ public class SettingsFragment extends BaseFragment {
         layout_settings_item_3 = ((RelativeLayout) rootView.findViewById(R.id.layout_settings_item_3));
 
 
-        new InterfaceSample().get_club_data();
+        new InterfaceSample(getBaseActivity()).get_club_data();
     }
 
 

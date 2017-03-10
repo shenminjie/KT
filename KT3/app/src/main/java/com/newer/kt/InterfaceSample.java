@@ -1,5 +1,6 @@
 package com.newer.kt;
 
+import android.content.Context;
 import android.preference.PreferenceManager;
 
 import com.frame.app.base.activity.BaseActivity;
@@ -77,9 +78,10 @@ public class InterfaceSample {
 
 
     public void get_club_data() {
+
         String clubid = "" + PreferenceManager.getDefaultSharedPreferences(ctx)
                 .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
-        QueryBuilder.build("offline/get_club_data").add(ctx).add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("users") {
+        QueryBuilder.build("offline/get_club_data").add(this.ctx).add("club_id", clubid).get(new QueryBuilder.EnhancedCallback("users") {
             @Override
             public void onSuccessWithObject(String namelink, Object object) {
 

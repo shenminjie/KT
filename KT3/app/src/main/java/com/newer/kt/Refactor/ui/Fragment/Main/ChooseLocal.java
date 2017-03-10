@@ -124,6 +124,7 @@ public class ChooseLocal extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         if (!map.contains(m)) {
+
                             ((ImageView)view).setImageResource(R.drawable.xuanzhonqg);
                             map.add(m);
                         } else {
