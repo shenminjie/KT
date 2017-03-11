@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.bajie.demo.view.CustomRecyclerView;
 import com.frame.app.base.activity.BaseActivity;
+import com.newer.kt.InterfaceSample;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.ktmatch.ChooseMatcherActivity;
@@ -81,11 +82,16 @@ public class Stu_Manager extends CamScanActivity implements View.OnClickListener
             adapter = new TeamAdapter(this, valueList);
             ((ListView) findViewById(R.id.lv_class_stuManager)).setAdapter(adapter);
         } else {
+            adapter.getList().clear();
             adapter.getList().addAll(valueList);
             adapter.notifyDataSetChanged();
         }
 //        ((CustomRecyclerView)findViewById(R.id.lv_class_stuManager)).setPullLoadMoreCompleted();
     }
+
+
+
+
 
     @Override
     protected void initHandler(Message msg) {

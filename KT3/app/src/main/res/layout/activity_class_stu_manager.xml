@@ -141,6 +141,7 @@
     </LinearLayout>
 
     <ListView
+        android:fastScrollEnabled="true"
         android:id="@+id/lv_class_stuManager"
         android:layout_below="@+id/ll_allBar"
         android:layout_width="match_parent"

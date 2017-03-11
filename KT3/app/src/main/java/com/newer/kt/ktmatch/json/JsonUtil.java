@@ -93,12 +93,12 @@ public class JsonUtil{
 		if(ovalue instanceof String){
 			String value = ovalue.toString();
 			if (value.startsWith("[")) {
-			jsonvalue = fromJsonArray(value);
-		} else if (value.startsWith("{")) {
-			jsonvalue = fromJsonObject(value);
-		} else {
-			jsonvalue = value;
-		}
+				jsonvalue = fromJsonArray(value);
+			} else if (value.startsWith("{")) {
+				jsonvalue = fromJsonObject(value);
+			} else {
+				jsonvalue = value;
+			}
 		}else if(ovalue instanceof JSONArray){
 			jsonvalue = fromJsonArray((JSONArray) ovalue);
 

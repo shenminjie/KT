@@ -1,5 +1,6 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -22,6 +23,7 @@ import com.sina.weibo.sdk.api.share.Base;
 
 import org.xutils.http.RequestParams;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +53,10 @@ public class ChooseLocal extends BaseActivity {
     @Override
     public void onDataLoad(String namelink, Object object) {
         super.onDataLoad(namelink, object);
+        if("response".equals(namelink)){
+            return;
+        }
+
         list = (ArrayList<Map<String, String>>) object;
 
         for (Map<String, String> m : list) {
@@ -180,15 +186,17 @@ public class ChooseLocal extends BaseActivity {
                         .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
                 String userid = "" + PreferenceManager.getDefaultSharedPreferences(ChooseLocal.this)
                         .getLong(LoginActivity.PRE_CURRENT_USER_ID, 1);
-
+final List callback = new ArrayList();
+                callback.addAll(map);
                 for (final Map<String, String> m : map) {
 
-                    QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", clubid).add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("avatar", m.get("avator") + "").add("school_class_id", getIntent().getStringExtra("id")).add("club_id", clubid).add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                    QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", clubid).add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("school_class_id", getIntent().getStringExtra("id")).add("club_id", clubid).add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
                         @Override
                         public void onSuccessWithObject(String namelink, Object object) {
                             if (object.toString().equals("success")) {
                                 map.remove(m);
                                 if (map.size() == 0) {
+                                    setResult(1,new Intent().putExtra("maps", (Serializable) callback));
                                     finish();
                                 }
                             }

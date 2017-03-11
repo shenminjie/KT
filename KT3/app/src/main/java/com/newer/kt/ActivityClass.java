@@ -110,6 +110,13 @@ public class ActivityClass extends BaseActivity {
     protected void setListener() {
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initData(null);
+    }
+
     List list;
     @Override
     protected void initData(Bundle savedInstanceState) {

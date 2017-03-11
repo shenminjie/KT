@@ -42,9 +42,9 @@ public class Student_Info extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student__info);
+        code = getIntent().getStringExtra("code");
         initView();
         initOnclick();
-        code = getIntent().getStringExtra("code");
 
         String userid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_USER_ID, 1);
@@ -83,7 +83,7 @@ public class Student_Info extends BaseActivity {
         findViewById(R.id.rl_title7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.rl_title10).setVisibility(View.GONE);
+                findViewById(R.id.rl_title13).setVisibility(View.GONE);
                 startActivityForResult(new Intent(getBaseContext(), ActivityChooseBirth.class),0);
             }
         });
@@ -126,7 +126,7 @@ public class Student_Info extends BaseActivity {
                 if(lt==null){
                     return;
                 }
-                findViewById(R.id.rl_title10).setVisibility(View.GONE);
+                findViewById(R.id.rl_title13).setVisibility(View.GONE);
                 startActivityForResult(new Intent(getBaseContext(), ActivityChooseClass.class).putExtra("flag", "1").putExtra("data", (Serializable) lt),0);
             }
         });
@@ -134,7 +134,6 @@ public class Student_Info extends BaseActivity {
         m.put("nickname", ((TextView) findViewById(R.id.tv_stuInfo1)).getText());
         m.put("gender", ((TextView) findViewById(R.id.tv_stuInfo2)).getText());
         m.put("birthday", ((TextView) findViewById(R.id.tv_stuInfo3)).getText());
-        m.put("cls", ((TextView) findViewById(R.id.tv_stuInfo4)).getText());
         m.put("phone", ((TextView) findViewById(R.id.tv_stuInfo5)).getText());
 
         m.put("club_id", clubid);
@@ -142,10 +141,25 @@ public class Student_Info extends BaseActivity {
         m.put("school_class_id", cls_id==null?getIntent().getStringExtra("id"):cls_id);
         m.put("user_id", userid);
         m.put("avatar", "");
+        if(code!=null){
+            findViewById(R.id.finish).setVisibility(View.VISIBLE);
+            findViewById(R.id.saishi).setVisibility(View.GONE);
+        }else{
+            findViewById(R.id.finish).setVisibility(View.GONE);
+            findViewById(R.id.saishi).setVisibility(View.VISIBLE);
+        }
         findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", clubid).add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("avatar", m.get("avator") + "").add("school_class_id", getIntent().getStringExtra("id")).add("club_id", clubid).add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                QueryBuilder.build("school_class/update_user_info")
+                        .add("gender", m.get("gender") + "")
+                        .add("school_club_id", clubid)
+                        .add("phone", m.get("phone") + "")
+                        .add("birthday", m.get("birthday") + "")
+                        .add("school_class_id", getIntent().getStringExtra("id"))
+                        .add("club_id", clubid)
+                        .add("nickname",m.get("nickname"))
+                        .add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
                     @Override
                     public void onSuccessWithObject(String namelink, Object object) {
                         if (object.toString().equals("success")) {
@@ -169,10 +183,11 @@ public class Student_Info extends BaseActivity {
         findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", "").add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("avatar", m.get("avator") + "").add("school_class_id", "").add("club_id", "").add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", "").add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("school_class_id", "").add("club_id", "").add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
                     @Override
                     public void onSuccessWithObject(String namelink, Object object) {
                         if (object.toString().equals("success")) {
+                            setResult(2,new Intent().putExtra("map", (Serializable) m));
                             finish();
                         }
                     }
@@ -230,6 +245,9 @@ public class Student_Info extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(code==null){
+            findViewById(R.id.rl_title13).setVisibility(View.VISIBLE);
+        }
         if(data==null){
             return;
         }

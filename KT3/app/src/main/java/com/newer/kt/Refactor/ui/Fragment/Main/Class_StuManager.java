@@ -17,9 +17,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.frame.app.base.activity.BaseActivity;
+import com.newer.kt.InterfaceSample;
 import com.newer.kt.R;
 import com.newer.kt.entity.Student;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +33,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
     private ListView lv_class_stuManager;
     private BaseAdapter adapter;
     private ImageView image_vs_item_back;
-    public List list;
+    public static List list;
     private ImageView iv_zengjia;
     private PopupWindow mPopWindow;
     private LinearLayout ll_pop;
@@ -49,6 +52,27 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+//        new InterfaceSample()
+    }
+
+    @Override
+    public void onDataLoad(String namelink, Object object) {
+        super.onDataLoad(namelink, object);
+        if(namelink.equals("response")){
+            return;
+        }
+        list.clear();
+        list.addAll( (List) object);
+        adapter.notifyDataSetChanged();
+    }
     @Override
     protected void initHandler(Message msg) {
 
@@ -148,11 +172,14 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
                 Map m = (Map)getItem(position);
 
                 convertView=View.inflate(getApplicationContext(),R.layout.item_class_stumanager,null);
-                ((TextView)convertView.findViewById(R.id.tv_vs_name)).setText(m.get("nickname").toString());
-                ((ImageView)convertView.findViewById(R.id.tv_no)).setImageResource(m.get("gender").toString().equals("nv")?R.mipmap.nv:R.mipmap.nan);
+                ((TextView)convertView.findViewById(R.id.tv_vs_name)).setText(m.get("nickname")+"");
+                if(m.get("gender")!=null){
 
-                ((TextView)convertView.findViewById(R.id.tv_shengao)).setText(m.get("height").toString());
-                ((TextView)convertView.findViewById(R.id.tv_tizhong)).setText(m.get("weight").toString());
+                ((ImageView)convertView.findViewById(R.id.tv_no)).setImageResource(m.get("gender").toString().equals("nv")?R.mipmap.nv:R.mipmap.nan);
+                }
+
+                ((TextView)convertView.findViewById(R.id.tv_shengao)).setText(m.get("height") +"");
+                ((TextView)convertView.findViewById(R.id.tv_tizhong)).setText(m.get("weight")+"");
 
                 return convertView;
             }
@@ -181,7 +208,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
             break;
             case R.id.pop_addbendi: {
                 Intent intent = new Intent(getApplicationContext(), ChooseLocal.class).putExtra("id",getIntent().getStringExtra("id"));
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 mPopWindow.dismiss();
             }
             break;
@@ -196,10 +223,31 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            List map = (List) data.getSerializableExtra("maps");
+            list.addAll(map);
+            lv_class_stuManager.setSelection(list.size()-map.size());
+        }else if(requestCode == 2){
+            Map m = (Map) data.getSerializableExtra("map");
+            int i = Collections.binarySearch(list, m, new Comparator<Map>() {
+                @Override
+                public int compare(Map map, Map t1) {
+                    return map.get("user_id").toString().compareTo(t1.get("user_id").toString());
+                }
+
+            });
+            list.remove(i);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public void recvCode(String result) {
         super.recvCode(result);
         if(result!=null){
-            startActivity(new Intent(getBaseContext(),Student_Info.class).putExtra("id",getIntent().getStringExtra("id")).putExtra("code",result));
+            startActivityForResult(new Intent(getBaseContext(),Student_Info.class).putExtra("id",getIntent().getStringExtra("id")).putExtra("code",result),2);
 
         }
     }
