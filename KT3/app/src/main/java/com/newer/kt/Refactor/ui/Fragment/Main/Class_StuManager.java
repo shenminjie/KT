@@ -98,8 +98,8 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent=new Intent(getApplicationContext(), Student_Info.class);
-                startActivity(intent);
+                Intent intent=new Intent(getApplicationContext(), Student_Info.class).putExtra("passid",((Map)(parent.getItemAtPosition(position))).get("user_id").toString());
+                startActivityForResult(intent,2);
             }
         });
 
@@ -225,7 +225,9 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(data==null)return;
         if(requestCode==1){
+
             List map = (List) data.getSerializableExtra("maps");
             list.addAll(map);
             lv_class_stuManager.setSelection(list.size()-map.size());

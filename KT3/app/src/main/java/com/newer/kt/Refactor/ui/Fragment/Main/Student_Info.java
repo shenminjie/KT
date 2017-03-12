@@ -37,22 +37,25 @@ public class Student_Info extends BaseActivity {
     private ImageView image_vs_item_back;
     public String code;
     private Object lt;
-
+    String passid = "";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student__info);
         code = getIntent().getStringExtra("code");
+        if(code==null){
+            passid = getIntent().getStringExtra("passid");
+        }
+
         initView();
         initOnclick();
-
         String userid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_USER_ID, 1);
         final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_CLUB_ID, 1);
 //        Toast.makeText(this,"code: "+code,Toast.LENGTH_SHORT).show();
 //        Log.e(" ==== ","=================== code: "+code);
-        QueryBuilder.build("school_class/get_user_info").add("user_id", code).get(new QueryBuilder.EnhancedCallback() {
+        QueryBuilder.build("school_class/get_user_info").add("user_id", code==null?passid:code).get(new QueryBuilder.EnhancedCallback() {
             @Override
             public void onSuccessWithObject(String namelink, Object object) {
 //Toast.makeText(Student_Info.this,object.toString(),Toast.LENGTH_SHORT).show();
@@ -104,7 +107,7 @@ public class Student_Info extends BaseActivity {
             @Override
             public void onSuccessWithObject(String namelink, final Object object) {
                 lt = object;
-                Toast.makeText(getBaseContext(), lt.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), lt.toString(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -132,9 +135,12 @@ public class Student_Info extends BaseActivity {
         });
         final Map m = new TreeMap();
         m.put("nickname", ((TextView) findViewById(R.id.tv_stuInfo1)).getText());
-        m.put("gender", ((TextView) findViewById(R.id.tv_stuInfo2)).getText());
-        m.put("birthday", ((TextView) findViewById(R.id.tv_stuInfo3)).getText());
-        m.put("phone", ((TextView) findViewById(R.id.tv_stuInfo5)).getText());
+        m.put("gender", ((TextView) findViewById(R.id.tv_stuInfo2)).getText().equals("男")?"GG":"MM");
+        String birth = ((TextView) findViewById(R.id.tv_stuInfo3)).getText().toString();
+        m.put("birthday", birth.equals("无")?"":birth);
+        String phone = ((TextView) findViewById(R.id.tv_stuInfo5)).getText().toString();
+
+        m.put("phone", phone.startsWith("暂无")?"":phone);
 
         m.put("club_id", clubid);
         m.put("school_club_id", clubid);
@@ -183,7 +189,25 @@ public class Student_Info extends BaseActivity {
         findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QueryBuilder.build("school_class/update_user_info").add("gender", m.get("gender") + "").add("school_club_id", "").add("phone", m.get("phone") + "").add("birthday", m.get("birthday") + "").add("school_class_id", "").add("club_id", "").add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                QueryBuilder.build("school_class/update_user_info")
+
+//                        .add("gender", m.get("gender") + "")
+//                        .add("school_club_id", clubid)
+//                        .add("phone", m.get("phone") + "")
+//                        .add("birthday", m.get("birthday") + "")
+//                        .add("school_class_id", getIntent().getStringExtra("id"))
+//                        .add("club_id", clubid)
+//                        .add("nickname",m.get("nickname"))
+//                        .add("user_id", m.get("user_id").toString())
+//
+                        .add("nickname", m.get("nickname") + "")
+                        .add("gender", m.get("gender") + "")
+                        .add("school_club_id", "null")
+                        .add("phone", m.get("phone") + "")
+                        .add("birthday", m.get("birthday") + "")
+                        .add("school_class_id", "null")
+                        .add("club_id", "null")
+                        .add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
                     @Override
                     public void onSuccessWithObject(String namelink, Object object) {
                         if (object.toString().equals("success")) {
