@@ -3,6 +3,7 @@ package com.newer.kt.Refactor.ui.Fragment.Main;
 import android.content.Intent;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ import org.w3c.dom.Text;
 import org.xutils.http.RequestParams;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -49,7 +51,7 @@ public class Student_Info extends BaseActivity {
 
         initView();
         initOnclick();
-        String userid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+        final String userid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_USER_ID, 1);
         final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getLong(PRE_CURRENT_CLUB_ID, 1);
@@ -133,20 +135,7 @@ public class Student_Info extends BaseActivity {
                 startActivityForResult(new Intent(getBaseContext(), ActivityChooseClass.class).putExtra("flag", "1").putExtra("data", (Serializable) lt),0);
             }
         });
-        final Map m = new TreeMap();
-        m.put("nickname", ((TextView) findViewById(R.id.tv_stuInfo1)).getText());
-        m.put("gender", ((TextView) findViewById(R.id.tv_stuInfo2)).getText().equals("男")?"GG":"MM");
-        String birth = ((TextView) findViewById(R.id.tv_stuInfo3)).getText().toString();
-        m.put("birthday", birth.equals("无")?"":birth);
-        String phone = ((TextView) findViewById(R.id.tv_stuInfo5)).getText().toString();
 
-        m.put("phone", phone.startsWith("暂无")?"":phone);
-
-        m.put("club_id", clubid);
-        m.put("school_club_id", clubid);
-        m.put("school_class_id", cls_id==null?getIntent().getStringExtra("id"):cls_id);
-        m.put("user_id", userid);
-        m.put("avatar", "");
         if(code!=null){
             findViewById(R.id.finish).setVisibility(View.VISIBLE);
             findViewById(R.id.saishi).setVisibility(View.GONE);
@@ -157,6 +146,7 @@ public class Student_Info extends BaseActivity {
         findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final Map m = getStu(userid, clubid);
                 QueryBuilder.build("school_class/update_user_info")
                         .add("gender", m.get("gender") + "")
                         .add("school_club_id", clubid)
@@ -169,6 +159,9 @@ public class Student_Info extends BaseActivity {
                     @Override
                     public void onSuccessWithObject(String namelink, Object object) {
                         if (object.toString().equals("success")) {
+                            List list = new ArrayList();
+                            list.add(m);
+                            setResult(1,new Intent().putExtra("maps", (Serializable) list));
                             finish();
                         }
                     }
@@ -189,6 +182,7 @@ public class Student_Info extends BaseActivity {
         findViewById(R.id.saishi).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final Map m = getStu(userid, clubid);
                 QueryBuilder.build("school_class/update_user_info")
 
 //                        .add("gender", m.get("gender") + "")
@@ -207,12 +201,14 @@ public class Student_Info extends BaseActivity {
                         .add("birthday", m.get("birthday") + "")
                         .add("school_class_id", "null")
                         .add("club_id", "null")
-                        .add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response") {
+                        .add("user_id", m.get("user_id").toString()).post(new QueryBuilder.EnhancedCallback("response;msg") {
                     @Override
                     public void onSuccessWithObject(String namelink, Object object) {
-                        if (object.toString().equals("success")) {
+                        if (namelink.equals("response")&&object.toString().equals("success")) {
                             setResult(2,new Intent().putExtra("map", (Serializable) m));
                             finish();
+                        }else{
+//                            Toast.makeText("");
                         }
                     }
 
@@ -230,6 +226,25 @@ public class Student_Info extends BaseActivity {
             }
         });
 
+    }
+
+    @NonNull
+    private Map getStu(String userid, String clubid) {
+        final Map m = new TreeMap();
+        m.put("nickname", ((TextView) findViewById(R.id.tv_stuInfo1)).getText());
+        m.put("gender", ((TextView) findViewById(R.id.tv_stuInfo2)).getText().equals("男")?"GG":"MM");
+        String birth = ((TextView) findViewById(R.id.tv_stuInfo3)).getText().toString();
+        m.put("birthday", birth.equals("无")?"":birth);
+        String phone = ((TextView) findViewById(R.id.tv_stuInfo5)).getText().toString();
+
+        m.put("phone", phone.startsWith("暂无")?"":phone);
+
+        m.put("club_id", clubid);
+        m.put("school_club_id", clubid);
+        m.put("school_class_id", cls_id==null?getIntent().getStringExtra("id"):cls_id);
+        m.put("user_id", userid);
+        m.put("avatar", "");
+        return m;
     }
 
     @Override

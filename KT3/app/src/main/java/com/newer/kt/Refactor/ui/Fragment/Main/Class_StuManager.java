@@ -37,6 +37,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
     private ImageView iv_zengjia;
     private PopupWindow mPopWindow;
     private LinearLayout ll_pop;
+    private int removed;
 
 
     @Override
@@ -97,7 +98,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
         lv_class_stuManager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                removed = position;
                 Intent intent=new Intent(getApplicationContext(), Student_Info.class).putExtra("passid",((Map)(parent.getItemAtPosition(position))).get("user_id").toString());
                 startActivityForResult(intent,2);
             }
@@ -233,14 +234,8 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
             lv_class_stuManager.setSelection(list.size()-map.size());
         }else if(requestCode == 2){
             Map m = (Map) data.getSerializableExtra("map");
-            int i = Collections.binarySearch(list, m, new Comparator<Map>() {
-                @Override
-                public int compare(Map map, Map t1) {
-                    return map.get("user_id").toString().compareTo(t1.get("user_id").toString());
-                }
 
-            });
-            list.remove(i);
+            list.remove(removed);
             adapter.notifyDataSetChanged();
         }
     }

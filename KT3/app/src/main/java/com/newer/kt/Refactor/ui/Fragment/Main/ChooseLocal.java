@@ -57,15 +57,17 @@ public class ChooseLocal extends BaseActivity {
             return;
         }
 
-        list = (ArrayList<Map<String, String>>) object;
-
-        for (Map<String, String> m : list) {
+        list.clear();
+        for (Map<String, String> m : (ArrayList<Map<String, String>>) object) {
             if (m.get("school_cls").toString().equals("null") || m.get("school_grade").toString().equals("null")) {
                 list.add((Map<String, String>) m);
             }
         }
         lv_chooseStu.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        if(list.size()==0){
+            btn_tijiao.setVisibility(View.GONE);
+        }
 
     }
 

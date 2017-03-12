@@ -317,10 +317,11 @@
                 android:textColor="#222222"
                 android:textSize="14sp"
                 android:textStyle="bold" />
-
+right
             <EditText
                 android:id="@+id/tv_stuInfo5"
-                android:layout_width="wrap_content"
+                android:layout_width="350px"
+                android:gravity=""
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"

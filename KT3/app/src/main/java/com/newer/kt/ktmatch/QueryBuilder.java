@@ -1,6 +1,7 @@
 package com.newer.kt.ktmatch;
 
 import android.app.DownloadManager;
+import android.widget.Toast;
 
 import com.frame.app.base.activity.BaseActivity;
 import com.newer.kt.Refactor.Constants;
@@ -132,6 +133,20 @@ public class QueryBuilder {
 
         public void onSuccess(String str) {
             String namelink;
+            Object msg = JsonUtil.findJsonLink("msg",str);
+            str = str.replaceAll("null","--");
+            if(JsonUtil.findJsonLink("response",str).toString().contains("error")){
+
+
+                if(msg==null||msg.equals("")) {
+                    msg = "error  "+rp.getMethod().toString()+": "+rp.toString();
+
+                }
+                    if (baseactivity != null) {
+                        Toast.makeText(baseactivity, msg.toString(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+            }
             if (list == null) {
                 namelink = "";
                 Object rt = JsonUtil.extractJsonRightValue(str);
@@ -189,11 +204,12 @@ public class QueryBuilder {
         this.baseactivity = baseactivity;
         return this;
     }
+    static RequestParams rp;
     public void post(final Callback callback) {
         if (callback == null) {
             throw new RuntimeException("addCallback must be invoked before to");
         }
-        RequestParams rp = get();
+        rp = get();
         callback.onDebug(rp);
         x.http().post(get(), new org.xutils.common.Callback.CommonCallback<String>() {
             @Override
