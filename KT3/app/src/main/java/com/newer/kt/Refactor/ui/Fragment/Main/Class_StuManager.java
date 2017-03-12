@@ -99,7 +99,7 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 removed = position;
-                Intent intent=new Intent(getApplicationContext(), Student_Info.class).putExtra("passid",((Map)(parent.getItemAtPosition(position))).get("user_id").toString());
+                Intent intent=new Intent(getApplicationContext(), Student_Info.class).putExtra("passid",((Map)(parent.getItemAtPosition(position))).get("user_id").toString()).putExtra("id",getIntent().getStringExtra("id"));
                 startActivityForResult(intent,2);
             }
         });
@@ -234,8 +234,10 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
             lv_class_stuManager.setSelection(list.size()-map.size());
         }else if(requestCode == 2){
             Map m = (Map) data.getSerializableExtra("map");
-
-            list.remove(removed);
+            String removed = data.getStringExtra("removed");
+            if(removed!=null&&removed.equals("1")){
+                list.remove(removed);
+            }
             adapter.notifyDataSetChanged();
         }
     }

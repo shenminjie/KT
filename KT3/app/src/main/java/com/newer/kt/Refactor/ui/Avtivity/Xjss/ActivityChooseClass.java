@@ -26,7 +26,12 @@ import butterknife.OnClick;
  * Created by bajieaichirou on 17/3/4.
  */
 public class ActivityChooseClass extends Activity {
-    
+
+    private static Map mapgetCls = new TreeMap();
+    public static String get(String id){
+
+return (String) mapgetCls.get(id)==null?id:(String) mapgetCls.get(id);
+    }
     @Bind(R.id.choose_time_title_txt)
     TextView mTitleTxt;
     
@@ -45,18 +50,18 @@ public class ActivityChooseClass extends Activity {
 //    @Bind(R.id.wheel_day)
 //    WheelPicker mDayWheel;
 
-    private List<String> year_list = new ArrayList<>();
-    private List<String> month_list = new ArrayList<>();
+    private static List<String> year_list = new ArrayList<>();
+    private static List<String> month_list = new ArrayList<>();
     private List<String> day_list = new ArrayList<>();
     private int day;
-    private int year_selected_index = 0;
-    private int month_selected_index = 0;
+    private static int year_selected_index = 0;
+    private static int month_selected_index = 0;
     private int day_selected_index = 0;
     private String type;
     private Intent intent;
 
 
-    public List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
+    public static List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,28 +87,19 @@ public class ActivityChooseClass extends Activity {
                     month_list.get(month_selected_index));
                 intent.putExtra("flag","1");
                 intent.putExtra("cls_id",map.get(month_list.get(month_selected_index)));
+
                 setResult(Constant.CODE_CHOOSE_TIME, intent);
                 this.finish();
                 break;
         }
     }
-    String[] grade = new String[]{"小班","中班","大班","一年级","二年级","三年级","四年级","五年级","六年级","初一","初二"};
+    static String[] grade = new String[]{"小班","中班","大班","一年级","二年级","三年级","四年级","五年级","六年级","初一","初二"};
 
     private void setData() {
         mTitleTxt.setText("班级");
 
-        for (int i = 0; i < maps.size(); i ++){
-            int gradeix = Integer.parseInt(maps.get(i).get("grade").toString())-1;
-            String gradestr = grade[gradeix];
-            year_list.add(gradestr);
-        }
+//        initData();
         mYearWheel.setData(year_list);
-        for (int i = 0; i < ((List)maps.get(0).get("list")).size();i++){
-            String cls = ((Map)((List)maps.get(0).get("list")).get(i)).get("cls").toString();
-            cls = cls.endsWith("班")?cls:cls+"班";
-            map.put(cls,((Map)((List)maps.get(0).get("list")).get(i)).get("id").toString());
-            month_list.add(cls);
-        }
         mMonthWheel.setData(month_list);
 //        day = getDaysByYearMonth(Integer.valueOf(year_list.get(0)), Integer.valueOf(month_list.get(0)));
         mYearWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
@@ -129,7 +125,26 @@ public class ActivityChooseClass extends Activity {
 //            }
 //        });
     }
-Map<String,String> map = new TreeMap<String,String>();
+
+    public static  void initData() {
+        for (int i = 0; i < maps.size(); i ++){
+            int gradeix = Integer.parseInt(maps.get(i).get("grade").toString())-1;
+            String gradestr = grade[gradeix];
+            year_list.add(gradestr);
+        }
+        for(int j = 0;j<maps.size();j++){
+
+        for (int i = 0; i < ((List)maps.get(j).get("list")).size(); i++){
+            String cls = ((Map)((List)maps.get(j).get("list")).get(i)).get("cls").toString();
+            cls = cls.endsWith("班")?cls:cls+"班";
+            map.put(cls,((Map)((List)maps.get(j).get("list")).get(i)).get("id").toString());
+            mapgetCls.put(((Map)((List)maps.get(j).get("list")).get(i)).get("id").toString(),cls);
+            month_list.add(cls);
+        }
+        }
+    }
+
+    static Map<String,String> map = new TreeMap<String,String>();
     private void setDayData(){
 //        day = getDaysByYearMonth(Integer.valueOf(year_list.get(year_selected_index)), Integer.valueOf(month_list.get(month_selected_index)));
 //        day_list.clear();
