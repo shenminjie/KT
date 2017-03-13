@@ -69,7 +69,6 @@ public class FootballLessonActivity extends BaseActivity {
         next = (TextView) findViewById(R.id.layout_select_class_next);
         count = (TextView) findViewById(R.id.layout_title_right_count);
     }
-
     @Override
     protected void setListener() {
         back.setOnClickListener(new View.OnClickListener() {

@@ -77,6 +77,11 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:label">
         <activity
+            android:name=".ActivityScheduleDetail"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".ActivitySchedule" />
+        <activity
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseClub"
             android:screenOrientation="portrait"
             android:theme="@style/my_dialog" />
@@ -95,7 +100,6 @@
         <activity
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseClass"
             android:screenOrientation="portrait"
-
             android:theme="@style/my_dialog" />
         <activity
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityNewContest"
@@ -717,7 +721,8 @@
         <activity android:name=".Refactor.ui.Fragment.Main.AddClass" />
         <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
         <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal" />
-        <activity android:name=".Refactor.ui.Fragment.Main.School_Info"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.School_Info" />
+        <activity android:name=".Main5ACctivity"></activity>
     </application>
 
 </manifest>
