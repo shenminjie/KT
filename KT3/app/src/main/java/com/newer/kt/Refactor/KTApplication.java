@@ -130,7 +130,7 @@ public class KTApplication extends App {
         initDB();
         initButTags();
         ZXingLibrary.initDisplayOpinion(this);
-
+        initImageLoader();
     }
 
     private void initImageLoader() {

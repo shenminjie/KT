@@ -24,4 +24,14 @@
     <string name="contest_choose_club">请选择俱乐部</string>
     <string name="contest_camera">拍照</string>
     <string name="contest_photo">从相册选择</string>
+
+
+    <!-- schedule -->
+    <string name="schedule_time_unit">分钟</string>
+    <string name="schedule_strength">强度</string>
+    <string name="schedule_practice">练习</string>
+    <string name="schedule_video_lesson">视频\n教案</string>
+    <string name="schedule_creator">该课程创建者</string>
+    <string name="detail_organization">组织形式</string>
+    <string name="detail_requirement">要求</string>
 </resources>

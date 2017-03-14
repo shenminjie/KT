@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 
 import com.frame.app.base.activity.BaseActivity;
+import com.newer.kt.ActivitySchedule;
 import com.newer.kt.R;
 import com.newer.kt.fragment.peixun.FootBallFragment;
 
@@ -22,6 +23,13 @@ import java.util.Map;
 
 public class FootBall_Class_Lesson extends BaseActivity {
     private ImageView iv_ft_back1;
+
+    int[]  drawables = new int[]{R.drawable.k1,R.drawable.k2,R.drawable.k3,R.drawable.k4,R.drawable.k5,R.drawable.k6,R.drawable.k7,R.drawable.k8 ,R.drawable.k9,R.drawable.k10,R.drawable.k11,R.drawable.k12,R.drawable.k13,R.drawable.k14,R.drawable.k15,R.drawable.k16,R.drawable.k17,R.drawable.k18,R.drawable.k19,R.drawable.k20};
+
+    public int getPortraitDrawable(int i){
+        return drawables[i%20];
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +60,14 @@ public class FootBall_Class_Lesson extends BaseActivity {
                 View convertView = LayoutInflater.from(getBaseContext()).inflate(R.layout.zqk_gv_item, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(((Map)getItem(i)).get("name").toString());
                 //times" -> "10,10,15,5"
+                ((ImageView) convertView.findViewById(R.id.image)).setImageResource(getPortraitDrawable(i));
+
+
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                        String id = ((Map)FootBallListActivity.semester.get(i)).get("school_gym_course_combination_id").toString();
-                        Intent intent=new Intent(getApplicationContext(),Main2Activity.class).putExtra("school_gym_course_combination_id",id);
+                        Intent intent=new Intent(getApplicationContext(),ActivitySchedule.class).putExtra("school_gym_course_combination_id",id);
                         startActivity(intent);
 
                     }

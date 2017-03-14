@@ -39,7 +39,7 @@ public class FootBallFragment extends BaseFragment {
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_footbal);
-        getRootView().findViewById(R.id.image_view1).setOnClickListener(new View.OnClickListener() {
+        getRootView().findViewById(R.id.image_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(),FootBallListActivity.class).putExtra("key","幼儿园"));
@@ -62,6 +62,14 @@ public class FootBallFragment extends BaseFragment {
 
             @Override
             public void onDebug(RequestParams rp) {
+
+            }
+        });
+
+        getRootView().findViewById(R.id.image_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),FootBallListActivity.class).putExtra("key","幼儿园"));
 
             }
         });
@@ -93,7 +101,7 @@ public class FootBallFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.image_view)
+    @OnClick(R.id.image_view1)
     public void goDetail(){
         startActivity(new Intent(getContext(),FootBallListActivity.class).putExtra("key","小学"));
 

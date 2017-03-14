@@ -62,8 +62,9 @@ public class FootBallListActivity extends BaseActivity {
 //    private List<CircleProgressView> mList = new ArrayList<>();
 
     String type;
-    private Map<String, ArrayList> map;
+    private Map<String, ArrayList> map = new TreeMap<String,ArrayList>();
     public static List semester;
+
 
     @Override
     protected void initHandler(Message msg) {
@@ -75,7 +76,9 @@ public class FootBallListActivity extends BaseActivity {
         setContentView(R.layout.activity_football_list);
         initEvent();
         type = getIntent().getStringExtra("type");
-        map = new TreeMap(FootBallFragment.map);
+        if(FootBallFragment.map!=null) {
+            map = new TreeMap(FootBallFragment.map);
+        }
         String key = getIntent().getStringExtra("key");
         for(Object k:new TreeSet(map.keySet())){
             if(!k.toString().startsWith(key)){

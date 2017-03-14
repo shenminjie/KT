@@ -48,7 +48,7 @@ public class InterfaceSample {
     public static void test(){
 //        QueryBuilder.build("wikis/list").get(cb);
 //        QueryBuilder.build("school_gym_courses/combinations").get(cb);
-//        QueryBuilder.build("school_gym_courses/detail").add("school_gym_course_combination_id","").get(cb);
+        QueryBuilder.build("school_gym_courses/detail").add("school_gym_course_combination_id","").get(cb);
     }
 
 

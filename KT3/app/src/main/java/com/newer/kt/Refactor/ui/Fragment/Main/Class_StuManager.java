@@ -151,6 +151,8 @@ public class Class_StuManager extends CamScanActivity implements View.OnClickLis
 
 
     }
+
+
     private void initAdapter() {
         adapter=new BaseAdapter() {
             @Override
