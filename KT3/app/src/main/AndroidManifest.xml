@@ -722,11 +722,9 @@
         <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
         <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal" />
         <activity android:name=".Refactor.ui.Fragment.Main.School_Info" />
-<<<<<<< HEAD
+
         <activity android:name=".Refactor.ui.SchoolName"></activity>
-=======
-        <activity android:name=".Main5ACctivity"></activity>
->>>>>>> origin/master
+
     </application>
 
 </manifest>
