@@ -1,10 +1,12 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
+import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,9 +14,10 @@ import com.google.gson.Gson;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
+import com.newer.kt.Refactor.ui.Fragment.Main.PhotoTake.MainActivity;
+import com.newer.kt.Refactor.ui.SchoolName;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.entity.Club_Info;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -28,11 +31,14 @@ public class School_Info extends AppCompatActivity {
     private TextView tv_stuInfo2;
     private TextView tv_stuInfo3;
     private ImageView iv_stuInfo1;
+    private RelativeLayout rl_title3;
+    private RelativeLayout rl_title1;
+    private  String getAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_school__info);
+        setContentView(R.layout.activity_school_info);
 
         initView();
         initDate();
@@ -46,6 +52,27 @@ public class School_Info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        rl_title3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), SchoolName.class);
+                intent.putExtra("schoolName",club_info.getName().toString());
+                startActivity(intent);
+
+            }
+        });
+
+
+        rl_title1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra(getAvatar,String.valueOf(club_info.getAvatar().toString() ));
+
+                startActivity(intent);
             }
         });
     }
@@ -71,6 +98,10 @@ public class School_Info extends AppCompatActivity {
                 tv_stuInfo1.setText(club_info.getName().toString());
                 tv_stuInfo2.setText(club_info.getSchool_student_count().toString());
                 Glide.with(getApplicationContext()).load(club_info.getAvatar().toString()).into(iv_stuInfo1);
+//                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+//
+//
+//                startActivity(intent);
 
                 if (club_info.higher_manager.toString() == null) {
 
@@ -105,5 +136,7 @@ public class School_Info extends AppCompatActivity {
         tv_stuInfo2 = ((TextView) findViewById(R.id.tv_stuInfo2));
         tv_stuInfo3 = ((TextView) findViewById(R.id.tv_stuInfo3));
         iv_stuInfo1 = ((ImageView) findViewById(R.id.iv_stuInfo1));
+        rl_title3 = ((RelativeLayout) findViewById(R.id.rl_title3));
+        rl_title1 = ((RelativeLayout) findViewById(R.id.rl_title1));
     }
 }

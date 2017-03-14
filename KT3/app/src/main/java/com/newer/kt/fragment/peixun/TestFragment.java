@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,10 +21,13 @@ import com.frame.app.base.fragment.BaseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.Entitiy.TestIndexData;
 import com.newer.kt.Refactor.Entitiy.TestPaiMingBean;
+import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.Refactor.ui.Avtivity.TestListActivity;
 import com.newer.kt.Refactor.ui.Fragment.Main.ManagerFragment;
+import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.Refactor.view.LoadMoreRecyclerView;
 //import com.newer.kt.adapter.TestAdater;
 import com.newer.kt.entity.Shool_user_tests_Bean;
@@ -70,6 +74,8 @@ public class TestFragment extends BaseFragment {
     private ListView lv_test_list;
     //  private Shool_user_tests_Bean shool_user_tests_bean;
     final ArrayList<Shool_user_tests_Bean.Shool_user_tests> shool_user_tests_list = new ArrayList<Shool_user_tests_Bean.Shool_user_tests>();
+    private ImageView image_top;
+    private TextView tv_cont;
 
 
     @Override
@@ -95,6 +101,9 @@ public class TestFragment extends BaseFragment {
         adapter = new BaseAdapter() {
 
 
+            private ImageView image_top;
+            private TextView tv_cont;
+
             @Override
             public int getCount() {
                 return shool_user_tests_list.size();
@@ -114,20 +123,39 @@ public class TestFragment extends BaseFragment {
             public View getView(int position, View convertView, ViewGroup parent) {
                 convertView = rootView.inflate(getActivity(), R.layout.item_test, null);
                 viewHolder = new ViewHolder();
-                viewHolder.image_head_test = ((ImageView)convertView.findViewById(R.id.image_head_test));
+                viewHolder.image_head_test = ((ImageView) convertView.findViewById(R.id.image_head_test));
                 viewHolder.tv_name_test = ((TextView) convertView.findViewById(R.id.tv_name_test));
                 viewHolder.tv_gradle_test = ((TextView) convertView.findViewById(R.id.tv_gradle_test));
                 viewHolder.tv_dongzuo_test = ((TextView) convertView.findViewById(R.id.tv_dongzuo_test));
                 viewHolder.tv_all_cont_test = ((TextView) convertView.findViewById(R.id.tv_all_cont_test));
 
                 Shool_user_tests_Bean.Shool_user_tests shool_bean = shool_user_tests_list.get(position);
-//                System.out.println("222222222222222222222222222323232323232323");
-//                System.out.println(shool_bean.cls.toString()+"------------33333333333333333333333333333333333333333333333333");
-//                System.out.println(shool_bean.nickname+"============================================");
-                 viewHolder.tv_name_test.setText(shool_bean.nickname + "");
+                viewHolder.tv_name_test.setText(shool_bean.nickname + "");
                 viewHolder.tv_gradle_test.setText(shool_bean.cls + "");
                 viewHolder.tv_dongzuo_test.setText(shool_bean.skill_count);
                 viewHolder.tv_all_cont_test.setText(shool_bean.total_scores);
+                tv_cont = ((TextView) convertView.findViewById(R.id.tv_cont));
+                image_top = ((ImageView) convertView.findViewById(R.id.image_top));
+                tv_cont.setText(position + 1 + "");
+                if (tv_cont.getText().equals("1")) {
+                    image_top.setVisibility(View.VISIBLE);
+                    tv_cont.setVisibility(View.GONE);
+                }
+                if (tv_cont.getText().equals("2")) {
+                    int a=R.drawable.top_2;
+                    image_top.setImageResource(a);
+                    image_top.setVisibility(View.VISIBLE);
+                    tv_cont.setVisibility(View.GONE);
+                }
+                if (tv_cont.getText().equals("3")) {
+                    int b=R.drawable.top_3;
+                    image_top.setImageResource(b);
+                    image_top.setVisibility(View.VISIBLE);
+                    tv_cont.setVisibility(View.GONE);
+                }
+
+
+
                 Glide.with(getActivity()).load(shool_bean.avatar).into(viewHolder.image_head_test);
 
                 return convertView;
@@ -137,6 +165,8 @@ public class TestFragment extends BaseFragment {
 
     private void initView1() {
         lv_test_list = ((ListView) rootView.findViewById(R.id.lv_test_list));
+
+
         initDa();
 
         lv_test_list.setAdapter(adapter);
@@ -147,42 +177,8 @@ public class TestFragment extends BaseFragment {
 
 
     private void initDa() {
-        RequestParams p = new RequestParams("http://api.ktfootball.com/shool_user_tests/school_football_skill_test_ranking?club_id=89&authenticity_token=dc71e6408df746f9fb73868703cb2fbf");
-//        p.addQueryStringParameter("authenticity_token", "K9MpaPMdj0jij2m149sL1a7TcYrWXmg5GLrAJDCNBx8");
-//        p.addQueryStringParameter("club_id", "89");
-        x.http().get(p, new Callback.CommonCallback<String>() {
 
 
-            @Override
-            public void onSuccess(String result) {
-                //TestIndexData testIndexData = new Gson().fromJson(result.toString(),new TypeToken<TestIndexData>(){}.getType());
-                //mAll_people.setText(testIndexData.getUsers_count());
-                //mAll_pingjun.setText(testIndexData.getAverage_scores());
-                Gson gson = new Gson();
-                Shool_user_tests_Bean shool_user_tests_Bean = gson.fromJson(result, Shool_user_tests_Bean.class);
-                shool_user_tests_list.clear();
-                shool_user_tests_list.addAll(shool_user_tests_Bean.rankings);
-                adapter.notifyDataSetChanged();
-//                System.out.println("1111111111111111111111111111111111111111111111111111111111111");
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-
-            }
-        });
     }
 
     @Override
@@ -217,9 +213,16 @@ public class TestFragment extends BaseFragment {
 
     //加载测评页面排名数据
     private void initData2() {
-        RequestParams p = new RequestParams("http://api.ktfootball.com/shool_user_tests/school_football_skill_test_ranking");
-        p.addQueryStringParameter("authenticity_token", "K9MpaPMdj0jij2m149sL1a7TcYrWXmg5GLrAJDCNBx8");
-        p.addQueryStringParameter("club_id", "89");
+        String url = Constants.KTHOST + "shool_user_tests/school_football_skill_test_ranking";
+        RequestParams p = new RequestParams(url);
+        p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
+
+
+        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
+
+//        RequestParams p = new RequestParams("http://api.ktfootball.com/shool_user_tests/school_football_skill_test_ranking");
+//        p.addQueryStringParameter("authenticity_token", "K9MpaPMdj0jij2m149sL1a7TcYrWXmg5GLrAJDCNBx8");
+        p.addQueryStringParameter("club_id", clubid);
         x.http().get(p, new Callback.CommonCallback<String>() {
 
 
@@ -229,6 +232,11 @@ public class TestFragment extends BaseFragment {
 //                System.out.println("----123"+testPaiMingBean.toString());
                  /*mAll_people.setText(testIndexData.getUsers_count());
                  mAll_pingjun.setText(testIndexData.getAverage_scores());*/
+                Gson gson = new Gson();
+                Shool_user_tests_Bean shool_user_tests_Bean = gson.fromJson(result, Shool_user_tests_Bean.class);
+                shool_user_tests_list.clear();
+                shool_user_tests_list.addAll(shool_user_tests_Bean.rankings);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
