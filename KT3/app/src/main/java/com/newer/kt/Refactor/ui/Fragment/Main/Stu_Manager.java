@@ -1,43 +1,24 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Message;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ListPopupWindow;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bajie.demo.view.CustomRecyclerView;
-import com.frame.app.base.activity.BaseActivity;
-import com.newer.kt.InterfaceSample;
 import com.newer.kt.R;
-import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
-import com.newer.kt.ktmatch.ChooseMatcherActivity;
-import com.newer.kt.ktmatch.QueryBuilder;
-import com.newer.kt.ktmatch.TeamAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.sina.weibo.sdk.api.share.Base;
 
-import org.xutils.http.RequestParams;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +36,7 @@ public class Stu_Manager extends CamScanActivity implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stu__manager);
+        setContentView(R.layout.activity_stu_manager);
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
         iv_addStu = ((ImageView) findViewById(R.id.iv_addStu));
         image_vs_item_back.setOnClickListener(new View.OnClickListener() {

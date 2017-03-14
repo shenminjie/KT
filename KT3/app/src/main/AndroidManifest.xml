@@ -724,6 +724,7 @@
         <activity android:name=".Refactor.ui.Fragment.Main.School_Info" />
 
         <activity android:name=".Refactor.ui.SchoolName"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.PhotoTake.MainActivity"></activity>
 
     </application>
 
