@@ -1,10 +1,12 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
+import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,6 +14,7 @@ import com.google.gson.Gson;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
+import com.newer.kt.Refactor.ui.SchoolName;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.entity.Club_Info;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,6 +31,7 @@ public class School_Info extends AppCompatActivity {
     private TextView tv_stuInfo2;
     private TextView tv_stuInfo3;
     private ImageView iv_stuInfo1;
+    private RelativeLayout rl_title3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,16 @@ public class School_Info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        rl_title3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), SchoolName.class);
+                intent.putExtra("schoolName",club_info.getName().toString());
+                startActivity(intent);
+
             }
         });
     }
@@ -105,5 +119,6 @@ public class School_Info extends AppCompatActivity {
         tv_stuInfo2 = ((TextView) findViewById(R.id.tv_stuInfo2));
         tv_stuInfo3 = ((TextView) findViewById(R.id.tv_stuInfo3));
         iv_stuInfo1 = ((ImageView) findViewById(R.id.iv_stuInfo1));
+        rl_title3 = ((RelativeLayout) findViewById(R.id.rl_title3));
     }
 }

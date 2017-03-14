@@ -95,7 +95,6 @@
         <activity
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityChooseClass"
             android:screenOrientation="portrait"
-
             android:theme="@style/my_dialog" />
         <activity
             android:name=".Refactor.ui.Avtivity.Xjss.ActivityNewContest"
@@ -717,7 +716,8 @@
         <activity android:name=".Refactor.ui.Fragment.Main.AddClass" />
         <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
         <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal" />
-        <activity android:name=".Refactor.ui.Fragment.Main.School_Info"></activity>
+        <activity android:name=".Refactor.ui.Fragment.Main.School_Info" />
+        <activity android:name=".Refactor.ui.SchoolName"></activity>
     </application>
 
 </manifest>
