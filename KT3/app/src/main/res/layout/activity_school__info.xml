@@ -27,6 +27,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="我校资料"
+            
             android:textColor="@color/gold"
             android:textSize="18dp" />
 
