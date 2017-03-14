@@ -140,7 +140,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="750px"
+            android:layout_height="900px"
             android:scaleType="fitXY"
             android:src="@drawable/entrance1" />
 
@@ -167,7 +167,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="750px"
+                android:layout_height="900px"
                 android:scaleType="fitXY"
                 android:src="@drawable/entrance2" />
 

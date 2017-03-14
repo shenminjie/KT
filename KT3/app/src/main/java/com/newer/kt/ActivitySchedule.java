@@ -1,21 +1,26 @@
 package com.newer.kt;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
+import com.newer.kt.zqk.ZQKVIdeoActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.xutils.http.RequestParams;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,6 +59,9 @@ public class ActivitySchedule extends Activity {
     private List<String> list_title;
     private ScheduleContent scheduleContent;
     private ScheduleAdapter mAdapter;
+
+    Map<String,ArrayList<Map>> maps = new TreeMap<String,ArrayList<Map>>();
+
     String data;
 
     @Override
@@ -81,9 +89,16 @@ public class ActivitySchedule extends Activity {
 
             }
         });
+        mVideoLessonTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), ZQKVIdeoActivity.class).putExtra("titles", (Serializable) ts).putExtra("content", (Serializable) maps));
+            }
+        });
     }
 
 
+List<String> ts = new ArrayList<String>();
     private void initData() {
         String portrait = JsonUtil.findJsonLink("create_user_avatar", data).toString();
         if (portrait != null && !portrait.equals("")) {
@@ -119,6 +134,7 @@ public class ActivitySchedule extends Activity {
                 contentList = new ArrayList<ScheduleInfo>();
         list_title = new ArrayList<String>();
         list_title.add("教学目标");
+
         list_title.add("教学器材");
         list_title.add("教学内容");
 
@@ -143,15 +159,17 @@ public class ActivitySchedule extends Activity {
             map.put("content_time", "");
             map.put("child_title", "");
             list.add(map);
+            ArrayList array = new ArrayList();
             List ls = (List) map.get("list");
             for (int j = 0; j < ls.size(); j++) {
                 Map m = (Map) ls.get(j);
                 m.put("content_title", "");
                 m.put("child_title", m.get("name"));
                 list.add(m);
-
+                array.add(m);
             }
-
+            ts.add(map.get("name").toString());
+            maps.put(map.get("name").toString(),array);
         }
         int size = list.size();
         List<ScheduleContent> listContent = new ArrayList<>();

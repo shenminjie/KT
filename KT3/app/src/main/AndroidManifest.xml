@@ -722,7 +722,8 @@
         <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
         <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal" />
         <activity android:name=".Refactor.ui.Fragment.Main.School_Info" />
-        <activity android:name=".Main5ACctivity"></activity>
+        <activity android:name=".Main5ACctivity" />
+        <activity android:name=".zqk.ZQKVIdeoActivity"></activity>
     </application>
 
 </manifest>

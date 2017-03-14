@@ -23,7 +23,12 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/ic_launcher"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20px"
-            android:visibility="gone"/>
+            android:layout_marginRight="30px"
+            />
     </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20px"
+        android:background="@color/color_gray_line"/>
 </com.zhy.autolayout.AutoLinearLayout>
