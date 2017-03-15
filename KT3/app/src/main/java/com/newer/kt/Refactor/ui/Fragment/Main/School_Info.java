@@ -70,7 +70,7 @@ public class School_Info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra(getAvatar,String.valueOf(club_info.getAvatar().toString() ));
+                intent.putExtra(getAvatar,club_info.getAvatar().toString());
 
                 startActivity(intent);
             }

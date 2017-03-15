@@ -67,6 +67,7 @@ public class Club_Info {
     }
 
     public String getAvatar() {
+        System.out.println(avatar);
         return avatar;
     }
 
