@@ -1,13 +1,18 @@
 package com.newer.kt;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.newer.kt.download.DownloadTrigger;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
 import com.newer.kt.zqk.ZQKVIdeoActivity;
@@ -54,13 +59,19 @@ public class ActivitySchedule extends Activity {
     private String schedule_time, schedule_strength,
             schedule_practice, creator_description;
 
+    @Override
+    protected void onDestroy() {
+        DownloadTrigger.clearUnDownloded();
+        super.onDestroy();
+    }
+
     private List<ScheduleInfo> contentList;
     private List<Map> list = new ArrayList<Map>();
     private List<String> list_title;
     private ScheduleContent scheduleContent;
     private ScheduleAdapter mAdapter;
 
-    Map<String,ArrayList<Map>> maps = new TreeMap<String,ArrayList<Map>>();
+    Map<String, ArrayList<Map>> maps = new TreeMap<String, ArrayList<Map>>();
 
     String data;
 
@@ -95,10 +106,25 @@ public class ActivitySchedule extends Activity {
                 startActivity(new Intent(getBaseContext(), ZQKVIdeoActivity.class).putExtra("titles", (Serializable) ts).putExtra("content", (Serializable) maps));
             }
         });
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    0);
+        } else if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    0);
+        }
+
     }
 
 
-List<String> ts = new ArrayList<String>();
+    List<String> ts = new ArrayList<String>();
+
     private void initData() {
         String portrait = JsonUtil.findJsonLink("create_user_avatar", data).toString();
         if (portrait != null && !portrait.equals("")) {
@@ -131,7 +157,7 @@ List<String> ts = new ArrayList<String>();
 //        mStrengthTxt.setText(schedule_strength);
 //        mPracticeTxt.setText(schedule_practice);
 //        mCreatorDescriptionTxt.setText(creator_description);
-                contentList = new ArrayList<ScheduleInfo>();
+        contentList = new ArrayList<ScheduleInfo>();
         list_title = new ArrayList<String>();
         list_title.add("教学目标");
 
@@ -169,7 +195,7 @@ List<String> ts = new ArrayList<String>();
                 array.add(m);
             }
             ts.add(map.get("name").toString());
-            maps.put(map.get("name").toString(),array);
+            maps.put(map.get("name").toString(), array);
         }
         int size = list.size();
         List<ScheduleContent> listContent = new ArrayList<>();

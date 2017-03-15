@@ -2,6 +2,7 @@ package com.newer.kt;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -15,7 +16,7 @@ import butterknife.OnClick;
 /**
  * Created by bajieaichirou on 17/3/7.
  */
-public class ActivityScheduleDetail extends Activity {
+public class ActivityScheduleDetail extends NEVideoPlayerActivity {
 
     @Bind(R.id.detail_title)
     TextView mTitleTxt;
@@ -33,24 +34,27 @@ public class ActivityScheduleDetail extends Activity {
     ImageView mClose;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_schedule_detail);
         ButterKnife.bind(this);
-        initUI();
+        String path = getIntent().getStringExtra("video_path");
+        if (path != null) {
+
+            path = Environment.getExternalStorageDirectory() + "/KT/" + path.substring(path.lastIndexOf("/") + 1);
+            findViewById(R.id.toppic).setVisibility(View.GONE);
+            setControllerVisible(false);
+            start(path);
+mVideoView.setBackgroundResource(R.drawable.choose_button_corner_upper);
+        } else {
+
+        }
     }
 
-    private void initUI() {
-        //TODO
-//        mTitleTxt.setText(getIntent().getStringExtra("detail_title"));
-//        mClassfyTxt.setText(getIntent().getStringExtra("detail_classfy"));
-//        mOrganizationTxt.setText(getIntent().getStringExtra("detail_organization"));
-//        mRequirementTxt.setText(getIntent().getStringExtra("detail_requirement"));
-    }
 
     @OnClick(R.id.detail_close_img)
-    public void OnClick(View view){
+    public void OnClick(View view) {
         this.finish();
     }
 }

@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/teach_content_title_layout"
             android:layout_width="match_parent"
@@ -84,6 +85,16 @@
                 android:layout_height="1dp"
                 android:background="@color/color_gray_line"/>
         </com.zhy.autolayout.AutoLinearLayout>
-    </FrameLayout>
+        <ProgressBar android:id="@+id/progreebar"
+            android:layout_width="match_parent"
+            android:layout_height="5px"
+            android:max="100"
+            android:progress="0"
+            android:visibility="gone"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progressDrawable="@drawable/progressbar_drawable"
+            android:layout_alignParentBottom="true"
+            />
+    </LinearLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

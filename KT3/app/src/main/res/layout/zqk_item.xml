@@ -6,12 +6,12 @@
         android:id="@+id/rl_ftclass2"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:gravity="center_vertical"
         >
         <TextView android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="小学年级第二学期"
+            android:layout_centerVertical="true"
             android:textSize="18dp"
             android:textColor="@color/black"
 
@@ -20,8 +20,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/qianjin"
-            android:layout_gravity="center"
+            android:src="@drawable/right_arrow"
+            android:scaleType="fitCenter"
+
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"

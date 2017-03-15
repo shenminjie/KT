@@ -2,140 +2,155 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/color_edt_gray_trans">
+    android:background="@color/color_edt_gray_trans"
+    android:orientation="vertical">
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@drawable/choose_button"
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px"
         android:layout_marginTop="50px"
-        android:orientation="vertical">
+        android:layout_weight="3"
+        android:background="@drawable/choose_button"
+        android:foreground="@drawable/choose_button_corner">
+
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="0px"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="0px"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:id="@+id/detail_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="50px"
-                    android:textStyle="bold"
-                    android:text="热身 准备活动"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3px"
-                    android:layout_marginTop="10px"
-                    android:background="@android:color/black"/>
-                <TextView
-                    android:id="@+id/detail_title_classfy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="50px"
-                    android:textStyle="bold"
-                    android:text="KT足球游戏"/>
-
-            </com.zhy.autolayout.AutoLinearLayout>
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-        </com.zhy.autolayout.AutoLinearLayout>
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="2"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="750px"
+                    android:padding="10px"
+                    android:foreground="@drawable/choose_button_corner_upper"
+                    >
+
+                    <include layout="@layout/activity_player" />
+                </FrameLayout>
+
                 <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/toppic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/detail_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="热身 准备活动"
                         android:textColor="@android:color/black"
                         android:textSize="50px"
-                        android:text="@string/detail_organization"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/color_gray_line"
-                        android:layout_marginTop="20px"
-                        android:layout_marginLeft="20px"
-                        android:layout_marginRight="20px"/>
-                    <TextView
-                        android:id="@+id/detail_organization_txt"
-                        android:layout_marginTop="20px"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="学生站列一排或两排进行对齐,围着操场进行热身慢跑"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/color_gray_line"
-                        android:layout_marginTop="20px"
-                        android:layout_marginLeft="20px"
-                        android:layout_marginRight="20px"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20px"
-                        android:textColor="@android:color/black"
-                        android:textSize="50px"
-                        android:text="@string/detail_requirement"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/color_gray_line"
-                        android:layout_marginTop="20px"
-                        android:layout_marginLeft="20px"
-                        android:layout_marginRight="20px"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20px"
-                        android:id="@+id/detail_requirement_txt"
-                        android:text="1、不要低头,要抬头,双眼注视前方\n2、跑步时,双手自然放松,拳头不要握得太紧,也可以伸开双手,掌心向内。\n 3、双脚落地要轻快
-                   "/>
-                </com.zhy.autolayout.AutoLinearLayout>
-            </ScrollView>
+                        android:textStyle="bold" />
 
-    </com.zhy.autolayout.AutoLinearLayout>
-     </com.zhy.autolayout.AutoLinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10px"
+                        android:background="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/detail_title_classfy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="KT足球游戏"
+                        android:textColor="@android:color/black"
+                        android:textSize="50px"
+                        android:textStyle="bold" />
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_organization"
+                            android:textColor="@android:color/black"
+                            android:textSize="50px" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="20px"
+                            android:layout_marginRight="20px"
+                            android:layout_marginTop="20px"
+                            android:background="@color/color_gray_line" />
+
+                        <TextView
+                            android:id="@+id/detail_organization_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="学生站列一排或两排进行对齐,围着操场进行热身慢跑" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="20px"
+                            android:layout_marginRight="20px"
+                            android:layout_marginTop="20px"
+                            android:background="@color/color_gray_line" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="@string/detail_requirement"
+                            android:textColor="@android:color/black"
+                            android:textSize="50px" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="20px"
+                            android:layout_marginRight="20px"
+                            android:layout_marginTop="20px"
+                            android:background="@color/color_gray_line" />
+
+                        <TextView
+                            android:id="@+id/detail_requirement_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="1、不要低头,要抬头,双眼注视前方\n2、跑步时,双手自然放松,拳头不要握得太紧,也可以伸开双手,掌心向内。\n 3、双脚落地要轻快
+                   " />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </ScrollView>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </FrameLayout>
+
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal">
+
         <ImageView
             android:id="@+id/detail_close_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/schedule_close"/>
+            android:background="@drawable/schedule_close" />
     </com.zhy.autolayout.AutoLinearLayout>
 </com.zhy.autolayout.AutoLinearLayout>

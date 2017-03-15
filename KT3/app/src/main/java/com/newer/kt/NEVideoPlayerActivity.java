@@ -63,6 +63,26 @@ public class NEVideoPlayerActivity extends ShareActy {
 //		mMediaController.setOnHiddenListener(mOnHiddenListener); //监听mediacontroller是否隐藏
 	}
 
+	public  void setControllerVisible(boolean open){
+		if(findViewById(R.id.controller)==null){
+			init();
+		}
+		findViewById(R.id.controller).setVisibility(open?View.VISIBLE:View.INVISIBLE);
+	}
+	public void start(String path) {
+		if (mVideoView == null) {
+			init();
+			mVideoView= (NEVideoView) findViewById(R.id.video_view);
+			mVideoView.set(path);
+			mVideoView.setMediaController(new NEMediaController(this));
+			mVideoView.play();
+
+
+		} else {
+//            mVideoView.stop();
+		}
+	}
+
 	public void init() {
 		mMediaType   = "mp4";
 		mDecodeType = "hardware";

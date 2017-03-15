@@ -125,18 +125,10 @@ public class NeActivity extends NEVideoPlayerActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (mVeoView == null) {
-            mVeoView = (NEVideoView) findViewById(R.id.video_view);
-            mVeoView.set(path);
-            mVeoView.setMediaController(new NEMediaController(this));
-            mVeoView.play();
-
+        start(path);
+        if(mVeoView!=null){
             daojishi(leng, size);
-
-        } else {
-//            mVeoView.stop();
         }
-
 
 //        if (goon) {
 //            mVeoView.seekTo(played);
@@ -145,6 +137,8 @@ public class NeActivity extends NEVideoPlayerActivity {
 //            mVeoView.pause();
 //        }
     }
+
+
 
     public static boolean goon;
 

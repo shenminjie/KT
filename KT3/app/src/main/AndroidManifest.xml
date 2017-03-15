@@ -4,12 +4,15 @@
     package="com.newer.kt"> <!-- 录像功能 -->
     <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_arm64,com.example.ijkplayer_x86_64" />
 
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+
     <!-- GPS定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 获取网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
 
     <!-- 扫描二维码 -->
     <supports-screens
