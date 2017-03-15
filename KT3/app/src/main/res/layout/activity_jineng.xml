@@ -32,6 +32,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_jineng"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"

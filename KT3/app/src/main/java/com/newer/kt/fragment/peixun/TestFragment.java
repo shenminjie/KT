@@ -220,8 +220,6 @@ public class TestFragment extends BaseFragment {
 
         final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
 
-//        RequestParams p = new RequestParams("http://api.ktfootball.com/shool_user_tests/school_football_skill_test_ranking");
-//        p.addQueryStringParameter("authenticity_token", "K9MpaPMdj0jij2m149sL1a7TcYrWXmg5GLrAJDCNBx8");
         p.addQueryStringParameter("club_id", clubid);
         x.http().get(p, new Callback.CommonCallback<String>() {
 

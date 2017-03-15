@@ -124,6 +124,11 @@ public class SettingsFragment extends BaseFragment {
 
 
     }
+    @Override
+    public void onResume() {
+        initData(null);
+        super.onResume();
+    }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -138,6 +143,7 @@ public class SettingsFragment extends BaseFragment {
 //                name: 校园名称,
 //                school_student_count: 学生数,
 //                avatar: 俱乐部头像,
+
 //                higher_manager: 上级管理员
 
         x.http().get(p, new Callback.CommonCallback<String>() {

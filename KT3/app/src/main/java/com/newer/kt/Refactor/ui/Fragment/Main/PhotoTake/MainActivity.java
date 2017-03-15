@@ -1,13 +1,17 @@
 package com.newer.kt.Refactor.ui.Fragment.Main.PhotoTake;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
 import com.newer.kt.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image_vs_item_back;
     String schoolAvatar;
     int valueAvatar;
+    private ImageView iv_imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,19 +44,37 @@ public class MainActivity extends AppCompatActivity {
         image_vs_item_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                new AlertDialog.Builder(MainActivity.this).setTitle("提示")//设置对话框标题
+                        .setMessage("是否保存该图片")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                finish();
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
+
             }
         });
     }
 
     private void initDate() {
-        Intent intent=getIntent();
-        if(intent!=null){
-            schoolAvatar=intent.getStringExtra("getAvatar");
-            valueAvatar=Integer.valueOf(schoolAvatar);
-            imageView.setBackgroundResource(valueAvatar);
+        Intent intent = getIntent();
+        if (intent != null) {
+            schoolAvatar = intent.getStringExtra("getAvatar");
+
+            // Glide.with(getApplicationContext()).load(schoolAvatar).into(imageView);
+            //ImageLoader.getInstance().displayImage(clubs.avatar,viewHolder.iv_touxiang);
+            //  com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(schoolAvatar,iv_imageView);
+
         }
-        System.out.println(valueAvatar+"GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+
 
     }
 
@@ -58,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         button = (ImageView) findViewById(R.id.iv_xiugai);
         imageView = (ImageView) findViewById(R.id.imageView);
         image_vs_item_back = ((ImageView) findViewById(R.id.image_vs_item_back));
-
+        //  iv_imageView = ((ImageView) findViewById(R.id.iv_imageView));
     }
 
     @Override
