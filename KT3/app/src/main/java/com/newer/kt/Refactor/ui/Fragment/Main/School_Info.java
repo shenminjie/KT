@@ -47,6 +47,12 @@ public class School_Info extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        initDate();
+        super.onStart();
+    }
+
     private void initOnclick() {
         image_vs_item_back.setOnClickListener(new View.OnClickListener() {
             @Override

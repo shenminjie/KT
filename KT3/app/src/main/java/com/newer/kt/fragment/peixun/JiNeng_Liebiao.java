@@ -1,15 +1,19 @@
 package com.newer.kt.fragment.peixun;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.newer.kt.R;
 
 public class JiNeng_Liebiao extends AppCompatActivity {
 
     private ImageView iv_back;
+    String jinengName;
+    private TextView tv_jineng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +21,17 @@ public class JiNeng_Liebiao extends AppCompatActivity {
         setContentView(R.layout.activity_jineng);
 
         initView();
+        initDate();
         initOnclick();
+    }
+      //  ((TextView)findViewById(R.id.tv_title_stuInfo)).setText(getIntent().getStringExtra("title"));
+
+    private void initDate() {
+        Intent intent=getIntent();
+        if (intent!=null){
+            jinengName= intent.getStringExtra("jinengname");
+            tv_jineng.setText(jinengName);
+        }
     }
 
     private void initOnclick() {
@@ -31,5 +45,6 @@ public class JiNeng_Liebiao extends AppCompatActivity {
 
     private void initView() {
         iv_back = ((ImageView) findViewById(R.id.iv_back));
+        tv_jineng = ((TextView) findViewById(R.id.tv_jineng));
     }
 }

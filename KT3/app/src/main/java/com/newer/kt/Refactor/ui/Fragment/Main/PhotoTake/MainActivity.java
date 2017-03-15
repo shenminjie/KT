@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
+
                                 finish();
                             }
                         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             //  com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(schoolAvatar,iv_imageView);
 
         }
-        System.out.println(valueAvatar + "GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+
 
     }
 

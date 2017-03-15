@@ -27,6 +27,8 @@ public class JiNengFragment_List extends AppCompatActivity {
     private ImageView image_vs_item_back;
     private List data;
     List list;
+    String text;
+    String jinengName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +55,24 @@ public class JiNengFragment_List extends AppCompatActivity {
 
     private void initOnclick() {
         lv_jinengList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private TextView tv_vs_saishi_title1;
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (list == null) {
                     Intent intent = new Intent(getApplicationContext(), JiNeng_Liebiao.class);
+                    tv_vs_saishi_title1 = ((TextView) findViewById(R.id.tv_vs_saishi_title));
+                    jinengName=tv_vs_saishi_title1.getText().toString();
+                    intent.putExtra("jinengname",jinengName);
                     startActivity(intent);
 
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class).putExtra("url", ((Map) list.get(position)).get("url").toString()).putExtra("title",((Map) list.get(position)).get("title").toString());
+                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class).putExtra("url", ((Map) list.get(position)).get("url").toString()).putExtra("title", ((Map) list.get(position)).get("title").toString());
                     startActivity(intent);
 
                 }
+
+
             }
         });
 
@@ -98,6 +107,7 @@ public class JiNengFragment_List extends AppCompatActivity {
                 convertView = View.inflate(getApplicationContext(), R.layout.item_jineng_list, null);
                 if (list == null) {
                     ((TextView) convertView.findViewById(R.id.tv_vs_saishi_title)).setText((CharSequence) ((Map) getItem(position)).get("name"));
+
                 } else {
                     ((TextView) convertView.findViewById(R.id.tv_vs_saishi_title)).setText((CharSequence) ((Map) getItem(position)).get("title"));
 
