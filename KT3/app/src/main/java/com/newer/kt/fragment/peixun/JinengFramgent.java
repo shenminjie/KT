@@ -22,20 +22,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.frame.app.base.fragment.BaseFragment;
+import com.frame.app.utils.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.internal.Streams;
+import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.Refactor.view.ChildViewpager;
+import com.newer.kt.entity.jineng.JiNeng_Bean;
+import com.newer.kt.entity.jineng.SkillResponse;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -87,7 +93,12 @@ public class JinengFramgent extends BaseFragment {
         getJiNeng();
     }
 
-    public static List jineng_cat_data;
+    /**
+     * smj
+     */
+    private List<SkillResponse> mSkillResponses;
+
+    public static List<JiNeng_Bean> jineng_cat_data;
     public static List<Map> wikis;
 
     private void getJiNeng() {
@@ -95,7 +106,7 @@ public class JinengFramgent extends BaseFragment {
         QueryBuilder.build("wikis/list").get(new QueryBuilder.EnhancedCallback("wikis") {
             @Override
             public void onSuccessWithObject(String namelink, Object object) {
-                wikis =  (ArrayList<Map>) object;
+                wikis = (ArrayList<Map>) object;
             }
 
             @Override
@@ -109,13 +120,23 @@ public class JinengFramgent extends BaseFragment {
             }
         });
 
-        QueryBuilder.build("study/get_all_app_cartoons").get(new QueryBuilder.Callback(){
+        QueryBuilder.build("study/get_all_app_cartoons").get(new QueryBuilder.Callback() {
 
 
             @Override
             public void onSuccess(String result) {
-                jineng_cat_data = JsonUtil.fromJsonArray((String) JsonUtil.findJsonNode("app_cartoons",result));
+//                jineng_cat_data = JsonUtil.fromJsonArray((String) JsonUtil.findJsonNode("app_cartoons",result));
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    String data = jsonObject.getString("app_cartoons");
+                    Gson gson = new Gson();
+                    mSkillResponses = gson.fromJson(data, new TypeToken<List<SkillResponse>>() {
+                    }.getType());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
+                LogUtils.e("返回的数据:" + result);
             }
 
             @Override
@@ -187,22 +208,14 @@ public class JinengFramgent extends BaseFragment {
         getGv_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int idx = 0;
-                if(position==3){
-                    Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("list", (Serializable) wikis);
-                    startActivity(intent);
+                if (mSkillResponses == null) {
                     return;
                 }
-                if(position==2){
-                    idx = 1;
+                if (position == 3) {
+                    return;
                 }
-                if(position ==1){
-                    idx= 2;
-                }
-
-                Intent intent=new Intent(getActivity(),JiNengFragment_List.class).putExtra("catidx",idx);
-                startActivity(intent);
-
+                SkillResponse skillResponse = mSkillResponses.get(position);
+                JiNengFragment_List.toAcitivty(getContext(), skillResponse);
             }
         });
     }

@@ -1,12 +1,13 @@
 package com.newer.kt.entity.jineng;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by leo on 17/3/16.
  */
 
-public class JiNeng_Bean {
+public class JiNeng_Bean implements Serializable{
 //    response: "success",
 //    id: 课程ID, name: 课程名称, intro: 介绍, description: 说明, avatar: 封面,ori_price: 原价, price: 现价,
     public List<Lesson>lessons;
