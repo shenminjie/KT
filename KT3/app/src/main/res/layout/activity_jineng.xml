@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0eff5">
+
     <LinearLayout
         android:id="@+id/ll_1"
         android:layout_width="match_parent"
@@ -11,40 +12,39 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp">
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/iv_back"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/jc_back"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/jc_back" />
 
             </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/tv_jineng"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="双脚靠球"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    />
-
+            <TextView
+                android:id="@+id/tv_jineng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="双脚靠球"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
@@ -54,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="20dp"
-            android:gravity="center_vertical"
-            android:layout_marginTop="125dp">
+            android:layout_marginTop="125dp"
+            android:gravity="center_vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,8 +71,7 @@
                     android:text="327"
                     android:textColor="#ffc543"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_all_people_nale"
@@ -82,8 +81,7 @@
                     android:text="已完成"
                     android:textColor="@color/text_grey"
                     android:textSize="14dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -99,8 +97,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/text_black"
-                    android:textSize="18dp"
-                    />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/tv_all_class_nale"
@@ -120,7 +117,6 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
                     android:id="@+id/tv_pingjun"
                     android:layout_width="wrap_content"
@@ -128,8 +124,7 @@
                     android:text="3次"
                     android:textColor="#ffc543"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_pingjun_nale"
@@ -139,8 +134,7 @@
                     android:text="已训练"
                     android:textColor="@color/text_grey"
                     android:textSize="14dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -149,127 +143,139 @@
 
     <LinearLayout
         android:id="@+id/ll_2"
-        android:background="#ffffff"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_below="@+id/ll_1"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="初级"
-            android:layout_weight="1"
-            android:gravity="center"
             android:textColor="#939393"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="中级"
-            android:layout_weight="1"
-            android:gravity="center"
             android:textColor="#939393"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="高级"
             android:layout_weight="1"
             android:gravity="center"
+            android:text="高级"
             android:textColor="#939393"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_3"
-        android:orientation="vertical"
-        android:layout_below="@+id/ll_2"
         android:layout_width="match_parent"
-        android:layout_height="35dp">
+        android:layout_height="35dp"
+        android:layout_below="@+id/ll_2"
+        android:orientation="vertical">
+
         <TextView
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
             android:text="适合足球基础差,零基础的初学者"
-            android:textColor="#5c5b61"
-            android:layout_marginLeft="10dp"/>
+            android:textColor="#5c5b61" />
 
     </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
 
-        android:layout_below="@+id/ll_3"
+    <LinearLayout
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:layout_below="@+id/ll_3"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="教学漫画"
-                android:textSize="16sp"
                 android:textColor="#75767a"
-                android:gravity="center_vertical"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#d5d5d5">
 
         </LinearLayout>
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="KT豹漫画故事"
                 android:textColor="#75767a"
-                android:textSize="16sp"
-                android:gravity="center_vertical"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#d5d5d5">
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_real_man"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="真人示范"
                 android:textColor="#75767a"
-                android:textSize="16sp"
-                android:gravity="center_vertical"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -279,8 +285,6 @@
 
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>

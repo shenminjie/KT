@@ -79,7 +79,12 @@ public class PlayerActivity extends Activity {
 
 			}
 		};
+		try{
 		basePlayerManager.onCreate();
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 
 		// 通过上个页面传递过来的Intent获取播放参数
 		getIntentData(getIntent());

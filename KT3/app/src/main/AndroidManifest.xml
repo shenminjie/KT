@@ -725,11 +725,14 @@
         <activity android:name=".Refactor.ui.Fragment.Main.Stu_Manager" />
         <activity android:name=".Refactor.ui.Fragment.Main.ChooseLocal" />
         <activity android:name=".Refactor.ui.Fragment.Main.School_Info" />
-        <activity android:name=".zqk.ZQKVIdeoActivity"></activity>
-
-        <activity android:name=".Refactor.ui.SchoolName"></activity>
-        <activity android:name=".Refactor.ui.Fragment.Main.PhotoTake.MainActivity"></activity>
-
+        <activity android:name=".zqk.ZQKVIdeoActivity" />
+        <activity android:name=".Refactor.ui.SchoolName" />
+        <activity android:name=".Refactor.ui.Fragment.Main.PhotoTake.MainActivity" />
+        <activity
+            android:name=".ui.ShipinXiangqingActivity"
+            android:label="@string/title_activity_shipin_xiangqing"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.youku_video.YoukuVideoActivity"></activity>
     </application>
 
 </manifest>

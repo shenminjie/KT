@@ -17,12 +17,14 @@
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="Schedule_txt_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">64px</item>
     </style>
+
     <declare-styleable name="CircleImageView">
         <attr name="cborder_width" format="dimension" />
         <attr name="cborder_color" format="color" />
@@ -32,10 +34,10 @@
 
     <style name="checkbox_style">
         <item name="android:background">@null</item>
-        <item name="android:button" >@drawable/msg_tab_widget_sharp</item>
+        <item name="android:button">@drawable/msg_tab_widget_sharp</item>
         <item name="android:textColor">#ff888888</item>
-        <item name="android:textSize" >16sp</item>
-        <item name="android:gravity" >center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="transparentFrameWindowStyle" parent="Theme.AppCompat.Dialog">

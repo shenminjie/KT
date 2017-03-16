@@ -18,4 +18,5 @@
     <dimen name="layout_xingxing_margin_r">21dp</dimen>
 
     <dimen name="activity_kt_text_size">12sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
