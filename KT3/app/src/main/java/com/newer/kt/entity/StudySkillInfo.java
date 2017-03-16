@@ -10,6 +10,7 @@ import java.util.List;
  */
 
 public class StudySkillInfo implements Serializable {
+    private List<String> youku_videos;
     private String name;
     private String response;
     private String id;
@@ -25,6 +26,14 @@ public class StudySkillInfo implements Serializable {
     private String now_level_name;
     private String now_level_color;
     private String now_level_progress;
+
+    public List<String> getYouku_videos() {
+        return youku_videos;
+    }
+
+    public void setYouku_videos(List<String> youku_videos) {
+        this.youku_videos = youku_videos;
+    }
 
     public String getName() {
         return name;
@@ -149,7 +158,9 @@ public class StudySkillInfo implements Serializable {
     @Override
     public String toString() {
         return "StudySkillInfo{" +
-                "response='" + response + '\'' +
+                "youku_videos='" + youku_videos + '\'' +
+                ", name='" + name + '\'' +
+                ", response='" + response + '\'' +
                 ", id='" + id + '\'' +
                 ", intro='" + intro + '\'' +
                 ", description='" + description + '\'' +

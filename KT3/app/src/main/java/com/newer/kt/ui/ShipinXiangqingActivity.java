@@ -48,7 +48,7 @@ public class ShipinXiangqingActivity extends AppCompatActivity {
     public void toYoukuVideo() {
         if (mData != null && mData.getVideos() != null && mData.getVideos().size() != 0) {
             Intent intent = new Intent(this, com.newer.kt.Refactor.ui.Avtivity.Settings.PlayerActivity.class);
-            intent.putExtra("vid", mData.getVideos().get(0).getId());
+            intent.putExtra("vid", "XMTMzMzIyMTAyMA");
             startActivity(intent);
         }
     }
