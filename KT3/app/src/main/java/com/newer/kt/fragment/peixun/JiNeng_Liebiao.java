@@ -47,4 +47,5 @@ public class JiNeng_Liebiao extends AppCompatActivity {
         iv_back = ((ImageView) findViewById(R.id.iv_back));
         tv_jineng = ((TextView) findViewById(R.id.tv_jineng));
     }
+
 }

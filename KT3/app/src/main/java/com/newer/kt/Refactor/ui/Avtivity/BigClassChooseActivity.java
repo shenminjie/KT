@@ -59,7 +59,7 @@ public class BigClassChooseActivity extends BaseActivity{
 
     @OnClick(R.id.tv_luzhi)
     public void luzhi(){
-        TypeActivity.invoke(getThis());
+//        TypeActivity.invoke(getThis());
     }
 
     //退出当前Activity
