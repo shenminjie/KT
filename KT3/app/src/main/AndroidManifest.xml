@@ -732,7 +732,8 @@
             android:name=".ui.ShipinXiangqingActivity"
             android:label="@string/title_activity_shipin_xiangqing"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.youku_video.YoukuVideoActivity"></activity>
+        <activity android:name=".ui.youku_video.YoukuVideoActivity" />
+        <activity android:name=".ui.video_list.VideoListActivity"></activity>
     </application>
 
 </manifest>

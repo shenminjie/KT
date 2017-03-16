@@ -128,6 +128,9 @@ public class JinengFramgent extends BaseFragment {
 //                jineng_cat_data = JsonUtil.fromJsonArray((String) JsonUtil.findJsonNode("app_cartoons",result));
                 try {
                     JSONObject jsonObject = new JSONObject(result);
+                    if (!jsonObject.has("app_cartoons")) {
+                        return;
+                    }
                     String data = jsonObject.getString("app_cartoons");
                     Gson gson = new Gson();
                     mSkillResponses = gson.fromJson(data, new TypeToken<List<SkillResponse>>() {

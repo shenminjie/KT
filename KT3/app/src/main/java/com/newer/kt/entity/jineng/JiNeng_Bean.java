@@ -21,6 +21,15 @@ public class JiNeng_Bean implements Serializable{
     public String avatar;
     public String ori_price;
     public String price;
+    private String app_cartoon_id;
+
+    public String getApp_cartoon_id() {
+        return app_cartoon_id;
+    }
+
+    public void setApp_cartoon_id(String app_cartoon_id) {
+        this.app_cartoon_id = app_cartoon_id;
+    }
 
     public JiNeng_Bean(){
 

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.frame.app.utils.LogUtils;
 import com.newer.kt.R;
 import com.newer.kt.entity.OnItemListener;
 import com.newer.kt.entity.jineng.JiNeng_Bean;
@@ -71,7 +70,7 @@ public class JiNengFragment_List extends AppCompatActivity implements OnItemList
 
     @Override
     public void onItemListener(JiNeng_Bean jiNeng_bean, int position) {
-        LogUtils.e(jiNeng_bean + "");
+        JiNeng_Liebiao.toActivity(this, jiNeng_bean);
     }
 
     /**
