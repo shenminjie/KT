@@ -734,6 +734,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.youku_video.YoukuVideoActivity" />
         <activity android:name=".ui.video_list.VideoListActivity"></activity>
+
+
+        <activity
+            android:name="com.monkeyshen.recordlib.VideoCaptureActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

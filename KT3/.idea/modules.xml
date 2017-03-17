@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-zxing/lib-zxing.iml" filepath="$PROJECT_DIR$/lib-zxing/lib-zxing.iml" />
       <module fileurl="file://$PROJECT_DIR$/newkt/newkt.iml" filepath="$PROJECT_DIR$/newkt/newkt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recordlibbysmj/recordlibbysmj.iml" filepath="$PROJECT_DIR$/recordlibbysmj/recordlibbysmj.iml" />
       <module fileurl="file://$PROJECT_DIR$/sub/sub.iml" filepath="$PROJECT_DIR$/sub/sub.iml" />
       <module fileurl="file://$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" filepath="$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/zxingutil/zxingutil.iml" filepath="$PROJECT_DIR$/zxingutil/zxingutil.iml" />

@@ -8,6 +8,8 @@ import android.widget.ExpandableListView;
 
 import com.frame.app.base.activity.BaseActivity;
 import com.frame.app.utils.GsonTools;
+import com.monkeyshen.recordlib.VideoCaptureActivity;
+import com.monkeyshen.recordlib.configuration.CaptureConfiguration;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.KTApplication;
 import com.newer.kt.adapter.BigClassChooseAdapter;
@@ -23,7 +25,7 @@ import butterknife.OnClick;
 /**
  * Created by leo on 16/11/11.
  */
-public class BigClassChooseActivity extends BaseActivity{
+public class BigClassChooseActivity extends BaseActivity {
     private ExpandableListView listView;
     private AddClassData classesData;
     private ArrayList<GradeList> item_list;
@@ -47,7 +49,7 @@ public class BigClassChooseActivity extends BaseActivity{
     protected void initData(Bundle savedInstanceState) {
         listView = getViewById(R.id.layout_select_class_list);
         classesData = GsonTools.changeGsonToBean(KTApplication.getClassDetailsInfo(), AddClassData.class);
-        if(classesData != null){
+        if (classesData != null) {
             item_list = classesData.grade_list;
             Collections.sort(item_list);
             BigClassChooseAdapter myExpandableListViewAdapter = new BigClassChooseAdapter(getThis(), item_list);
@@ -56,10 +58,10 @@ public class BigClassChooseActivity extends BaseActivity{
     }
 
 
-
     @OnClick(R.id.tv_luzhi)
-    public void luzhi(){
-//        TypeActivity.invoke(getThis());
+    public void luzhi() {
+        //调用录制----
+        VideoCaptureActivity.toActivity(this, CaptureConfiguration.getDefault(), System.currentTimeMillis() + "");
     }
 
     //退出当前Activity
@@ -67,7 +69,7 @@ public class BigClassChooseActivity extends BaseActivity{
         finish();
     }
 
-    public void doHome(View view){
+    public void doHome(View view) {
         Intent intent = new Intent(getThis(), ClubDataActivity3.class);
         startActivity(intent);
     }

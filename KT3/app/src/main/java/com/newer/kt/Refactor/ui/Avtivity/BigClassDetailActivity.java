@@ -1,20 +1,12 @@
 package com.newer.kt.Refactor.ui.Avtivity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.design.widget.AppBarLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,24 +14,18 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baidu.mapapi.map.Text;
 import com.baseproject.utils.Logger;
 import com.frame.app.base.activity.BaseActivity;
-import com.frame.app.view.MyListView;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
-import com.google.gson.reflect.TypeToken;
 import com.netease.neliveplayer.NELivePlayer;
 import com.newer.kt.NEVideoView;
 import com.newer.kt.NeActivity;
@@ -56,10 +42,6 @@ import com.newer.kt.adapter.BigClassGifAdapter;
 import com.newer.kt.myClass.DownLoaderTask;
 import com.newer.kt.myClass.PixelUtils;
 import com.newer.kt.myClass.ZipExtractorTask;
-import com.youku.player.base.YoukuBasePlayerManager;
-import com.youku.player.base.YoukuPlayer;
-import com.youku.player.base.YoukuPlayerView;
-import com.youku.player.plugin.YoukuPlayerListener;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -70,11 +52,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.vov.vitamio.LibsChecker;
-import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
-import io.vov.vitamio.widget.VideoView;
 
 /**
  * Created by leo on 16/11/10.
@@ -110,7 +90,7 @@ public class BigClassDetailActivity extends BaseActivity {
     private ArrayList<View> mViews;
     private RelativeLayout titleBar;
     private ReboundScrollView sv_main;
-    private TextView start_class;
+    private TextView mTvStartClass;
 
 
     //技能列表
@@ -130,7 +110,7 @@ public class BigClassDetailActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_xunlian_bigclass);
-
+        ButterKnife.bind(this);
         mFlVideoGroup = (FrameLayout) findViewById(R.id.fl_video_group);
         mController = new MediaController(this, true, mFlVideoGroup);
         //上来先隐藏controller
@@ -138,12 +118,12 @@ public class BigClassDetailActivity extends BaseActivity {
 
         titleBar = ((RelativeLayout) this.findViewById(R.id.titlebar));
         sv_main = (ReboundScrollView)findViewById(R.id.sv_main);
-        start_class = (TextView) findViewById(R.id.start_class);
+        mTvStartClass = (TextView) findViewById(R.id.start_class);
 
         mViews = new ArrayList<>();
         mViews.add(titleBar);
         mViews.add(sv_main);
-        mViews.add(start_class);
+        mViews.add(mTvStartClass);
 
 
         head1 = ((RelativeLayout) this.findViewById(R.id.head1));

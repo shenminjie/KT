@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Entitiy.BigClassRoom;
 import com.newer.kt.Refactor.ui.Avtivity.BigClassDetailActivity;
+import com.newer.kt.entity.OnItemListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +25,24 @@ import butterknife.ButterKnife;
  */
 
 public class BigClassAdater extends RecyclerView.Adapter<BigClassAdater.ViewHodler> {
-    private  Context mContext;
+    private Context mContext;
     private List<BigClassRoom> mList = new ArrayList<BigClassRoom>();
 
-    public BigClassAdater(Context context,List<BigClassRoom> mList) {
+    private OnItemListener<BigClassRoom> mItemListener;
+
+    public void setListener(OnItemListener<BigClassRoom> mItemListener) {
+        this.mItemListener = mItemListener;
+    }
+
+    public BigClassAdater(Context context, List<BigClassRoom> mList) {
         this.mList = mList;
         this.mContext = context;
     }
 
     @Override
     public ViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHodler(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bigclass,parent,false));
+        return new ViewHodler(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bigclass, parent, false));
     }
-
 
 
     @Override
@@ -45,10 +51,9 @@ public class BigClassAdater extends RecyclerView.Adapter<BigClassAdater.ViewHodl
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,BigClassDetailActivity.class);
-                intent.putExtra("shool_big_classroom_id",mList.get(position).getShool_big_classroom_id());
-                mContext.startActivity(intent);
-
+                if (mItemListener != null) {
+                    mItemListener.onItemListener(mList.get(position), position);
+                }
             }
         });
     }
@@ -59,7 +64,7 @@ public class BigClassAdater extends RecyclerView.Adapter<BigClassAdater.ViewHodl
     }
 
 
-    public class ViewHodler extends RecyclerView.ViewHolder{
+    public class ViewHodler extends RecyclerView.ViewHolder {
         @Bind(R.id.image_bg)
         ImageView mBg;
         @Bind(R.id.tv_title)
@@ -68,7 +73,7 @@ public class BigClassAdater extends RecyclerView.Adapter<BigClassAdater.ViewHodl
 
         public ViewHodler(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
         }
 
