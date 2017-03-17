@@ -32,6 +32,7 @@ import com.google.gson.internal.Streams;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.Constants;
+import com.newer.kt.Refactor.ui.Avtivity.Main2Activity;
 import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.Refactor.view.ChildViewpager;
 import com.newer.kt.entity.jineng.JiNeng_Bean;
@@ -215,7 +216,8 @@ public class JinengFramgent extends BaseFragment {
                     return;
                 }
                 if (position == 3) {
-                    return;
+//                    Intent intent=new Intent(getActivity(), JiNengFragment_List.class);
+//                    startActivity(intent);
                 }
                 SkillResponse skillResponse = mSkillResponses.get(position);
                 JiNengFragment_List.toAcitivty(getContext(), skillResponse);
