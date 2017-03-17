@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/recyclerview_top"
         android:layout_width="match_parent"
@@ -29,19 +31,15 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:onClick="doHome"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:onClick="doHome"
             android:src="@mipmap/home" />
 
     </RelativeLayout>
-    <ExpandableListView
-        android:id="@+id/layout_select_class_list"
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/layout_select_class_bottom"
-        android:layout_below="@id/recyclerview_top"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:groupIndicator="@null" />
+        android:layout_height="match_parent"></FrameLayout>
 </LinearLayout>

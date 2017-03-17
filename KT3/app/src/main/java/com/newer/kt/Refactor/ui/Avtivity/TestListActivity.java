@@ -13,6 +13,7 @@ import com.newer.kt.Refactor.KTApplication;
 import com.newer.kt.Refactor.adapter.TestListAdapter;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.GradeList;
+import com.newer.kt.ui.pingce.pingce_obj.PingceObjFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,10 +21,10 @@ import java.util.Collections;
 /**
  * Created by leo on 16/11/11.
  */
-public class TestListActivity extends BaseActivity{
-    private ExpandableListView listView;
-    private AddClassData classesData;
-    private ArrayList<GradeList> item_list;
+public class TestListActivity extends BaseActivity {
+
+    private PingceObjFragment mPingceObjFragment;
+
     @Override
     protected void initHandler(Message msg) {
 
@@ -32,6 +33,9 @@ public class TestListActivity extends BaseActivity{
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_testlist);
+        mPingceObjFragment = PingceObjFragment.newInstance("", "");
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, mPingceObjFragment).commit();
     }
 
     @Override
@@ -41,14 +45,7 @@ public class TestListActivity extends BaseActivity{
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        listView = getViewById(R.id.layout_select_class_list);
-        classesData = GsonTools.changeGsonToBean(KTApplication.getClassDetailsInfo(), AddClassData.class);
-        if(classesData != null){
-            item_list = classesData.grade_list;
-            Collections.sort(item_list);
-            TestListAdapter myExpandableListViewAdapter = new TestListAdapter(getThis(), item_list);
-            listView.setAdapter(myExpandableListViewAdapter);
-        }
+
     }
 
     //退出当前Activity
@@ -56,7 +53,7 @@ public class TestListActivity extends BaseActivity{
         finish();
     }
 
-    public void doHome(View view){
+    public void doHome(View view) {
         Intent intent = new Intent(getThis(), ClubDataActivity3.class);
         startActivity(intent);
     }

@@ -71,6 +71,6 @@ public class ShipinXiangqingActivity extends AppCompatActivity {
         String videoUrl = mData.getYouku_videos().get(0);
         int start = "http://player.youku.com/embed/".length();
         int end = videoUrl.indexOf("==");
-        return videoUrl.substring(start,end);
+        return videoUrl.substring(start, end);
     }
 }

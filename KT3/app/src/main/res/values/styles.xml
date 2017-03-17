@@ -113,4 +113,11 @@
         <item name="android:layout_height">0.5dp</item>
         <item name="android:background">@color/lightgrey</item>
     </style>
+
+    <style name="SmjTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
 </resources>
