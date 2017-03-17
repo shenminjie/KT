@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.frame.app.utils.LogUtils;
 import com.newer.kt.R;
 import com.newer.kt.entity.StudySkillInfo;
 import com.newer.kt.fragment.peixun.JiNeng_Liebiao;
@@ -36,6 +37,7 @@ public class ShipinXiangqingActivity extends AppCompatActivity {
         if (mData != null) {
             tvTitle.setText(mData.getName() + "视频详情");
             tvName.setText(mData.getName() + "真人视频");
+            LogUtils.e("");
         }
     }
 
