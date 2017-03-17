@@ -48,7 +48,7 @@ public class ShipinXiangqingActivity extends AppCompatActivity {
     public void toYoukuVideo() {
         if (mData != null && mData.getVideos() != null && mData.getVideos().size() != 0) {
             Intent intent = new Intent(this, com.newer.kt.Refactor.ui.Avtivity.Settings.PlayerActivity.class);
-            intent.putExtra("vid", "XMTMzMzIyMTAyMA");
+            intent.putExtra("vid", getId());
             startActivity(intent);
         }
     }
@@ -63,5 +63,12 @@ public class ShipinXiangqingActivity extends AppCompatActivity {
         Intent intent = new Intent(context, ShipinXiangqingActivity.class);
         intent.putExtra("data", mStudySkillInfo);
         context.startActivity(intent);
+    }
+
+    public String getId() {
+        String videoUrl = mData.getYouku_videos().get(0);
+        int start = "http://player.youku.com/embed/".length();
+        int end = videoUrl.indexOf("==");
+        return videoUrl.substring(start,end);
     }
 }
