@@ -73,7 +73,7 @@ public class KTApplication extends App {
     @Override
     public void onCreate() {
         super.onCreate();
-        MultiDex.install(this);
+
         NoHttp.initialize(this);
          x.Ext.init(this);
 //        x.Ext.setDebug(true);
