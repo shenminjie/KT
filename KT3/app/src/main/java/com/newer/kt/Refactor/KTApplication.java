@@ -14,6 +14,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
 import com.frame.app.utils.SharedPreferencesUtils;
+import com.github.mikephil.charting.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.InterfaceSample;
@@ -133,7 +134,7 @@ public class KTApplication extends App {
         ZXingLibrary.initDisplayOpinion(this);
         initImageLoader();
 
-        Hawk.init(this);
+        Hawk.init(this).build();
     }
 
     private void initImageLoader() {

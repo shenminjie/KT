@@ -3,6 +3,7 @@
  */
 package com.smj.gradlebean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Classes {
+public class Classes implements Serializable{
 
     private int id;
     private String cls;

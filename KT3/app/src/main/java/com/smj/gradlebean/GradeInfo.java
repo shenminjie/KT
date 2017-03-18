@@ -2,6 +2,7 @@
   * Copyright 2017 bejson.com 
   */
 package com.smj.gradlebean;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class GradeInfo {
+public class GradeInfo implements Serializable{
 
     private int grade;
     private List<Classes> classes;

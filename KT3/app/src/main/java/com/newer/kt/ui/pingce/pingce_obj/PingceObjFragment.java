@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +19,6 @@ import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.entity.OnItemListener;
-import com.newer.kt.entity.Student;
-import com.newer.kt.entity.User;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.utils.DialogUtil;
 import com.smj.event.NextStepEvent;
@@ -186,6 +183,7 @@ public class PingceObjFragment extends Fragment implements OnItemListener<Classe
         //遍历数据
         Map<String, Users> map = new HashMap<>();
         List<Users> usersList = new ArrayList<>();
+        Classes clz=null;
         //先遍历，是否是同一个clz
         for (Classes classes : mClassDatas) {
             for (Users users : classes.getUsers()) {
@@ -193,6 +191,7 @@ public class PingceObjFragment extends Fragment implements OnItemListener<Classe
                     Log.e("tag", users.getClzId() + "");
                     if (!map.containsKey(users.getClzId())) {
                         map.put(users.getClzId(), users);
+                        clz=classes;
                     }
                     usersList.add(users);
                     //大于1，不用操作，只能一个班级
@@ -226,6 +225,6 @@ public class PingceObjFragment extends Fragment implements OnItemListener<Classe
             });
             return;
         }
-        EventBus.getDefault().post(new NextStepEvent(1, usersList));
+        EventBus.getDefault().post(new NextStepEvent(1, usersList, clz));
     }
 }

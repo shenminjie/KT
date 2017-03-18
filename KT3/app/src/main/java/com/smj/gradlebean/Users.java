@@ -2,13 +2,16 @@
   * Copyright 2017 bejson.com 
   */
 package com.smj.gradlebean;
+
+import java.io.Serializable;
+
 /**
  * Auto-generated: 2017-03-18 9:43:12
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Users {
+public class Users implements Serializable{
 
     private int userId;
     private String nickname;
@@ -18,8 +21,17 @@ public class Users {
     private int height;
     private int weight;
     private String clzId;
+    private String scord;
 
     boolean isChecked;
+
+    public String getScord() {
+        return scord;
+    }
+
+    public void setScord(String scord) {
+        this.scord = scord;
+    }
 
     public String getClzId() {
         return clzId;

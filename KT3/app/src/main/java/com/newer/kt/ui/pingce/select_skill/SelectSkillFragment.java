@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.newer.kt.entity.OnItemListener;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.utils.DialogUtil;
 import com.smj.event.NextStepEvent;
+import com.smj.gradlebean.Classes;
 import com.smj.gradlebean.Users;
 import com.smj.skillbean.FootballSkillInfo;
 import com.smj.skillbean.SkillInfo;
@@ -60,8 +62,11 @@ public class SelectSkillFragment extends Fragment implements OnItemListener<Skil
 
     private List<Users> mSelectUsers;
 
-    public void setUsers(List<Users> mSelectUsers) {
+    private Classes mClz;
+
+    public void setUsers(List<Users> mSelectUsers,Classes clz) {
         this.mSelectUsers = mSelectUsers;
+        this.mClz=clz;
     }
 
     public SelectSkillFragment() {
@@ -113,13 +118,13 @@ public class SelectSkillFragment extends Fragment implements OnItemListener<Skil
 
     @OnClick(R.id.btn_before)
     public void back() {
-        EventBus.getDefault().post(new NextStepEvent(0, null));
+        EventBus.getDefault().post(new NextStepEvent(0, null, null));
     }
 
     @OnClick(R.id.btn_next)
     public void toNext() {
-        if(mSelectInfo==null){
-            Toast.show(getContext(),"请选择评测技能");
+        if (mSelectInfo == null) {
+            Toast.show(getContext(), "请选择评测技能");
             return;
         }
         DialogUtil.showAlert(getContext(), "提醒", "请将镜头对准需要进行评测的学生，并将保30秒的评测录制时间内镜头固定！", "确定", new DialogInterface.OnClickListener() {
@@ -145,7 +150,10 @@ public class SelectSkillFragment extends Fragment implements OnItemListener<Skil
         } else if (resultCode == VideoCaptureLitmitActivity.RESULT_ERROR) {
             filename = null;
         }
-        Toast.show(getContext(), filename + "");
+        if (!TextUtils.isEmpty(filename)) {
+            //有数据，调接口
+            EventBus.getDefault().post(new SkillVideoEvent(mSelectInfo, filename, mClz));
+        }
     }
 
     private void initData() {

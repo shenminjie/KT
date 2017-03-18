@@ -18,11 +18,14 @@ import com.newer.kt.Refactor.KTApplication;
 import com.newer.kt.Refactor.adapter.TestListAdapter;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.GradeList;
+import com.newer.kt.ui.pingce.input_result.InputResultFragment;
 import com.newer.kt.ui.pingce.pingce_obj.PingceObjFragment;
 import com.newer.kt.ui.pingce.select_skill.SelectSkillFragment;
+import com.newer.kt.ui.pingce.select_skill.SkillVideoEvent;
 import com.newer.kt.view.IndexViewPager;
 import com.smj.event.NextStepEvent;
 import com.smj.gradlebean.Users;
+import com.smj.skillbean.SkillInfo;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -42,6 +45,7 @@ public class TestListActivity extends BaseActivity {
 
     private PingceObjFragment mPingceObjFragment;
     private SelectSkillFragment mSkillFragment;
+    private InputResultFragment mInputResultFragment;
     private List<Fragment> mFragmentList;
 
     private FragmentAdapter mAdapter;
@@ -66,8 +70,10 @@ public class TestListActivity extends BaseActivity {
         mFragmentList = new ArrayList<>();
         mPingceObjFragment = PingceObjFragment.newInstance("", "");
         mSkillFragment = SelectSkillFragment.newInstance("", "");
+        mInputResultFragment = InputResultFragment.newInstance("", "");
         mFragmentList.add(mPingceObjFragment);
         mFragmentList.add(mSkillFragment);
+        mFragmentList.add(mInputResultFragment);
 
         mAdapter = new FragmentAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
@@ -75,13 +81,22 @@ public class TestListActivity extends BaseActivity {
 
     private List<Users> mStudents;
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNextEvent(SkillVideoEvent event) {
+        mInputResultFragment.setDatas(mStudents, event.skillInfo, event.path,event.clz);
+        mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+        Log.e("tag", "收到的学生:" + mStudents);
+    }
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onNextEvent(NextStepEvent event) {
         int position = event.position;
         if (event.students != null) {
             mStudents = event.students;
             //设置数据
-            mSkillFragment.setUsers(mStudents);
+            mSkillFragment.setUsers(mStudents,event.clz);
         }
         mViewPager.setCurrentItem(position);
         Log.e("tag", "收到的学生:" + mStudents);

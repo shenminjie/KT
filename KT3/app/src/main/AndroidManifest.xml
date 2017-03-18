@@ -742,6 +742,7 @@
 
         <activity
             android:name="com.monkeyshen.recordlib.VideoCaptureLitmitActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="landscape"></activity>
     </application>
 

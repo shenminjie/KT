@@ -2,13 +2,16 @@
   * Copyright 2017 bejson.com 
   */
 package com.smj.skillbean;
+
+import java.io.Serializable;
+
 /**
  * Auto-generated: 2017-03-18 14:23:13
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class SkillInfo {
+public class SkillInfo implements Serializable{
 
     private int schoolFootballSkillId;
     private String name;
@@ -45,4 +48,13 @@ public class SkillInfo {
          return level;
      }
 
+    @Override
+    public String toString() {
+        return "SkillInfo{" +
+                "schoolFootballSkillId=" + schoolFootballSkillId +
+                ", name='" + name + '\'' +
+                ", level=" + level +
+                ", isChecked=" + isChecked +
+                '}';
+    }
 }

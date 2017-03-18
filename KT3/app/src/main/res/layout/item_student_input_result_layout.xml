@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left|center_vertical"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/tv_student_name"
+            style="@style/SmjTextViewStyle"
+            android:layout_gravity="center|center_vertical"
+            android:drawablePadding="10dp"
+            android:drawableRight="@mipmap/nan"
+            android:text="叮当"
+            android:textColor="@color/lightgrey" />
+
+        <EditText
+            android:id="@+id/ed_result"
+            style="@style/SmjTextViewStyle"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="50dp"
+            android:hint="输入结果"
+            android:inputType="number"
+            android:textColorHint="@color/gray" />
+
+        <TextView
+            android:id="@+id/tv_pingji"
+            style="@style/SmjTextViewStyle"
+            android:layout_width="50dp"
+            android:layout_gravity="right|center_vertical"
+            android:gravity="center"
+            android:text="无" />
+    </FrameLayout>
+
+
+    <View
+        style="@style/DividerVertical"
+        android:layout_gravity="bottom" />
+
+</FrameLayout>
