@@ -311,7 +311,7 @@ public class VideoCaptureLitmitActivity extends Activity implements RecordingBut
         public void run() {
             long timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
             int seconds = (int) (timeInMilliseconds / 1000);
-            if (seconds == 3) {
+            if (seconds == 30) {
                 onRecordButtonClicked();
                 findViewById(R.id.btn_end).setVisibility(View.GONE);
                 return;
