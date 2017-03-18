@@ -1,6 +1,9 @@
 package com.newer.kt.ui.pingce.select_skill;
 
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,16 +14,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.frame.app.utils.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.monkeyshen.recordlib.VideoCaptureLitmitActivity;
+import com.monkeyshen.recordlib.configuration.CaptureConfiguration;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.utils.Toast;
 import com.newer.kt.entity.OnItemListener;
 import com.newer.kt.ktmatch.QueryBuilder;
-import com.smj.gradlebean.GradeInfo;
+import com.newer.kt.utils.DialogUtil;
+import com.smj.event.NextStepEvent;
+import com.smj.gradlebean.Users;
 import com.smj.skillbean.FootballSkillInfo;
 import com.smj.skillbean.SkillInfo;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
@@ -30,6 +38,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  */
@@ -45,6 +54,15 @@ public class SelectSkillFragment extends Fragment implements OnItemListener<Skil
 
     SelectSkillAdapter mAdapter;
 
+    private List<SkillInfo> mDatas;
+
+    private SkillInfo mSelectInfo;
+
+    private List<Users> mSelectUsers;
+
+    public void setUsers(List<Users> mSelectUsers) {
+        this.mSelectUsers = mSelectUsers;
+    }
 
     public SelectSkillFragment() {
     }
@@ -93,6 +111,43 @@ public class SelectSkillFragment extends Fragment implements OnItemListener<Skil
         initData();
     }
 
+    @OnClick(R.id.btn_before)
+    public void back() {
+        EventBus.getDefault().post(new NextStepEvent(0, null));
+    }
+
+    @OnClick(R.id.btn_next)
+    public void toNext() {
+        if(mSelectInfo==null){
+            Toast.show(getContext(),"请选择评测技能");
+            return;
+        }
+        DialogUtil.showAlert(getContext(), "提醒", "请将镜头对准需要进行评测的学生，并将保30秒的评测录制时间内镜头固定！", "确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                Intent intent = new Intent(getContext(), VideoCaptureLitmitActivity.class);
+                intent.putExtra(VideoCaptureLitmitActivity.EXTRA_CAPTURE_CONFIGURATION, CaptureConfiguration.getDefault());
+                intent.putExtra(VideoCaptureLitmitActivity.EXTRA_OUTPUT_FILENAME, System.currentTimeMillis() + ".mp4");
+                startActivityForResult(intent, VideoCaptureLitmitActivity.REQUEST_CODE);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String filename = "";
+        if (resultCode == Activity.RESULT_OK) {
+            filename = data.getStringExtra(VideoCaptureLitmitActivity.EXTRA_OUTPUT_FILENAME);
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            filename = null;
+        } else if (resultCode == VideoCaptureLitmitActivity.RESULT_ERROR) {
+            filename = null;
+        }
+        Toast.show(getContext(), filename + "");
+    }
+
     private void initData() {
         QueryBuilder.build("shool_user_tests/get_football_skills").get(new QueryBuilder.Callback() {
             @Override
@@ -138,9 +193,6 @@ public class SelectSkillFragment extends Fragment implements OnItemListener<Skil
         mAdapter.notifyDataSetChanged();
     }
 
-    private List<SkillInfo> mDatas;
-
-    private SkillInfo mSelectInfo;
 
     @Override
     public void onItemListener(SkillInfo skillInfo, int position) {

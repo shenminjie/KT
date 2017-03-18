@@ -739,6 +739,10 @@
         <activity
             android:name="com.monkeyshen.recordlib.VideoCaptureActivity"
             android:screenOrientation="landscape"></activity>
+
+        <activity
+            android:name="com.monkeyshen.recordlib.VideoCaptureLitmitActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

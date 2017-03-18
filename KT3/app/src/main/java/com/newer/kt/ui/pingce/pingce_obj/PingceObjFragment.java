@@ -24,10 +24,12 @@ import com.newer.kt.entity.Student;
 import com.newer.kt.entity.User;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.utils.DialogUtil;
+import com.smj.event.NextStepEvent;
 import com.smj.gradlebean.Classes;
 import com.smj.gradlebean.GradeInfo;
 import com.smj.gradlebean.Users;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
@@ -222,6 +224,8 @@ public class PingceObjFragment extends Fragment implements OnItemListener<Classe
                     dialogInterface.dismiss();
                 }
             });
+            return;
         }
+        EventBus.getDefault().post(new NextStepEvent(1, usersList));
     }
 }
