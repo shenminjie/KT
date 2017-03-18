@@ -1,13 +1,17 @@
 package com.newer.kt.ui.pingce.pingce_obj;
 
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.newer.kt.R;
+import com.newer.kt.Refactor.KTApplication;
+import com.smj.gradlebean.Classes;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,15 +29,14 @@ public class ClassViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.tv_student_num)
     TextView tvStudentCount;
 
-
     @Bind(R.id.cb)
     CheckBox checkBox;
 
-    @Bind(R.id.btn_expand)
-    ImageButton btnExpand;
-
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    @Bind(R.id.btn_expand2)
+    ImageButton btnExpand;
 
     private StudentAdapter mAdapter;
 
@@ -52,21 +55,36 @@ public class ClassViewHolder extends RecyclerView.ViewHolder {
         recyclerView.setAdapter(mAdapter);
     }
 
-    @OnClick(R.id.btn_expand)
-    public void onClick() {
-        RecyclerView.LayoutParams param = (RecyclerView.LayoutParams)itemView.getLayoutParams();
-        if (recyclerView.getVisibility() == View.VISIBLE) {
+
+    /**
+     * setData
+     *
+     * @param classes
+     * @param mOnCheckListener
+     */
+    public void setData(Classes classes, ClassAdapter.OnCheckListener mOnCheckListener) {
+        tvClassName.setText(classes.getClassName());
+        tvStudentCount.setText(classes.getUsers().size() + "学生");
+        LinearLayout.LayoutParams param = (LinearLayout.LayoutParams) recyclerView.getLayoutParams();
+        if (classes.isExpand()) {
+            recyclerView.setVisibility(View.VISIBLE);
+            param.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            param.width = LinearLayout.LayoutParams.MATCH_PARENT;
+            btnExpand.setImageDrawable(ResourcesCompat.getDrawable(KTApplication.getContext().getResources(), R.drawable.arrow_up, null));
+        } else {
             recyclerView.setVisibility(View.GONE);
             param.height = 0;
             param.width = 0;
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            param.height = RecyclerView.LayoutParams.WRAP_CONTENT;
-            param.width = RecyclerView.LayoutParams.MATCH_PARENT;
+            btnExpand.setImageDrawable(ResourcesCompat.getDrawable(KTApplication.getContext().getResources(), R.drawable.arrow_down, null));
         }
-        itemView.setLayoutParams(param);
+        mAdapter.setDatas(classes.getUsers());
+        mAdapter.setListener(mOnCheckListener);
+        recyclerView.setLayoutParams(param);
 
+        if (classes.isChecked()) {
+            checkBox.setChecked(true);
+        } else {
+            checkBox.setChecked(false);
+        }
     }
-
-
 }

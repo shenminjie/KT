@@ -4,12 +4,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.TextView;
+import android.widget.CompoundButton;
 
 import com.newer.kt.R;
+import com.newer.kt.entity.Student;
+import com.smj.gradlebean.Users;
 
-import butterknife.Bind;
+import java.util.List;
+
 
 /**
  * Created by chenminjie on 17/3/18.
@@ -17,6 +19,8 @@ import butterknife.Bind;
 
 public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private List<Users> users;
+    ClassAdapter.OnCheckListener mOnCheckListener;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,12 +29,28 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        StudentViewHolder viewHolder = (StudentViewHolder) holder;
+        viewHolder.cb.setOnCheckedChangeListener(null);
+        viewHolder.setData(users.get(position));
+        viewHolder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mOnCheckListener.onStudentCheck(b, users.get(position), StudentAdapter.this,position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return users.size();
+    }
+
+    public void setDatas(List<Users> users) {
+        this.users = users;
+    }
+
+    public void setListener(ClassAdapter.OnCheckListener mOnCheckListener) {
+        this.mOnCheckListener = mOnCheckListener;
     }
 }

@@ -40,7 +40,7 @@
             android:textSize="10dp" />
 
         <ImageButton
-            android:id="@+id/btn_expand"
+            android:id="@+id/btn_expand2"
             style="@style/SmjTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
