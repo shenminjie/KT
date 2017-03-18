@@ -62,8 +62,8 @@ public class TestFragment extends BaseFragment {
 //
 //    ImageView mImageView;
 
-//    List<String> mList = new ArrayList<>();
-    //List<TestPaiMingBean> mList1 = new ArrayList<TestPaiMingBean>();
+//    SkillInfo<String> mList = new ArrayList<>();
+    //SkillInfo<TestPaiMingBean> mList1 = new ArrayList<TestPaiMingBean>();
     // @Bind(R.id.appbar)
     //AppBarLayout appbar;
     //private ListView lv_test_list;

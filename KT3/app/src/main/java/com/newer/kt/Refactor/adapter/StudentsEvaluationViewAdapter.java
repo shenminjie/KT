@@ -116,7 +116,7 @@ public class StudentsEvaluationViewAdapter extends BaseExpandableListAdapter {
 //            @Override
 //            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //                classesData.classes.get(groupPosition).isChecked = isChecked;
-//                List<Clazz2> list = item_list.get(groupPosition);
+//                SkillInfo<Clazz2> list = item_list.get(groupPosition);
 //                for (int x = 0; x < list.size(); x++) {
 //                    list.get(x).isChecked = isChecked;
 //                    notifyDataSetChanged();

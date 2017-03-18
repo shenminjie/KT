@@ -179,7 +179,7 @@ public class QueryBuilder {
                             cats = new TreeMap<String, ArrayList>();
                             for (Map map : listrt) {
                                 if (!map.containsKey(group)) {
-                                    throw new RuntimeException("no this '" + group + "' name for group on List Type Result");
+                                    throw new RuntimeException("no this '" + group + "' name for group on SkillInfo Type Result");
                                 }
                                 String key = map.get(group).toString();
                                 if (!cats.containsKey(key)) {

@@ -114,6 +114,12 @@
         <item name="android:background">@color/lightgrey</item>
     </style>
 
+    <style name="DividerHorizonal">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/lightgrey</item>
+    </style>
+
     <style name="SmjTextViewStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

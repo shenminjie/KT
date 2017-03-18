@@ -57,9 +57,9 @@ public class FootBallListActivity extends BaseActivity {
 //    @Bind(R.id.expanded_menu)
 //    ExpandableListView mExpandableListView;
 //    private SchoolGymCourseCombinations bean;
-//    private List<String> name;
-//    private List<List<Combinations>> conent = new ArrayList<>();
-//    private List<CircleProgressView> mList = new ArrayList<>();
+//    private SkillInfo<String> name;
+//    private SkillInfo<SkillInfo<Combinations>> conent = new ArrayList<>();
+//    private SkillInfo<CircleProgressView> mList = new ArrayList<>();
 
     String type;
     private Map<String, ArrayList> map = new TreeMap<String,ArrayList>();

@@ -178,7 +178,7 @@ public class TakePicActivity extends BaseActivity {
 //            }
 //
 //            @Override
-//            public void onFinish(List<String> imageUrls) {
+//            public void onFinish(SkillInfo<String> imageUrls) {
 //                startActivity(new Intent(TakePicActivity.this, CertiModelThirdPageActivity.class));
 //
 //            }

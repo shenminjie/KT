@@ -106,7 +106,7 @@ public class RankingPowerDaoHelper implements THDaoHelperInterface {
         }
     }
 
-//    public List<RankingPower> queryByPath(String path) {
+//    public SkillInfo<RankingPower> queryByPath(String path) {
 //        QueryBuilder qb = userBeanDao.queryBuilder();
 //        qb.where(RankingPowerDao.Properties
 //                .Path.eq(path));

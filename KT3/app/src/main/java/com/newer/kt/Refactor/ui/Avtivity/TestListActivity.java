@@ -14,6 +14,7 @@ import com.newer.kt.Refactor.adapter.TestListAdapter;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.GradeList;
 import com.newer.kt.ui.pingce.pingce_obj.PingceObjFragment;
+import com.newer.kt.ui.pingce.select_skill.SelectSkillFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,9 +34,10 @@ public class TestListActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_testlist);
-        mPingceObjFragment = PingceObjFragment.newInstance("", "");
+//        mPingceObjFragment = PingceObjFragment.newInstance("", "");
+        SelectSkillFragment skillFragment = SelectSkillFragment.newInstance("", "");
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, mPingceObjFragment).commit();
+                .replace(R.id.fragment_container, skillFragment).commit();
     }
 
     @Override

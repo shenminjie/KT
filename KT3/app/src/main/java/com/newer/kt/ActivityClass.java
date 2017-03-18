@@ -144,7 +144,7 @@ public class ActivityClass extends BaseActivity {
 String[] grade = new String[]{"小班","中班","大班","一年级","二年级","三年级","四年级","五年级","六年级","初一","初二"};
     public void setData() {
         list_grade = new ArrayList<String>();
-//        List rt = new ArrayList();
+//        SkillInfo rt = new ArrayList();
 for(Object map :list){
     int i = Integer.parseInt(((Map)map).get("grade").toString())-1;
     String g = grade[i];
@@ -154,7 +154,7 @@ for(Object map :list){
     List users = (List) ((Map)mm).get("users");
         count+=users.size();
 //        Map<String,Object> m = new TreeMap<String,Object>();
-//        List urs = (List) mm.get("users");
+//        SkillInfo urs = (SkillInfo) mm.get("users");
 //        m.put("grade", mm.get("cls") + "班");
 //        m.put("num", urs.size() + "人");
 //        m.put("users",urs);

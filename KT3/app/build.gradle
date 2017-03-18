@@ -126,7 +126,7 @@ android {
         compile project(':sub')
         compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'
         compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
-
+        compile 'com.orhanobut:hawk:2.0.1'
     }
 }
 dependencies {

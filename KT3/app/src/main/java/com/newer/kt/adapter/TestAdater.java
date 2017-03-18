@@ -12,7 +12,7 @@
 //import com.newer.kt.myClass.GlideCircleTransform;
 //
 //import java.util.ArrayList;
-//import java.util.List;
+//import java.util.SkillInfo;
 //
 //import butterknife.Bind;
 //import butterknife.ButterKnife;
@@ -21,9 +21,9 @@
 // * Created by wff on 16/12/9.
 // */
 //public class TestAdater extends RecyclerView.Adapter<TestAdater.ViewHolder> {
-//    List<String> mList = new ArrayList<String>();
+//    SkillInfo<String> mList = new ArrayList<String>();
 //
-//    public TestAdater(List<String> mList) {
+//    public TestAdater(SkillInfo<String> mList) {
 //        this.mList = mList;
 //    }
 //

@@ -107,7 +107,7 @@ public class NEVideoPlayerActivity extends ShareActy {
 
 //		mUri = Uri.parse(mVideoPath);
 //		if (mUri != null) { //获取文件名，不包括地址
-//			List<String> paths = mUri.getPathSegments();
+//			SkillInfo<String> paths = mUri.getPathSegments();
 //			String name = paths == null || paths.isEmpty() ? "null" : paths.get(paths.size() - 1);
 //			setFileName(name);
 //		}
