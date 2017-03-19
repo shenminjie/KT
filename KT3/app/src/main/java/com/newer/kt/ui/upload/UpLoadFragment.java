@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.frame.app.utils.LogUtils;
 import com.newer.kt.R;
@@ -47,7 +48,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @Bind(R.id.btn)
-    Button mBtn;
+    TextView mBtn;
 
     private String mParam1;
     private String mParam2;
