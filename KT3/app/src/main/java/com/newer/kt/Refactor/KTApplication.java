@@ -34,6 +34,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.orhanobut.hawk.Hawk;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.um_share.App;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.yolanda.nohttp.NoHttp;
@@ -135,6 +136,7 @@ public class KTApplication extends App {
         initImageLoader();
 
         Hawk.init(this).build();
+        CrashReport.initCrashReport(getApplicationContext(), "836dd4b6e0", true);
     }
 
     private void initImageLoader() {

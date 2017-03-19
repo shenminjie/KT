@@ -1,5 +1,6 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
 import com.newer.kt.ui.upload.UpLoadFragment;
+import com.newer.kt.utils.DialogUtil;
 
 import net.sf.json.util.JSONUtils;
 
@@ -33,11 +35,7 @@ import butterknife.OnClick;
 
 public class Saishi_Shangchuan extends AppCompatActivity {
 
-    @Bind(R.id.viewpager)
-    ViewPager mViewPager;
 
-
-    String[] mTitles = new String[]{"赛事", "大课间", "测评"};
     @Bind(R.id.image_back)
     ImageView imageBack;
     @Bind(R.id.tv_title)
@@ -49,10 +47,7 @@ public class Saishi_Shangchuan extends AppCompatActivity {
     @Bind(R.id.tv_ceping)
     TextView tvCeping;
 
-    private List<Fragment> mFragmentList;
 
-    UpLoadFragment saishiFragment;
-    UpLoadFragment dashijianFragment;
     UpLoadFragment cepingFragment;
 
     @Override
@@ -60,20 +55,12 @@ public class Saishi_Shangchuan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saishi_shangchuan);
         ButterKnife.bind(this);
-        mFragmentList = new ArrayList<>();
 
         tvTitle.setText("上传视频");
-
-        saishiFragment = UpLoadFragment.newInstance("", "");
-        dashijianFragment = UpLoadFragment.newInstance("", "");
         cepingFragment = UpLoadFragment.newInstance("", "");
-        mFragmentList.add(saishiFragment);
-        mFragmentList.add(dashijianFragment);
-        mFragmentList.add(cepingFragment);
 
-        mAdapter = new FragmentAdapter(getSupportFragmentManager());
-
-
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.fragment_container, cepingFragment).commitAllowingStateLoss();
         initData();
 
     }
@@ -87,7 +74,7 @@ public class Saishi_Shangchuan extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.has("youku_token")) {
                         String youkuToken = jsonObject.getString("youku_token");
-                        initFragment(youkuToken);
+                        cepingFragment.setToken(youkuToken);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -106,24 +93,12 @@ public class Saishi_Shangchuan extends AppCompatActivity {
         });
     }
 
-    /**
-     * init
-     *
-     * @param token
-     */
-    private void initFragment(String token) {
-        saishiFragment.setToken(token);
-        dashijianFragment.setToken(token);
-        cepingFragment.setToken(token);
-
-        mViewPager.setAdapter(mAdapter);
-    }
 
     @OnClick({R.id.image_back, R.id.tv_saishi, R.id.tv_dakejian, R.id.tv_ceping})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_back:
-                finish();
+                onBackPressed();
                 break;
             case R.id.tv_saishi:
                 break;
@@ -134,25 +109,24 @@ public class Saishi_Shangchuan extends AppCompatActivity {
         }
     }
 
-    private FragmentAdapter mAdapter;
-
-    /**
-     * adapter
-     */
-    class FragmentAdapter extends FragmentPagerAdapter {
-
-        public FragmentAdapter(FragmentManager fm) {
-            super(fm);
+    @Override
+    public void onBackPressed() {
+        if (cepingFragment.isUploading()) {
+            DialogUtil.showAlert(this, "正在上传", "退出后上传会中断，是否取消上传", "退出", "取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    finish();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            return;
         }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
+        finish();
     }
+
 }

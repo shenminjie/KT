@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Users implements Serializable{
 
-    private int userId;
+    private int user_id;
     private String nickname;
     private String gender;
     private String birthday;
@@ -49,11 +49,11 @@ public class Users implements Serializable{
         isChecked = checked;
     }
 
-    public void setUserId(int userId) {
-         this.userId = userId;
+    public void setUser_id(int user_id) {
+         this.user_id = user_id;
      }
-     public int getUserId() {
-         return userId;
+     public int getUser_id() {
+         return user_id;
      }
 
     public void setNickname(String nickname) {
@@ -101,7 +101,7 @@ public class Users implements Serializable{
     @Override
     public String toString() {
         return "Users{" +
-                "userId=" + userId +
+                "user_id=" + user_id +
                 ", nickname='" + nickname + '\'' +
                 ", gender='" + gender + '\'' +
                 ", birthday='" + birthday + '\'' +
