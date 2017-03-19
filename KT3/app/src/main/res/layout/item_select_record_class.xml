@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="25dp">
+
+    <TextView
+        android:id="@+id/tv_clzname"
+        style="@style/SmjTextViewStyle"
+        android:layout_width="match_parent"
+        android:drawableRight="@drawable/arrow_down"
+        android:gravity="center"
+        android:text="小班" />
+
+
+</FrameLayout>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/nomal_bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -32,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:onClick="doHome"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:onClick="doHome"
             android:src="@mipmap/home" />
 
     </RelativeLayout>
@@ -42,25 +42,19 @@
     <ExpandableListView
         android:id="@+id/layout_select_class_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/layout_select_class_bottom"
-        android:layout_below="@id/recyclerview_top"
-        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
+        android:divider="@null"
         android:groupIndicator="@null" />
 
     <TextView
         android:id="@+id/tv_luzhi"
-        android:layout_width="255dp"
-        android:layout_height="38dp"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/layout_select_class_list"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
         android:background="@color/text_black"
         android:gravity="center"
+        android:padding="15dp"
         android:text="录制大课间"
         android:textColor="@color/white"
         android:textSize="18dp" />
