@@ -36,7 +36,6 @@ import butterknife.OnClick;
  */
 public class BigClassChooseActivity extends BaseActivity implements DakejianXuanzeAdapter.Callback {
     private ExpandableListView listView;
-    private LoadingDialog mLoading;
     private DakejianXuanzeAdapter mAdapter;
 
     @Override
@@ -61,8 +60,7 @@ public class BigClassChooseActivity extends BaseActivity implements DakejianXuan
         mAdapter = new DakejianXuanzeAdapter(mDatas, this);
         listView.setAdapter(mAdapter);
 
-        mLoading = new LoadingDialog(this);
-        DialogUtil.show(mLoading);
+        showLoadingDiaglog();
         getData();
     }
 
@@ -77,7 +75,7 @@ public class BigClassChooseActivity extends BaseActivity implements DakejianXuan
         QueryBuilder.build("offline/get_club_school_class_data").add("club_id", clubid).get(new QueryBuilder.Callback() {
             @Override
             public void onSuccess(String result) {
-                DialogUtil.dismiss(mLoading);
+                closeLoadingDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.has("response") && "success".equals(jsonObject.getString("response"))) {
@@ -96,12 +94,12 @@ public class BigClassChooseActivity extends BaseActivity implements DakejianXuan
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                DialogUtil.dismiss(mLoading);
+                closeLoadingDialog();
             }
 
             @Override
             public void onDebug(RequestParams rp) {
-                DialogUtil.dismiss(mLoading);
+                closeLoadingDialog();
             }
         });
     }

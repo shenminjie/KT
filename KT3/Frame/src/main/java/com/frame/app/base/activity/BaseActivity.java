@@ -47,7 +47,7 @@ public abstract class BaseActivity extends AnalyticsHome {
 
 		TAG = getClass().getSimpleName();
 		AppManager.getAppManager().addActivity(getThis()); // 加入activity栈管理器
-		loadingDialog = new LoadingDialog(getThis()); // 初始化进度条
+		loadingDialog = new LoadingDialog(this); // 初始化进度条
 		initView(savedInstanceState);
 		ButterKnife.bind(this);//绑定
 		EventBus.getDefault().register(this);
