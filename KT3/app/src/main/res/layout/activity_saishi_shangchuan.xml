@@ -9,38 +9,6 @@
 
     <include layout="@layout/layout_title_smj"></include>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/tv_saishi"
-            style="@style/SmjTextViewStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="赛事" />
-
-        <TextView
-            android:id="@+id/tv_dakejian"
-            style="@style/SmjTextViewStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="大课间" />
-
-        <TextView
-            android:id="@+id/tv_ceping"
-            style="@style/SmjTextViewStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="测评" />
-    </LinearLayout>
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

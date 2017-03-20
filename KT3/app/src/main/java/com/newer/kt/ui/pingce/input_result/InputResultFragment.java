@@ -117,7 +117,7 @@ public class InputResultFragment extends Fragment {
             pingceLocalData.setStudent(mDatas);
             pingceLocalData.setVideoPath(mPath);
 
-            LocalDataManager.savePingceItem(pingceLocalData);
+            LocalDataManager.saveUpLoadInfo(pingceLocalData);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class InputResultFragment extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 getActivity().finish();
-                Log.e("tag--缓存数据",LocalDataManager.getPingCeLocalCacheData()+"");
+                Log.e("tag--缓存数据",LocalDataManager.getCacheDatas()+"");
             }
         });
     }

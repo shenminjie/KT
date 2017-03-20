@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.frame.app.utils.LogUtils;
@@ -55,8 +54,8 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     private String mToken;
 
 
-    UpLoadAdapter<PingceLocalData> mAdapter;
-    List<PingceLocalData> mDatas;
+    UpLoadAdapter<UpLoadInfo> mAdapter;
+    List<UpLoadInfo> mDatas;
     HashMap<String, UpLoadAdapter.ViewHolder> mViewMap;
 
     public UpLoadFragment() {
@@ -102,7 +101,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mDatas = LocalDataManager.getPingCeLocalCacheData();
+        mDatas = LocalDataManager.getCacheDatas();
         mAdapter = new UpLoadAdapter<>(mDatas, this);
         mViewMap = new HashMap<>();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -129,7 +128,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         }
         //data
         List<UpLoadInfo> upLoadInfos = new ArrayList<>();
-        for (PingceLocalData localData : mDatas) {
+        for (UpLoadInfo localData : mDatas) {
             upLoadInfos.add(localData);
         }
         UpLoadManager.getInstance().start(upLoadInfos, mToken, this);
@@ -157,7 +156,10 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     @Override
     public void onSuccess(JSONObject var1, UpLoadInfo info) {
-        commit(var1, info);
+        //pingce的
+        if (info instanceof PingceLocalData) {
+            commit(var1, info);
+        }
     }
 
 
@@ -215,7 +217,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     private void remove(UpLoadInfo info) {
         mDatas.remove(info);
-        LocalDataManager.savePingceList(mDatas);
+        LocalDataManager.saveUpLoadList(mDatas);
         mAdapter.notifyDataSetChanged();
     }
 

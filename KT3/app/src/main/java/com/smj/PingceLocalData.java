@@ -86,4 +86,9 @@ public class PingceLocalData implements Serializable, UpLoadInfo {
     public String getVideoPath() {
         return videoPath;
     }
+
+    @Override
+    public int getType() {
+        return TYPE_PINGCE;
+    }
 }

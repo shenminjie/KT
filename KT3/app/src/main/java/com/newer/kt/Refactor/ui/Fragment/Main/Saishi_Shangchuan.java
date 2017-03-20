@@ -40,12 +40,7 @@ public class Saishi_Shangchuan extends AppCompatActivity {
     ImageView imageBack;
     @Bind(R.id.tv_title)
     TextView tvTitle;
-    @Bind(R.id.tv_saishi)
-    TextView tvSaishi;
-    @Bind(R.id.tv_dakejian)
-    TextView tvDakejian;
-    @Bind(R.id.tv_ceping)
-    TextView tvCeping;
+
 
 
     UpLoadFragment cepingFragment;
@@ -94,17 +89,11 @@ public class Saishi_Shangchuan extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.image_back, R.id.tv_saishi, R.id.tv_dakejian, R.id.tv_ceping})
+    @OnClick({R.id.image_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_back:
                 onBackPressed();
-                break;
-            case R.id.tv_saishi:
-                break;
-            case R.id.tv_dakejian:
-                break;
-            case R.id.tv_ceping:
                 break;
         }
     }

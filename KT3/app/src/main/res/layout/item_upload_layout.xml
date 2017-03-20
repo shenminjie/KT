@@ -6,9 +6,22 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView
-        android:id="@+id/tv_name"
-        style="@style/SmjTextViewStyle" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/SmjTextViewStyle"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            style="@style/SmjTextViewStyle"
+            android:textColor="@color/red"
+            android:layout_gravity="right" />
+    </FrameLayout>
+
 
     <ProgressBar
         android:id="@+id/progreebar"

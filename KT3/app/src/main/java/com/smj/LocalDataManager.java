@@ -1,6 +1,7 @@
 package com.smj;
 
 import com.orhanobut.hawk.Hawk;
+import com.smj.upload.UpLoadInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,30 +11,30 @@ import java.util.List;
  */
 
 public class LocalDataManager {
-    public static final String PINGCE_LOCAL_DATA_CACHE_ARRAY = "PINGCE_LOCAL_DATA_CACHE_ARRAY";
+    public static final String LOCAL_DATA_CACHE_ARRAY = "LOCAL_DATA_CACHE_ARRAY";
 
-    private static List<PingceLocalData> mPingceLocalData;
+    private static List<UpLoadInfo> mUploadList;
 
-    public static List<PingceLocalData> getPingCeLocalCacheData() {
-        if (mPingceLocalData == null) {
-            mPingceLocalData = Hawk.get(PINGCE_LOCAL_DATA_CACHE_ARRAY);
-            if (mPingceLocalData == null) {
-                mPingceLocalData = new ArrayList<>();
-                savePingceList(mPingceLocalData);
+    public static List<UpLoadInfo> getCacheDatas() {
+        if (mUploadList == null) {
+            mUploadList = Hawk.get(LOCAL_DATA_CACHE_ARRAY);
+            if (mUploadList == null) {
+                mUploadList = new ArrayList<>();
+                saveUpLoadList(mUploadList);
             }
         }
-        return mPingceLocalData;
+        return mUploadList;
     }
 
 
-    public static void savePingceList(List<PingceLocalData> datas) {
-        Hawk.put(PINGCE_LOCAL_DATA_CACHE_ARRAY, datas);
+    public static void saveUpLoadList(List<UpLoadInfo> datas) {
+        Hawk.put(LOCAL_DATA_CACHE_ARRAY, datas);
     }
 
-    public static void savePingceItem(PingceLocalData data) {
-        List<PingceLocalData> datas = getPingCeLocalCacheData();
+    public static void saveUpLoadInfo(UpLoadInfo data) {
+        List<UpLoadInfo> datas = getCacheDatas();
         datas.add(data);
-        savePingceList(datas);
+        saveUpLoadList(datas);
     }
 
 }

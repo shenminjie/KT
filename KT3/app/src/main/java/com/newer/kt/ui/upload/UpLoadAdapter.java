@@ -25,9 +25,9 @@ public class UpLoadAdapter<T extends UpLoadInfo> extends RecyclerView.Adapter<Re
 
     private List<T> mDatas;
 
-    public UpLoadAdapter(List<T> mDatas,Callback mCallBack) {
+    public UpLoadAdapter(List<T> mDatas, Callback mCallBack) {
         this.mDatas = mDatas;
-        this.mCallBack=mCallBack;
+        this.mCallBack = mCallBack;
     }
 
     @Override
@@ -43,7 +43,8 @@ public class UpLoadAdapter<T extends UpLoadInfo> extends RecyclerView.Adapter<Re
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.tvName.setText(mDatas.get(position).getUpLoadName());
-        mCallBack.bindViewHolder(viewHolder,position);
+        viewHolder.tvType.setText(mDatas.get(position).getType() == UpLoadInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
+        mCallBack.bindViewHolder(viewHolder, position);
     }
 
     @Override
@@ -54,6 +55,8 @@ public class UpLoadAdapter<T extends UpLoadInfo> extends RecyclerView.Adapter<Re
     static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_name)
         TextView tvName;
+        @Bind(R.id.tv_type)
+        TextView tvType;
         @Bind(R.id.progreebar)
         ProgressBar progreebar;
 
@@ -64,8 +67,6 @@ public class UpLoadAdapter<T extends UpLoadInfo> extends RecyclerView.Adapter<Re
     }
 
     private Callback mCallBack;
-
-
 
 
     /**

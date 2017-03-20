@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ import com.newer.kt.adapter.BigClassGifAdapter;
 import com.newer.kt.myClass.DownLoaderTask;
 import com.newer.kt.myClass.PixelUtils;
 import com.newer.kt.myClass.ZipExtractorTask;
+import com.smj.dakejian.DakejianBasicInfo;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -77,7 +79,7 @@ public class BigClassDetailActivity extends BaseActivity {
     private TextView tv_guankan;
 
     private String shool_big_classroom_id;//大课间id
-    private BigClassRoom  bigClassRoom = new BigClassRoom();
+    private BigClassRoom bigClassRoom = new BigClassRoom();
     private String vidioLocalPath; //视频本地地址
     private boolean isFind;//本地视频是否已存在
     private boolean initalized = false;
@@ -117,7 +119,7 @@ public class BigClassDetailActivity extends BaseActivity {
         mController.setVisibility(View.GONE);
 
         titleBar = ((RelativeLayout) this.findViewById(R.id.titlebar));
-        sv_main = (ReboundScrollView)findViewById(R.id.sv_main);
+        sv_main = (ReboundScrollView) findViewById(R.id.sv_main);
         mTvStartClass = (TextView) findViewById(R.id.start_class);
 
         mViews = new ArrayList<>();
@@ -131,8 +133,6 @@ public class BigClassDetailActivity extends BaseActivity {
         head1.setFocusable(true);
         head1.setFocusableInTouchMode(true);
         head1.requestFocus();
-
-
 
 
         full_holder = ((NEVideoView) this.findViewById(R.id.full_holder));
@@ -157,15 +157,15 @@ public class BigClassDetailActivity extends BaseActivity {
 
         //head1.setVisibility(View.GONE);
 
-        mGridView = (MyGridView)findViewById(R.id.gridView);
+        mGridView = (MyGridView) findViewById(R.id.gridView);
 
         tv_guankan = ((TextView) findViewById(R.id.tv_guankan));
         tv_guankan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isFind){
+                if (isFind) {
                     goPlay();
-                }else{
+                } else {
                     tv_guankan.setClickable(false);
                     doDownLoadWork();
                 }
@@ -187,11 +187,11 @@ public class BigClassDetailActivity extends BaseActivity {
         // 通过上个页面传递过来的Intent获取播放参数
         getIntentData(getIntent());
 
-        skillAdapter = new SkillAdapter(skills,this);
+        skillAdapter = new SkillAdapter(skills, this);
         mGridView.setAdapter(skillAdapter);
 
         getSchoolBigClassDetail();
-        actionAdapter =new BigClassGifAdapter(actions, getThis(), linearLayoutManager);
+        actionAdapter = new BigClassGifAdapter(actions, getThis(), linearLayoutManager);
         mRecyclerView.setLayoutManager(linearLayoutManager = new MyLinearLayoutManager(this));
         mRecyclerView.setAdapter(actionAdapter);
 
@@ -216,7 +216,12 @@ public class BigClassDetailActivity extends BaseActivity {
 
     @OnClick(R.id.start_class)
     public void tart() {
-        Intent intent = new Intent(getThis(),BigClassChooseActivity.class);
+        if (mDakejianBasicInfo == null) {
+            return;
+        }
+        Intent intent = new Intent(getThis(), BigClassChooseActivity.class);
+        mDakejianBasicInfo.setId(shool_big_classroom_id);
+        intent.putExtra("data", mDakejianBasicInfo);
         startActivity(intent);
     }
 
@@ -268,7 +273,7 @@ public class BigClassDetailActivity extends BaseActivity {
             hideViews(false);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout
                     .LayoutParams.MATCH_PARENT,
-                    PixelUtils.dip2px(this,220));
+                    PixelUtils.dip2px(this, 220));
             mFlVideoGroup.setLayoutParams(params);
         }
     }
@@ -338,7 +343,6 @@ public class BigClassDetailActivity extends BaseActivity {
         getIntentData(intent);
 
 
-
         // 进行播放
 //        goPlay();
     }
@@ -354,6 +358,7 @@ public class BigClassDetailActivity extends BaseActivity {
 
     }
 
+    private DakejianBasicInfo mDakejianBasicInfo;
 
     //大课间列表  http://api.ktfootball.com/school_big_class_rooms/detail
     public void getSchoolBigClassDetail() {
@@ -367,8 +372,13 @@ public class BigClassDetailActivity extends BaseActivity {
         x.http().get(p, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
                 showDialogToast(result);
                 Gson gson = new Gson();
+
+                //---smj
+                mDakejianBasicInfo = gson.fromJson(result, DakejianBasicInfo.class);
+
                 //1. 获得 解析者
                 JsonParser parser = new JsonParser();
 
@@ -382,11 +392,11 @@ public class BigClassDetailActivity extends BaseActivity {
                 JsonPrimitive flagjson = root.getAsJsonPrimitive("response");
                 String flag = flagjson.getAsString();
 
-                if("success".equals(flag)){
-                    bigClassRoom = gson.fromJson(result,BigClassRoom.class);
+                if ("success".equals(flag)) {
+                    bigClassRoom = gson.fromJson(result, BigClassRoom.class);
 
-                    vidioLocalPath = getCacheDir() + "/"+bigClassRoom.getName()+"/"+bigClassRoom.getName()+".mp4";
-                    if(new File(vidioLocalPath).exists()){
+                    vidioLocalPath = getCacheDir() + "/" + bigClassRoom.getName() + "/" + bigClassRoom.getName() + ".mp4";
+                    if (new File(vidioLocalPath).exists()) {
                         isFind = true;
                         tv_guankan.setText("播放");
 
@@ -394,7 +404,6 @@ public class BigClassDetailActivity extends BaseActivity {
 
                     skillAdapter.refresh(bigClassRoom.getSkills());
                     actionAdapter.refresh(bigClassRoom);
-
 
 
                 }
@@ -419,7 +428,7 @@ public class BigClassDetailActivity extends BaseActivity {
 
     }
 
-    public void initVidioView(){
+    public void initVidioView() {
         //验证是否硬件支持
 //        if (!LibsChecker.checkVitamioLibs(this)) {
 //            return;
@@ -438,7 +447,7 @@ public class BigClassDetailActivity extends BaseActivity {
                 tv_guankan.setText("重播");
                 hideViews(false);
 
-                if(mIsFullScreen){
+                if (mIsFullScreen) {
                     mIsFullScreen = false;
                     BigClassDetailActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
@@ -449,16 +458,16 @@ public class BigClassDetailActivity extends BaseActivity {
 
     public void goPlay() {
 
-            if(!initalized){
+        if (!initalized) {
 //                initVidioView();
-                initalized = true;
-            }
+            initalized = true;
+        }
 
 //            head1.setVisibility(View.GONE);
 //
 //            full_holder.setVisibility(View.VISIBLE);
 //            fl_video_group.setVisibility(View.VISIBLE);
-            startActivity(new Intent(getBaseContext(),NeActivity.class).putExtra("path",vidioLocalPath));
+        startActivity(new Intent(getBaseContext(), NeActivity.class).putExtra("path", vidioLocalPath));
 
 //            full_holder.play();
 
@@ -511,23 +520,23 @@ public class BigClassDetailActivity extends BaseActivity {
 //                .show();
 //    }
 
-    public void doZipExtractorWork(){
+    public void doZipExtractorWork() {
         //ZipExtractorTask task = new ZipExtractorTask("/storage/usb3/system.zip", "/storage/emulated/legacy/", this, true);
-        ZipExtractorTask task = new ZipExtractorTask(getCacheDir()+"/"+bigClassRoom.getName()+".zip", getCacheDir()+"", this, true);
+        ZipExtractorTask task = new ZipExtractorTask(getCacheDir() + "/" + bigClassRoom.getName() + ".zip", getCacheDir() + "", this, true);
         task.execute();
     }
 
-    private void doDownLoadWork(){
-        DownLoaderTask task = new DownLoaderTask(bigClassRoom.getVideo_url(), getCacheDir()+"", BigClassDetailActivity.this);
+    private void doDownLoadWork() {
+        DownLoaderTask task = new DownLoaderTask(bigClassRoom.getVideo_url(), getCacheDir() + "", BigClassDetailActivity.this);
         //DownLoaderTask task = new DownLoaderTask("http://192.168.9.155/johnny/test.h264", getCacheDir().getAbsolutePath()+"/", this);
         task.execute();
     }
 
-    public void downloadProgress(Integer progress){
-        tv_guankan.setText(progress+"%");
+    public void downloadProgress(Integer progress) {
+        tv_guankan.setText(progress + "%");
     }
 
-    public void downloadandziped(){
+    public void downloadandziped() {
         tv_guankan.setText("播放");
         isFind = true;
         tv_guankan.setClickable(true);
@@ -536,34 +545,33 @@ public class BigClassDetailActivity extends BaseActivity {
 }
 
 
-
-class SkillAdapter extends BaseAdapter{
+class SkillAdapter extends BaseAdapter {
 
     private Context context;
     private List<Skill> skills;
 
-    public SkillAdapter(List<Skill> skills,Context context){
+    public SkillAdapter(List<Skill> skills, Context context) {
         this.skills = skills;
         this.context = context;
     }
 
-        @Override
-        public int getCount() {
+    @Override
+    public int getCount() {
         return skills.size();
     }
 
-        @Override
-        public Object getItem(int position) {
+    @Override
+    public Object getItem(int position) {
         return skills.get(position);
     }
 
-        @Override
-        public long getItemId(int position) {
+    @Override
+    public long getItemId(int position) {
         return position;
     }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder1 viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder1();
@@ -578,16 +586,16 @@ class SkillAdapter extends BaseAdapter{
         return convertView;
     }
 
-    public void refresh(List<Skill> skills){
+    public void refresh(List<Skill> skills) {
         this.skills.clear();
         this.skills.addAll(skills);
         this.notifyDataSetChanged();
 
     }
 
-        class ViewHolder1 {
-            ImageView mBg;
-            TextView mTitle;
-        }
+    class ViewHolder1 {
+        ImageView mBg;
+        TextView mTitle;
     }
+}
 
