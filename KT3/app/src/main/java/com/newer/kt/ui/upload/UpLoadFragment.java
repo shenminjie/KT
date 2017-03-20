@@ -16,6 +16,7 @@ import com.frame.app.utils.LogUtils;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.utils.Toast;
 import com.newer.kt.ktmatch.QueryBuilder;
+import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
 import com.smj.PingceLocalData;
 import com.smj.gradlebean.Users;
@@ -54,8 +55,8 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     private String mToken;
 
 
-    UpLoadAdapter<UpLoadInfo> mAdapter;
-    List<UpLoadInfo> mDatas;
+    UpLoadAdapter<LocalDataInfo> mAdapter;
+    List<LocalDataInfo> mDatas;
     HashMap<String, UpLoadAdapter.ViewHolder> mViewMap;
 
     public UpLoadFragment() {
@@ -102,6 +103,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mDatas = LocalDataManager.getCacheDatas();
+        Log.e("tag", mDatas + "");
         mAdapter = new UpLoadAdapter<>(mDatas, this);
         mViewMap = new HashMap<>();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -116,6 +118,10 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     @OnClick(R.id.btn)
     public void onClick() {
+        if (true) {
+            List<LocalDataInfo> mUploadList = new ArrayList<>();
+            LocalDataManager.saveUpLoadList(mUploadList);
+        }
         if (mDatas.size() == 0) {
             return;
         }
@@ -127,8 +133,8 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
             return;
         }
         //data
-        List<UpLoadInfo> upLoadInfos = new ArrayList<>();
-        for (UpLoadInfo localData : mDatas) {
+        List<LocalDataInfo> upLoadInfos = new ArrayList<>();
+        for (LocalDataInfo localData : mDatas) {
             upLoadInfos.add(localData);
         }
         UpLoadManager.getInstance().start(upLoadInfos, mToken, this);
@@ -144,32 +150,32 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     }
 
     @Override
-    public void onProgressUpdate(int i, UpLoadInfo info) {
+    public void onProgressUpdate(int i, LocalDataInfo info) {
         Log.e("smj", i + "  " + info);
         mViewMap.get(info.getId()).progreebar.setProgress(i);
     }
 
     @Override
-    public void onStart(UpLoadInfo info) {
+    public void onStart(LocalDataInfo info) {
         mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(开始上传)");
     }
 
     @Override
-    public void onSuccess(JSONObject var1, UpLoadInfo info) {
+    public void onSuccess(JSONObject var1, LocalDataInfo info) {
         //pingce的
-        if (info instanceof PingceLocalData) {
+        if (info instanceof LocalDataInfo) {
             commit(var1, info);
         }
     }
 
 
     @Override
-    public void onFailure(JSONObject jsonObject, UpLoadInfo info) {
+    public void onFailure(JSONObject jsonObject, LocalDataInfo info) {
         mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(上传失败)");
     }
 
     @Override
-    public void onFinished(UpLoadInfo info) {
+    public void onFinished(LocalDataInfo info) {
         mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(上传完成)");
     }
 
@@ -180,12 +186,12 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
      * @param var1
      * @param info
      */
-    private void commit(JSONObject var1, UpLoadInfo info) {
+    private void commit(JSONObject var1, LocalDataInfo info) {
         //上传数据
         try {
             String videoId = var1.getString("video_id");
-            final PingceLocalData data = (PingceLocalData) info;
-            List<Users> students = data.getStudent();
+            final LocalDataInfo data =  info;
+            List<Users> students = data.getPingceStudent();
             StringBuilder builder = new StringBuilder();
             for (Users users : students) {
                 builder.append(users.getUser_id() + ",");
@@ -215,7 +221,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         }
     }
 
-    private void remove(UpLoadInfo info) {
+    private void remove(LocalDataInfo info) {
         mDatas.remove(info);
         LocalDataManager.saveUpLoadList(mDatas);
         mAdapter.notifyDataSetChanged();

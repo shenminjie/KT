@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.alipay.share.sdk.openapi.channel.APMessage;
 import com.newer.kt.R;
+import com.smj.LocalDataInfo;
 import com.smj.PingceLocalData;
 import com.smj.upload.UpLoadInfo;
 
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
  * Created by chenminjie on 17/3/19.
  */
 
-public class UpLoadAdapter<T extends UpLoadInfo> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class UpLoadAdapter<T extends LocalDataInfo> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<T> mDatas;
 
@@ -43,7 +44,7 @@ public class UpLoadAdapter<T extends UpLoadInfo> extends RecyclerView.Adapter<Re
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.tvName.setText(mDatas.get(position).getUpLoadName());
-        viewHolder.tvType.setText(mDatas.get(position).getType() == UpLoadInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
+        viewHolder.tvType.setText(mDatas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
         mCallBack.bindViewHolder(viewHolder, position);
     }
 

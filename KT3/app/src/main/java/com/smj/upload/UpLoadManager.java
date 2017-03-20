@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.newer.kt.Refactor.KTApplication;
 import com.newer.kt.ui.upload.UploadListener;
+import com.smj.LocalDataInfo;
 import com.youku.uploader.IUploadResponseHandler;
 import com.youku.uploader.YoukuUploader;
 
@@ -26,7 +27,7 @@ public class UpLoadManager {
     /**
      * upload queue
      */
-    private UploadQueue<UpLoadInfo> mQueue;
+    private UploadQueue<LocalDataInfo> mQueue;
 
     /**
      * upload tools
@@ -69,7 +70,7 @@ public class UpLoadManager {
      * @param infos
      * @param mToken
      */
-    public void start(List<UpLoadInfo> infos, String mToken, UploadListener listener) {
+    public void start(List<LocalDataInfo> infos, String mToken, UploadListener listener) {
         if (mStatus == STATUS_UPLOADING) {
             return;
         }
@@ -77,7 +78,7 @@ public class UpLoadManager {
             return;
         }
         mQueue.clear();
-        for (UpLoadInfo upLoadInfo : infos) {
+        for (LocalDataInfo upLoadInfo : infos) {
             mQueue.put(upLoadInfo);
         }
         this.mToken = mToken;
@@ -120,7 +121,7 @@ public class UpLoadManager {
         final HashMap uploadInfo = new HashMap();
 
 
-        final UpLoadInfo upLoadInfo = mQueue.get();
+        final LocalDataInfo upLoadInfo = mQueue.get();
         uploadInfo.put("title", upLoadInfo.getUpLoadName());
         uploadInfo.put("tags", "原创");
         uploadInfo.put("file_name", upLoadInfo.getVideoPath());

@@ -1,5 +1,6 @@
 package com.newer.kt.ui.upload;
 
+import com.smj.LocalDataInfo;
 import com.smj.upload.UpLoadInfo;
 
 import org.json.JSONObject;
@@ -10,13 +11,13 @@ import org.json.JSONObject;
 
 public interface UploadListener {
 
-    void onProgressUpdate(int i, UpLoadInfo info);
+    void onProgressUpdate(int i, LocalDataInfo info);
 
-    void onStart(UpLoadInfo info);
+    void onStart(LocalDataInfo info);
 
-    void onSuccess(JSONObject var1, UpLoadInfo info);
+    void onSuccess(JSONObject var1, LocalDataInfo info);
 
-    void onFailure(JSONObject var1,UpLoadInfo info);
+    void onFailure(JSONObject var1,LocalDataInfo info);
 
-    void onFinished(UpLoadInfo info);
+    void onFinished(LocalDataInfo info);
 }

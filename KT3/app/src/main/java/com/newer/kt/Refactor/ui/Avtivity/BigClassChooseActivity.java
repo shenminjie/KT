@@ -21,7 +21,7 @@ import com.newer.kt.R;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ui.dakejian.DakejianXuanzeAdapter;
 import com.newer.kt.utils.DialogUtil;
-import com.smj.DakejianLocalData;
+import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
 import com.smj.dakejian.DakejianBasicInfo;
 import com.smj.gradlebean.Classes;
@@ -158,12 +158,13 @@ public class BigClassChooseActivity extends BaseActivity implements DakejianXuan
             filename = null;
         }
         Log.e("录制视频返回的对象,", filename + "");
-        DakejianLocalData dakejianLocalData = new DakejianLocalData();
-        dakejianLocalData.setClasses(mSelectClasses);
+        LocalDataInfo dakejianLocalData = new LocalDataInfo();
+        dakejianLocalData.setDakejianClasses(mSelectClasses);
         dakejianLocalData.setCreatetime(System.currentTimeMillis());
         dakejianLocalData.setVideoPath(filename);
         dakejianLocalData.setDakejianBasicInfo(mDakejianBasicInfo);
-        dakejianLocalData.setIs_finished(0);
+        dakejianLocalData.setDakejianIs_finished(0);
+        dakejianLocalData.setType(LocalDataInfo.TYPE_DAKEJIAN);
 
         LocalDataManager.saveUpLoadInfo(dakejianLocalData);
         DialogUtil.showAlert(this, "温馨提示", "录制成功，请到动态管理进行上传视频", "确定", new DialogInterface.OnClickListener() {

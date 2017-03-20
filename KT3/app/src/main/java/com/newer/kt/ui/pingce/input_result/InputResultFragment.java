@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.newer.kt.R;
 import com.newer.kt.utils.DialogUtil;
+import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
 import com.smj.PingceLocalData;
 import com.smj.gradlebean.Classes;
@@ -27,6 +28,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.smj.LocalDataInfo.TYPE_PINGCE;
 
 /**
  */
@@ -110,13 +113,13 @@ public class InputResultFragment extends Fragment {
         }
         //保存到本地
         try{
-            PingceLocalData pingceLocalData=new PingceLocalData();
-            pingceLocalData.setClz(mClz);
+            LocalDataInfo pingceLocalData=new LocalDataInfo();
+            pingceLocalData.setPingceClz(mClz);
             pingceLocalData.setCreatetime(System.currentTimeMillis());
-            pingceLocalData.setSkillInfo(mSkillInfo);
-            pingceLocalData.setStudent(mDatas);
+            pingceLocalData.setPingceSkillInfo(mSkillInfo);
+            pingceLocalData.setPingceStudent(mDatas);
             pingceLocalData.setVideoPath(mPath);
-
+            pingceLocalData.setType(TYPE_PINGCE);
             LocalDataManager.saveUpLoadInfo(pingceLocalData);
 
         }catch (Exception e){
