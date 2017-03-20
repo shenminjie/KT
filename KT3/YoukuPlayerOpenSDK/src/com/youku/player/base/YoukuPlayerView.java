@@ -173,7 +173,7 @@ public class YoukuPlayerView extends PluginOverlay implements DetailMessage,
 	 */
 	private void addLeftAndRight() {
 		View viewLeft = new View(mContext);
-		viewLeft.setId(1999);
+//		viewLeft.setId(1999);
 		viewLeft.setVisibility(View.INVISIBLE);
 		RelativeLayout.LayoutParams leftLayoutParams = new RelativeLayout.LayoutParams(
 				0, 0);
@@ -182,7 +182,7 @@ public class YoukuPlayerView extends PluginOverlay implements DetailMessage,
 		spaceMiddle.addView(viewLeft);
 
 		View viewRight = new View(mContext);
-		viewRight.setId(1998);
+//		viewRight.setId(1998);
 		viewRight.setVisibility(View.INVISIBLE);
 		RelativeLayout.LayoutParams rightLayoutParams = new RelativeLayout.LayoutParams(
 				0, 0);
@@ -768,7 +768,7 @@ public class YoukuPlayerView extends PluginOverlay implements DetailMessage,
 	/**
 	 * 初始化接口
 	 * 
-	 * @param mYoukuBaseActivity
+	 * @param
 	 * @param platformId
 	 * @see {@link Plantform}
 	 * @param pid

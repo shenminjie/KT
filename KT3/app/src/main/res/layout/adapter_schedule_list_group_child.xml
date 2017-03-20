@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<com.zhy.autolayout.AutoLinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="120px"
@@ -8,27 +11,44 @@
     android:orientation="vertical">
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <TextView
             android:id="@+id/schedule_group_item_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="70px"
             android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textSize="42px"
             />
 
-        <ImageView
+        <TextView
             android:id="@+id/schedule_group_item_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_launcher"
+            android:layout_width="160px"
+            android:layout_height="160px"
+            android:layout_margin="20px"
+            android:gravity="center"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="30px"
+            android:textColor="#f59838"
             />
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <View android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20px"
+        android:layout_height="2px"
         android:background="@color/color_gray_line"/>
 </com.zhy.autolayout.AutoLinearLayout>
+
+    <ProgressBar android:id="@+id/progbar"
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:max="100"
+        android:progress="0"
+        android:background="@color/white"
+        android:progressBackgroundTint="@android:color/white"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/progressbar_drawable"
+        android:layout_alignParentBottom="true"
+        />
+    </RelativeLayout>

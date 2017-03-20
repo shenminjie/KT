@@ -82,6 +82,7 @@
         <activity
             android:name=".ActivityScheduleDetail"
             android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".ActivitySchedule" />
         <activity

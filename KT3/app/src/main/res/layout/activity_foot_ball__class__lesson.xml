@@ -24,6 +24,7 @@
             android:src="@mipmap/nomal_back" />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -34,6 +35,9 @@
     </RelativeLayout>
 
     <GridView
+        android:padding="25px"
+        android:horizontalSpacing="30px"
+        android:verticalSpacing="20px"
         android:id="@+id/gv_zqk"
         android:layout_below="@+id/titlelt"
         android:layout_width="match_parent"

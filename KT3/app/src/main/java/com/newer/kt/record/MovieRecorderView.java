@@ -62,7 +62,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
     public void play() {
 //必须在surface创建后才能初始化MediaPlayer,否则不会显示图像
         if(this.getmVecordFile()==null||!this.getmVecordFile().exists()){
-return;
+            return;
         }
         onDestroy();
         player=new MediaPlayer();

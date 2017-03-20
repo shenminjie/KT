@@ -2,9 +2,15 @@ package com.newer.kt;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -55,6 +61,14 @@ public class ActivitySchedule extends Activity {
 
     @Bind(R.id.schedule_list_view)
     ExpandableListView mScheduleListView;
+    BroadcastReceiver brr = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//                String url = intent.getStringExtra("url").toString();
+//                Intent in = new Intent(context, ActivityScheduleDetail.class).putExtra("video_path",url);
+//                startActivity(in);
+        }
+    };
 
     private String schedule_time, schedule_strength,
             schedule_practice, creator_description;
@@ -62,6 +76,7 @@ public class ActivitySchedule extends Activity {
     @Override
     protected void onDestroy() {
         DownloadTrigger.clearUnDownloded();
+        unregisterReceiver(brr);
         super.onDestroy();
     }
 
@@ -80,6 +95,24 @@ public class ActivitySchedule extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
         ButterKnife.bind(this);
+        mScheduleListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int initheight;
+            @Override
+            public void onGroupExpand(int i) {
+                initheight = mScheduleListView.getHeight();
+                if(i == 2){
+                    new Handler(Looper.getMainLooper(), new Handler.Callback() {
+                        @Override
+                        public boolean handleMessage(Message message) {
+//                            ((View)findViewById(R.id.scrollchild)).scrollBy(0,mScheduleListView.getHeight()-initheight);
+//                            getWindow().getDecorView().invalidate();
+                            return false;
+                        }
+                    }).sendEmptyMessageDelayed(0,1000);
+                     }
+            }
+        });
+        registerReceiver(brr,IntentFilter.create("playvideo","*/*"));
         QueryBuilder.build("school_gym_courses/detail").add("school_gym_course_combination_id", getIntent().getStringExtra("school_gym_course_combination_id")).get(new QueryBuilder.Callback() {
 
 
@@ -120,6 +153,7 @@ public class ActivitySchedule extends Activity {
                     0);
         }
 
+
     }
 
 
@@ -137,7 +171,7 @@ public class ActivitySchedule extends Activity {
             mCreatorDescriptionTxt.setText(create_user_nickname + "  " + create_user_intro);
         }
         String duration = JsonUtil.findJsonLink("duration", data).toString();
-        if (!duration.equals("")) {
+        if (!duration.equals("")&&!duration.equals("null")) {
             mTimeTxt.setText(duration);
         }
         String strength = JsonUtil.findJsonLink("strength", data).toString();

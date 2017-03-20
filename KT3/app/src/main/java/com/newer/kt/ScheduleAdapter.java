@@ -16,9 +16,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.newer.kt.download.DownloadTrigger;
+import com.newer.kt.utils.SPUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -83,10 +85,11 @@ public class ScheduleAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         ScheduleGroupHolder groupHolder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.adapter_schedule_list_group, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.adapter_schedule_list_group_main, null);
             groupHolder = new ScheduleGroupHolder();
             groupHolder.mGroupTitleTxt = (TextView) convertView.findViewById(R.id.schedule_group_item_txt);
             groupHolder.mGroupImg = (ImageView) convertView.findViewById(R.id.schedule_group_item_img);
+            groupHolder.mGroupImg.setVisibility(View.VISIBLE);
             convertView.setTag(groupHolder);
         } else {
             groupHolder = (ScheduleGroupHolder) convertView.getTag();
@@ -134,6 +137,7 @@ public class ScheduleAdapter extends BaseExpandableListAdapter {
             }
             String childTitle = contentList.get(groupPosition).getScheduleList().get(childPosition).getContentTitle();
             if (childTitle.isEmpty()) {
+                final ContentHolder finalContentHolder1 = contentHolder;
                 convertView.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
@@ -153,7 +157,11 @@ public class ScheduleAdapter extends BaseExpandableListAdapter {
                                 }
                                 else {
                                     String videourl = (String) contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("gym_video_url");
-                                    DownloadTrigger.query(view.getContext(), videourl, view, (ProgressBar) view.findViewById(R.id.progreebar), null);
+                                    if(SPUtil.getValue(view.getContext(),"download",videourl,String.class)!=null){
+                                        finalContentHolder1.mChildContentDetialTxt.performClick();
+                                    }else {
+                                        DownloadTrigger.asycheck(view.getContext(), videourl, view, (ProgressBar) view.findViewById(R.id.progreebar), null);
+                                    }
                                 }
                             }
                         }
@@ -169,22 +177,26 @@ public class ScheduleAdapter extends BaseExpandableListAdapter {
                 contentHolder.mChildLayout.setVisibility(View.VISIBLE);
                 contentHolder.mChildContentLayout.setVisibility(View.GONE);
                 contentHolder.mChildTitleTxt.setText(childTitle);
-                contentHolder.mChildTimeTxt.setText(contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("duration") + "");
+                String duratuon = contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("duration")+"";
+                contentHolder.mChildTimeTxt.setText(duratuon.equals("null")?"":duratuon);
 
             }
+            final ContentHolder finalContentHolder = contentHolder;
             contentHolder.mChildContentDetialTxt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String videourl = (String) contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("gym_video_url");
 
-                    Intent in = new Intent(context, ActivityScheduleDetail.class).putExtra("video_path",videourl);
-                    in.putExtra("detail_title", "热身 准备活动");
-                    in.putExtra("detail_classfy", "KT足球游戏");
-                    in.putExtra("detail_organization", "学生站列一排或两排进行对齐,围着操场进行热身慢跑");
-                    in.putExtra("detail_requirement", "1、不要低头,要抬头,双眼注视前方\\n2、跑步时,双手自然放松,拳头不要握得太紧,也可以伸开双手,掌心向内。\\n 3、双脚落地要轻快\n" +
-                            "                   \"");
-
-                    context.startActivity(in);
+                    Intent in = new Intent(context, ActivityScheduleDetail.class);
+                    if(SPUtil.getValue(context,"download",videourl, String.class)!=null){
+                        in.putExtra("video_path",videourl+"");
+                    }
+                    in.putExtra("child_title", contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("child_title").toString());
+                    in.putExtra("detail_organization", contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("organization").toString());
+                    in.putExtra("detail_requirement", contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("exercise_requirement").toString());
+                    in.putExtra("image", contentList.get(groupPosition).getScheduleList().get(childPosition).getData().get("image").toString());
+//                    in.putExtra("image", (Serializable) finalContentHolder.mChildImg.getDrawable());
+                    v.getContext().startActivity(in);
                 }
             });
         }

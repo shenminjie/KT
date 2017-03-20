@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.serializer.ListSerializer;
 import com.baidu.mapapi.map.Text;
 import com.frame.app.base.activity.BaseActivity;
 import com.frame.app.utils.GsonTools;
@@ -39,6 +40,8 @@ import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Response;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -86,6 +89,26 @@ public class FootBallListActivity extends BaseActivity {
             }
         }
         final List items = new ArrayList(map.keySet());
+        Collections.sort(items, new Comparator<String>() {
+            public List<String> lists = new ArrayList<String>(){
+                {
+                    add("一");
+                    add("二");
+                    add("三");
+                    add("四");
+                    add("五");
+                    add("六");
+
+                    add("小");
+                    add("中");
+                    add("大");
+                }
+            };
+            @Override
+            public int compare(String s, String t1) {
+                return lists.indexOf(s.replaceAll("幼儿园","").replaceAll("小学","").substring(0,1))- lists.indexOf(t1.replaceAll("幼儿园","").replaceAll("小学","").substring(0,1));
+            }
+        });
         ((ListView) findViewById(R.id.lv_zqk)).setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -107,11 +130,13 @@ public class FootBallListActivity extends BaseActivity {
 
                 View convertView = LayoutInflater.from(getBaseContext()).inflate(R.layout.zqk_item, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(items.get(i).toString());
+                ((TextView) convertView.findViewById(R.id.name)).setText(items.get(i).toString());
+
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         semester =  map.get(items.get(i));
-                        Intent intent=new Intent(getApplicationContext(),FootBall_Class_Lesson.class);
+                        Intent intent=new Intent(getApplicationContext(),FootBall_Class_Lesson.class).putExtra("title",items.get(i).toString());
                         startActivity(intent);
 
                     }

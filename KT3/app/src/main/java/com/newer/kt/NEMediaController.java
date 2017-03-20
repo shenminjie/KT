@@ -591,7 +591,7 @@ public class NEMediaController extends FrameLayout {
         }
     }
 
-    private void doPauseResume() {
+    public void doPauseResume() {
         if (mPlayer.isPlaying()) {
             mPlayer.pause();
             mPlayer.manualPause(true);
