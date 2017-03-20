@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class DownloadTrigger {
-    public static String prentfolder = Environment.getExternalStorageDirectory().getAbsolutePath()+"/KT/";
+    public static String prentfolder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/KT/";
     private static final int QUERY = 0;
     public static Map<String, Long> longids = new TreeMap<String, Long>();
     public static Map<String, String> paths = new TreeMap<String, String>();
@@ -87,14 +87,16 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         downloadManager = (DownloadManager) ctx.getSystemService(Context.DOWNLOAD_SERVICE);
         long downloadId = downloadManager.enqueue(request);
         longids.put(downloadUrl, downloadId);
-        paths.put(downloadUrl,downloadFilePath);
+        paths.put(downloadUrl, downloadFilePath);
 
     }
+
     List<String> triggered = new ArrayList<String>();
     static String downloadFilePath;
-    public static String getPath(Context ctx){
+
+    public static String getPath(Context ctx) {
         StorageManager sm = (StorageManager) ctx.getSystemService(Context.STORAGE_SERVICE);
-    // 获取sdcard的路径：外置和内置
+        // 获取sdcard的路径：外置和内置
         String[] paths = new String[0];
         try {
             paths = (String[]) sm.getClass().getMethod("getVolumePaths", null).invoke(sm, null);
@@ -109,12 +111,13 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
     }
 
 
-    static Map<String,Boolean> status = new TreeMap<String,Boolean>();
+    static Map<String, Boolean> status = new TreeMap<String, Boolean>();
+
     public static void query(final Context ctx, final String url, View click, final ProgressBar progressbar, final TextView text) {
-        String sfile = prentfolder+""+url.substring(url.lastIndexOf("/")+1);
+        String sfile = prentfolder + "" + url.substring(url.lastIndexOf("/") + 1);
         if (!new File(sfile).exists()) {
             new File(sfile).getParentFile().mkdirs();
-            trigger(url,sfile,ctx);
+            trigger(url, sfile, ctx);
         }
 
         ScheduledExecutorService scheduledExecutorService = null;
@@ -123,9 +126,9 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 //下载的文件存储名  
         String downloadFilePath = paths.get(url);
 
-        if(downloadFilePath==null){
+        if (downloadFilePath == null) {
             new File(sfile).delete();
-            query(ctx,url,click,progressbar,text);
+            query(ctx, url, click, progressbar, text);
             return;
         }
         final File downFile = new File(downloadFilePath);
@@ -155,12 +158,12 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
                         if (fileTotalSize[0] != 0) {
                             int percentage = (int) (downSize * 100 / fileTotalSize[0]);
                             if (progressbar != null) {
-                                status.put(url,null);
+                                status.put(url, null);
                                 progressbar.setVisibility(View.VISIBLE);
                                 progressbar.setProgress(percentage);
-                                if(percentage == 100){
+                                if (percentage == 100) {
                                     progressbar.setVisibility(View.GONE);
-                                    status.put(url,true);
+                                    status.put(url, true);
 
                                     return false;
                                 }
@@ -184,12 +187,11 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         future = scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                if(status.get(url)==null||status.get(url).toString().equals("")){
+                if (status.get(url) == null || status.get(url).toString().equals("")) {
                     Message msg = mHandler.obtainMessage();
                     msg.what = DownloadTrigger.QUERY;
                     mHandler.sendMessage(msg);
-                }
-                else {
+                } else {
                     finalScheduledExecutorService1.shutdownNow();
                 }
 
@@ -218,8 +220,9 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 //    }
 //}
     }
-    public static void clearUnDownloded(){
-        for(String s:status.keySet()){
+
+    public static void clearUnDownloded() {
+        for (String s : status.keySet()) {
             new File(s).delete();
         }
 
