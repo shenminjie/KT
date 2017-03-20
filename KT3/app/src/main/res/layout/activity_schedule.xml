@@ -114,14 +114,14 @@
                 android:layout_height="180px"
                 android:layout_marginTop="20px">
 
-                <ImageView
+                <com.newer.kt.myClass.MyCircleImageView
                     android:id="@+id/schedule_teacher_icon"
                     android:layout_width="100px"
                     android:layout_height="100px"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="50px"
-                    android:src="@drawable/corners"
-                    android:background="@drawable/leo"/>
+                    android:src="@drawable/leo"
+                />
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"

@@ -19,9 +19,10 @@
 
     <include layout="@layout/activity_player"/>
 
-    <RelativeLayout android:id="@+id/bg"
+    <LinearLayout android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@drawable/zqk_video_bg"
         >
     <TextView android:id="@+id/txt"
@@ -43,7 +44,7 @@
         android:textSize="42px"
         android:gravity="center">
     </TextView>
-</RelativeLayout>
+</LinearLayout>
 
     <ImageView
         android:id="@+id/back"
