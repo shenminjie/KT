@@ -5,6 +5,10 @@ package com.smj.upload;
  */
 
 public interface UpLoadInfo {
+
+    int TYPE_PINGCE = 1;
+    int TYPE_DAKEJIAN = 2;
+
     /**
      * 上传的名字
      *
@@ -25,4 +29,12 @@ public interface UpLoadInfo {
      * @return
      */
     String getVideoPath();
+
+    /**
+     * 获取类型
+     *
+     * @return
+     */
+    int getType();
+
 }

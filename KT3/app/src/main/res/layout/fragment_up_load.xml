@@ -5,34 +5,20 @@
     android:orientation="vertical"
     tools:context="com.newer.kt.ui.upload.UpLoadFragment">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/tv_upload"
-            style="@style/SmjTextViewStyle"
-            android:layout_gravity="left|center_vertical"
-            android:text="上传视频" />
-
-        <TextView
-            android:id="@+id/btn"
-            style="@style/SmjGoldwBtnStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:gravity="center"
-            android:text="全部上传"
-            android:textSize="12sp" />
-
-    </FrameLayout>
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
+    <TextView
+        android:id="@+id/btn"
+        style="@style/SmjGoldwBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="全部上传"
+        android:textSize="12sp" />
 </LinearLayout>

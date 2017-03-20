@@ -37,6 +37,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import io.vov.vitamio.utils.Log;
+
 /**
  * Created by litli on 2017/3/15.
  */
@@ -120,6 +122,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
+        Log.d("tag","");
         return paths[0];
     }
 
