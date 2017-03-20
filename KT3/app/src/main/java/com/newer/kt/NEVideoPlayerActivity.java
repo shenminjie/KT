@@ -67,20 +67,34 @@ public class NEVideoPlayerActivity extends ShareActy {
 		if(findViewById(R.id.controller)==null){
 			init();
 		}
+
+		findViewById(R.id.play_toolbar).setVisibility(open?View.VISIBLE:View.INVISIBLE);
+
 		findViewById(R.id.controller).setVisibility(open?View.VISIBLE:View.INVISIBLE);
 	}
+
+
 	public void start(String path) {
 		if (mVideoView == null) {
 			init();
-			mVideoView= (NEVideoView) findViewById(R.id.video_view);
-			mVideoView.set(path);
-			mVideoView.setMediaController(new NEMediaController(this));
-			mVideoView.play();
-
-
-		} else {
-//            mVideoView.stop();
 		}
+		if(mVideoView.isPlaying()){
+            mVideoView.stop();
+		}
+		mVideoView.set(path);
+		mVideoView.setMediaController(new NEMediaController(this));
+		mVideoView.play();
+	}
+	public void startNoController(String path) {
+		if (mVideoView == null) {
+			init();
+		}
+		if(mVideoView.isPlaying()){
+			mVideoView.stop();
+		}
+		mVideoView.set(path);
+		mVideoView.setMediaController(new NEMediaController(this));
+		mVideoView.play();
 	}
 
 	public void init() {
@@ -113,7 +127,7 @@ public class NEVideoPlayerActivity extends ShareActy {
 //		}
 
 		mPlayToolbar = (RelativeLayout)findViewById(R.id.play_toolbar);
-		mPlayToolbar.setVisibility(View.INVISIBLE);
+		mPlayToolbar.setVisibility(View.VISIBLE);
 
 		mLoadingView = findViewById(R.id.buffering_prompt);
 		mMediaController = new NEMediaController(this);
@@ -137,6 +151,10 @@ public class NEVideoPlayerActivity extends ShareActy {
 //		mVideoView.start();
 
 		mPlayBack.setOnClickListener(mOnClickEvent); //监听退出播放的事件响应
+	}
+
+	public NEMediaController getmMediaController() {
+		return mMediaController;
 	}
 
 	OnClickListener mOnClickEvent = new OnClickListener() {
@@ -191,7 +209,9 @@ public class NEVideoPlayerActivity extends ShareActy {
 
 	@Override
 	protected void onDestroy() {
-		mVideoView.release_resource();
+		if (mVideoView != null) {
+			mVideoView.release_resource();
+		}
 		super.onDestroy();
 	}
 

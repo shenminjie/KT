@@ -35,9 +35,10 @@
             android:background="@drawable/no_border"
             android:gravity="center"
             android:hint="请输入账号"
-            android:text="15998206840"
+            android:text=""
             android:textColor="@android:color/white"
             android:textColorHint="@color/train_start_text_color" />
+        <!--15998206840-->
     </LinearLayout>
 
     <View

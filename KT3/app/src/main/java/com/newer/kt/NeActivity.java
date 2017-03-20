@@ -94,17 +94,17 @@ public class NeActivity extends NEVideoPlayerActivity {
                 } else {
                     long duration = len;
                     final long finalLen = len;
-                    if (t * 1l + size*1000l <= leng) {
-                        try {
-                            mVeoView.setPos(played*5);
-                            mVeoView.pause();
-
-                            share();
-                            wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+//                    if (t * 1l + size*1000l <= leng) {
+//                        try {
+//                            mVeoView.setPos(played*5);
+//                            mVeoView.pause();
+//
+//                            share();
+//                            wait();
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
                     new Handler(Looper.getMainLooper(), new Handler.Callback() {
                         @Override
                         public boolean handleMessage(Message message) {
@@ -126,9 +126,9 @@ public class NeActivity extends NEVideoPlayerActivity {
     protected void onStart() {
         super.onStart();
         start(path);
-        if(mVeoView!=null){
+//        if(mVeoView!=null){
             daojishi(leng, size);
-        }
+//        }
 
 //        if (goon) {
 //            mVeoView.seekTo(played);

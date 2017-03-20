@@ -28,6 +28,7 @@ import com.newer.kt.Refactor.db.THDatabaseLoader;
 import com.newer.kt.Refactor.db.UsersDaoHelper;
 import com.newer.kt.Refactor.ui.Avtivity.CachedActivity;
 import com.newer.kt.entity.UserMsg;
+import com.newer.kt.utils.SPUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -76,7 +77,7 @@ public class KTApplication extends App {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        SPUtil.onOpen(this,"download");
         NoHttp.initialize(this);
          x.Ext.init(this);
 //        x.Ext.setDebug(true);

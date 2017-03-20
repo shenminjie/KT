@@ -3,142 +3,163 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
+            android:id="@+id/scrollchild"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-    <com.zhy.autolayout.AutoLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1280px"
-        android:orientation="vertical"
-        android:background="@drawable/zqk_bg"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_marginTop="110px"
-            android:layout_marginBottom="40px"
 
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1.2"
-            android:layout_gravity="center_horizontal"
-            android:textSize="120px"
-            android:text="N"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:gravity="center"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:orientation="vertical">
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
             <com.zhy.autolayout.AutoLinearLayout
-                style="@style/Schedule_linearlayout_style">
+                android:layout_width="match_parent"
+                android:layout_height="1280px"
+                android:background="@drawable/zqk_bg"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
                 <TextView
-                    android:id="@+id/schedule_time_txt"
-                    style="@style/Schedule_txt_style"
-                    android:textStyle="bold"
-                    android:text="40" />
-                <TextView
-                    style="@style/Schedule_txt_style"
-                    android:text="@string/schedule_time_unit" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="40px"
+                    android:layout_marginTop="110px"
+                    android:layout_weight="1.2"
+                    android:gravity="center"
+                    android:text="N"
+                    android:textColor="@android:color/white"
+                    android:textSize="120px"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8"
+                    android:orientation="vertical">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.zhy.autolayout.AutoLinearLayout style="@style/Schedule_linearlayout_style">
+
+                            <TextView
+                                android:id="@+id/schedule_time_txt"
+                                style="@style/Schedule_txt_style"
+                                android:text="40"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/Schedule_txt_style"
+                                android:text="@string/schedule_time_unit" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <View
+                            android:layout_width="5px"
+                            android:layout_height="60px"
+                            android:background="@android:color/white" />
+
+                        <com.zhy.autolayout.AutoLinearLayout style="@style/Schedule_linearlayout_style">
+
+                            <TextView
+                                android:id="@+id/schedule_strength_txt"
+                                style="@style/Schedule_txt_style"
+                                android:text="中等"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/Schedule_txt_style"
+                                android:text="@string/schedule_strength" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <View
+                            android:layout_width="5px"
+                            android:layout_height="60px"
+                            android:background="@android:color/white" />
+
+                        <com.zhy.autolayout.AutoLinearLayout style="@style/Schedule_linearlayout_style">
+
+                            <TextView
+                                android:id="@+id/schedule_practice_txt"
+                                style="@style/Schedule_txt_style"
+                                android:text="班级"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/Schedule_txt_style"
+                                android:text="@string/schedule_practice" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <TextView
+                        android:id="@+id/schedule_video_lesson_txt"
+                        android:layout_width="280px"
+                        android:layout_height="280px"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="120px"
+                        android:background="@drawable/schedule_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/schedule_video_lesson"
+                        android:textSize="50px" />
+                </LinearLayout>
             </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180px"
+                android:layout_marginTop="20px">
+
+                <ImageView
+                    android:id="@+id/schedule_teacher_icon"
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50px"
+                    android:src="@drawable/corners"
+                    android:background="@drawable/leo"/>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30px"
+                    android:layout_toRightOf="@id/schedule_teacher_icon"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/schedule_creator"
+                        android:textColor="@color/color_edt_gray" />
+
+                    <TextView
+                        android:id="@+id/schedule_creator_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <View android:layout_marginTop="10px"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/color_gray_line" />
+
+            <com.newer.kt.Refactor.view.ScrollExpandableListView
+                android:id="@+id/schedule_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
             <View
-                android:layout_width="5px"
-                android:layout_height="60px"
-                android:background="@android:color/white"/>
-            <com.zhy.autolayout.AutoLinearLayout
-                style="@style/Schedule_linearlayout_style">
-                <TextView
-                    android:id="@+id/schedule_strength_txt"
-                    style="@style/Schedule_txt_style"
-                    android:textStyle="bold"
-                    android:text="中等" />
-                <TextView
-                    style="@style/Schedule_txt_style"
-                    android:text="@string/schedule_strength" />
-            </com.zhy.autolayout.AutoLinearLayout>
-            <View
-                android:layout_width="5px"
-                android:layout_height="60px"
-                android:background="@android:color/white"/>
-            <com.zhy.autolayout.AutoLinearLayout
-                style="@style/Schedule_linearlayout_style">
-                <TextView
-                    android:id="@+id/schedule_practice_txt"
-                    style="@style/Schedule_txt_style"
-                    android:textStyle="bold"
-                    android:text="班级" />
-                <TextView
-                    style="@style/Schedule_txt_style"
-                    android:text="@string/schedule_practice" />
-            </com.zhy.autolayout.AutoLinearLayout>
-        </com.zhy.autolayout.AutoLinearLayout>
-            <TextView
-                android:id="@+id/schedule_video_lesson_txt"
-                android:layout_width="280px"
-                android:layout_height="280px"
-                android:layout_marginTop="120px"
-                android:background="@drawable/schedule_circle_bg"
-                android:text="@string/schedule_video_lesson"
-                android:gravity="center"
-                android:layout_gravity="center_horizontal"
-                android:textSize="70px"/>
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/color_gray_line" />
         </LinearLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <com.zhy.autolayout.AutoRelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="180px"
-        android:layout_marginTop="20px">
-        <ImageView
-            android:id="@+id/schedule_teacher_icon"
-            android:layout_width="100px"
-            android:layout_height="100px"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher"
-            android:layout_marginLeft="50px"/>
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="30px"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/schedule_teacher_icon">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/schedule_creator"
-                android:textColor="@color/color_edt_gray"/>
-            <TextView
-                android:id="@+id/schedule_creator_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""/>
-        </com.zhy.autolayout.AutoLinearLayout>
-    </com.zhy.autolayout.AutoRelativeLayout>
-
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20px"
-                android:background="@color/color_gray_line"/>
-    <com.newer.kt.Refactor.view.ScrollExpandableListView
-        android:id="@+id/schedule_list_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="10px"/>
-
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20px"
-                android:background="@color/color_gray_line"/>
-    </LinearLayout>
     </ScrollView>
-    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

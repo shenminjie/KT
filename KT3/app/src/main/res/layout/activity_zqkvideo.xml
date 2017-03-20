@@ -12,12 +12,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="630px"
+    >
 
-    <com.newer.kt.NEVideoView
-        android:id="@+id/video"
+    <include layout="@layout/activity_player"/>
+
+    <RelativeLayout android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:background="@drawable/zqk_video_bg"
+        >
+    <TextView android:id="@+id/txt"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:text="足球课视频教案"
+    android:textColor="@color/white"
+    android:textSize="60px"
+    android:gravity="center">
+    </TextView>
+    <TextView android:id="@+id/txt1"
+        android:layout_marginTop="-30px"
         android:layout_width="match_parent"
-        android:layout_height="750px" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="KT足球将40分钟足球课内容拍成短视频，包含足球\n游戏，足球技能，放松活动等三个部分均为真人演\n示"
+        android:textColor="@color/white"
+        android:textSize="42px"
+        android:gravity="center">
+    </TextView>
+</RelativeLayout>
 
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="86px"
+        android:layout_height="86px"
+        android:layout_marginTop="34px"
+        android:layout_marginLeft="34px"
+        android:background="@drawable/back_circle" />
+    <ImageView android:layout_alignParentRight="true"
+        android:layout_marginTop="34px"
+        android:layout_marginRight="34px"
+        android:id="@+id/stop_resume"
+        android:layout_width="86px"
+        android:layout_height="86px"
+        android:background="@drawable/pause"
+        android:visibility="gone"/>
+</RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

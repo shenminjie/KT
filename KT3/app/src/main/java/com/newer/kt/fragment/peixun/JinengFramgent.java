@@ -215,10 +215,6 @@ public class JinengFramgent extends BaseFragment {
                 if (mSkillResponses == null) {
                     return;
                 }
-                if (position == 3) {
-//                    Intent intent=new Intent(getActivity(), JiNengFragment_List.class);
-//                    startActivity(intent);
-                }
                 SkillResponse skillResponse = mSkillResponses.get(position);
                 JiNengFragment_List.toAcitivty(getContext(), skillResponse);
             }

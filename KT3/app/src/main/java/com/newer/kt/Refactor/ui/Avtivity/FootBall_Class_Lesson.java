@@ -35,10 +35,15 @@ public class FootBall_Class_Lesson extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foot_ball__class__lesson);
 
+        String title = getIntent().getStringExtra("title");
 
         initView();
         initEvent();
-        final ArrayList<String> list = new ArrayList<String>(FootBallListActivity.semester);
+        ((TextView)findViewById(R.id.title)).setText(title);
+        if(FootBallListActivity.semester == null){
+            FootBallListActivity.semester = new ArrayList();
+        }
+        final ArrayList<String> list = new ArrayList<String>(FootBallListActivity.semester==null?new ArrayList():FootBallListActivity.semester);
         ((GridView)findViewById(R.id.gv_zqk)).setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -59,6 +64,8 @@ public class FootBall_Class_Lesson extends BaseActivity {
             public View getView(final int i, View view, ViewGroup viewGroup) {
                 View convertView = LayoutInflater.from(getBaseContext()).inflate(R.layout.zqk_gv_item, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(((Map)getItem(i)).get("name").toString());
+                ((TextView) convertView.findViewById(R.id.time)).setText(((Map)getItem(i)).get("duration").toString());
+
                 //times" -> "10,10,15,5"
                 ((ImageView) convertView.findViewById(R.id.image)).setImageResource(getPortraitDrawable(i));
 

@@ -2,6 +2,7 @@ package com.newer.kt.download;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
@@ -13,8 +14,19 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.newer.kt.R;
+import com.newer.kt.utils.SPUtil;
+
+import org.apache.http.HttpStatus;
+
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +42,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class DownloadTrigger {
+    private static final String DOWNLOAD = "download";
     public static String prentfolder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/KT/";
     private static final int QUERY = 0;
     public static Map<String, Long> longids = new TreeMap<String, Long>();
@@ -113,11 +126,41 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 
     static Map<String, Boolean> status = new TreeMap<String, Boolean>();
 
-    public static void query(final Context ctx, final String url, View click, final ProgressBar progressbar, final TextView text) {
+    public static void asycheck(final Context ctx, final String url, final View click, final ProgressBar progressbar, final TextView text) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                final String sfile = prentfolder + "" + url.substring(url.lastIndexOf("/") + 1);
+                if (new File(sfile).exists()) {
+
+                    try {
+                        if (SPUtil.getValue(ctx,"download",url,String.class)!=null) {
+                            ctx.sendBroadcast(new Intent("playvideo").putExtra("url", url));
+                            return;
+                        } else {
+                            query(ctx, url, click, progressbar, text);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    query(ctx, url, click, progressbar, text);
+
+                }
+                        return;
+                    }
+
+        }.start();
+    }
+
+    public static boolean query(final Context ctx, final String url, final View click, final ProgressBar progressbar, final TextView text) {
         String sfile = prentfolder + "" + url.substring(url.lastIndexOf("/") + 1);
         if (!new File(sfile).exists()) {
             new File(sfile).getParentFile().mkdirs();
             trigger(url, sfile, ctx);
+        }else if(SPUtil.getValue(ctx,"download",url,String.class)!=null){
+            return true;
         }
 
         ScheduledExecutorService scheduledExecutorService = null;
@@ -129,7 +172,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         if (downloadFilePath == null) {
             new File(sfile).delete();
             query(ctx, url, click, progressbar, text);
-            return;
+            return true;
         }
         final File downFile = new File(downloadFilePath);
         final long[] fileTotalSize = new long[1];
@@ -159,10 +202,14 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
                             int percentage = (int) (downSize * 100 / fileTotalSize[0]);
                             if (progressbar != null) {
                                 status.put(url, null);
+
                                 progressbar.setVisibility(View.VISIBLE);
                                 progressbar.setProgress(percentage);
                                 if (percentage == 100) {
+                                    SPUtil.putValue(ctx,"download",url,"true");
                                     progressbar.setVisibility(View.GONE);
+                                    ctx.sendBroadcast(new Intent("playvideo").putExtra("url", url).putExtra("viewid",click.getId()));
+                                    ((TextView)((View)progressbar.getParent()).findViewById(R.id.schedule_group_item_img)).setText("");
                                     status.put(url, true);
 
                                     return false;
@@ -175,7 +222,9 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 
                         //终止轮询task
                         if (fileTotalSize[0] == downSize)
-                            finalFuture.cancel(true);
+                            if(finalFuture!=null){
+                                finalFuture.cancel(true);
+                            }
                     }
                 }
                 return false;
@@ -219,6 +268,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 //
 //    }
 //}
+        return true;
     }
 
     public static void clearUnDownloded() {
@@ -227,4 +277,38 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         }
 
     }
+
+    public static long getFileSize(String urlString) throws IOException, Exception {
+        long lenght = 0;
+//        String url = URLEncoder.encode(urlString, "UTF-8");
+        //URL mUrl =  new URL(urlString);
+        URL mUrl = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) mUrl.openConnection();
+        conn.setConnectTimeout(5 * 1000);
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept-Encoding", "identity");
+        conn.setRequestProperty("Referer", urlString);
+        //conn.setRequestProperty("Referer", urlString);
+//        conn.setRequestProperty("Charset", "UTF-8");
+        conn.setRequestProperty("Connection", "Keep-Alive");
+        conn.connect();
+
+        int responseCode = conn.getResponseCode();
+        // 判断请求是否成功处理
+        if (responseCode == HttpStatus.SC_OK) {
+            lenght = conn.getContentLength();
+        }
+
+        return lenght;
+    }
+
+    public static long getUrlSize(String urla)throws Exception{
+        URL url = new URL(urla);
+        URLConnection uc = url.openConnection();
+        String fileName = uc.getHeaderField(6);
+        fileName = URLDecoder.decode(fileName.substring(fileName.indexOf("filename=")+9),"UTF-8");
+        return uc.getContentLength();
+    }
+
+
 }

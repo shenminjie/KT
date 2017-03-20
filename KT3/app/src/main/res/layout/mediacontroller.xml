@@ -6,7 +6,7 @@
     android:layout_marginBottom="0.0dip"
     android:layout_marginLeft="0.0dip"
     android:layout_marginRight="0.0dip"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" android:visibility="gone" >
     
     <ImageView
         android:id="@+id/mediacontroller_play_pause"
