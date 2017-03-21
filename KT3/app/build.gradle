@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.bugtags.library.plugin'
 
-bugtags {
-    //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考插件详细使用说明
-    appKey "89b17639fb117bd874c6a62255b6b36f"  //这里是你的 appKey
-    appSecret "APP_SECRET"    //这里是你的 appSecret，管理员在设置页可以查看
-    mappingUploadEnabled true
 
-    //网络跟踪功能配置(企业版)
-    trackingNetworkEnabled true
-}
+//bugtags {
+//    //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考插件详细使用说明
+//    appKey "89b17639fb117bd874c6a62255b6b36f"  //这里是你的 appKey
+//    appSecret "APP_SECRET"    //这里是你的 appSecret，管理员在设置页可以查看
+//    mappingUploadEnabled true
+//
+//    //网络跟踪功能配置(企业版)
+//    trackingNetworkEnabled true
+//}
 
 
 
@@ -123,13 +123,7 @@ android {
         compile project(':zxingutil')
         compile project(':recordlibbysmj')
         compile 'com.google.code.gson:gson:2.2.4'
-        compile 'org.apache.httpcomponents:httpcore:4.4.1'
-        compile 'org.apache.httpcomponents:httpclient:4.5'
 
-//    compile 'com.jakewharton:butterknife:8.4.0'
-//    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
-//    compile project(':um')
-//        compile(name: 'um-debug', ext: 'aar')
         compile 'com.zhy:autolayout:1.4.5'
         compile project(':sub')
         compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4', classifier: 'jdk15'

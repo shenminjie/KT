@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.newer.kt.R;
 import com.newer.kt.utils.SPUtil;
 
-import org.apache.http.HttpStatus;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,11 +25,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -122,7 +119,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
-        Log.d("tag","");
+        Log.d("tag", "");
         return paths[0];
     }
 
@@ -138,7 +135,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
                 if (new File(sfile).exists()) {
 
                     try {
-                        if (SPUtil.getValue(ctx,"download",url,String.class)!=null) {
+                        if (SPUtil.getValue(ctx, "download", url, String.class) != null) {
                             ctx.sendBroadcast(new Intent("playvideo").putExtra("url", url));
                             return;
                         } else {
@@ -147,12 +144,12 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }else{
+                } else {
                     query(ctx, url, click, progressbar, text);
 
                 }
-                        return;
-                    }
+                return;
+            }
 
         }.start();
     }
@@ -162,7 +159,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         if (!new File(sfile).exists()) {
             new File(sfile).getParentFile().mkdirs();
             trigger(url, sfile, ctx);
-        }else if(SPUtil.getValue(ctx,"download",url,String.class)!=null){
+        } else if (SPUtil.getValue(ctx, "download", url, String.class) != null) {
             return true;
         }
 
@@ -209,10 +206,10 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
                                 progressbar.setVisibility(View.VISIBLE);
                                 progressbar.setProgress(percentage);
                                 if (percentage == 100) {
-                                    SPUtil.putValue(ctx,"download",url,"true");
+                                    SPUtil.putValue(ctx, "download", url, "true");
                                     progressbar.setVisibility(View.GONE);
-                                    ctx.sendBroadcast(new Intent("playvideo").putExtra("url", url).putExtra("viewid",click.getId()));
-                                    ((TextView)((View)progressbar.getParent()).findViewById(R.id.schedule_group_item_img)).setText("");
+                                    ctx.sendBroadcast(new Intent("playvideo").putExtra("url", url).putExtra("viewid", click.getId()));
+                                    ((TextView) ((View) progressbar.getParent()).findViewById(R.id.schedule_group_item_img)).setText("");
                                     status.put(url, true);
 
                                     return false;
@@ -225,7 +222,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 
                         //终止轮询task
                         if (fileTotalSize[0] == downSize)
-                            if(finalFuture!=null){
+                            if (finalFuture != null) {
                                 finalFuture.cancel(true);
                             }
                     }
@@ -298,18 +295,18 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
 
         int responseCode = conn.getResponseCode();
         // 判断请求是否成功处理
-        if (responseCode == HttpStatus.SC_OK) {
+        if (responseCode == 200) {
             lenght = conn.getContentLength();
         }
 
         return lenght;
     }
 
-    public static long getUrlSize(String urla)throws Exception{
+    public static long getUrlSize(String urla) throws Exception {
         URL url = new URL(urla);
         URLConnection uc = url.openConnection();
         String fileName = uc.getHeaderField(6);
-        fileName = URLDecoder.decode(fileName.substring(fileName.indexOf("filename=")+9),"UTF-8");
+        fileName = URLDecoder.decode(fileName.substring(fileName.indexOf("filename=") + 9), "UTF-8");
         return uc.getContentLength();
     }
 

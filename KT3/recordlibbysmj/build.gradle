@@ -15,7 +15,6 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 23
@@ -40,13 +39,13 @@ dependencies {
     androidTestCompile 'org.mockito:mockito-android:2.6.3'
     androidTestCompile 'org.assertj:assertj-core:1.7.1'
 }
+//
+//coveralls {
+//    sourceDirs = files('library/src/main/java').flatten()
+//    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
+//}
 
-coveralls {
-    sourceDirs = files('library/src/main/java').flatten()
-    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
-}
-
-tasks.coveralls {
-    dependsOn 'connectedAndroidTest'
-    onlyIf { System.env.'CI' }
-}
+//tasks.coveralls {
+//    dependsOn 'connectedAndroidTest'
+//    onlyIf { System.env.'CI' }
+//}
