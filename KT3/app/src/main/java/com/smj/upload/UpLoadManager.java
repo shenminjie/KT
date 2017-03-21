@@ -120,18 +120,12 @@ public class UpLoadManager {
         }
     }
 
+
     /**
-     * 获取正在上传的数据
-     *
-     * @return
+     * cache
      */
-    public List<LocalDataInfo> getUpLoadingData() {
-        List<LocalDataInfo> datas = new ArrayList<>();
-        for (int i = 0; i < mQueue.size(); i++) {
-            datas.add(mQueue.get(i));
-        }
-        return datas;
-    }
+    private int mUpLoadingProgress;
+    private LocalDataInfo mUpLoadingData;
 
     /**
      * upload
@@ -159,12 +153,18 @@ public class UpLoadManager {
         mYoukuUploader.upload(params, uploadInfo, new IUploadResponseHandler() {
             @Override
             public void onStart() {
+                mUpLoadingProgress = 0;
+                mUpLoadingData = dataInfo;
                 if (mUpLoadListener != null)
                     mUpLoadListener.onStart(dataInfo);
             }
 
             @Override
             public void onProgressUpdate(int i) {
+                //记录当前处理的进度
+                mUpLoadingProgress = i;
+                mUpLoadingData = dataInfo;
+
                 if (mUpLoadListener != null)
                     mUpLoadListener.onProgressUpdate(i, dataInfo);
             }
@@ -172,6 +172,8 @@ public class UpLoadManager {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 Log.e("tag", "tag-----优酷上传成功");
+                mUpLoadingProgress = 100;
+                mUpLoadingData = dataInfo;
                 if (mUpLoadListener != null) {
                     mUpLoadListener.onSuccess(jsonObject, dataInfo);
                 }
@@ -187,19 +189,41 @@ public class UpLoadManager {
 
             @Override
             public void onFailure(JSONObject jsonObject) {
+                mUpLoadingProgress = 0;
+                mUpLoadingData = dataInfo;
+
                 if (mUpLoadListener != null) {
                     mUpLoadListener.onFailure(jsonObject, dataInfo);
                 }
+                //here got a bug with when it failed then
+                // it always keep get the failed one on queue
+                mQueue.get();
                 keepUpLoad();
             }
 
             @Override
             public void onFinished() {
+                mUpLoadingProgress = 100;
+                mUpLoadingData = dataInfo;
                 if (mUpLoadListener != null) {
                     mUpLoadListener.onFinished(dataInfo);
                 }
             }
         });
+    }
+
+    /**
+     * 获取当前进度
+     *
+     * @return
+     */
+    public int getUpLoadingProgress() {
+        return mUpLoadingProgress;
+    }
+
+
+    public LocalDataInfo getCurrentUpLoadingData() {
+        return mUpLoadingData;
     }
 
     /**
@@ -230,9 +254,10 @@ public class UpLoadManager {
                     .post(new QueryBuilder.Callback() {
                         @Override
                         public void onSuccess(String result) {
+                            //delete from ununload list & save it to upload finish list
                             LocalDataManager.removeUnUpLoadData(info);
                             List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
-                            save.add(info);
+                            save.add(0, info);
                             LocalDataManager.saveCacheDatas(save);
                             if (mUpLoadListener != null) {
                                 mUpLoadListener.commitSuccess(info);
@@ -271,9 +296,10 @@ public class UpLoadManager {
                     .post(new QueryBuilder.Callback() {
                         @Override
                         public void onSuccess(String result) {
+                            //delete from ununload list & save it to upload finish list
                             LocalDataManager.removeUnUpLoadData(info);
                             List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
-                            save.add(info);
+                            save.add(0, info);
                             LocalDataManager.saveCacheDatas(save);
                             if (mUpLoadListener != null) {
                                 mUpLoadListener.commitSuccess(info);
@@ -324,7 +350,11 @@ public class UpLoadManager {
         }
     }
 
-
+    /**
+     * 获取当前状态
+     *
+     * @return
+     */
     public int getStatus() {
         return mStatus;
     }

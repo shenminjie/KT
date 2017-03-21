@@ -1,11 +1,13 @@
 package com.newer.kt.ui.upload;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -17,21 +19,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.frame.app.utils.LogUtils;
-import com.frame.app.utils.ToastUtil;
 import com.newer.kt.R;
-import com.newer.kt.Refactor.utils.Toast;
-import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.entity.OnItemListener;
 import com.newer.kt.utils.DialogUtil;
 import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
-import com.smj.gradlebean.Users;
 import com.smj.upload.UpLoadBySmjService;
 import com.smj.upload.UpLoadManager;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +43,7 @@ import io.vov.vitamio.utils.Log;
  * client_secret： c40bcc367334ef63e42ef4562b460e7f
  */
 
-public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, UploadListener {
+public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, UploadListener, OnItemListener<LocalDataInfo> {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -106,7 +102,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mDatas = LocalDataManager.getUnUploadCacheDatas();
-        mAdapter = new UpLoadAdapter<>(mDatas, this);
+        mAdapter = new UpLoadAdapter<>(mDatas, this, this);
         mViewMap = new HashMap<>();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setAutoMeasureEnabled(true);
@@ -128,8 +124,21 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             mBinder = (UpLoadBySmjService.UpLoadBinder) iBinder;
             mBinder.setListener(UpLoadFragment.this);
+
+            //instance show upload data
             if (mBinder.getUpLoadStatus() == UpLoadManager.STATUS_UPLOADING) {
-                Toast.show(getContext(), "视频正在上传中,请稍后..");
+                mRecyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LocalDataInfo info = UpLoadManager.getInstance().getCurrentUpLoadingData();
+                        if (info == null) {
+                            return;
+                        }
+                        mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(正在上传)");
+                        mViewMap.get(info.getId()).progreebar.setProgress(UpLoadManager.getInstance().getUpLoadingProgress());
+                    }
+                });
+
             }
         }
 
@@ -175,6 +184,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     @Override
     public void onProgressUpdate(int i, LocalDataInfo info) {
         Log.e("smj", i + "  " + info);
+        mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(正在上传)");
         mViewMap.get(info.getId()).progreebar.setProgress(i);
     }
 
@@ -212,10 +222,22 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     @Override
     public void onDestroy() {
-        mBinder.setListener(null);
+        if (mBinder != null) {
+            mBinder.setListener(null);
+        }
         getActivity().unbindService(mConnection);
         super.onDestroy();
     }
 
 
+    @Override
+    public void onItemListener(LocalDataInfo localDataInfo, int position) {
+        final Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+        videoIntent.setDataAndType(Uri.parse(localDataInfo.getVideoPath()), "video/*");
+        try {
+            startActivity(videoIntent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

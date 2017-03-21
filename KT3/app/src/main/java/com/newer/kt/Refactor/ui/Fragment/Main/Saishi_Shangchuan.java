@@ -18,6 +18,7 @@ import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
 import com.newer.kt.ui.upload.UpLoadFragment;
+import com.newer.kt.ui.video_list.VideoListActivity;
 import com.newer.kt.utils.DialogUtil;
 
 import net.sf.json.util.JSONUtils;
@@ -42,7 +43,6 @@ public class Saishi_Shangchuan extends AppCompatActivity {
     TextView tvTitle;
 
 
-
     UpLoadFragment cepingFragment;
 
     @Override
@@ -57,8 +57,13 @@ public class Saishi_Shangchuan extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.fragment_container, cepingFragment).commitAllowingStateLoss();
 
+        findViewById(R.id.tv_video_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VideoListActivity.toAcitivty(Saishi_Shangchuan.this);
+            }
+        });
     }
-
 
 
     @OnClick({R.id.image_back})
@@ -69,6 +74,7 @@ public class Saishi_Shangchuan extends AppCompatActivity {
                 break;
         }
     }
+
 
     @Override
     public void onBackPressed() {

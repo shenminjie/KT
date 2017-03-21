@@ -2,30 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/SmjTextViewStyle"
+            android:layout_gravity="left" />
 
+        <TextView
+            android:id="@+id/tv_type"
+            style="@style/SmjTextViewStyle"
+            android:layout_gravity="right"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/right_arrow"
+            android:textColor="@color/gold" />
 
-        <ImageView
-            android:id="@+id/iv_vs_saishi_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="12dp"
-            android:src="@mipmap/back_vs_saishi" />
-
-
-    </RelativeLayout>
+    </FrameLayout>
 
     <View style="@style/DividerVertical" />
 </LinearLayout>

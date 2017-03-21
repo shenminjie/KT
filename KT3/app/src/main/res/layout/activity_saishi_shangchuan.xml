@@ -7,7 +7,22 @@
     android:orientation="vertical"
     tools:context="com.newer.kt.Refactor.ui.Fragment.Main.Saishi_Shangchuan">
 
-    <include layout="@layout/layout_title_smj"></include>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <include layout="@layout/layout_title_smj"></include>
+
+        <TextView
+            android:id="@+id/tv_video_list"
+            style="@style/SmjTextViewStyle"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="15dp"
+            android:text="已上传"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fragment_container"
