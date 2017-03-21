@@ -56,37 +56,9 @@ public class Saishi_Shangchuan extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.fragment_container, cepingFragment).commitAllowingStateLoss();
-        initData();
 
     }
 
-    private void initData() {
-        long user_id = PreferenceManager.getDefaultSharedPreferences(this).getLong(LoginActivity.PRE_CURRENT_USER_ID, 0);
-        QueryBuilder.build("users/get_role").add("user_id", user_id).get(new QueryBuilder.Callback() {
-            @Override
-            public void onSuccess(String result) {
-                try {
-                    JSONObject jsonObject = new JSONObject(result);
-                    if (jsonObject.has("youku_token")) {
-                        String youkuToken = jsonObject.getString("youku_token");
-                        cepingFragment.setToken(youkuToken);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onDebug(RequestParams rp) {
-
-            }
-        });
-    }
 
 
     @OnClick({R.id.image_back})
@@ -100,21 +72,6 @@ public class Saishi_Shangchuan extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (cepingFragment.isUploading()) {
-            DialogUtil.showAlert(this, "正在上传", "退出后上传会中断，是否取消上传", "退出", "取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                    finish();
-                }
-            }, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            });
-            return;
-        }
         finish();
     }
 

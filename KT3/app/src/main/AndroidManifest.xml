@@ -81,8 +81,8 @@
         tools:replace="android:icon,android:label">
         <activity
             android:name=".ActivityScheduleDetail"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".ActivitySchedule" />
         <activity
@@ -734,17 +734,19 @@
             android:label="@string/title_activity_shipin_xiangqing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.youku_video.YoukuVideoActivity" />
-        <activity android:name=".ui.video_list.VideoListActivity"></activity>
-
-
+        <activity android:name=".ui.video_list.VideoListActivity" />
         <activity
             android:name="com.monkeyshen.recordlib.VideoCaptureActivity"
-            android:screenOrientation="landscape"></activity>
-
+            android:screenOrientation="landscape" />
         <activity
             android:name="com.monkeyshen.recordlib.VideoCaptureLitmitActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <service
+            android:name="com.smj.upload.UpLoadBySmjService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

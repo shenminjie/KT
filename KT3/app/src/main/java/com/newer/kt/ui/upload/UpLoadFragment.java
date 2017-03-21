@@ -1,12 +1,17 @@
 package com.newer.kt.ui.upload;
 
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +19,12 @@ import android.widget.TextView;
 
 import com.frame.app.utils.LogUtils;
 import com.newer.kt.R;
-import com.newer.kt.Refactor.utils.Toast;
 import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.utils.DialogUtil;
 import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
-import com.smj.PingceLocalData;
 import com.smj.gradlebean.Users;
-import com.smj.upload.UpLoadInfo;
+import com.smj.upload.UpLoadBySmjService;
 import com.smj.upload.UpLoadManager;
 
 import org.json.JSONException;
@@ -102,42 +106,58 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mDatas = LocalDataManager.getCacheDatas();
-        Log.e("tag", mDatas + "");
+        mDatas = LocalDataManager.getUnUploadCacheDatas();
         mAdapter = new UpLoadAdapter<>(mDatas, this);
         mViewMap = new HashMap<>();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setAutoMeasureEnabled(true);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+
+        Intent intent = new Intent(getContext(), UpLoadBySmjService.class);
+        getActivity().startService(intent);
+        getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
-    public void upLoad() {
+    /**
+     * bingder
+     */
+    private UpLoadBySmjService.UpLoadBinder mBinder;
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            mBinder = (UpLoadBySmjService.UpLoadBinder) iBinder;
+            mBinder.setListener(UpLoadFragment.this);
+        }
 
-    }
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
 
     @OnClick(R.id.btn)
     public void onClick() {
-        if (true) {
-            List<LocalDataInfo> mUploadList = new ArrayList<>();
-            LocalDataManager.saveUpLoadList(mUploadList);
+        if (mBinder == null) {
+            return;
+        }
+        if (mBinder.getUpLoadStatus() == UpLoadManager.STATUS_UPLOADING) {
+            DialogUtil.showAlert(getContext(), "温馨提示", "正在上传", "确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            return;
         }
         if (mDatas.size() == 0) {
             return;
         }
-        if (TextUtils.isEmpty(mToken)) {
-            return;
-        }
-        if (UpLoadManager.getInstance().getStatus() == UpLoadManager.STATUS_UPLOADING) {
-            Toast.show(getContext(), "正在上传");
-            return;
-        }
-        //data
         List<LocalDataInfo> upLoadInfos = new ArrayList<>();
         for (LocalDataInfo localData : mDatas) {
             upLoadInfos.add(localData);
         }
-        UpLoadManager.getInstance().start(upLoadInfos, mToken, this);
+        mBinder.startUpLoad(upLoadInfos);
     }
 
     @Override
@@ -162,21 +182,22 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     @Override
     public void onSuccess(JSONObject var1, LocalDataInfo info) {
-        //pingce的
-        if (info instanceof LocalDataInfo) {
-            commit(var1, info);
-        }
+        mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(上传成功)");
+        mViewMap.get(info.getId()).progreebar.setProgress(100);
+        Log.e("tag------onSuccess", "var1:" + var1);
+        Log.e("tag-----onSuccess", "info:" + var1);
     }
 
 
     @Override
     public void onFailure(JSONObject jsonObject, LocalDataInfo info) {
         mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(上传失败)");
+        mViewMap.get(info.getId()).progreebar.setProgress(0);
     }
 
     @Override
     public void onFinished(LocalDataInfo info) {
-        mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(上传完成)");
+
     }
 
 
@@ -190,7 +211,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         //上传数据
         try {
             String videoId = var1.getString("video_id");
-            final LocalDataInfo data =  info;
+            final LocalDataInfo data = info;
             List<Users> students = data.getPingceStudent();
             StringBuilder builder = new StringBuilder();
             for (Users users : students) {
@@ -203,7 +224,8 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
                         @Override
                         public void onSuccess(String result) {
                             LogUtils.e("result--smj:" + result + "");
-                            remove(data);
+//                            remove(data);
+
                         }
 
                         @Override
@@ -223,29 +245,16 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     private void remove(LocalDataInfo info) {
         mDatas.remove(info);
-        LocalDataManager.saveUpLoadList(mDatas);
+        LocalDataManager.saveUnUpLoadList(mDatas);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onDestroy() {
-        //cancle upload queue
-        if (UpLoadManager.getInstance() != null) {
-            UpLoadManager.getInstance().cancle();
-        }
+        mBinder.setListener(null);
+        getActivity().unbindService(mConnection);
         super.onDestroy();
     }
 
-    /**
-     * is upload?
-     *
-     * @return
-     */
-    public boolean isUploading() {
-        if (UpLoadManager.getInstance().getStatus() == UpLoadManager.STATUS_UPLOADING
-                && mDatas.size() != 0) {
-            return true;
-        }
-        return false;
-    }
+
 }

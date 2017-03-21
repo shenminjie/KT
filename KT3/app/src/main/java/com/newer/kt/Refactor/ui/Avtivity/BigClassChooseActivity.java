@@ -166,7 +166,7 @@ public class BigClassChooseActivity extends BaseActivity implements DakejianXuan
         dakejianLocalData.setDakejianIs_finished(0);
         dakejianLocalData.setType(LocalDataInfo.TYPE_DAKEJIAN);
 
-        LocalDataManager.saveUpLoadInfo(dakejianLocalData);
+        LocalDataManager.saveUnUpLoadInfo(dakejianLocalData);
         DialogUtil.showAlert(this, "温馨提示", "录制成功，请到动态管理进行上传视频", "确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

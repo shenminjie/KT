@@ -17,7 +17,6 @@ import com.newer.kt.R;
 import com.newer.kt.utils.DialogUtil;
 import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
-import com.smj.PingceLocalData;
 import com.smj.gradlebean.Classes;
 import com.smj.gradlebean.Users;
 import com.smj.skillbean.SkillInfo;
@@ -120,7 +119,7 @@ public class InputResultFragment extends Fragment {
             pingceLocalData.setPingceStudent(mDatas);
             pingceLocalData.setVideoPath(mPath);
             pingceLocalData.setType(TYPE_PINGCE);
-            LocalDataManager.saveUpLoadInfo(pingceLocalData);
+            LocalDataManager.saveUnUpLoadInfo(pingceLocalData);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -132,7 +131,7 @@ public class InputResultFragment extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 getActivity().finish();
-                Log.e("tag--缓存数据",LocalDataManager.getCacheDatas()+"");
+                Log.e("tag--缓存数据",LocalDataManager.getUnUploadCacheDatas()+"");
             }
         });
     }

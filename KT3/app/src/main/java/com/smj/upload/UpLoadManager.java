@@ -1,15 +1,23 @@
 package com.smj.upload;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.frame.app.utils.LogUtils;
 import com.newer.kt.Refactor.KTApplication;
+import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ui.upload.UploadListener;
 import com.smj.LocalDataInfo;
+import com.smj.LocalDataManager;
+import com.smj.gradlebean.Users;
 import com.youku.uploader.IUploadResponseHandler;
 import com.youku.uploader.YoukuUploader;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.http.RequestParams;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,7 +55,7 @@ public class UpLoadManager {
     /**
      * staus
      */
-    private int mStatus;
+    private int mStatus = STATUS_RESET;
 
     public static final int STATUS_UPLOADING = 1;
     public static final int STATUS_RESET = 2;
@@ -64,13 +72,17 @@ public class UpLoadManager {
         return manager;
     }
 
+    public void setListener(UploadListener listener) {
+        this.mUpLoadListener = listener;
+    }
+
     /**
      * 开始上传
      *
      * @param infos
      * @param mToken
      */
-    public void start(List<LocalDataInfo> infos, String mToken, UploadListener listener) {
+    public void start(List<LocalDataInfo> infos, String mToken) {
         if (mStatus == STATUS_UPLOADING) {
             return;
         }
@@ -82,7 +94,6 @@ public class UpLoadManager {
             mQueue.put(upLoadInfo);
         }
         this.mToken = mToken;
-        this.mUpLoadListener = listener;
 
         //开始上传
         if (mQueue.size() != 0) {
@@ -90,17 +101,31 @@ public class UpLoadManager {
         }
     }
 
+
     /**
      * 停止上传
      */
     public void cancle() {
+        mStatus = STATUS_RESET;
         if (mQueue != null) {
             mQueue.clear();
         }
         if (mYoukuUploader != null) {
             mYoukuUploader.cancel();
         }
-        mStatus = STATUS_RESET;
+    }
+
+    /**
+     * 获取正在上传的数据
+     *
+     * @return
+     */
+    public List<LocalDataInfo> getUpLoadingData() {
+        List<LocalDataInfo> datas = new ArrayList<>();
+        for (int i = 0; i < mQueue.size(); i++) {
+            datas.add(mQueue.get(i));
+        }
+        return datas;
     }
 
     /**
@@ -108,6 +133,7 @@ public class UpLoadManager {
      */
     public void upload() {
         if (mQueue.size() == 0) {
+            mStatus = STATUS_RESET;
             return;
         }
         mStatus = STATUS_UPLOADING;
@@ -121,58 +147,132 @@ public class UpLoadManager {
         final HashMap uploadInfo = new HashMap();
 
 
-        final LocalDataInfo upLoadInfo = mQueue.get();
-        uploadInfo.put("title", upLoadInfo.getUpLoadName());
+        final LocalDataInfo dataInfo = mQueue.get(0);
+        uploadInfo.put("title", dataInfo.getUpLoadName());
         uploadInfo.put("tags", "原创");
-        uploadInfo.put("file_name", upLoadInfo.getVideoPath());
+        uploadInfo.put("file_name", dataInfo.getVideoPath());
         mYoukuUploader.upload(params, uploadInfo, new IUploadResponseHandler() {
             @Override
             public void onStart() {
-                mUpLoadListener.onStart(upLoadInfo);
+                if (mUpLoadListener != null)
+                    mUpLoadListener.onStart(dataInfo);
             }
 
             @Override
             public void onProgressUpdate(int i) {
-                mUpLoadListener.onProgressUpdate(i, upLoadInfo);
+                if (mUpLoadListener != null)
+                    mUpLoadListener.onProgressUpdate(i, dataInfo);
             }
 
             @Override
             public void onSuccess(JSONObject jsonObject) {
-                mUpLoadListener.onSuccess(jsonObject, upLoadInfo);
+                Log.e("tag", "tag-----优酷上传成功");
+                if (mUpLoadListener != null) {
+                    mUpLoadListener.onSuccess(jsonObject, dataInfo);
+                }
+                //去掉队列
+                keepUpLoad();
+                LocalDataInfo upLoadSuccessData = mQueue.get();
+                if (upLoadSuccessData.getType() == LocalDataInfo.TYPE_PINGCE) {
+                    commitPingce(jsonObject, upLoadSuccessData);
+                } else {
+                    commitDakejian(jsonObject, upLoadSuccessData);
+                }
             }
 
             @Override
             public void onFailure(JSONObject jsonObject) {
-                mUpLoadListener.onFailure(jsonObject, upLoadInfo);
+                if (mUpLoadListener != null) {
+                    mUpLoadListener.onFailure(jsonObject, dataInfo);
+                }
+                keepUpLoad();
             }
 
             @Override
             public void onFinished() {
-                mUpLoadListener.onFinished(upLoadInfo);
-                // here got a bug with youkuloader thread !=null
-                if (mYoukuUploader.cancel()) {
-                    upload();
-                } else {
-                    new AsyncTask<Void, Void, Void>() {
-                        @Override
-                        protected Void doInBackground(Void... voids) {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            return null;
-                        }
-
-                        @Override
-                        protected void onPostExecute(Void aVoid) {
-                            super.onPostExecute(aVoid);
-                            upload();
-                        }
-                    }.execute();
+                if (mUpLoadListener != null) {
+                    mUpLoadListener.onFinished(dataInfo);
                 }
             }
         });
+    }
+
+    /**
+     * cimmit dakejian
+     */
+    private void commitDakejian(JSONObject var1, LocalDataInfo info) {
+        try {
+            String videoId = var1.getString("video_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * cimmit  pingce
+     */
+    private void commitPingce(JSONObject var1, final LocalDataInfo info) {
+        try {
+            String videoId = var1.getString("video_id");
+            List<Users> students = info.getPingceStudent();
+            StringBuilder builder = new StringBuilder();
+            for (Users users : students) {
+                builder.append(users.getUser_id() + ",");
+            }
+            QueryBuilder.build("shool_user_tests/save_user_skill_test_record_video_url")
+                    .add("user_skill_test_record_id", builder.toString())
+                    .add("video_url", videoId)
+                    .post(new QueryBuilder.Callback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            LocalDataManager.removeUnUpLoadData(info);
+                            List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
+                            save.add(info);
+                            LocalDataManager.saveCacheDatas(save);
+                        }
+
+                        @Override
+                        public void onError(Throwable ex, boolean isOnCallback) {
+
+                        }
+
+                        @Override
+                        public void onDebug(RequestParams rp) {
+
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * keep upload
+     */
+    private void keepUpLoad() {
+        // here got a bug with youkuloader thread !=null
+        if (mYoukuUploader.cancel()) {
+            upload();
+        } else {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    upload();
+                }
+            }.execute();
+        }
     }
 
 

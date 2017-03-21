@@ -20,4 +20,5 @@ public interface UploadListener {
     void onFailure(JSONObject var1,LocalDataInfo info);
 
     void onFinished(LocalDataInfo info);
+
 }
