@@ -1,14 +1,17 @@
 package com.smj.upload;
 
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.frame.app.utils.LogUtils;
 import com.newer.kt.Refactor.KTApplication;
+import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ui.upload.UploadListener;
 import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
+import com.smj.gradlebean.Classes;
 import com.smj.gradlebean.Users;
 import com.youku.uploader.IUploadResponseHandler;
 import com.youku.uploader.YoukuUploader;
@@ -17,7 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -200,9 +205,50 @@ public class UpLoadManager {
     /**
      * cimmit dakejian
      */
-    private void commitDakejian(JSONObject var1, LocalDataInfo info) {
+    private void commitDakejian(JSONObject var1, final LocalDataInfo info) {
         try {
-            String videoId = var1.getString("video_id");
+            String youku_video_url = var1.getString("video_id");
+            String clubid = "" + PreferenceManager.getDefaultSharedPreferences(KTApplication.getContext())
+                    .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
+            long user_id = PreferenceManager.getDefaultSharedPreferences(KTApplication.getContext()).getLong(LoginActivity.PRE_CURRENT_USER_ID, 0);
+            String classroom_id = info.getDakejianBasicInfo().getId();
+            StringBuilder clzBuilder = new StringBuilder();
+            for (Classes classes : info.getDakejianClasses()) {
+                clzBuilder.append(classes.getId());
+                clzBuilder.append(",");
+            }
+            int is_finished = 0;
+            String creatime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(info.getCreatetime()));
+            QueryBuilder.build("offline/upload_big_classroom_course_record")
+                    .add("club_id", clubid)
+                    .add("user_id", user_id)
+                    .add("youku_video_url", youku_video_url)
+                    .add("classroom_id", classroom_id)
+                    .add("classes", clzBuilder.toString())
+                    .add("is_finished", is_finished)
+                    .add("finished_time", creatime)
+                    .post(new QueryBuilder.Callback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            LocalDataManager.removeUnUpLoadData(info);
+                            List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
+                            save.add(info);
+                            LocalDataManager.saveCacheDatas(save);
+                            if (mUpLoadListener != null) {
+                                mUpLoadListener.commitSuccess(info);
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable ex, boolean isOnCallback) {
+                            Log.e("tag", ex + "");
+                        }
+
+                        @Override
+                        public void onDebug(RequestParams rp) {
+                            Log.e("tag", rp + "");
+                        }
+                    });
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -229,6 +275,9 @@ public class UpLoadManager {
                             List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
                             save.add(info);
                             LocalDataManager.saveCacheDatas(save);
+                            if (mUpLoadListener != null) {
+                                mUpLoadListener.commitSuccess(info);
+                            }
                         }
 
                         @Override

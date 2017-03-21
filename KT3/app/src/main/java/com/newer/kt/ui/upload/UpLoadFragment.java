@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.frame.app.utils.LogUtils;
+import com.frame.app.utils.ToastUtil;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.utils.Toast;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.utils.DialogUtil;
 import com.smj.LocalDataInfo;
@@ -92,9 +94,6 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         return view;
     }
 
-    public void setToken(String token) {
-        this.mToken = token;
-    }
 
     @Override
     public void onDestroyView() {
@@ -117,6 +116,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         Intent intent = new Intent(getContext(), UpLoadBySmjService.class);
         getActivity().startService(intent);
         getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
     }
 
     /**
@@ -128,6 +128,9 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             mBinder = (UpLoadBySmjService.UpLoadBinder) iBinder;
             mBinder.setListener(UpLoadFragment.this);
+            if (mBinder.getUpLoadStatus() == UpLoadManager.STATUS_UPLOADING) {
+                Toast.show(getContext(), "视频正在上传中,请稍后..");
+            }
         }
 
         @Override
@@ -200,54 +203,12 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     }
 
-
-    /**
-     * 上传后提交
-     *
-     * @param var1
-     * @param info
-     */
-    private void commit(JSONObject var1, LocalDataInfo info) {
-        //上传数据
-        try {
-            String videoId = var1.getString("video_id");
-            final LocalDataInfo data = info;
-            List<Users> students = data.getPingceStudent();
-            StringBuilder builder = new StringBuilder();
-            for (Users users : students) {
-                builder.append(users.getUser_id() + ",");
-            }
-            QueryBuilder.build("shool_user_tests/save_user_skill_test_record_video_url")
-                    .add("user_skill_test_record_id", builder.toString())
-                    .add("video_url", videoId)
-                    .post(new QueryBuilder.Callback() {
-                        @Override
-                        public void onSuccess(String result) {
-                            LogUtils.e("result--smj:" + result + "");
-//                            remove(data);
-
-                        }
-
-                        @Override
-                        public void onError(Throwable ex, boolean isOnCallback) {
-
-                        }
-
-                        @Override
-                        public void onDebug(RequestParams rp) {
-
-                        }
-                    });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void remove(LocalDataInfo info) {
+    @Override
+    public void commitSuccess(LocalDataInfo info) {
         mDatas.remove(info);
-        LocalDataManager.saveUnUpLoadList(mDatas);
         mAdapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void onDestroy() {
