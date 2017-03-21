@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -232,6 +233,9 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     @Override
     public void onItemListener(LocalDataInfo localDataInfo, int position) {
+        if (TextUtils.isEmpty(localDataInfo.getVideoPath())) {
+            return;
+        }
         final Intent videoIntent = new Intent(Intent.ACTION_VIEW);
         videoIntent.setDataAndType(Uri.parse(localDataInfo.getVideoPath()), "video/*");
         try {
