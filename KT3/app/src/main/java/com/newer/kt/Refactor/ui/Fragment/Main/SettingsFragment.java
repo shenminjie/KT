@@ -132,13 +132,13 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        String url = Constants.KTHOST + "club_app/club_info";
-        RequestParams p = new RequestParams(url);
-        p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
+        String url = Constants.KTHOST + "games/club_tongji";
+        RequestParams param = new RequestParams(url);
+        param.addQueryStringParameter("authenticity_token", MD5.getToken(url));
 
         final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
 
-        p.addQueryStringParameter("club_id", clubid);
+        param.addQueryStringParameter("club_id", clubid);
 //        response: "success",
 //                name: 校园名称,
 //                school_student_count: 学生数,
@@ -146,7 +146,7 @@ public class SettingsFragment extends BaseFragment {
 
 //                higher_manager: 上级管理员
 
-        x.http().get(p, new Callback.CommonCallback<String>() {
+        x.http().get(param, new Callback.CommonCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
