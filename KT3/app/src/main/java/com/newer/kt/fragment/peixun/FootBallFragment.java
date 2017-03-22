@@ -36,6 +36,7 @@ public class FootBallFragment extends BaseFragment {
     TextView tv_all_nale;
     private Typeface mTf;
     public static Map map;
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_footbal);

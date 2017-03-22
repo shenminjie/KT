@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.newer.kt.entity.Clubs_groups_Bean;
 import com.newer.kt.entity.GradeList;
 import com.newer.kt.ktmatch.ActivityKi;
 import com.newer.kt.ktmatch.CountActivity;
+import com.newer.kt.ktmatch.MathChooseActivity;
 import com.newer.kt.ktmatch.Params;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
@@ -37,6 +39,9 @@ import org.xutils.x;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_NAME;
 
 /**
  * Created by jy on 16/9/14.
@@ -77,6 +82,7 @@ public class ManagerFragment extends BaseFragment {
     @Override
     protected void initView(Bundle savedInstanceState) {
         //setContentView(R.layout.layout_managerfragment);
+
         rootView=getActivity().getLayoutInflater().inflate(R.layout.layout_managerfragment,null);
         lv_saishi = ((ListView) rootView.findViewById(R.id.lv_saishi));
         tv_all_game = ((TextView) rootView.findViewById(R.id.tv_all_game));
@@ -92,6 +98,9 @@ public class ManagerFragment extends BaseFragment {
         getClubs_group();
 
 
+        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getString(PRE_CURRENT_CLUB_NAME,"");
+        ((TextView)rootView.findViewById(R.id.tv_title_game)).setText(clubid);
 
         lv_saishi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

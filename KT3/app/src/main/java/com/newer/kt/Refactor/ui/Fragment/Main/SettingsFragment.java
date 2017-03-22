@@ -132,6 +132,9 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        final String end_date_xiaoyuan = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString(LoginActivity.PRE_CURRENT_END_DATE_XIAOYUAN,"");
+
+        tv_time.setText("有效日期: "+end_date_xiaoyuan);
         String url = Constants.KTHOST + "club_app/club_info";
         RequestParams p = new RequestParams(url);
         p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
