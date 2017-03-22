@@ -99,8 +99,9 @@ public class MathChooseActivity extends CamScanActivity {
             @Override
             public void onClick(View v) {
                 MatchActivity.invoke(getBaseContext());
-                Params.getInstanceParam().setUid1(((TextView)findViewById(R.id.rightid)).getText().toString().replaceAll("f_89_",""));
-                Params.getInstanceParam().setUid2(((TextView)findViewById(R.id.leftid)).getText().toString().replaceAll("f_89_",""));
+
+                Params.getInstanceParam().setUid1(((TextView)findViewById(R.id.rightid)).getText().toString());
+                Params.getInstanceParam().setUid2(((TextView)findViewById(R.id.leftid)).getText().toString());
                 Params.getInstanceParam().setBattle_id(UUID.randomUUID().toString());
 
                 finish();
@@ -281,7 +282,8 @@ public class MathChooseActivity extends CamScanActivity {
                             if("success".equals(flag)){
 
                                 JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
-                                String matchid = matchidj.getAsString().replaceAll("f_89_","");
+                                String matchid = matchidj.getAsString();
+                                matchid = matchid.substring(matchid.lastIndexOf("_")+1);
                                 ((TextView)findViewById(index)).setText(matchid);
                                 checkPrepared(index);
                             }
