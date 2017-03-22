@@ -30,14 +30,6 @@ public class LocalDataInfo implements Serializable {
      */
     private int type;
 
-    /**
-     * 大课间
-     */
-    private List<Classes> bisaiClasses;
-    private int bisaiIs_finished;
-    private DakejianBasicInfo bisaiBasicInfo;
-
-
 
     /**
      * 大课间
