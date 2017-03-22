@@ -1,6 +1,8 @@
 package com.newer.kt.Refactor.ui.Fragment.Main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,11 +89,24 @@ public class School_Info extends AppCompatActivity {
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction("exit_app");
-                sendBroadcast(intent);
+//                Intent intent = new Intent();
+//                intent.setAction("exit_app");
+//                sendBroadcast(intent);
+//
+
+                SharedPreferences sp = getSharedPreferences("account", Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sp.edit();
+                editor.clear();
+
+                editor.commit();
+                Intent intent =new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+
+
             }
         });
+        
     }
 
     private void initDate() {

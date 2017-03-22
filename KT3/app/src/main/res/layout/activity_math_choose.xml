@@ -179,11 +179,11 @@
         android:singleLine="true" android:textSize="45px" android:layout_marginLeft="30px"
         android:layout_marginTop="7dp"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="36px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
         android:textColor="@android:color/black"
         android:text=""
-        android:textSize="88px"
+        android:textSize="68px"
         android:id="@+id/leftid"
         android:background="#ffffff"
         android:scaleType="fitEnd"
@@ -192,11 +192,11 @@
         android:layout_marginTop="197px" android:layout_marginRight="120px"
         android:layout_width="65dp" android:layout_height="580px"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="36px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
         android:textColor="@android:color/black"
         android:text=""
-        android:textSize="88px"
+        android:textSize="68px"
         android:id="@+id/leftid1"
         android:background="#ffffff"
         android:scaleType="fitEnd"
@@ -205,11 +205,11 @@
         android:layout_width="65dp" android:layout_height="580px"
         android:layout_toLeftOf="@id/leftid"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="36px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
         android:textColor="@android:color/black"
         android:text=""
-        android:textSize="88px"
+        android:textSize="68px"
         android:id="@+id/leftid2"
         android:background="#ffffff"
         android:scaleType="fitEnd"
@@ -218,9 +218,9 @@
         android:layout_width="65dp" android:layout_height="580px"
         android:layout_toLeftOf="@id/leftid1"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="36px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
-        android:textSize="88px"
+        android:textSize="68px"
         android:textColor="@android:color/black"
         android:text=""
         android:id="@+id/rightid"
@@ -230,9 +230,9 @@
         android:layout_marginTop="197px" android:layout_marginLeft="125px"
         android:layout_width="65dp" android:layout_height="580px"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="36px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
-        android:textSize="88px"
+        android:textSize="68px"
         android:textColor="@android:color/black"
         android:text=""
         android:id="@+id/rightid1"
@@ -243,9 +243,9 @@
         android:layout_width="65dp" android:layout_height="580px"
         android:layout_toRightOf="@id/rightid"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="36px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
-        android:textSize="88px"
+        android:textSize="68px"
         android:textColor="@android:color/black"
         android:text=""
         android:id="@+id/rightid2"

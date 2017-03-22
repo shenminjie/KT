@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,17 @@ import com.frame.app.base.fragment.BaseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.Constants;
+import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityNewContest;
+import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.Clubs_game_Bean;
 import com.newer.kt.entity.Clubs_groups_Bean;
 import com.newer.kt.entity.GradeList;
 import com.newer.kt.ktmatch.ActivityKi;
 import com.newer.kt.ktmatch.CountActivity;
+import com.newer.kt.ktmatch.MathChooseActivity;
 import com.newer.kt.ktmatch.Params;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ktmatch.json.JsonUtil;
@@ -37,6 +42,9 @@ import org.xutils.x;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_ID;
+import static com.newer.kt.Refactor.ui.Avtivity.LoginActivity.PRE_CURRENT_CLUB_NAME;
 
 /**
  * Created by jy on 16/9/14.
@@ -77,6 +85,7 @@ public class ManagerFragment extends BaseFragment {
     @Override
     protected void initView(Bundle savedInstanceState) {
         //setContentView(R.layout.layout_managerfragment);
+
         rootView=getActivity().getLayoutInflater().inflate(R.layout.layout_managerfragment,null);
         lv_saishi = ((ListView) rootView.findViewById(R.id.lv_saishi));
         tv_all_game = ((TextView) rootView.findViewById(R.id.tv_all_game));
@@ -92,6 +101,9 @@ public class ManagerFragment extends BaseFragment {
         getClubs_group();
 
 
+        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getString(PRE_CURRENT_CLUB_NAME,"");
+        ((TextView)rootView.findViewById(R.id.tv_title_game)).setText(clubid);
 
         lv_saishi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -160,9 +172,13 @@ public class ManagerFragment extends BaseFragment {
      */
     private void getClubs_group()
     {
-        Clubs_group= AuthenticityToken.getAuthenticityToken("/games/club_tongji");
-        // System.out.println(Clubs_game_url+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        RequestParams param=new RequestParams("http://api.ktfootball.com/games/club_tongji?club_id=89&authenticity_token="+Clubs_group);
+        String url = Constants.KTHOST + "games/club_tongji";
+        RequestParams param = new RequestParams(url);
+        param.addQueryStringParameter("authenticity_token", MD5.getToken(url));
+
+        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
+
+        param.addQueryStringParameter("club_id", clubid);
         x.http().get(param, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -201,8 +217,12 @@ public class ManagerFragment extends BaseFragment {
     }
     private void getClubs_game() {
         Clubs_game_url=AuthenticityToken.getAuthenticityToken("/games/club_all_games");
+
+        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getLong(PRE_CURRENT_CLUB_ID,0);
+
         // System.out.println(Clubs_game_url+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        RequestParams params=new RequestParams("http://api.ktfootball.com/games/club_all_games?club_id=89&authenticity_token="+Clubs_game_url);
+        RequestParams params=new RequestParams("http://api.ktfootball.com/games/club_all_games?club_id="+clubid+"&authenticity_token="+Clubs_game_url);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

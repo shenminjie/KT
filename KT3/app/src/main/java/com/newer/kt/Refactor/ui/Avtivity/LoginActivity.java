@@ -43,6 +43,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public static final String PRE_CURRENT_CLUB_ID = "current_club_id";
     public static final String PRE_CURRENT_CLUB_NAME = "current_club_name";
     public static final String PRE_CURRENT_TAYPE = "current_type";
+    public static final String PRE_CURRENT_END_DATE_XIAOYUAN = "end_date_xiaoyuan";
 
     @Bind(R.id.editText_user)
     EditText editTextUser;
@@ -92,6 +93,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this)
+                                .edit().clear();
+                        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this)
+                                .edit().commit();
                         closeLoadingDialog();
                         LogUtils.e(response.toString());
                         //关闭动画
@@ -99,6 +104,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         UserMsg userMsg = new Gson().fromJson(response.toString(),new TypeToken<UserMsg>(){}.getType());
                         KTApplication.setLocalUserInfo(response.toString());
                         //返回的是错误
+
+
                         if (userMsg.response.equals("error")){
                             showDialogToast("用户名密码错误");
                         } else if (userMsg.is_school_manager == 0){
@@ -112,6 +119,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                     .putLong(PRE_CURRENT_CLUB_ID,userMsg.club_id)
                                     .putString(PRE_CURRENT_CLUB_NAME,userMsg.club_name)
                                     .putInt(PRE_CURRENT_TAYPE,userMsg.school_role.role_type)
+                                    .putString(PRE_CURRENT_END_DATE_XIAOYUAN,userMsg.belongs_club_end_date)
+
                                     .commit();
                             //把俱乐部的id用意图传递过去
                             Intent intent = new Intent(LoginActivity.this,ClubDataActivity3.class);

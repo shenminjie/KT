@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.preference.PreferenceManager;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -139,7 +140,25 @@ public class KTApplication extends App {
         Hawk.init(this).build();
         CrashReport.initCrashReport(getApplicationContext(), "836dd4b6e0", true);
     }
-
+    public static Boolean CheckEmulatorBuild(Context context){
+        String BOARD =android.os.Build.BOARD;
+        String BOOTLOADER =android.os.Build.BOOTLOADER;
+        String BRAND =android.os.Build.BRAND;
+        String DEVICE =android.os.Build.DEVICE;
+        String HARDWARE =android.os.Build.HARDWARE;
+        String MODEL =android.os.Build.MODEL;
+        String PRODUCT =android.os.Build.PRODUCT;
+        if(BOARD.contains("unknown")|| BOOTLOADER.contains("unknown")
+                ||BRAND.contains("generic") ||DEVICE.contains("generic")
+                ||MODEL.contains("sdk") ||PRODUCT.contains("sdk")
+                ||HARDWARE.contains("goldfish"))
+        {
+            Log.v("Result:","Find Emulator by EmulatorBuild!");
+            return true;
+        }
+        Log.v("Result:","Not Find Emulator by EmulatorBuild!");
+        return false;
+    }
     private void initImageLoader() {
         if(!ImageLoader.getInstance().isInited()){
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(

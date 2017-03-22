@@ -58,6 +58,7 @@ public class UserMsg implements Serializable {
         public String region;//: 区,
         public String club_id;//: 俱乐部
     }
+    public String belongs_club_end_date;
 
 
     public UserMsg() {

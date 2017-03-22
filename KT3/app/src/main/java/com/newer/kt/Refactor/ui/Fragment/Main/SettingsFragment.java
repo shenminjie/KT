@@ -132,13 +132,19 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        String url = Constants.KTHOST + "club_app/club_info";
-        RequestParams p = new RequestParams(url);
-        p.addQueryStringParameter("authenticity_token", MD5.getToken(url));
+final String end_date_xiaoyuan = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString(LoginActivity.PRE_CURRENT_END_DATE_XIAOYUAN,"");
 
-        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
+        tv_time.setText("有效日期: "+end_date_xiaoyuan);
+        
+        String url = Constants.KTHOST + "games/club_tongji";
+        RequestParams param = new RequestParams(url);
+        param.addQueryStringParameter("authenticity_token", MD5.getToken(url));
 
-        p.addQueryStringParameter("club_id", clubid);
+        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,0);
+
+        final String clubname = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString(LoginActivity.PRE_CURRENT_CLUB_NAME,"");
+        tv_shcool.setText(clubname);
+        param.addQueryStringParameter("club_id", clubid);
 //        response: "success",
 //                name: 校园名称,
 //                school_student_count: 学生数,
@@ -146,7 +152,7 @@ public class SettingsFragment extends BaseFragment {
 
 //                higher_manager: 上级管理员
 
-        x.http().get(p, new Callback.CommonCallback<String>() {
+        x.http().get(param, new Callback.CommonCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
@@ -154,7 +160,7 @@ public class SettingsFragment extends BaseFragment {
                  clubInfo=gson.fromJson(result,Club_Info.class);
                 System.out.println(clubInfo.getResponse()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 Log.v("clubInfo",clubInfo.getResponse());
-                tv_shcool.setText(clubInfo.getName().toString());
+
 
                ImageLoader.getInstance().displayImage(clubInfo.avatar,image_head);
             }
