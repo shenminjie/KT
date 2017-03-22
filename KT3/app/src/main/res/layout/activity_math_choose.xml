@@ -179,7 +179,7 @@
         android:singleLine="true" android:textSize="45px" android:layout_marginLeft="30px"
         android:layout_marginTop="7dp"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="28px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
         android:textColor="@android:color/black"
         android:text=""
@@ -192,7 +192,7 @@
         android:layout_marginTop="197px" android:layout_marginRight="120px"
         android:layout_width="65dp" android:layout_height="580px"/>
     <com.newer.kt.utils.VerticalTextView
-        android:paddingTop="28px"
+        android:paddingTop="48px"
         android:paddingLeft="150px"
         android:textColor="@android:color/black"
         android:text=""
