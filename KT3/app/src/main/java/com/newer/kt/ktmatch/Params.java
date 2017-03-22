@@ -1,5 +1,8 @@
 package com.newer.kt.ktmatch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by admin on 2017/3/1.
  */
@@ -10,6 +13,16 @@ public class Params {
     public static Params getInstanceParam() {
         return params;
     }
+    String videoPath;
+
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
+    }
+
     String club_id;
     String user_id;
     String game_id;
@@ -114,6 +127,8 @@ public class Params {
         this.side_b__picture = side_b__picture;
     }
 
+
+
     public String getSide_b__abstained() {
         return side_b__abstained;
     }
@@ -130,7 +145,7 @@ public class Params {
         this.side_b__flagrant_fouls = side_b__flagrant_fouls;
     }
 
-    String side_a__users;
+    List<String> side_a__users = new ArrayList<String>();
     String side_a__add_scores;
     String side_a__result;
     String side_a__goals = "0";
@@ -141,7 +156,7 @@ public class Params {
     String side_a__abstained;
     String side_a__picture;
 
-    String side_b__users;
+    List<String> side_b__users= new ArrayList<String>();
     String side_b__add_scores;
     String side_b__result;
     String side_b__goals = "0";
@@ -152,21 +167,81 @@ public class Params {
     String side_b__abstained;
     String side_b__picture;
 
+    String side_a_users_1;
+    String side_a_users_2;
+    String side_a_users_3;
 
-    public String getUid1() {
+    public String getSide_a_users_1() {
+        return side_a_users_1;
+    }
+
+    public void setSide_a_users_1(String side_a_users_1) {
+        this.side_a_users_1 = side_a_users_1;
+    }
+
+    public String getSide_a_users_2() {
+        return side_a_users_2;
+    }
+
+    public void setSide_a_users_2(String side_a_users_2) {
+        this.side_a_users_2 = side_a_users_2;
+    }
+
+    public String getSide_a_users_3() {
+        return side_a_users_3;
+    }
+
+    public void setSide_a_users_3(String side_a_users_3) {
+        this.side_a_users_3 = side_a_users_3;
+    }
+
+    String side_b_users_1;
+    String side_b_users_2;
+    String side_b_users_3;
+
+
+    public String getSide_b_users_1() {
+        return side_b_users_1;
+    }
+
+    public void setSide_b_users_1(String side_b_users_1) {
+        this.side_b_users_1 = side_b_users_1;
+    }
+
+    public String getSide_b_users_2() {
+        return side_b_users_2;
+    }
+
+    public void setSide_b_users_2(String side_b_users_2) {
+        this.side_b_users_2 = side_b_users_2;
+    }
+
+    public String getSide_b_users_3() {
+        return side_b_users_3;
+    }
+
+    public void setSide_b_users_3(String side_b_users_3) {
+        this.side_b_users_3 = side_b_users_3;
+    }
+
+
+    String side_a_users;
+    String side_b_users;
+
+    public List<String> getSide_a__users() {
         return side_a__users;
     }
 
-    public void setUid1(String uid1) {
-        this.side_a__users = uid1;
+    public void setSide_a__users(List<String> side_a__users) {
+        this.side_a__users = side_a__users;
     }
 
-    public String getUid2() {
+    public List<String> getSide_b__users() {
         return side_b__users;
     }
 
-    public void setUid2(String uid2) {
-        this.side_b__users = uid2;
+    public void setSide_b__users(List<String> side_b__users) {
+        this.side_b__users = side_b__users;
     }
 
 //    "'club_id':'俱乐部ID','"俱乐部ID+

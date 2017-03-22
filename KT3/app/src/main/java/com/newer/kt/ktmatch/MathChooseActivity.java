@@ -99,9 +99,14 @@ public class MathChooseActivity extends CamScanActivity {
             @Override
             public void onClick(View v) {
                 MatchActivity.invoke(getBaseContext());
+                Params.getInstanceParam().setSide_a_users_1(((TextView)findViewById(R.id.rightid)).getText().toString());
+                Params.getInstanceParam().setSide_a_users_2(((TextView)findViewById(R.id.rightid1)).getText().toString());
+                Params.getInstanceParam().setSide_a_users_3(((TextView)findViewById(R.id.rightid2)).getText().toString());
 
-                Params.getInstanceParam().setUid1(((TextView)findViewById(R.id.rightid)).getText().toString());
-                Params.getInstanceParam().setUid2(((TextView)findViewById(R.id.leftid)).getText().toString());
+                Params.getInstanceParam().setSide_b_users_1(((TextView)findViewById(R.id.leftid)).getText().toString());
+                Params.getInstanceParam().setSide_b_users_2(((TextView)findViewById(R.id.leftid1)).getText().toString());
+                Params.getInstanceParam().setSide_b_users_3(((TextView)findViewById(R.id.leftid2)).getText().toString());
+
                 Params.getInstanceParam().setBattle_id(UUID.randomUUID().toString());
 
                 finish();
