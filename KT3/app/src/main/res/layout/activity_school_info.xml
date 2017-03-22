@@ -257,7 +257,7 @@
         android:layout_below="@+id/rl_title10">
 
         <Button
-            android:id="@+id/saishi"
+            android:id="@+id/btn_exit"
             android:layout_width="193dp"
             android:layout_height="37dp"
             android:layout_alignParentBottom="true"

@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class School_Info extends AppCompatActivity {
     private RelativeLayout rl_title3;
     private RelativeLayout rl_title1;
     private  String getAvatar;
+    private Button btn_exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,15 @@ public class School_Info extends AppCompatActivity {
                 intent.putExtra(getAvatar,club_info.getAvatar().toString());
 
                 startActivity(intent);
+            }
+        });
+
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction("exit_app");
+                sendBroadcast(intent);
             }
         });
     }
@@ -144,5 +155,6 @@ public class School_Info extends AppCompatActivity {
         iv_stuInfo1 = ((ImageView) findViewById(R.id.iv_stuInfo1));
         rl_title3 = ((RelativeLayout) findViewById(R.id.rl_title3));
         rl_title1 = ((RelativeLayout) findViewById(R.id.rl_title1));
+        btn_exit = ((Button) findViewById(R.id.btn_exit));
     }
 }

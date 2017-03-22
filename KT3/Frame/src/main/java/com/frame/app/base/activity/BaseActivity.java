@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AnalyticsHome {
 		LogUtils.allowD = BaseApplication.isTest; // 测试环境下允许打log
 		LogUtils.e(this.getClass().getSimpleName()+"");
 		IntentFilter intent = new IntentFilter();
-		intent.addAction(this.getClass().getName());
+		intent.addAction("exit_app");
 		receiver = new Receiver();
 		registerReceiver(receiver,intent);
 	}
