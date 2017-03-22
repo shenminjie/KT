@@ -119,7 +119,15 @@ public class VideoListActivity extends AppCompatActivity implements OnItemListen
             if (holder instanceof ViewHolder) {
                 ViewHolder viewHolder = (ViewHolder) holder;
                 viewHolder.tvName.setText(datas.get(position).getUpLoadName() + getTime(datas.get(position).getCreatetime()));
-                viewHolder.tvType.setText(datas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
+                String name = null;
+                if (datas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN) {
+                    name = "大课间";
+                } else if (datas.get(position).getType() == LocalDataInfo.TYPE_PINGCE) {
+                    name = "评测";
+                } else {
+                    name = "赛事";
+                }
+                viewHolder.tvType.setText(name);
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

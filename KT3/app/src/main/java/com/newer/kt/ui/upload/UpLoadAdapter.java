@@ -64,7 +64,15 @@ public class UpLoadAdapter<T extends LocalDataInfo> extends RecyclerView.Adapter
         if (holder instanceof ViewHolder) {
             ViewHolder viewHolder = (ViewHolder) holder;
             viewHolder.tvName.setText(mDatas.get(position).getUpLoadName());
-            viewHolder.tvType.setText(mDatas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
+            String name = null;
+            if (mDatas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN) {
+                name = "大课间";
+            } else if (mDatas.get(position).getType() == LocalDataInfo.TYPE_PINGCE) {
+                name = "评测";
+            } else {
+                name = "赛事";
+            }
+            viewHolder.tvType.setText(name);
             mCallBack.bindViewHolder(viewHolder, position);
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

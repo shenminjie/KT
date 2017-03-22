@@ -1,6 +1,7 @@
 package com.smj;
 
 import com.orhanobut.hawk.Hawk;
+import com.smj.saishi.SaishiRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,5 +70,23 @@ public class LocalDataManager {
     public static void removeUnUpLoadData(LocalDataInfo info) {
         mUploadList.remove(info);
         saveUnUpLoadList(mUploadList);
+    }
+
+    /**
+     * 保存赛事数据到本地
+     *
+     * @param saishiRequest saishiRequest
+     * @param videoPath     本地保存地址
+     * @param videoName     视频名字
+     */
+    public static void saveSaishiInfo(SaishiRequest saishiRequest, String videoPath, String videoName) {
+        LocalDataInfo localDataInfo = new LocalDataInfo();
+        localDataInfo.setType(LocalDataInfo.TYPE_SAISHI);
+        localDataInfo.setSaishiRequest(saishiRequest);
+        localDataInfo.setSaishiVideoName(videoName);
+        localDataInfo.setCreatetime(System.currentTimeMillis());
+        localDataInfo.setVideoPath(videoPath);
+
+        LocalDataManager.saveUnUpLoadInfo(localDataInfo);
     }
 }

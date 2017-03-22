@@ -3,6 +3,7 @@ package com.smj;
 import com.smj.dakejian.DakejianBasicInfo;
 import com.smj.gradlebean.Classes;
 import com.smj.gradlebean.Users;
+import com.smj.saishi.SaishiRequest;
 import com.smj.skillbean.SkillInfo;
 import com.smj.upload.UpLoadInfo;
 
@@ -17,14 +18,17 @@ import java.util.List;
 
 public class LocalDataInfo implements Serializable {
 
+    /**
+     * 三大类型
+     */
+    public static final int TYPE_PINGCE = 1;
+    public static final int TYPE_DAKEJIAN = 2;
+    public static final int TYPE_SAISHI = 3;
 
     /**
-     * 大课间
+     * 1- 评测 2大课间 3-赛事
      */
-    private List<Classes> bisaiClasses;
-    private int bisaiIs_finished;
-    private DakejianBasicInfo bisaiBasicInfo;
-
+    private int type;
 
 
     /**
@@ -41,16 +45,35 @@ public class LocalDataInfo implements Serializable {
     private List<Users> pingceStudent;
     private SkillInfo pingceSkillInfo;
 
+    /**
+     * 赛事
+     */
+    private String saishiVideoName;
+    private SaishiRequest saishiRequest;
+
+
+    /**
+     * 公用的属性
+     */
     private String videoPath;
     private long createtime;
 
-    /**
-     * 1- 评测 2大课间
-     */
-    private int type;
 
-    public static final int TYPE_PINGCE = 1;
-    public static final int TYPE_DAKEJIAN = 2;
+    public String getSaishiVideoName() {
+        return saishiVideoName;
+    }
+
+    public void setSaishiVideoName(String saishiVideoName) {
+        this.saishiVideoName = saishiVideoName;
+    }
+
+    public SaishiRequest getSaishiRequest() {
+        return saishiRequest;
+    }
+
+    public void setSaishiRequest(SaishiRequest saishiRequest) {
+        this.saishiRequest = saishiRequest;
+    }
 
     public List<Classes> getDakejianClasses() {
         return dakejianClasses;
@@ -134,10 +157,12 @@ public class LocalDataInfo implements Serializable {
      * @return
      */
     public String getVideoName() {
-        if (type == 1) {
+        if (type == TYPE_PINGCE) {
             return pingceClz.getClassName() + pingceSkillInfo.getName() + "评测";
-        } else if (type == 2) {
+        } else if (type == TYPE_DAKEJIAN) {
             return dakejianBasicInfo.getName();
+        } else if (type == TYPE_SAISHI) {
+            return saishiVideoName;
         }
         return "";
     }
@@ -148,27 +173,30 @@ public class LocalDataInfo implements Serializable {
      * @return
      */
     public String getId() {
-        if (type == 1) {
+        if (type == TYPE_PINGCE) {
             return "pingce_" + createtime;
-        } else if (type == 2) {
+        } else if (type == TYPE_DAKEJIAN) {
             return "dakejian_" + createtime;
+        } else if (type == TYPE_SAISHI) {
+            return "saishi_createtime";
         }
         return "";
     }
 
-
     @Override
     public String toString() {
         return "LocalDataInfo{" +
-                "dakejianClasses=" + dakejianClasses +
+                "type=" + type +
+                ", dakejianClasses=" + dakejianClasses +
                 ", dakejianIs_finished=" + dakejianIs_finished +
                 ", dakejianBasicInfo=" + dakejianBasicInfo +
                 ", pingceClz=" + pingceClz +
                 ", pingceStudent=" + pingceStudent +
                 ", pingceSkillInfo=" + pingceSkillInfo +
+                ", saishiVideoName='" + saishiVideoName + '\'' +
+                ", saishiRequest=" + saishiRequest +
                 ", videoPath='" + videoPath + '\'' +
                 ", createtime=" + createtime +
-                ", type=" + type +
                 '}';
     }
 }

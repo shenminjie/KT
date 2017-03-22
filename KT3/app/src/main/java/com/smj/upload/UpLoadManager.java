@@ -182,8 +182,10 @@ public class UpLoadManager {
                 LocalDataInfo upLoadSuccessData = mQueue.get();
                 if (upLoadSuccessData.getType() == LocalDataInfo.TYPE_PINGCE) {
                     commitPingce(jsonObject, upLoadSuccessData);
-                } else {
+                } else if (upLoadSuccessData.getType() == LocalDataInfo.TYPE_DAKEJIAN) {
                     commitDakejian(jsonObject, upLoadSuccessData);
+                } else if (upLoadSuccessData.getType() == LocalDataInfo.TYPE_SAISHI) {
+                    commitSaishi(jsonObject, upLoadSuccessData);
                 }
             }
 
@@ -210,6 +212,16 @@ public class UpLoadManager {
                 }
             }
         });
+    }
+
+    /**
+     * 提交赛事
+     *
+     * @param  jsonObject jsonObject
+     * @param  upLoadSuccessData upLoadSuccessData
+     */
+    private void commitSaishi(JSONObject jsonObject, LocalDataInfo upLoadSuccessData) {
+
     }
 
     /**
