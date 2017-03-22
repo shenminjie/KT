@@ -1,35 +1,34 @@
 package com.newer.kt.ui.upload;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.frame.app.utils.LogUtils;
 import com.newer.kt.R;
-import com.newer.kt.ktmatch.QueryBuilder;
+import com.newer.kt.entity.OnItemListener;
 import com.newer.kt.utils.DialogUtil;
 import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
-import com.smj.gradlebean.Users;
 import com.smj.upload.UpLoadBySmjService;
 import com.smj.upload.UpLoadManager;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,7 +44,7 @@ import io.vov.vitamio.utils.Log;
  * client_secret： c40bcc367334ef63e42ef4562b460e7f
  */
 
-public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, UploadListener {
+public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, UploadListener, OnItemListener<LocalDataInfo> {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -92,9 +91,6 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         return view;
     }
 
-    public void setToken(String token) {
-        this.mToken = token;
-    }
 
     @Override
     public void onDestroyView() {
@@ -107,7 +103,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mDatas = LocalDataManager.getUnUploadCacheDatas();
-        mAdapter = new UpLoadAdapter<>(mDatas, this);
+        mAdapter = new UpLoadAdapter<>(mDatas, this, this);
         mViewMap = new HashMap<>();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setAutoMeasureEnabled(true);
@@ -117,6 +113,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         Intent intent = new Intent(getContext(), UpLoadBySmjService.class);
         getActivity().startService(intent);
         getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
     }
 
     /**
@@ -128,6 +125,22 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             mBinder = (UpLoadBySmjService.UpLoadBinder) iBinder;
             mBinder.setListener(UpLoadFragment.this);
+
+            //instance show upload data
+            if (mBinder.getUpLoadStatus() == UpLoadManager.STATUS_UPLOADING) {
+                mRecyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LocalDataInfo info = UpLoadManager.getInstance().getCurrentUpLoadingData();
+                        if (info == null) {
+                            return;
+                        }
+                        mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(正在上传)");
+                        mViewMap.get(info.getId()).progreebar.setProgress(UpLoadManager.getInstance().getUpLoadingProgress());
+                    }
+                });
+
+            }
         }
 
         @Override
@@ -172,6 +185,7 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
     @Override
     public void onProgressUpdate(int i, LocalDataInfo info) {
         Log.e("smj", i + "  " + info);
+        mViewMap.get(info.getId()).tvName.setText(info.getUpLoadName() + "(正在上传)");
         mViewMap.get(info.getId()).progreebar.setProgress(i);
     }
 
@@ -200,61 +214,34 @@ public class UpLoadFragment extends Fragment implements UpLoadAdapter.Callback, 
 
     }
 
-
-    /**
-     * 上传后提交
-     *
-     * @param var1
-     * @param info
-     */
-    private void commit(JSONObject var1, LocalDataInfo info) {
-        //上传数据
-        try {
-            String videoId = var1.getString("video_id");
-            final LocalDataInfo data = info;
-            List<Users> students = data.getPingceStudent();
-            StringBuilder builder = new StringBuilder();
-            for (Users users : students) {
-                builder.append(users.getUser_id() + ",");
-            }
-            QueryBuilder.build("shool_user_tests/save_user_skill_test_record_video_url")
-                    .add("user_skill_test_record_id", builder.toString())
-                    .add("video_url", videoId)
-                    .post(new QueryBuilder.Callback() {
-                        @Override
-                        public void onSuccess(String result) {
-                            LogUtils.e("result--smj:" + result + "");
-//                            remove(data);
-
-                        }
-
-                        @Override
-                        public void onError(Throwable ex, boolean isOnCallback) {
-
-                        }
-
-                        @Override
-                        public void onDebug(RequestParams rp) {
-
-                        }
-                    });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void remove(LocalDataInfo info) {
+    @Override
+    public void commitSuccess(LocalDataInfo info) {
         mDatas.remove(info);
-        LocalDataManager.saveUnUpLoadList(mDatas);
         mAdapter.notifyDataSetChanged();
     }
 
+
     @Override
     public void onDestroy() {
-        mBinder.setListener(null);
+        if (mBinder != null) {
+            mBinder.setListener(null);
+        }
         getActivity().unbindService(mConnection);
         super.onDestroy();
     }
 
 
+    @Override
+    public void onItemListener(LocalDataInfo localDataInfo, int position) {
+        if (TextUtils.isEmpty(localDataInfo.getVideoPath())) {
+            return;
+        }
+        final Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+        videoIntent.setDataAndType(Uri.parse(localDataInfo.getVideoPath()), "video/*");
+        try {
+            startActivity(videoIntent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

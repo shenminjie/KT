@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.alipay.share.sdk.openapi.channel.APMessage;
 import com.newer.kt.R;
+import com.newer.kt.entity.OnItemListener;
 import com.smj.LocalDataInfo;
 import com.smj.PingceLocalData;
 import com.smj.upload.UpLoadInfo;
@@ -26,31 +27,60 @@ public class UpLoadAdapter<T extends LocalDataInfo> extends RecyclerView.Adapter
 
     private List<T> mDatas;
 
-    public UpLoadAdapter(List<T> mDatas, Callback mCallBack) {
+    private OnItemListener<T> mListener;
+
+    public UpLoadAdapter(List<T> mDatas, Callback mCallBack, OnItemListener<T> mListener) {
         this.mDatas = mDatas;
         this.mCallBack = mCallBack;
+        this.mListener = mListener;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mDatas.size() == 0) {
+            return 1;
+        }
+        return 2;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.item_upload_layout, parent, false);
-        RecyclerView.ViewHolder viewHolder = new ViewHolder(view);
-        viewHolder.setIsRecyclable(false);
-        return viewHolder;
+        if (viewType == 2) {
+            View view = LayoutInflater.from(parent.getContext()).
+                    inflate(R.layout.item_upload_layout, parent, false);
+            RecyclerView.ViewHolder viewHolder = new ViewHolder(view);
+            viewHolder.setIsRecyclable(false);
+            return viewHolder;
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).
+                    inflate(R.layout.item_empty_upload, parent, false);
+            return new RecyclerView.ViewHolder(view) {
+            };
+        }
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.tvName.setText(mDatas.get(position).getUpLoadName());
-        viewHolder.tvType.setText(mDatas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
-        mCallBack.bindViewHolder(viewHolder, position);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        if (holder instanceof ViewHolder) {
+            ViewHolder viewHolder = (ViewHolder) holder;
+            viewHolder.tvName.setText(mDatas.get(position).getUpLoadName());
+            viewHolder.tvType.setText(mDatas.get(position).getType() == LocalDataInfo.TYPE_DAKEJIAN ? "大课间" : "评测");
+            mCallBack.bindViewHolder(viewHolder, position);
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.onItemListener(mDatas.get(position), position);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mDatas == null ? 0 : mDatas.size();
+        if (mDatas.size() == 0) {
+            return 1;
+        }
+        return mDatas.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

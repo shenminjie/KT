@@ -21,4 +21,6 @@ public interface UploadListener {
 
     void onFinished(LocalDataInfo info);
 
+    void commitSuccess(LocalDataInfo info);
+
 }

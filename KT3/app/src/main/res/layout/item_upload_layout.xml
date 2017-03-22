@@ -18,8 +18,8 @@
         <TextView
             android:id="@+id/tv_type"
             style="@style/SmjTextViewStyle"
-            android:textColor="@color/red"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:textColor="@color/gold" />
     </FrameLayout>
 
 

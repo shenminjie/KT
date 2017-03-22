@@ -152,28 +152,29 @@ public class BigClassChooseActivity extends BaseActivity implements DakejianXuan
         String filename = "";
         if (resultCode == Activity.RESULT_OK) {
             filename = data.getStringExtra(VideoCaptureLitmitActivity.EXTRA_OUTPUT_FILENAME);
+            LocalDataInfo dakejianLocalData = new LocalDataInfo();
+            dakejianLocalData.setDakejianClasses(mSelectClasses);
+            dakejianLocalData.setCreatetime(System.currentTimeMillis());
+            dakejianLocalData.setVideoPath(filename);
+            dakejianLocalData.setDakejianBasicInfo(mDakejianBasicInfo);
+            dakejianLocalData.setDakejianIs_finished(0);
+            dakejianLocalData.setType(LocalDataInfo.TYPE_DAKEJIAN);
+
+            LocalDataManager.saveUnUpLoadInfo(dakejianLocalData);
+            DialogUtil.showAlert(this, "温馨提示", "录制成功，请到动态管理进行上传视频", "确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    finish();
+                }
+            });
         } else if (resultCode == Activity.RESULT_CANCELED) {
             filename = null;
         } else if (resultCode == VideoCaptureLitmitActivity.RESULT_ERROR) {
             filename = null;
         }
         Log.e("录制视频返回的对象,", filename + "");
-        LocalDataInfo dakejianLocalData = new LocalDataInfo();
-        dakejianLocalData.setDakejianClasses(mSelectClasses);
-        dakejianLocalData.setCreatetime(System.currentTimeMillis());
-        dakejianLocalData.setVideoPath(filename);
-        dakejianLocalData.setDakejianBasicInfo(mDakejianBasicInfo);
-        dakejianLocalData.setDakejianIs_finished(0);
-        dakejianLocalData.setType(LocalDataInfo.TYPE_DAKEJIAN);
 
-        LocalDataManager.saveUnUpLoadInfo(dakejianLocalData);
-        DialogUtil.showAlert(this, "温馨提示", "录制成功，请到动态管理进行上传视频", "确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                finish();
-            }
-        });
     }
 
     //退出当前Activity

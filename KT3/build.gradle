@@ -7,10 +7,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.bugtags.library:bugtags-gradle:latest.integration'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath "io.realm:realm-gradle-plugin:0.87.5"
+//        classpath 'com.bugtags.library:bugtags-gradle:latest.integration'
+//        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+//        classpath "io.realm:realm-gradle-plugin:0.87.5"
 
     }
 }

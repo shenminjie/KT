@@ -1,14 +1,17 @@
 package com.smj.upload;
 
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.frame.app.utils.LogUtils;
 import com.newer.kt.Refactor.KTApplication;
+import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.ktmatch.QueryBuilder;
 import com.newer.kt.ui.upload.UploadListener;
 import com.smj.LocalDataInfo;
 import com.smj.LocalDataManager;
+import com.smj.gradlebean.Classes;
 import com.smj.gradlebean.Users;
 import com.youku.uploader.IUploadResponseHandler;
 import com.youku.uploader.YoukuUploader;
@@ -17,7 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -115,18 +120,12 @@ public class UpLoadManager {
         }
     }
 
+
     /**
-     * 获取正在上传的数据
-     *
-     * @return
+     * cache
      */
-    public List<LocalDataInfo> getUpLoadingData() {
-        List<LocalDataInfo> datas = new ArrayList<>();
-        for (int i = 0; i < mQueue.size(); i++) {
-            datas.add(mQueue.get(i));
-        }
-        return datas;
-    }
+    private int mUpLoadingProgress;
+    private LocalDataInfo mUpLoadingData;
 
     /**
      * upload
@@ -154,12 +153,18 @@ public class UpLoadManager {
         mYoukuUploader.upload(params, uploadInfo, new IUploadResponseHandler() {
             @Override
             public void onStart() {
+                mUpLoadingProgress = 0;
+                mUpLoadingData = dataInfo;
                 if (mUpLoadListener != null)
                     mUpLoadListener.onStart(dataInfo);
             }
 
             @Override
             public void onProgressUpdate(int i) {
+                //记录当前处理的进度
+                mUpLoadingProgress = i;
+                mUpLoadingData = dataInfo;
+
                 if (mUpLoadListener != null)
                     mUpLoadListener.onProgressUpdate(i, dataInfo);
             }
@@ -167,6 +172,8 @@ public class UpLoadManager {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 Log.e("tag", "tag-----优酷上传成功");
+                mUpLoadingProgress = 100;
+                mUpLoadingData = dataInfo;
                 if (mUpLoadListener != null) {
                     mUpLoadListener.onSuccess(jsonObject, dataInfo);
                 }
@@ -182,14 +189,22 @@ public class UpLoadManager {
 
             @Override
             public void onFailure(JSONObject jsonObject) {
+                mUpLoadingProgress = 0;
+                mUpLoadingData = dataInfo;
+
                 if (mUpLoadListener != null) {
                     mUpLoadListener.onFailure(jsonObject, dataInfo);
                 }
+                //here got a bug with when it failed then
+                // it always keep get the failed one on queue
+                mQueue.get();
                 keepUpLoad();
             }
 
             @Override
             public void onFinished() {
+                mUpLoadingProgress = 100;
+                mUpLoadingData = dataInfo;
                 if (mUpLoadListener != null) {
                     mUpLoadListener.onFinished(dataInfo);
                 }
@@ -198,11 +213,67 @@ public class UpLoadManager {
     }
 
     /**
+     * 获取当前进度
+     *
+     * @return
+     */
+    public int getUpLoadingProgress() {
+        return mUpLoadingProgress;
+    }
+
+
+    public LocalDataInfo getCurrentUpLoadingData() {
+        return mUpLoadingData;
+    }
+
+    /**
      * cimmit dakejian
      */
-    private void commitDakejian(JSONObject var1, LocalDataInfo info) {
+    private void commitDakejian(JSONObject var1, final LocalDataInfo info) {
         try {
-            String videoId = var1.getString("video_id");
+            String youku_video_url = var1.getString("video_id");
+            String clubid = "" + PreferenceManager.getDefaultSharedPreferences(KTApplication.getContext())
+                    .getLong(LoginActivity.PRE_CURRENT_CLUB_ID, 1);
+            long user_id = PreferenceManager.getDefaultSharedPreferences(KTApplication.getContext()).getLong(LoginActivity.PRE_CURRENT_USER_ID, 0);
+            String classroom_id = info.getDakejianBasicInfo().getId();
+            StringBuilder clzBuilder = new StringBuilder();
+            for (Classes classes : info.getDakejianClasses()) {
+                clzBuilder.append(classes.getId());
+                clzBuilder.append(",");
+            }
+            int is_finished = 0;
+            String creatime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(info.getCreatetime()));
+            QueryBuilder.build("offline/upload_big_classroom_course_record")
+                    .add("club_id", clubid)
+                    .add("user_id", user_id)
+                    .add("youku_video_url", youku_video_url)
+                    .add("classroom_id", classroom_id)
+                    .add("classes", clzBuilder.toString())
+                    .add("is_finished", is_finished)
+                    .add("finished_time", creatime)
+                    .post(new QueryBuilder.Callback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            //delete from ununload list & save it to upload finish list
+                            LocalDataManager.removeUnUpLoadData(info);
+                            List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
+                            save.add(0, info);
+                            LocalDataManager.saveCacheDatas(save);
+                            if (mUpLoadListener != null) {
+                                mUpLoadListener.commitSuccess(info);
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable ex, boolean isOnCallback) {
+                            Log.e("tag", ex + "");
+                        }
+
+                        @Override
+                        public void onDebug(RequestParams rp) {
+                            Log.e("tag", rp + "");
+                        }
+                    });
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -225,10 +296,14 @@ public class UpLoadManager {
                     .post(new QueryBuilder.Callback() {
                         @Override
                         public void onSuccess(String result) {
+                            //delete from ununload list & save it to upload finish list
                             LocalDataManager.removeUnUpLoadData(info);
                             List<LocalDataInfo> save = LocalDataManager.getCacheDatas();
-                            save.add(info);
+                            save.add(0, info);
                             LocalDataManager.saveCacheDatas(save);
+                            if (mUpLoadListener != null) {
+                                mUpLoadListener.commitSuccess(info);
+                            }
                         }
 
                         @Override
@@ -275,7 +350,11 @@ public class UpLoadManager {
         }
     }
 
-
+    /**
+     * 获取当前状态
+     *
+     * @return
+     */
     public int getStatus() {
         return mStatus;
     }
