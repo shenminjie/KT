@@ -140,8 +140,10 @@ final String end_date_xiaoyuan = "" + PreferenceManager.getDefaultSharedPreferen
         RequestParams param = new RequestParams(url);
         param.addQueryStringParameter("authenticity_token", MD5.getToken(url));
 
-        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
+        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,0);
 
+        final String clubname = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getString(LoginActivity.PRE_CURRENT_CLUB_NAME,"");
+        tv_shcool.setText(clubname);
         param.addQueryStringParameter("club_id", clubid);
 //        response: "success",
 //                name: 校园名称,
@@ -158,7 +160,7 @@ final String end_date_xiaoyuan = "" + PreferenceManager.getDefaultSharedPreferen
                  clubInfo=gson.fromJson(result,Club_Info.class);
                 System.out.println(clubInfo.getResponse()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 Log.v("clubInfo",clubInfo.getResponse());
-                tv_shcool.setText(clubInfo.getName().toString());
+
 
                ImageLoader.getInstance().displayImage(clubInfo.avatar,image_head);
             }

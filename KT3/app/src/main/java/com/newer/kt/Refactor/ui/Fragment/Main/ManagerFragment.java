@@ -18,7 +18,10 @@ import com.frame.app.base.fragment.BaseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newer.kt.R;
+import com.newer.kt.Refactor.Constants;
+import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
 import com.newer.kt.Refactor.ui.Avtivity.Xjss.ActivityNewContest;
+import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.entity.AddClassData;
 import com.newer.kt.entity.Clubs_game_Bean;
 import com.newer.kt.entity.Clubs_groups_Bean;
@@ -169,9 +172,13 @@ public class ManagerFragment extends BaseFragment {
      */
     private void getClubs_group()
     {
-        Clubs_group= AuthenticityToken.getAuthenticityToken("/games/club_tongji");
-        // System.out.println(Clubs_game_url+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        RequestParams param=new RequestParams("http://api.ktfootball.com/games/club_tongji?club_id=89&authenticity_token="+Clubs_group);
+        String url = Constants.KTHOST + "games/club_tongji";
+        RequestParams param = new RequestParams(url);
+        param.addQueryStringParameter("authenticity_token", MD5.getToken(url));
+
+        final String clubid = "" + PreferenceManager.getDefaultSharedPreferences(getContext()).getLong(LoginActivity.PRE_CURRENT_CLUB_ID,1);
+
+        param.addQueryStringParameter("club_id", clubid);
         x.http().get(param, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -210,8 +217,12 @@ public class ManagerFragment extends BaseFragment {
     }
     private void getClubs_game() {
         Clubs_game_url=AuthenticityToken.getAuthenticityToken("/games/club_all_games");
+
+        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getString(PRE_CURRENT_CLUB_NAME,"");
+
         // System.out.println(Clubs_game_url+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        RequestParams params=new RequestParams("http://api.ktfootball.com/games/club_all_games?club_id=89&authenticity_token="+Clubs_game_url);
+        RequestParams params=new RequestParams("http://api.ktfootball.com/games/club_all_games?club_id="+clubid+"&authenticity_token="+Clubs_game_url);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
