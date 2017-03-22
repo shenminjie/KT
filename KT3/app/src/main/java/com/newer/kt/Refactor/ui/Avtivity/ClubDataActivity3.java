@@ -230,6 +230,7 @@ public class ClubDataActivity3 extends BaseActivity implements View.OnClickListe
         super.onStart();
         doQuery();//本地查询
         doCount();//club数据计算
+        fragments.get(currentIndex).onStart();
     }
 
     /**
@@ -332,6 +333,7 @@ public class ClubDataActivity3 extends BaseActivity implements View.OnClickListe
             }
             ft.show(fragments.get(currentIndex)).commit();
             oldIndex = currentIndex;
+            fragments.get(currentIndex).onStart();
         }
     }
 

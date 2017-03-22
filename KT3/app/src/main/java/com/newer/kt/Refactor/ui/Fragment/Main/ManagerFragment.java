@@ -83,10 +83,28 @@ public class ManagerFragment extends BaseFragment {
     private TextView tv_sex;
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getString(PRE_CURRENT_CLUB_NAME,"");
+        ((TextView)rootView.findViewById(R.id.tv_title_game)).setText(clubid);
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         //setContentView(R.layout.layout_managerfragment);
 
+        init();
+    }
+
+    private void init() {
+
         rootView=getActivity().getLayoutInflater().inflate(R.layout.layout_managerfragment,null);
+        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getString(PRE_CURRENT_CLUB_NAME,"");
+        ((TextView)rootView.findViewById(R.id.tv_title_game)).setText(clubid);
         lv_saishi = ((ListView) rootView.findViewById(R.id.lv_saishi));
         tv_all_game = ((TextView) rootView.findViewById(R.id.tv_all_game));
         tv_all_people = ((TextView) rootView.findViewById(R.id.tv_all_people));
@@ -100,10 +118,6 @@ public class ManagerFragment extends BaseFragment {
         });
         getClubs_group();
 
-
-        String clubid = ""+ PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getString(PRE_CURRENT_CLUB_NAME,"");
-        ((TextView)rootView.findViewById(R.id.tv_title_game)).setText(clubid);
 
         lv_saishi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -164,8 +178,6 @@ public class ManagerFragment extends BaseFragment {
         getClubs_game();
         saishiAdapter.notifyDataSetChanged();
     }
-
-
 
 
     /**
