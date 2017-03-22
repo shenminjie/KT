@@ -114,7 +114,7 @@ VISIBILITY_HIDDEN表示不显示任何通知栏提示，
         // 获取sdcard的路径：外置和内置
         String[] paths = new String[0];
         try {
-            paths = (String[]) sm.getClass().getMethod("getVolumePaths", null).invoke(sm, null);
+            paths = (String[]) sm.getClass().getMethod("getVolumePaths", anull).invoke(sm, null);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
