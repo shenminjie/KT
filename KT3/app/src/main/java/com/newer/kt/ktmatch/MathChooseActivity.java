@@ -99,8 +99,8 @@ public class MathChooseActivity extends CamScanActivity {
             @Override
             public void onClick(View v) {
                 MatchActivity.invoke(getBaseContext());
-                Params.getInstanceParam().setUid1(((TextView)findViewById(R.id.rightid)).getText().toString());
-                Params.getInstanceParam().setUid2(((TextView)findViewById(R.id.leftid)).getText().toString());
+                Params.getInstanceParam().setUid1(((TextView)findViewById(R.id.rightid)).getText().toString().replaceAll("f_89_",""));
+                Params.getInstanceParam().setUid2(((TextView)findViewById(R.id.leftid)).getText().toString().replaceAll("f_89_",""));
                 Params.getInstanceParam().setBattle_id(UUID.randomUUID().toString());
 
                 finish();
@@ -242,6 +242,7 @@ public class MathChooseActivity extends CamScanActivity {
             ChooseMatcherActivity.teamName = null;
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -263,7 +264,6 @@ public class MathChooseActivity extends CamScanActivity {
 //                        { response: "success", user_id: 用户ID, match_id: 用户快速参赛的号码 }
 //                showDialogToast(result);
 
-
                             Gson gson = new Gson();
                             //1. 获得 解析者
                             JsonParser parser = new JsonParser();
@@ -281,7 +281,7 @@ public class MathChooseActivity extends CamScanActivity {
                             if("success".equals(flag)){
 
                                 JsonPrimitive matchidj = root.getAsJsonPrimitive("match_id");
-                                String matchid = matchidj.getAsString();
+                                String matchid = matchidj.getAsString().replaceAll("f_89_","");
                                 ((TextView)findViewById(index)).setText(matchid);
                                 checkPrepared(index);
                             }

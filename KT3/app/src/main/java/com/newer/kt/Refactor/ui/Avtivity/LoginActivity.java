@@ -92,6 +92,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this)
+                                .edit().clear();
+                        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this)
+                                .edit().commit();
                         closeLoadingDialog();
                         LogUtils.e(response.toString());
                         //关闭动画

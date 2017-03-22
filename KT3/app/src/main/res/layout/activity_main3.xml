@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:src="@drawable/selector_main_bottom_3" />
+            android:src="@drawable/selector_main_bottom_3"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/shequ"
@@ -46,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:src="@drawable/selector_main_bottom_4" />
+            android:src="@drawable/selector_main_bottom_4"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/cartoon"
