@@ -212,6 +212,10 @@ public class JinengFramgent extends BaseFragment {
         getGv_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==3){
+                    Toast.makeText(getContext(),"敬请期待",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (mSkillResponses == null) {
                     return;
                 }
