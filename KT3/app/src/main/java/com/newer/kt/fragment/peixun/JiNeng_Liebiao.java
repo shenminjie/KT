@@ -14,6 +14,7 @@ import com.frame.app.utils.LogUtils;
 import com.google.gson.Gson;
 import com.newer.kt.R;
 import com.newer.kt.Refactor.ui.Avtivity.LoginActivity;
+import com.newer.kt.Refactor.utils.Toast;
 import com.newer.kt.entity.StudySkillInfo;
 import com.newer.kt.entity.jineng.JiNeng_Bean;
 import com.newer.kt.ktmatch.QueryBuilder;
@@ -23,6 +24,7 @@ import com.newer.kt.ui.video_list.VideoListActivity;
 import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,6 +33,11 @@ public class JiNeng_Liebiao extends AppCompatActivity implements QueryBuilder.Ca
     private ImageView iv_back;
     private TextView tv_jineng;
 
+    @Bind(R.id.tv_all_people)
+    TextView mTvYiwancheng;
+
+    @Bind(R.id.tv_pingjun)
+    TextView mTvYixunLian;
 
     private JiNeng_Bean data;
 
@@ -75,10 +82,12 @@ public class JiNeng_Liebiao extends AppCompatActivity implements QueryBuilder.Ca
 
     @OnClick(R.id.layout_real_man)
     public void toRealManShow() {
-        if (mStudySkillInfo != null) {
+        if (mStudySkillInfo != null && mStudySkillInfo.getYouku_videos().size() != 0) {
 //            VideoListActivity.toAcitivty(this, mStudySkillInfo.getVideos());
             //根据初中高来跳转，默认低级
-            ShipinXiangqingActivity.toActivity(this,mStudySkillInfo);
+            ShipinXiangqingActivity.toActivity(this, mStudySkillInfo);
+        } else {
+            Toast.show(this, "当前无视频");
         }
     }
 

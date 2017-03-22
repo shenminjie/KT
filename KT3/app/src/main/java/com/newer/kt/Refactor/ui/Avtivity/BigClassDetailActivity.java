@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -40,6 +41,9 @@ import com.newer.kt.Refactor.utils.MD5;
 import com.newer.kt.Refactor.view.MyLinearLayoutManager;
 import com.newer.kt.Refactor.view.ReboundScrollView;
 import com.newer.kt.adapter.BigClassGifAdapter;
+import com.newer.kt.entity.jineng.JiNeng_Bean;
+import com.newer.kt.fragment.peixun.JiNengFragment_List;
+import com.newer.kt.fragment.peixun.JiNeng_Liebiao;
 import com.newer.kt.myClass.DownLoaderTask;
 import com.newer.kt.myClass.PixelUtils;
 import com.newer.kt.myClass.ZipExtractorTask;
@@ -189,6 +193,15 @@ public class BigClassDetailActivity extends BaseActivity {
 
         skillAdapter = new SkillAdapter(skills, this);
         mGridView.setAdapter(skillAdapter);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Skill skill = skills.get(i);
+                JiNeng_Bean jiNeng_bean = new JiNeng_Bean();
+                jiNeng_bean.setApp_cartoon_id(skill.getId() + "");
+                JiNeng_Liebiao.toActivity(BigClassDetailActivity.this, jiNeng_bean);
+            }
+        });
 
         getSchoolBigClassDetail();
         actionAdapter = new BigClassGifAdapter(actions, getThis(), linearLayoutManager);
